@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="login::#login.xhtml" NAME="output"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cargabd::#cargabd.xhtml" NAME="output"
+    PATH="/cargabd.xhtml" TARGET="rules:#cargabd.xhtml" TITLE="cargabd" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#home.xhtml" NAME="output"
+    PATH="/home.xhtml" TARGET="rules:#home.xhtml" TITLE="home" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::3" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="forbbiden::#forbidden.xhtml" NAME="output"
+    PATH="/forbidden.xhtml" TARGET="rules:#forbidden.xhtml"
+    TITLE="forbbiden" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::4" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listMedicamento::#medicamento#list.xhtml"
+    NAME="output" PATH="/medicamento/list.xhtml"
+    TARGET="rules:#medicamento#list.xhtml" TITLE="listMedicamento" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::5" SHAPE="32,1009,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listModelagemFuzzy::#modelagemFuzzy#list.xhtml" NAME="output"
+    PATH="/modelagemFuzzy/list.xhtml"
+    TARGET="rules:#modelagemFuzzy#list.xhtml" TITLE="listModelagemFuzzy" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::6" SHAPE="32,1121,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::6" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listTesteFile::#testefile#list.xhtml"
+    NAME="output" PATH="/testefile/list.xhtml"
+    TARGET="rules:#testefile#list.xhtml" TITLE="listTesteFile" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#testefile#*" PATH="/testefile/*"
+  SHAPE="32,5665,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#testefile#*:0" NAME="item"
+   PATH="/testefile/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="list::#testefile#list.xhtml" NAME="output"
+    PATH="/testefile/list.xhtml" TARGET="rules:#testefile#list.xhtml"
+    TITLE="list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#*" PATH="/modelagemFuzzy/*"
+  SHAPE="32,9185,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#modelagemFuzzy#*:0" NAME="item"
+   PATH="/modelagemFuzzy/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="newModelagemFuzzy::#modelagemFuzzy#new.xhtml" NAME="output"
+    PATH="/modelagemFuzzy/new.xhtml"
+    TARGET="rules:#modelagemFuzzy#new.xhtml" TITLE="newModelagemFuzzy" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="editModelagemFuzzy::#modelagemFuzzy#edit.xhtml" NAME="output1"
+    PATH="/modelagemFuzzy/edit.xhtml"
+    TARGET="rules:#modelagemFuzzy#edit.xhtml" TITLE="editModelagemFuzzy" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showModelagemFuzzy::#modelagemFuzzy#show.xhtml" NAME="output2"
+    PATH="/modelagemFuzzy/show.xhtml"
+    TARGET="rules:#modelagemFuzzy#show.xhtml" TITLE="showModelagemFuzzy" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="graficoMFModelagem::#modelagemFuzzy#showGraficoMF.xhtml"
+    NAME="output3" PATH="/modelagemFuzzy/showGraficoMF.xhtml"
+    TARGET="rules:#modelagemFuzzy#showGraficoMF.xhtml"
+    TITLE="graficoMFModelagem" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="uploadModelagemFuzzy::#modelagemFuzzy#upload.xhtml"
+    NAME="output4" PATH="/modelagemFuzzy/upload.xhtml"
+    TARGET="rules:#modelagemFuzzy#upload.xhtml"
+    TITLE="uploadModelagemFuzzy" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="preparaSimulador2DModelagem::#modelagemFuzzy#preparaSimulador2D.xhtml"
+    NAME="output5" PATH="/modelagemFuzzy/preparaSimulador2D.xhtml"
+    TARGET="rules:#modelagemFuzzy#preparaSimulador2D.xhtml"
+    TITLE="preparaSimulador2DModelagem" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="mostraSimulador2DModelagem::#modelagemFuzzy#showSimulador2D.xhtml"
+    NAME="output6" PATH="/modelagemFuzzy/showSimulador2D.xhtml"
+    TARGET="rules:#modelagemFuzzy#showSimulador2D.xhtml"
+    TITLE="mostraSimulador2DModelagem" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="monitorModelagem::#modelagemFuzzy#showMonitor.xhtml"
+    NAME="output7" PATH="/modelagemFuzzy/showMonitor.xhtml"
+    TARGET="rules:#modelagemFuzzy#showMonitor.xhtml"
+    TITLE="monitorModelagem" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showGrafico3D::#modelagemFuzzy#showGrafico3D.xhtml"
+    NAME="output8" PATH="/modelagemFuzzy/showGrafico3D.xhtml"
+    TARGET="rules:#modelagemFuzzy#showGrafico3D.xhtml"
+    TITLE="showGrafico3D" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#usuario#*" PATH="/usuario/*"
+  SHAPE="32,11505,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#usuario#*:0" NAME="item" PATH="/usuario/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="newUsuario::#usuario#new.xhtml"
+    NAME="output" PATH="/usuario/new.xhtml"
+    TARGET="rules:#usuario#new.xhtml" TITLE="newUsuario" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="editUsuario::#usuario#edit.xhtml"
+    NAME="output1" PATH="/usuario/edit.xhtml"
+    TARGET="rules:#usuario#edit.xhtml" TITLE="editUsuario" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="showUsuario::#usuario#show.xhtml"
+    NAME="output2" PATH="/usuario/show.xhtml"
+    TARGET="rules:#usuario#show.xhtml" TITLE="showUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#new.xhtml"
+  PATH="/modelagemFuzzy/new.xhtml" SHAPE="304,9201,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#home.xhtml" PATH="/home.xhtml"
+  SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#edit.xhtml"
+  PATH="/modelagemFuzzy/edit.xhtml" SHAPE="304,9569,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#list.xhtml"
+  PATH="/modelagemFuzzy/list.xhtml" SHAPE="240,3825,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#upload.xhtml"
+  PATH="/modelagemFuzzy/upload.xhtml" SHAPE="304,9905,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cargabd.xhtml" PATH="/cargabd.xhtml"
+  SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#show.xhtml"
+  PATH="/modelagemFuzzy/show.xhtml" SHAPE="304,9681,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#usuario#new.xhtml" PATH="/usuario/new.xhtml"
+  SHAPE="272,11521,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#usuario#show.xhtml"
+  PATH="/usuario/show.xhtml" SHAPE="272,11809,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#usuario#list.xhtml"
+  PATH="/usuario/list.xhtml" SHAPE="240,5793,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#forbidden.xhtml" PATH="/forbidden.xhtml"
+  SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#testefile#list.xhtml"
+  PATH="/testefile/list.xhtml" SHAPE="256,5569,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#usuario#edit.xhtml"
+  PATH="/usuario/edit.xhtml" SHAPE="272,11697,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#paciente#*" PATH="/paciente/*"
+  SHAPE="32,12049,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#paciente#*:0" NAME="item" PATH="/paciente/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="newPaciente::#paciente#new.xhtml"
+    NAME="output2" PATH="/paciente/new.xhtml"
+    TARGET="rules:#paciente#new.xhtml" TITLE="newPaciente" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="editPaciente::#paciente#edit.xhtml"
+    NAME="output1" PATH="/paciente/edit.xhtml"
+    TARGET="rules:#paciente#edit.xhtml" TITLE="editPaciente" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="showPaciente::#paciente#show.xhtml"
+    NAME="output" PATH="/paciente/show.xhtml"
+    TARGET="rules:#paciente#show.xhtml" TITLE="showPaciente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#paciente#show.xhtml"
+  PATH="/paciente/show.xhtml" SHAPE="272,12065,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#paciente#edit.xhtml"
+  PATH="/paciente/edit.xhtml" SHAPE="272,12241,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::7" SHAPE="32,5729,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::7" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listAtendimento::#atendimento#list.xhtml"
+    NAME="output" PATH="/atendimento/list.xhtml"
+    TARGET="rules:#atendimento#list.xhtml" TITLE="listAtendimento" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#paciente#list.xhtml"
+  PATH="/paciente/list.xhtml" SHAPE="240,1153,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#paciente#new.xhtml"
+  PATH="/paciente/new.xhtml" SHAPE="272,12353,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#showMonitor.xhtml"
+  PATH="/modelagemFuzzy/showMonitor.xhtml" SHAPE="304,8993,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#showSimulador2D.xhtml"
+  PATH="/modelagemFuzzy/showSimulador2D.xhtml" SHAPE="304,9697,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#showGraficoMF.xhtml"
+  PATH="/modelagemFuzzy/showGraficoMF.xhtml" SHAPE="304,9585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#preparaSimulador2D.xhtml"
+  PATH="/modelagemFuzzy/preparaSimulador2D.xhtml" SHAPE="304,9105,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modelagemFuzzy#showGrafico3D.xhtml"
+  PATH="/modelagemFuzzy/showGrafico3D.xhtml" SHAPE="304,8881,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::8" SHAPE="32,5729,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::8" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listAvaliacao::#avaliacao#list.xhtml"
+    NAME="output" PATH="/avaliacao/list.xhtml"
+    TARGET="rules:#avaliacao#list.xhtml" TITLE="listAvaliacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#atendimento#*" PATH="/atendimento/*"
+  SHAPE="32,5841,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#atendimento#*:0" NAME="item"
+   PATH="/atendimento/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="newAtendimento::#atendimento#new.xhtml"
+    NAME="output" PATH="/atendimento/new.xhtml"
+    TARGET="rules:#atendimento#new.xhtml" TITLE="newAtendimento" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="editAtendimento::#atendimento#edit.xhtml"
+    NAME="output1" PATH="/atendimento/edit.xhtml"
+    TARGET="rules:#atendimento#edit.xhtml" TITLE="editAtendimento" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="showAtendimento::#atendimento#show.xhtml"
+    NAME="output2" PATH="/atendimento/show.xhtml"
+    TARGET="rules:#atendimento#show.xhtml" TITLE="showAtendimento" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#atendimento#edit.xhtml"
+  PATH="/atendimento/edit.xhtml" SHAPE="272,6033,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#atendimento#list.xhtml"
+  PATH="/atendimento/list.xhtml" SHAPE="240,1153,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#atendimento#new.xhtml"
+  PATH="/atendimento/new.xhtml" SHAPE="272,5857,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::9" SHAPE="32,5729,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::9" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listEspecialista::#especialista#list.xhtml"
+    NAME="output" PATH="/especialista/list.xhtml"
+    TARGET="rules:#especialista#list.xhtml" TITLE="listEspecialista" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::10" SHAPE="32,5729,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::10" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listStatusAtendimento::#paciente#list.xhtml"
+    NAME="output" PATH="/paciente/list.xhtml"
+    TARGET="rules:#paciente#list.xhtml" TITLE="listStatusAtendimento" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#atendimento#show.xhtml"
+  PATH="/atendimento/show.xhtml" SHAPE="304,6609,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#medicamento#*" PATH="/medicamento/*"
+  SHAPE="32,6801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#medicamento#*:0" NAME="item"
+   PATH="/medicamento/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="newMedicamento::#medicamento#new.xhtml"
+    NAME="output" PATH="/medicamento/new.xhtml"
+    TARGET="rules:#medicamento#new.xhtml" TITLE="newMedicamento" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="editMedicamento::#medicamento#edit.xhtml"
+    NAME="output1" PATH="/medicamento/edit.xhtml"
+    TARGET="rules:#medicamento#edit.xhtml" TITLE="editMedicamento" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="showMedicamento::#medicamento#show.xhtml"
+    NAME="output2" PATH="/medicamento/show.xhtml"
+    TARGET="rules:#medicamento#show.xhtml" TITLE="showMedicamento" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#medicamento#new.xhtml"
+  PATH="/medicamento/new.xhtml" SHAPE="272,6817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#medicamento#show.xhtml"
+  PATH="/medicamento/show.xhtml" SHAPE="272,7105,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#medicamento#edit.xhtml"
+  PATH="/medicamento/edit.xhtml" SHAPE="272,6993,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#medicamento#list.xhtml"
+  PATH="/medicamento/list.xhtml" SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::11" SHAPE="32,5729,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::11" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listParametro::#parametro#list.xhtml"
+    NAME="output" PATH="/parametro/list.xhtml"
+    TARGET="rules:#parametro#list.xhtml" TITLE="listParametro" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#parametro#list.xhtml"
+  PATH="/parametro/list.xhtml" SHAPE="240,6993,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#parametro#*" PATH="/parametro/*"
+  SHAPE="32,7313,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#parametro#*:0" NAME="item"
+   PATH="/parametro/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="newParametro::#parametro#new.xhtml"
+    NAME="output" PATH="/parametro/new.xhtml"
+    TARGET="rules:#parametro#new.xhtml" TITLE="newParametro" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="editPaciente::#parametro#edit.xhtml"
+    NAME="output1" PATH="/parametro/edit.xhtml"
+    TARGET="rules:#parametro#edit.xhtml" TITLE="editPaciente" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="showParametro::#parametro#show.xhtml"
+    NAME="output2" PATH="/parametro/show.xhtml"
+    TARGET="rules:#parametro#show.xhtml" TITLE="showParametro" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#parametro#edit.xhtml"
+  PATH="/parametro/edit.xhtml" SHAPE="272,7505,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#parametro#show.xhtml"
+  PATH="/parametro/show.xhtml" SHAPE="272,7617,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#parametro#new.xhtml"
+  PATH="/parametro/new.xhtml" SHAPE="272,7329,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::12" SHAPE="32,5729,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::12" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listPaciente::#paciente#list.xhtml"
+    NAME="output" PATH="/paciente/list.xhtml"
+    TARGET="rules:#paciente#list.xhtml" TITLE="listPaciente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#especialista#*" PATH="/especialista/*"
+  SHAPE="32,7937,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#especialista#*:0" NAME="item"
+   PATH="/especialista/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="avalEspecialista::#especialista#aval.xhtml"
+    NAME="output" PATH="/especialista/aval.xhtml"
+    TARGET="rules:#especialista#aval.xhtml" TITLE="avalEspecialista" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="editAvalEspecialista::#especialista#editAval.xhtml"
+    NAME="output1" PATH="/especialista/editAval.xhtml"
+    TARGET="rules:#especialista#editAval.xhtml"
+    TITLE="editAvalEspecialista" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="newEspecialista::#especialista#new.xhtml"
+    NAME="output2" PATH="/especialista/new.xhtml"
+    TARGET="rules:#especialista#new.xhtml" TITLE="newEspecialista" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="editEspecialista::#especialista#edit.xhtml"
+    NAME="output3" PATH="/especialista/edit.xhtml"
+    TARGET="rules:#especialista#edit.xhtml" TITLE="editEspecialista" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="showEspecialista::#especialista#show.xhtml"
+    NAME="output4" PATH="/especialista/show.xhtml"
+    TARGET="rules:#especialista#show.xhtml" TITLE="showEspecialista" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#especialista#edit.xhtml"
+  PATH="/especialista/edit.xhtml" SHAPE="272,8129,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#especialista#show.xhtml"
+  PATH="/especialista/show.xhtml" SHAPE="272,8241,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#especialista#list.xhtml"
+  PATH="/especialista/list.xhtml" SHAPE="240,6145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#especialista#new.xhtml"
+  PATH="/especialista/new.xhtml" SHAPE="272,7953,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#especialista#aval.xhtml"
+  PATH="/especialista/aval.xhtml" SHAPE="272,8065,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#especialista#editAval.xhtml"
+  PATH="/especialista/editAval.xhtml" SHAPE="288,8065,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::13" SHAPE="32,5729,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::13" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listUsuario::#usuario#list.xhtml"
+    NAME="output" PATH="/usuario/list.xhtml"
+    TARGET="rules:#usuario#list.xhtml" TITLE="listUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#avaliacao#list.xhtml"
+  PATH="/avaliacao/list.xhtml" SHAPE="240,6257,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
+
+	<application>
+		<message-bundle>mensagens</message-bundle>
+	</application>
+
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+	</application>
+
+	<lifecycle>
+		<phase-listener>ouvinte.PhaseListenerCustomizado</phase-listener>
+	</lifecycle>
+
+	<!-- Regras de navegacao GLOBAIS -->
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>cargabd</from-outcome>
+			<to-view-id>/cargabd.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>forbbiden</from-outcome>
+			<to-view-id>/forbidden.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listMedicamento</from-outcome>
+			<to-view-id>/medicamento/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listTesteFile</from-outcome>
+			<to-view-id>/testefile/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAtendimento</from-outcome>
+			<to-view-id>/atendimento/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAvaliacao</from-outcome>
+			<to-view-id>/avaliacao/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listEspecialista</from-outcome>
+			<to-view-id>/especialista/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listStatusAtendimento</from-outcome>
+			<to-view-id>/paciente/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>		
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listParametro</from-outcome>
+			<to-view-id>/parametro/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listPaciente</from-outcome>
+			<to-view-id>/paciente/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listUsuario</from-outcome>
+			<to-view-id>/usuario/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- FIM-Regras de navegacao GLOBAIS -->
+	
+	<!-- Regras de navegacao (Atendimento) -->
+	<navigation-rule>
+		<from-view-id>/atendimento/*</from-view-id>
+		<navigation-case>
+			<from-outcome>newAtendimento</from-outcome>
+			<to-view-id>/atendimento/new.xhtml</to-view-id>
+		</navigation-case>		
+		<navigation-case>
+			<from-outcome>editAtendimento</from-outcome>
+			<to-view-id>/atendimento/edit.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>showAtendimento</from-outcome>
+			<to-view-id>/atendimento/show.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- FIM-Regras de navegacao (Atendimento) -->	
+	
+	<!-- Regras de navegacao (Especialista) -->
+	<navigation-rule>
+		<from-view-id>/especialista/*</from-view-id>
+		<navigation-case>
+			<from-outcome>avalEspecialista</from-outcome>
+			<to-view-id>/especialista/aval.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editAvalEspecialista</from-outcome>
+			<to-view-id>/especialista/editAval.xhtml</to-view-id>
+		</navigation-case>		
+		<navigation-case>
+			<from-outcome>newEspecialista</from-outcome>
+			<to-view-id>/especialista/new.xhtml</to-view-id>
+		</navigation-case>		
+		<navigation-case>
+			<from-outcome>editEspecialista</from-outcome>
+			<to-view-id>/especialista/edit.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>showEspecialista</from-outcome>
+			<to-view-id>/especialista/show.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- FIM-Regras de navegacao (Especialista) -->	
+
+	<!-- Regras de navegacao (Avaliacao TesteFile) -->
+	<navigation-rule>
+		<from-view-id>/testefile/*</from-view-id>
+		<navigation-case>
+			<from-outcome>list</from-outcome>
+			<to-view-id>/testefile/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Regras de navegacao (Avaliacao TesteFile) -->
+	
+	<!-- Regras de navegacao (Medicamento) -->
+	<navigation-rule>
+		<from-view-id>/medicamento/*</from-view-id>
+		<navigation-case>
+			<from-outcome>newMedicamento</from-outcome>
+			<to-view-id>/medicamento/new.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editMedicamento</from-outcome>
+			<to-view-id>/medicamento/edit.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>showMedicamento</from-outcome>
+			<to-view-id>/medicamento/show.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Regras de navegacao (Medicamento) -->
+	
+	<!-- Regras de navegacao (Paciente) -->
+	<navigation-rule>
+		<from-view-id>/paciente/*</from-view-id>
+		<navigation-case>
+			<from-outcome>newPaciente</from-outcome>
+			<to-view-id>/paciente/new.xhtml</to-view-id>
+		</navigation-case>		
+		<navigation-case>
+			<from-outcome>editPaciente</from-outcome>
+			<to-view-id>/paciente/edit.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>showPaciente</from-outcome>
+			<to-view-id>/paciente/show.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- FIM-Regras de navegacao (Paciente) -->	
+
+	<!-- Regras de navegacao (Parametro) -->
+	<navigation-rule>
+		<from-view-id>/parametro/*</from-view-id>
+		<navigation-case>
+			<from-outcome>newParametro</from-outcome>
+			<to-view-id>/parametro/new.xhtml</to-view-id>
+		</navigation-case>		
+		<navigation-case>
+			<from-outcome>editPaciente</from-outcome>
+			<to-view-id>/parametro/edit.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>showParametro</from-outcome>
+			<to-view-id>/parametro/show.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- FIM-Regras de navegacao (Parametro) -->	
+
+	<!-- Regras de navegacao (Usuario) -->
+	<navigation-rule>
+		<from-view-id>/usuario/*</from-view-id>
+		<navigation-case>
+			<from-outcome>newUsuario</from-outcome>
+			<to-view-id>/usuario/new.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editUsuario</from-outcome>
+			<to-view-id>/usuario/edit.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>showUsuario</from-outcome>
+			<to-view-id>/usuario/show.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- FIM-Regras de navegacao (Usuario) -->
+
+	<!-- Definicao dos Managed Beans no escopo de requisicao -->
+	<managed-bean>
+		<managed-bean-name>atendimentoActions</managed-bean-name>
+		<managed-bean-class>actions.AtendimentoActions</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>autenticadorActions</managed-bean-name>
+		<managed-bean-class>actions.controle.AutenticadorActions</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>cargaActions</managed-bean-name>
+		<managed-bean-class>actions.CargaActions</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>especialistaActions</managed-bean-name>
+		<managed-bean-class>actions.EspecialistaActions</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>medicamentoActions</managed-bean-name>
+		<managed-bean-class>actions.MedicamentoActions</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>parametroActions</managed-bean-name>
+		<managed-bean-class>actions.ParametroActions</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>pacienteActions</managed-bean-name>
+		<managed-bean-class>actions.PacienteActions</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>usuarioActions</managed-bean-name>
+		<managed-bean-class>actions.UsuarioActions</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<!-- Definicao dos Managed Beans no escopo de sessao -->
+
+	<managed-bean>
+		<managed-bean-name>sessaoDoUsuario</managed-bean-name>
+		<managed-bean-class>actions.controle.SessaoDoUsuario</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>testeFileActions</managed-bean-name>
+		<managed-bean-class>actions.TesteFileActions</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<!-- Definicao dos Managed Beans no escopo de aplicacao -->
+
+	<managed-bean>
+		<managed-bean-name>constantes</managed-bean-name>
+		<managed-bean-class>util.Constantes</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+
+	<!-- Definicao de validadores -->
+
+	<validator>
+		<validator-id>valorMaiorQueZero</validator-id>
+		<validator-class>validadores.ValorMaiorQueZero</validator-class>
+	</validator>
+
+</faces-config>

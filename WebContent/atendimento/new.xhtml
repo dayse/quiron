@@ -1,0 +1,168 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition
+	template="/WEB-INF/template/atendimento_list_template.xhtml">
+	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
+	<ui:define name="descricao">#{prompt.atendimento_Incluir}</ui:define>
+	<ui:define name="descricao_ajuda">#{help.atendimento_Incluir}</ui:define>
+
+	<ui:define name="mensagemSistema" />
+
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="atendimentoActions" />
+		<a4j:keepAlive beanName="pacienteActions" />
+
+		<h:form>
+
+			<rich:simpleTogglePanel>
+				<f:facet name="header">
+					<h:outputText value="#{prompt.atendimento}" />
+				</f:facet>
+
+				<h:panelGrid columns="1">
+					<f:facet name="header">
+						<h:messages globalOnly="true" style="color: red" />
+					</f:facet>
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_codigo}" />:
+			    	</h:panelGroup>
+
+					<h:inputText id="codigo"
+						value="#{atendimentoActions.atendimentoCorrente.codAtendimento}"
+						maxlength="#{constantes.lAtendimentoCodAtendimento}" size="20"
+						required="false" />
+					<h:message for="codigo" styleClass="error" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_dataAtendimento}" />:
+					</h:panelGroup>
+
+					<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy HH:mm"
+						value="#{atendimentoActions.dataAtendimento}" required="false"
+						enableManualInput="false" />
+					<h:message for="dataAtendimento" styleClass="error" />
+
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.medico}" />:
+					</h:panelGroup>
+					<h:selectOneMenu id="comboMedicos"
+						value="#{atendimentoActions.comboMedicos.selecao}"
+						disabled="#{atendimentoActions.clinicoEditavel}">
+						<f:selectItems
+							value="#{atendimentoActions.comboMedicos.listaSelecao}" />
+					</h:selectOneMenu>
+					<h:message for="comboMedicos" styleClass="error" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.tecnico}" />:
+					</h:panelGroup>
+					<h:selectOneMenu id="comboTecnicos"
+						value="#{atendimentoActions.comboTecnicos.selecao}"
+						disabled="#{atendimentoActions.tecnicoEditavel}">
+						<f:selectItems
+							value="#{atendimentoActions.comboTecnicos.listaSelecao}" />
+					</h:selectOneMenu>
+					<h:message for="comboTecnicos" styleClass="error" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_status}" />:
+					</h:panelGroup>
+					<h:selectOneMenu id="comboStatus"
+						value="#{atendimentoActions.comboStatus.selecao}">
+						<f:selectItems
+							value="#{atendimentoActions.comboStatus.listaSelecao}" />
+					</h:selectOneMenu>
+					<h:message for="comboStatus" styleClass="error" />
+
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+
+			<rich:simpleTogglePanel>
+				<f:facet name="header">
+					<h:outputText value="#{prompt.parametros}" />
+				</f:facet>
+
+				<h:panelGrid columns="3">
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_febre}" />:
+			    	</h:panelGroup>
+
+					<h:inputText id="febre" value="#{atendimentoActions.anamneseCorrente.febre}"
+						size="20" required="false" />
+					<h:message for="febre" styleClass="error" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_disuria}" />:
+			    	</h:panelGroup>
+
+					<h:inputText id="disuria" value="#{atendimentoActions.anamneseCorrente.disuria}"
+						size="20" required="false" />
+					<h:message for="disuria" styleClass="error" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_diabetes}" />:
+			    	</h:panelGroup>
+
+					<h:inputText id="diabetes"
+						value="#{atendimentoActions.anamneseCorrente.diabetes}" size="20"
+						required="false" />
+					<h:message for="diabetes" styleClass="error" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_enterococos}" />:
+			    	</h:panelGroup>
+
+					<h:inputText id="enterococos"
+						value="#{atendimentoActions.anamneseCorrente.enterococos}" size="20"
+						required="false" />
+					<h:message for="enterococos" styleClass="error" />
+					
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_escherichia}" />:
+			    	</h:panelGroup>
+
+					<h:inputText id="escherichia"
+						value="#{atendimentoActions.anamneseCorrente.escherichia}" size="20"
+						required="false" />
+					<h:message for="escherichia" styleClass="error" />		
+					
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_candida}" />:
+			    	</h:panelGroup>
+
+					<h:inputText id="candida"
+						value="#{atendimentoActions.anamneseCorrente.candida}" size="20"
+						required="false" />
+					<h:message for="candida" styleClass="error" />	
+					
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_efeitosColaterais}" />:
+			    	</h:panelGroup>
+
+					<h:inputText id="efeitosColaterais"
+						value="#{atendimentoActions.anamneseCorrente.efeitosColaterais}" size="20"
+						required="false" />
+					<h:message for="efeitosColaterais" styleClass="error" />												
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+
+			<h:commandButton id="botaoIncluir"
+				value="#{prompt.confirmarInclusao}"
+				action="#{atendimentoActions.inclui}" />
+			<h:commandButton id="botaoVoltar" value="#{prompt.cancelar}"
+				action="#{atendimentoActions.cancelar}" immediate="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

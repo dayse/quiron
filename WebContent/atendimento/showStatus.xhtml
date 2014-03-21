@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/WEB-INF/template/atendimento_list_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
+	<ui:define name="descricao">#{prompt.atendimento_descList}</ui:define>
+	<ui:define name="descricao_ajuda">#{help.atendimento_Mostrar}</ui:define>
+	<ui:define name="corpo">
+
+		<h:form id="formatendimentoShow">
+		
+			<rich:panel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.atendimento}" />
+				</f:facet>
+
+				<h:panelGrid columns="1">
+					<f:facet name="header">
+						<h:messages globalOnly="true" style="color: red" />
+					</f:facet>
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+
+					<h:outputText value="#{prompt.atendimento_codigo}" />:
+						<h:outputText id="codigo" value="#{atendimentoActions.atendimentoCorrente.codAtendimento}" />
+						
+					<h:outputText value="#{prompt.atendimento_dataAtendimento}" />:
+						<rich:calendar id="dataAtendimento"
+						datePattern="dd/MM/yyyy" value="#{atendimentoActions.atendimentoCorrente.dataAtendimento}" disabled="true" />
+						
+					<h:outputText value="#{prompt.atendimento_prognostico}" />:
+						<h:outputText id="prognostico" value="#{atendimentoActions.atendimentoCorrente.prognostico}" />						
+
+					<h:outputText value="#{prompt.atendimento_nomeResponsavel}" />:
+						<h:outputText id="nomeResponsavel" value="#{atendimentoActions.atendimentoCorrente.nomeResponsavel}" disabled="#{atendimentoActions.maioridade}" />         	
+ 				
+ 					<h:outputText value="#{prompt.atendimento_cpfResponsavel}" />:
+						<h:outputText id="cpfResponsavel" value="#{atendimentoActions.atendimentoCorrente.cpfResponsavel}" disabled="#{atendimentoActions.maioridade}" />         	
+ 				
+ 					<h:outputText value="#{prompt.medico}" />:
+ 						<h:selectOneMenu id="comboMedicos" value="#{atendimentoActions.comboMedicos.selecao}" disabled="true">
+							<f:selectItems value="#{atendimentoActions.comboMedicos.listaSelecao}" />
+						</h:selectOneMenu>
+						
+ 					<h:outputText value="#{prompt.tecnico}" />:
+ 						<h:selectOneMenu id="comboTecnicos" value="#{atendimentoActions.comboTecnicos.selecao}" disabled="true">
+							<f:selectItems value="#{atendimentoActions.comboTecnicos.listaSelecao}" />
+						</h:selectOneMenu>
+						
+ 					<h:outputText value="#{prompt.atendimento_status}" />:
+ 						<h:selectOneMenu id="comboStatus" value="#{atendimentoActions.comboStatus.selecao}" disabled="true">
+							<f:selectItems value="#{atendimentoActions.comboStatus.listaSelecao}" />
+						</h:selectOneMenu>																		
+						
+					<br />
+
+				</h:panelGrid>
+				
+					<h:commandButton id="botaoVoltar" value="#{prompt.voltar}"
+					action="#{atendimentoActions.cancelar}" immediate="true" />
+
+			</rich:panel>
+		
+		</h:form>
+		<a4j:keepAlive beanName="pacienteActions" />
+		<a4j:keepAlive beanName="atendimentoActions" />
+		
+	</ui:define>
+		
+</ui:composition>
+
+</html>

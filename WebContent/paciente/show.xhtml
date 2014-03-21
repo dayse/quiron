@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition
+	template="/WEB-INF/template/paciente_list_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.paciente}</ui:define>
+	<ui:define name="descricao">#{prompt.paciente_descList}</ui:define>
+	<ui:define name="descricao_ajuda">#{help.paciente_Mostrar}</ui:define>
+	<ui:define name="corpo">
+
+		<h:form id="formPacienteShow">
+
+			<rich:panel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.paciente}" />
+				</f:facet>
+
+				<h:panelGrid columns="1">
+					<f:facet name="header">
+						<h:messages globalOnly="true" style="color: red" />
+					</f:facet>
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+
+					<h:outputText value="#{prompt.paciente_codigo}" />:
+						<h:outputText id="codigo"
+						value="#{pacienteActions.pacienteCorrente.codPaciente}" />
+
+					<h:outputText value="#{prompt.paciente_nome}" />:
+						<h:outputText id="nome"
+						value="#{pacienteActions.pacienteCorrente.nome}" />
+
+					<h:outputText value="#{prompt.paciente_dataNascimento}" />:
+						<rich:calendar id="dataNascimento" datePattern="dd/MM/yyyy"
+						value="#{pacienteActions.pacienteCorrente.dataNascimento}"
+						disabled="true" />
+
+					<h:outputText value="#{prompt.paciente_sexo}" />:
+                  		<h:selectOneRadio id="comboSexo"
+						value="#{pacienteActions.radioFlags.selecao}" disabled="true">
+						<f:selectItems value="#{pacienteActions.radioFlags.listaSelecao}" />
+					</h:selectOneRadio>
+
+					<h:outputText value="#{prompt.paciente_endereco}" />:
+						<h:outputText id="endereco"
+						value="#{pacienteActions.pacienteCorrente.endereco}" />
+
+					<h:outputText value="#{prompt.paciente_nomeResponsavel}" />:
+						<h:outputText id="nomeResponsavel"
+						value="#{pacienteActions.pacienteCorrente.nomeResponsavel}" />
+
+					<h:outputText value="#{prompt.paciente_documento}" />:
+						<h:outputText id="documento"
+						value="#{pacienteActions.pacienteCorrente.documento}" />
+					<br />
+
+				</h:panelGrid>
+
+				<h:commandButton id="botaoVoltar" value="#{prompt.voltar}"
+					action="#{pacienteActions.cancelar}" immediate="true" />
+
+			</rich:panel>
+
+		</h:form>
+		<a4j:keepAlive beanName="pacienteActions" />
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

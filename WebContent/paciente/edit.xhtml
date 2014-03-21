@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition
+	template="/WEB-INF/template/paciente_list_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.paciente}</ui:define>
+	<ui:define name="descricao">#{prompt.paciente_Alterar}</ui:define>
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="pacienteActions" />
+
+		<h:form id="editPaciente">
+
+			<rich:panel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.paciente}" />
+				</f:facet>
+
+				<h:panelGrid columns="4">
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_codigo}" />:
+					</h:panelGroup>
+					<h:inputText id="codigo"
+						value="#{pacienteActions.pacienteCorrente.codPaciente}"
+						maxlength="#{constantes.lPacienteCodpaciente}" size="20"
+						disabled="true" />
+					<h:message for="codigo" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_nome}" />:
+					</h:panelGroup>
+					<h:inputText id="nome"
+						value="#{pacienteActions.pacienteCorrente.nome}"
+						maxlength="#{constantes.lPacienteNome}" size="20" required="true" />
+					<h:message for="nome" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_dataNascimento}" />:
+					</h:panelGroup>
+					<rich:calendar id="dataNascimento" datePattern="dd/MM/yyyy"
+						value="#{pacienteActions.pacienteCorrente.dataNascimento}" />
+					<h:message for="dataNascimento" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_sexo}" />:
+					</h:panelGroup>
+					<h:selectOneRadio id="comboSexo"
+						value="#{pacienteActions.radioFlags.selecao}" required="true">
+						<f:selectItems value="#{pacienteActions.radioFlags.listaSelecao}" />
+					</h:selectOneRadio>
+					<h:message for="comboSexo" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_endereco}" />:
+					</h:panelGroup>
+					<h:inputText id="altura"
+						value="#{pacienteActions.pacienteCorrente.endereco}" size="20"
+						required="true" />
+					<h:message for="endereco" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_nomeResponsavel}" />:
+					</h:panelGroup>
+					<h:inputText id="nomeResponsavel"
+						value="#{pacienteActions.pacienteCorrente.nomeResponsavel}"
+						size="20" required="true" />
+					<h:message for="nomeResponsavel" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_documento}" />:
+					</h:panelGroup>
+					<h:inputText id="documento"
+						value="#{pacienteActions.pacienteCorrente.documento}" size="20"
+						required="true" />
+					<h:message for="documento" styleClass="error" />
+					<h:outputText value="" />
+				</h:panelGrid>
+			</rich:panel>
+
+			<br />
+			<br />
+
+			<h:commandButton id="botaoAlterar" value="#{prompt.confirmarEdicao}"
+				action="#{pacienteActions.altera}" />
+			<h:commandButton id="botaoCancelar" value="#{prompt.cancelar}"
+				action="#{pacienteActions.cancelar}" immediate="true" />
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

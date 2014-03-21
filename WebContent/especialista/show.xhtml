@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/WEB-INF/template/especialista_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.especialista}</ui:define>
+	<ui:define name="descricao">#{prompt.especialista_descList}</ui:define>
+	<ui:define name="descricao_ajuda">#{help.especialista_Mostrar}</ui:define>
+	<ui:define name="corpo">
+
+		<h:form id="formEspecialistaShow">
+
+			<rich:panel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.especialista}" />
+				</f:facet>
+
+				<h:panelGrid columns="1">
+					<f:facet name="header">
+						<h:messages globalOnly="true" style="color: red" />
+					</f:facet>
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+
+					<h:outputText value="#{prompt.especialista_codigo}" />:
+						<h:outputText id="codigo"
+						value="#{especialistaActions.especialistaCorrente.codEspecialista}" />
+
+					<h:outputText value="#{prompt.especialista_nome}" />:
+						<h:outputText id="nome"
+						value="#{especialistaActions.especialistaCorrente.nome}" />
+
+					<h:outputText value="#{prompt.especialista_pesoAvaliador}" />:
+						<h:outputText id="pesoAvaliador"
+						value="#{especialistaActions.especialistaCorrente.pesoAvaliador}" />
+
+					<br />
+
+				</h:panelGrid>
+
+				<h:commandButton id="botaoVoltar" value="#{prompt.voltar}"
+					action="#{especialistaActions.cancelar}" immediate="true" />
+
+			</rich:panel>
+
+		</h:form>
+		<a4j:keepAlive beanName="especialistaActions" />
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,239 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/WEB-INF/template/atendimento_template.xhtml">
+	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
+	<ui:define name="descricao">#{prompt.atendimento_descList}</ui:define>
+	<ui:define name="descricao_ajuda">
+		#{help.tecmodel_Cadastro}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.excluir} -</span> #{help.tecmodel_Excluir}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.imprimir} -</span> #{help.tecmodel_Imprimir}
+		<br />
+		<br />
+		<span class="negrito">#{help.observacao_AlertaPadrao} </span> #{help.observacao_AcessoOutrosHelp}
+	</ui:define>
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="atendimentoActions" />
+		<a4j:keepAlive beanName="pacienteActions" />
+
+		<h:form>
+
+			<rich:datascroller id="scroller" for="lista" maxPages="5"
+				align="center" renderIfSinglePage="false"
+				page="#{atendimentoActions.pagina}">
+			</rich:datascroller>
+
+			<rich:dataTable id="lista" rows="1" align="center"
+				value="#{atendimentoActions.listaDePacientes}" var="paciente"
+				width="470px">
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column colspan="10">
+							<h:outputText value="Paciente" />
+						</rich:column>
+						<rich:column breakBefore="true">
+							<h:outputText title="#{tooltip.paciente_Codigo}"
+								value="#{prompt.paciente_codigo}" />
+						</rich:column>
+						<rich:column colspan="2">
+							<h:outputText title="#{tooltip.paciente_nome}"
+								value="#{prompt.paciente_nome}" />
+						</rich:column>
+						<rich:column colspan="2">
+							<h:outputText title="#{tooltip.paciente_dataNascimento}"
+								value="#{prompt.paciente_dataNascimento}" />
+						</rich:column>
+
+						<rich:column colspan="2">
+							<h:outputText title="#{tooltip.paciente_sexo}"
+								value="#{prompt.paciente_sexo}" />
+						</rich:column>
+
+						<rich:column colspan="3">
+							<h:outputText value="#{prompt.atendimento_btnIncluir}" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+
+				<h:column>
+					<h:outputText value="#{paciente.codPaciente}" />
+				</h:column>
+
+				<rich:column colspan="2">
+					<h:outputText value="#{paciente.nome}" />
+				</rich:column>
+
+				<rich:column colspan="2">
+					<rich:calendar id="dataNascimento" datePattern="dd/MM/yyyy"
+						value="#{paciente.dataNascimento}" disabled="true" />
+				</rich:column>
+
+				<rich:column colspan="2">
+					<h:outputText
+						value="#{paciente.sexo == true ? 'Masculino' : 'Feminino'}" />
+				</rich:column>
+
+
+				<rich:column colspan="3">
+					<h:commandButton action="#{atendimentoActions.preparaInclusao}"
+						value="#{prompt.atendimento_btnIncluir}" />
+				</rich:column>
+
+				<rich:column breakBefore="true" colspan="10" styleClass="space-table"
+					rendered="#{not empty paciente.atendimentos}" style="height: 20px;">
+					<h:outputText value="" />
+				</rich:column>
+
+
+				<rich:column breakBefore="true" colspan="10"
+					styleClass="rich-table-header"
+					rendered="#{not empty paciente.atendimentos}">
+					<h:outputText value="Atendimentos" />
+				</rich:column>
+
+				<rich:subTable id="tabelaAtendimentos" var="atendimento"
+					value="#{paciente.atendimentos}"
+					headerClass="dr-table-header-continue"
+					rendered="#{not empty paciente.atendimentos}">
+
+					<rich:column sortBy="#{atendimento.codAtendimento}">
+						<f:facet name="header">
+							<h:outputText title="#{tooltip.atendimento_codigo}"
+								value="#{prompt.atendimento_codigo}" />
+						</f:facet>
+						<h:commandLink value="#{atendimento.codAtendimento}"
+							action="#{atendimentoActions.mostrar}">
+							<f:setPropertyActionListener value="#{atendimento}"
+								target="#{atendimentoActions.atendimentoCorrente}" />
+						</h:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText title="#{tooltip.atendimento_data}"
+								value="#{prompt.atendimento_dataAtendimento}" />
+						</f:facet>
+						<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy HH:mm"
+							value="#{atendimento.dataAtendimento}" disabled="true" />
+					</rich:column>
+
+
+					<rich:column colspan="2">
+						<f:facet name="header">
+							<h:outputText title="#{tooltip.atendimento_medico}"
+								value="#{prompt.atendimento_medico}" />
+						</f:facet>
+						<h:outputText value="#{atendimento.medico}" />
+					</rich:column>
+
+					<rich:column colspan="2">
+						<f:facet name="header">
+							<h:outputText title="#{tooltip.atendimento_tecnico}"
+								value="#{prompt.atendimento_tecnico}" />
+						</f:facet>
+						<h:outputText value="#{atendimento.tecnico.nome}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText title="#{tooltip.atendimento_status}"
+								value="#{prompt.atendimento_status}" />
+						</f:facet>
+						<h:outputText value="#{atendimento.status}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText title="#{tooltip.paciente_Avaliacao}"
+								value="#{prompt.avaliacao}" />
+						</f:facet>
+						<h:commandButton value="#{prompt.avaliacao}"
+							action="#{atendimentoActions.calculaAvaliacao}">
+							<f:setPropertyActionListener value="#{atendimento}"
+								target="#{atendimentoActions.atendimentoCorrente}" />
+						</h:commandButton>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{prompt.editar}" />
+						</f:facet>
+						<h:commandButton value="#{prompt.editar}"
+							action="#{atendimentoActions.preparaAlteracao}">
+							<f:setPropertyActionListener value="#{atendimento}"
+								target="#{atendimentoActions.atendimentoCorrente}" />
+						</h:commandButton>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{prompt.excluir}" />
+						</f:facet>
+						<a4j:commandButton value="#{prompt.excluir}"
+							onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})">
+							<f:setPropertyActionListener value="#{atendimento}"
+								target="#{atendimentoActions.atendimentoCorrente}" />
+						</a4j:commandButton>
+					</rich:column>
+
+
+				</rich:subTable>
+
+
+			</rich:dataTable>
+
+		</h:form>
+
+		<h:form id="formExclusao">
+			<rich:modalPanel id="panelConfirmacaoExclusao" height="120"
+				width="500">
+
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atencao}"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+
+				<f:facet name="controls">
+					<h:graphicImage class="close"
+						onclick="Richfaces.hideModalPanel('panelConfirmacaoExclusao')" />
+				</f:facet>
+
+				<h:outputText value="#{prompt.atendimento_confirmacaoExclusao}" />
+
+				<center><br />
+				<br />
+
+
+				<h:panelGrid columns="2">
+
+					<h:commandButton id="ok" value="#{prompt.sim}"
+						action="#{atendimentoActions.exclui}" styleClass="botao">
+						<rich:componentControl for="panelConfirmacaoExclusao"
+							operation="hide" event="onclick" />
+					</h:commandButton>
+
+					<h:commandButton id="cancelar" value="#{prompt.nao}"
+						action="Richfaces.hideModalPanel('panelConfirmacaoExclusao')">
+						<rich:componentControl for="panelConfirmacaoExclusao"
+							operation="hide" event="onclick" />
+					</h:commandButton>
+
+				</h:panelGrid></center>
+
+			</rich:modalPanel>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

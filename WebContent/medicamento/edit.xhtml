@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/medicamento_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.medicamento}</ui:define>
+	<ui:define name="descricao">#{prompt.medicamento_Alterar}</ui:define>
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="medicamentoActions" />
+
+		<h:form id="editMedicamento">
+
+			<rich:panel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.medicamento}" />
+				</f:facet>
+
+				<h:panelGrid columns="4">
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.medicamento_codigo}" />:
+					</h:panelGroup>
+					<h:inputText id="codigo"
+						value="#{medicamentoActions.medicamentoCorrente.codIndicacao}"
+						size="20" disabled="true" />
+					<h:message for="codigo" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.medicamento_nome}" />:
+					</h:panelGroup>
+					<h:inputText id="nome"
+						value="#{medicamentoActions.medicamentoCorrente.nome}" size="20"
+						required="true" />
+					<h:message for="nome" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.medicamento_dosagem}" />:
+					</h:panelGroup>
+					<h:inputText id="dosagem"
+						value="#{medicamentoActions.medicamentoCorrente.dosagem}"
+						size="20" required="true" />
+					<h:message for="dosagem" styleClass="error" />
+					<h:outputText value="" />
+
+				</h:panelGrid>
+			</rich:panel>
+
+			<br />
+			<br />
+
+			<h:commandButton id="botaoAlterar" value="#{prompt.confirmarEdicao}"
+				action="#{medicamentoActions.altera}" />
+			<h:commandButton id="botaoCancelar" value="#{prompt.cancelar}"
+				action="#{medicamentoActions.cancelar}" immediate="true" />
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

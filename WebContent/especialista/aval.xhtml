@@ -1,0 +1,156 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/WEB-INF/template/especialista_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.especialista}</ui:define>
+	<ui:define name="descricao">#{prompt.especialista_Avaliacao}</ui:define>
+	<ui:define name="descricao_ajuda">#{help.especialista_Avaliacao}</ui:define>
+	<ui:define name="mensagemSistema" />
+
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="especialistaActions" />
+
+		<h:form id="formEspecialistaNew">
+
+			<rich:simpleTogglePanel id="caixaEspecialista">
+				<f:facet name="header">Especialista selecionado</f:facet>
+
+				<h:panelGrid columns="3">
+					<h:outputText value="#{prompt.especialista_codigo} : "
+						style="font-weight: bold;" />
+					<h:outputText
+						value="#{especialistaActions.especialistaCorrente.codEspecialista}" />
+					<br />
+
+					<h:outputText value="#{prompt.especialista_nome} : "
+						style="font-weight: bold;" />
+					<h:outputText
+						value="#{especialistaActions.especialistaCorrente.nome}" />
+					<br />
+
+					<h:outputText value="#{prompt.especialista_pesoAvaliador} : "
+						style="font-weight: bold;" />
+					<h:outputText
+						value="#{especialistaActions.especialistaCorrente.pesoAvaliador}" />
+					<br />
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+			<br />
+
+			<rich:dataTable id="tabelaAvalIndicacaoEspec"
+				var="avalIndicacaoEspec" align="center"
+				value="#{especialistaActions.listaDeAvalIndicEspec}"
+				width="700px">
+
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column colspan="1">
+							<h:outputText value="#{prompt.indicacao}" />
+						</rich:column>
+
+						<rich:column colspan="8">
+							<h:outputText value="#{prompt.parametro}" />
+						</rich:column>
+
+						<rich:column breakBefore="true" colspan="1"
+							styleClass="colunaCampoNumericoCentralizado">
+							<h:outputText title="#{tooltip.indicacao_nome}"
+								value="#{prompt.indicacao_nome}" />
+						</rich:column>
+
+						<rich:column colspan="1"
+							styleClass="colunaCampoNumericoCentralizado">
+							<h:outputText title="#{tooltip.parametro_febre}"
+								value="#{prompt.parametro_febre}" />
+						</rich:column>
+
+						<rich:column colspan="1"
+							styleClass="colunaCampoNumericoCentralizado">
+							<h:outputText title="#{tooltip.parametro_disuria}"
+								value="#{prompt.parametro_disuria}" />
+						</rich:column>
+
+						<rich:column colspan="1"
+							styleClass="colunaCampoNumericoCentralizado">
+							<h:outputText title="#{tooltip.parametro_diabetes}"
+								value="#{prompt.parametro_diabetes}" />
+						</rich:column>
+
+						<rich:column colspan="1"
+							styleClass="colunaCampoNumericoCentralizado">
+							<h:outputText title="#{tooltip.parametro_enterococos}"
+								value="#{prompt.parametro_enterococos}" />
+						</rich:column>
+
+						<rich:column colspan="1"
+							styleClass="colunaCampoNumericoCentralizado">
+							<h:outputText title="#{tooltip.parametro_escherichia}"
+								value="#{prompt.parametro_escherichia}" />
+						</rich:column>
+
+						<rich:column colspan="1"
+							styleClass="colunaCampoNumericoCentralizado">
+							<h:outputText title="#{tooltip.parametro_candida}"
+								value="#{prompt.parametro_candida}" />
+						</rich:column>
+
+						<rich:column colspan="1"
+							styleClass="colunaCampoNumericoCentralizado">
+							<h:outputText title="#{tooltip.parametro_efeitosColaterais}"
+								value="#{prompt.parametro_efeitosColaterais}" />
+						</rich:column>
+
+						<rich:column colspan="1"
+							styleClass="colunaCampoNumericoCentralizado">
+							<h:outputText title="#{tooltip.editar}" value="#{prompt.editar}" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:outputText value="#{avalIndicacaoEspec.indicacao.nome}" />
+				</rich:column>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:outputText value="#{avalIndicacaoEspec.febre}" />
+				</rich:column>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:outputText value="#{avalIndicacaoEspec.disuria}" />
+				</rich:column>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:outputText value="#{avalIndicacaoEspec.diabetes}" />
+				</rich:column>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:outputText value="#{avalIndicacaoEspec.enterococos}" />
+				</rich:column>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:outputText value="#{avalIndicacaoEspec.escherichia}" />
+				</rich:column>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:outputText value="#{avalIndicacaoEspec.candida}" />
+				</rich:column>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:outputText value="#{avalIndicacaoEspec.efeitosColaterais}" />
+				</rich:column>
+				
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:commandButton action="#{especialistaActions.preparaAlteracaoAval}" value="#{prompt.editar}" />
+				</rich:column>				
+			</rich:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

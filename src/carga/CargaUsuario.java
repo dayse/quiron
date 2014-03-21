@@ -1,0 +1,159 @@
+package carga;
+
+import modelo.TipoUsuario;
+import modelo.Usuario;
+
+import service.TipoUsuarioAppService;
+import service.UsuarioAppService;
+import service.controleTransacao.FabricaDeAppService;
+import service.exception.AplicacaoException;
+
+/**
+ * 
+ * Sobre a Carga:
+ * É uma Carga do sistema, portanto deve herdar de CargaBase e
+ * implementar o método executar().
+ * Nesse método "executar" é que é chamado pelos outros métodos que são 
+ * as etapas dessa carga.
+ * Portanto se é necessario rodar um método depois do outro, eles devem ser chamados
+ * na ordem correta. Ex:
+ * incluiHP() vem antes de inicializaHP(), portanto no método executar() eles devem ser chamados nessa ordem.
+ * 
+ * Terminado de executar todas as etapas é preciso retornar true.
+ * Se houver algum problema(exceção) na execução de uma das etapas, essa exceção deve ser lancada.
+ * 
+ * Essa Carga:
+ * Classe responsável pela inclusão de Tipos de Usuário e de Usuário.
+ * É usada na carga do sistema e deve ser a primeira a ser executada.
+ * Está criando um usuário para cada tipo.
+ * 
+ * @author felipe.arruda
+ *
+ */
+public class CargaUsuario extends CargaBase{
+  
+	// Services
+	public TipoUsuarioAppService tipoUsuarioService;
+	public UsuarioAppService usuarioService;
+	
+	/**
+	 * 
+	 * Construdor da carga, responsável por instanciar os services.
+	 * 
+	 * @author felipe.arruda
+	 * 
+	 */
+	public CargaUsuario(){
+		try {
+			tipoUsuarioService = FabricaDeAppService.getAppService(TipoUsuarioAppService.class);
+			usuarioService = FabricaDeAppService.getAppService(UsuarioAppService.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 
+	 * Método herdado de CargaBase e utilizado para definir as etapas
+	 * de execução desta carga.
+	 * 
+	 * @return Boolean - True se não ocorrer nenhum problema (exceção).
+	 * @throws AplicacaoException
+	 *             Retorna uma AplicacaoException caso ocorra uma exceção deste
+	 *             tipo.
+	 * 
+	 * @author felipe.arruda
+	 * 
+	 */
+	@Override
+	public boolean executar() throws AplicacaoException {
+		this.incluirTiposDeUsuario();
+		return true;
+	}
+	
+	/**
+	 * 
+	 * Método responsável por preparar e inserir os valores padrões dos
+	 * usuários no banco.
+	 * 
+	 * @throws AplicacaoException
+	 *             Retorna uma AplicacaoException caso ocorra uma exceção deste
+	 *             tipo.
+	 *             
+	 * @author felipe.arruda
+	 * 
+	 */
+	public void incluirTiposDeUsuario() throws AplicacaoException {
+		
+		TipoUsuario tipoUsuarioAdmin = new TipoUsuario();
+		TipoUsuario tipoUsuarioAluno = new TipoUsuario();
+		TipoUsuario tipoUsuarioClinico = new TipoUsuario();
+		TipoUsuario tipoUsuarioTecnico = new TipoUsuario();
+		TipoUsuario tipoUsuarioEngenheiro = new TipoUsuario();
+		
+		tipoUsuarioAdmin.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+		tipoUsuarioAdmin.setDescricao("O usuário ADMINISTRADOR pode realizar qualquer operação no Sistema.");
+		
+		tipoUsuarioAluno.setTipoUsuario(TipoUsuario.ALUNO);
+		tipoUsuarioAluno.setDescricao("O usuário ALUNO pode realizar apenas consultas e impressão de relatórios nas telas " +
+				                        "relativas ao Horizonte de Planejamento (HP,Periodo PMP, Periodo PAP) e não acessa " +
+				                        "Administração e Eng. Conhecimento");
+		
+		tipoUsuarioClinico.setTipoUsuario(TipoUsuario.CLINICO);
+		tipoUsuarioClinico.setDescricao("O usuário Clínico pode realizar qualquer operação no Sistema, porém não possui acesso" +
+				"as áreas de Administração e Engenharia de Conhecimento.");
+		
+		tipoUsuarioTecnico.setTipoUsuario(TipoUsuario.TECNICO);
+		tipoUsuarioTecnico.setDescricao("O usário Técnico pode realizar qualquer operação no Sistema, porém não possui acesso" + 
+				"as áreas de Administração e Engenharia de Conhecimento.");
+		
+		tipoUsuarioEngenheiro.setTipoUsuario(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO);
+		tipoUsuarioEngenheiro.setDescricao("O usuário ENGENHEIRO pode realizar a parte de Logica Fuzzy (Engenharia de Conhecimento)" +
+				"no Sistema. Porém, não possui acesso a área Administrativa.");
+		
+		tipoUsuarioService.inclui(tipoUsuarioAdmin);
+		tipoUsuarioService.inclui(tipoUsuarioAluno);
+		tipoUsuarioService.inclui(tipoUsuarioClinico);
+		tipoUsuarioService.inclui(tipoUsuarioTecnico);
+		tipoUsuarioService.inclui(tipoUsuarioEngenheiro);
+		
+		
+		Usuario usuarioAdmin = new Usuario();
+		Usuario usuarioAluno = new Usuario();
+		Usuario usuarioClinico = new Usuario();
+		Usuario usuarioTecnico = new Usuario();
+		Usuario usuarioEngenheiro = new Usuario();
+		
+		usuarioAdmin.setNome("Administrador");
+		usuarioAdmin.setLogin("admin");
+		usuarioAdmin.setSenha("123456");
+		usuarioAdmin.setTipoUsuario(tipoUsuarioAdmin);
+		
+		usuarioAluno.setNome("Felipe Arruda");
+		usuarioAluno.setLogin("felipe");
+		usuarioAluno.setSenha("felipe");
+		usuarioAluno.setTipoUsuario(tipoUsuarioAluno);
+		
+		usuarioEngenheiro.setNome("Gabriel Souza");
+		usuarioEngenheiro.setLogin("gabriel");
+		usuarioEngenheiro.setSenha("gabriel");
+		usuarioEngenheiro.setTipoUsuario(tipoUsuarioEngenheiro);
+		
+		usuarioClinico.setNome("Marcos da Silva");
+		usuarioClinico.setLogin("marcos");
+		usuarioClinico.setSenha("marcos");
+		usuarioClinico.setTipoUsuario(tipoUsuarioClinico);
+		
+		usuarioTecnico.setNome("Rafael Souza");
+		usuarioTecnico.setLogin("rafael");
+		usuarioTecnico.setSenha("rafael");
+		usuarioTecnico.setTipoUsuario(tipoUsuarioTecnico);
+		
+			usuarioService.inclui(usuarioAdmin, usuarioAdmin.getSenha());
+			usuarioService.inclui(usuarioEngenheiro, usuarioEngenheiro.getSenha());
+			usuarioService.inclui(usuarioClinico, usuarioClinico.getSenha());
+			usuarioService.inclui(usuarioTecnico, usuarioTecnico.getSenha());
+			usuarioService.inclui(usuarioAluno, usuarioAluno.getSenha());
+	}
+
+}

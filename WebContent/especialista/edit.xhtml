@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/especialista_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.especialista}</ui:define>
+	<ui:define name="descricao">#{prompt.especialista_Alterar}</ui:define>
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="especialistaActions" />
+
+		<h:form id="editEspecialista">
+
+			<rich:panel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.especialista}" />
+				</f:facet>
+
+				<h:panelGrid columns="4">
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.especialista_codigo}" />:
+					</h:panelGroup>
+					<h:inputText id="codigo"
+						value="#{especialistaActions.especialistaCorrente.codEspecialista}"
+						size="20" disabled="true" />
+					<h:message for="codigo" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.especialista_nome}" />:
+					</h:panelGroup>
+					<h:inputText id="nome"
+						value="#{especialistaActions.especialistaCorrente.nome}" size="20"
+						required="true" />
+					<h:message for="nome" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.especialista_pesoAvaliador}" />:
+					</h:panelGroup>
+					<h:inputText id="pesoAvaliador"
+						value="#{especialistaActions.especialistaCorrente.pesoAvaliador}"
+						size="20" required="true" />
+					<h:message for="pesoAvaliador" styleClass="error" />
+					<h:outputText value="" />
+
+				</h:panelGrid>
+			</rich:panel>
+
+			<br />
+			<br />
+
+			<h:commandButton id="botaoAlterar" value="#{prompt.confirmarEdicao}"
+				action="#{especialistaActions.altera}" />
+			<h:commandButton id="botaoCancelar" value="#{prompt.cancelar}"
+				action="#{especialistaActions.cancelar}" immediate="true" />
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,154 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition
+	template="/WEB-INF/template/especialista_list_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.especialista}</ui:define>
+	<ui:define name="descricao">#{prompt.especialista_descList}</ui:define>
+	<ui:define name="descricao_ajuda">
+	</ui:define>
+	<ui:define name="mensagemSistema" />
+
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="especialistaActions" />
+
+		<h:form id="formEspecialistaList">
+
+			<rich:dataTable id="tabelaEspecialistas" var="especialista"
+				align="center" value="#{especialistaActions.listaDeEspecialistas}"
+				rows="10" width="700px">
+
+				<f:facet name="header">
+
+					<rich:columnGroup>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.especialista_codigo}"
+								value="#{prompt.especialista_codigo}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.especialista_nome}"
+								value="#{prompt.especialista_nome}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.especialista_pesoAvaliador}"
+								value="#{prompt.especialista_pesoAvaliador}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText value="#{prompt.avaliar}" />
+						</rich:column>
+	
+						<rich:column>
+							<h:outputText value="#{prompt.editar}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText value="#{prompt.excluir}" />
+						</rich:column>
+
+					</rich:columnGroup>
+
+				</f:facet>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:commandLink value="#{especialista.codEspecialista}"
+						action="#{especialistaActions.mostra}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{especialista.nome}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{especialista.pesoAvaliador}" />
+				</rich:column>
+				
+				<rich:column>
+					<h:commandButton value="#{prompt.avaliar}"
+						action="#{especialistaActions.preparaAvaliacao}" />
+				</rich:column>
+
+				<rich:column>
+					<h:commandButton value="#{prompt.editar}"
+						action="#{especialistaActions.preparaAlteracao}" />
+				</rich:column>
+
+				<rich:column>
+					<a4j:commandButton value="#{prompt.excluir}"
+						action="#{especialistaActions.preparaExclusao}"
+						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" />
+				</rich:column>
+
+				<f:facet name="footer">
+
+					<h:panelGrid columns="2">
+
+						<h:outputText
+							value="#{prompt.numeroDeEspecialistas} = #{especialistaActions.listaDeEspecialistas.rowCount}" />
+
+					</h:panelGrid>
+
+				</f:facet>
+
+			</rich:dataTable>
+
+			<br />
+			<b><h:outputText value="#{prompt.msgDetalharEspecialista}"
+				style="font:13px" /></b>
+
+		</h:form>
+
+		<h:form id="formExclusao">
+			<rich:modalPanel id="panelConfirmacaoExclusao" height="120"
+				width="500">
+
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atencao}"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+
+				<f:facet name="controls">
+					<h:graphicImage class="close"
+						onclick="Richfaces.hideModalPanel('panelConfirmacaoExclusao')" />
+				</f:facet>
+
+				<h:outputText value="#{prompt.confirmacaoExclusaoEspecialista}" />
+
+				<center><br />
+				<br />
+
+				<h:panelGrid columns="2">
+
+					<h:commandButton id="ok" value="#{prompt.sim}"
+						action="#{especialistaActions.exclui}" styleClass="botao">
+						<rich:componentControl for="panelConfirmacaoExclusao"
+							operation="hide" event="onclick" />
+					</h:commandButton>
+
+					<h:commandButton id="cancelar" value="#{prompt.nao}"
+						action="Richfaces.hideModalPanel('panelConfirmacaoExclusao')">
+						<rich:componentControl for="panelConfirmacaoExclusao"
+							operation="hide" event="onclick" />
+					</h:commandButton>
+
+				</h:panelGrid></center>
+
+			</rich:modalPanel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

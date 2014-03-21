@@ -1,0 +1,224 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/paciente_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.paciente}</ui:define>
+	<ui:define name="descricao">#{prompt.paciente_descList}</ui:define>
+	<ui:define name="descricao_ajuda">
+		#{help.paciente_Cadastro}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.areaDeBusca} -</span> #{help.paciente_Buscar}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.excluir} -</span> #{help.paciente_Excluir}
+		<br />
+		<br />
+		<span class="negrito">#{help.observacao_AlertaPadrao} </span> #{help.observacao_AcessoOutrosHelp}		
+	</ui:define>
+	<ui:define name="mensagemSistema" />
+
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="pacienteActions" />
+
+		<h:form id="formPacienteList">
+
+			<br />
+
+			<h:panelGrid columns="5">
+
+				<h:outputText value="#{prompt.areaDeBusca}" />
+				<h:inputText value="#{pacienteActions.campoDeBusca}" />
+				<h:selectOneMenu id="comboBusca"
+					value="#{pacienteActions.comboTiposDeBusca.selecao}">
+					<f:selectItems
+						value="#{pacienteActions.comboTiposDeBusca.listaSelecao}" />
+				</h:selectOneMenu>
+				<h:commandButton value="#{prompt.buscar}"
+					action="#{pacienteActions.buscaPaciente}" />
+				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
+					action="#{pacienteActions.cancelar}"
+					rendered="#{pacienteActions.buscaEfetuada}" />
+			</h:panelGrid>
+
+			<rich:datascroller id="scrTabelaPacientes" for="tabelaPacientes"
+				align="center" renderIfSinglePage="false" />
+			<rich:dataTable id="tabelaPacientes" var="paciente" align="center"
+				value="#{pacienteActions.listaDePacientes}" rows="10" width="700px"
+				reRender="#{pacienteActions.buscaEfetuada}">
+
+				<f:facet name="header">
+
+					<rich:columnGroup>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.paciente_Codigo}"
+								value="#{prompt.paciente_codigo}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.paciente_Nome}"
+								value="#{prompt.paciente_nome}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.paciente_DataNascimento}"
+								value="#{prompt.paciente_dataNascimento}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.paciente_Sexo}"
+								value="#{prompt.paciente_sexo}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.paciente_Endereco}"
+								value="#{prompt.paciente_endereco}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.paciente_nomeResponsavel}"
+								value="#{prompt.paciente_nomeResponsavel}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.paciente_documento}"
+								value="#{prompt.paciente_documento}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.paciente_Atendimento}"
+								value="#{prompt.atendimento}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText value="#{prompt.editar}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText value="#{prompt.excluir}" />
+						</rich:column>
+
+					</rich:columnGroup>
+
+				</f:facet>
+
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:commandLink value="#{paciente.codPaciente}"
+						action="#{pacienteActions.mostra}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{paciente.nome}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{paciente.dataNascimento.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</rich:column>
+
+				<rich:column>
+					<h:outputText
+						value="#{paciente.sexo == true ? 'Masculino' : 'Feminino'}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{paciente.endereco}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{paciente.nomeResponsavel}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{paciente.documento}" />
+				</rich:column>
+
+				<rich:column>
+					<h:commandButton value="#{prompt.atendimento}"
+						action="#{pacienteActions.mostraAtendimentos}" />
+				</rich:column>
+
+				<rich:column>
+					<h:commandButton value="#{prompt.editar}"
+						action="#{pacienteActions.preparaAlteracao}" />
+				</rich:column>
+
+				<rich:column>
+					<a4j:commandButton value="#{prompt.excluir}"
+						action="#{pacienteActions.preparaExclusao}"
+						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" />
+				</rich:column>
+
+				<f:facet name="footer">
+
+					<h:panelGrid columns="2">
+
+						<h:outputText
+							value="#{prompt.numeroDePacientes} = #{pacienteActions.listaDePacientes.rowCount}" />
+
+					</h:panelGrid>
+
+				</f:facet>
+
+			</rich:dataTable>
+
+			<br />
+			<b><h:outputText value="#{prompt.msgDetalharPaciente}"
+				style="font:13px" /></b>
+
+		</h:form>
+
+		<h:form id="formExclusao">
+			<rich:modalPanel id="panelConfirmacaoExclusao" height="120"
+				width="500">
+
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atencao}"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+
+				<f:facet name="controls">
+					<h:graphicImage class="close"
+						onclick="Richfaces.hideModalPanel('panelConfirmacaoExclusao')" />
+				</f:facet>
+
+				<h:outputText value="#{prompt.confirmacaoExclusaoPaciente}" />
+
+				<center><br />
+				<br />
+
+				<h:panelGrid columns="2">
+
+					<h:commandButton id="ok" value="#{prompt.sim}"
+						action="#{pacienteActions.exclui}" styleClass="botao">
+						<rich:componentControl for="panelConfirmacaoExclusao"
+							operation="hide" event="onclick" />
+					</h:commandButton>
+
+					<h:commandButton id="cancelar" value="#{prompt.nao}"
+						action="Richfaces.hideModalPanel('panelConfirmacaoExclusao')">
+						<rich:componentControl for="panelConfirmacaoExclusao"
+							operation="hide" event="onclick" />
+					</h:commandButton>
+
+				</h:panelGrid></center>
+
+			</rich:modalPanel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

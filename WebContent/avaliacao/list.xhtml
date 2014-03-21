@@ -1,0 +1,188 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/WEB-INF/template/avaliacao_template.xhtml">
+	<ui:define name="titulo">#{prompt.avaliacao}</ui:define>
+	<ui:define name="descricao">#{prompt.avaliacao_descList}</ui:define>
+	<ui:define name="descricao_ajuda">
+		#{help.tecmodel_Cadastro}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.excluir} -</span> #{help.tecmodel_Excluir}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.imprimir} -</span> #{help.tecmodel_Imprimir}
+		<br />
+		<br />
+		<span class="negrito">#{help.observacao_AlertaPadrao} </span> #{help.observacao_AcessoOutrosHelp}
+	</ui:define>
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="pacienteActions" />
+		<a4j:keepAlive beanName="atendimentoActions" />
+		<h:form>
+
+			<rich:simpleTogglePanel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.atendimento}" />
+				</f:facet>
+
+				<h:panelGrid columns="1">
+					<f:facet name="header">
+						<h:messages globalOnly="true" style="color: red" />
+					</f:facet>
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+
+					<h:outputText value="#{prompt.paciente_nome}" />:
+						<h:outputText id="nome"
+						value="#{pacienteActions.pacienteCorrente.nome}" />
+
+					<h:outputText value="#{prompt.atendimento_dataAtendimento}" />:
+						<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy"
+						value="#{atendimentoActions.atendimentoCorrente.dataAtendimento}"
+						disabled="true" />
+
+					<h:outputText value="#{prompt.medico}" />:
+ 						<h:selectOneMenu id="comboMedicos"
+						value="#{atendimentoActions.comboMedicos.selecao}" disabled="true">
+						<f:selectItems
+							value="#{atendimentoActions.comboMedicos.listaSelecao}" />
+					</h:selectOneMenu>
+
+					<h:outputText value="#{prompt.tecnico}" />:
+ 						<h:selectOneMenu id="comboTecnicos"
+						value="#{atendimentoActions.comboTecnicos.selecao}"
+						disabled="true">
+						<f:selectItems
+							value="#{atendimentoActions.comboTecnicos.listaSelecao}" />
+					</h:selectOneMenu>
+
+					<h:outputText value="#{prompt.atendimento_status}" />:
+ 						<h:selectOneMenu id="comboStatus"
+						value="#{atendimentoActions.comboStatus.selecao}" disabled="true">
+						<f:selectItems
+							value="#{atendimentoActions.comboStatus.listaSelecao}" />
+					</h:selectOneMenu>
+
+					<br />
+
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+			<br />
+
+			<rich:dataTable id="lista" rows="2" align="center"
+				value="#{atendimentoActions.listaAvaliacao}" var="avaliacao"
+				width="470px">
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column colspan="9">
+							<h:outputText value="Avaliacao" />
+						</rich:column>
+
+						<rich:column breakBefore="true">
+							<h:outputText title="#{tooltip.indicacao}"
+								value="#{prompt.indicacao}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.parametro_febre}"
+								value="#{prompt.parametro_febre}" />
+						</rich:column>
+						<rich:column>
+							<h:outputText title="#{tooltip.parametro_disuria}"
+								value="#{prompt.parametro_disuria}" />
+						</rich:column>
+						<rich:column>
+							<h:outputText title="#{tooltip.parametro_diabetes}"
+								value="#{prompt.parametro_diabetes}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.parametro_enterococos}"
+								value="#{prompt.parametro_enterococos}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.parametro_escherichia}"
+								value="#{prompt.parametro_escherichia}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.parametro_candida}"
+								value="#{prompt.parametro_candida}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.parametro_efeitosColaterais}"
+								value="#{prompt.parametro_efeitosColaterais}" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+
+				<h:column>
+					<h:outputText value="#{avaliacao.indicacao.nome}" />
+				</h:column>
+
+				<h:column>
+					<h:outputText value="#{avaliacao.febre}">
+						<f:convertNumber
+							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<h:outputText value="#{avaliacao.disuria}">
+						<f:convertNumber
+							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<h:outputText value="#{avaliacao.diabetes}">
+						<f:convertNumber
+							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<h:outputText value="#{avaliacao.enterococos}">
+						<f:convertNumber
+							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<h:outputText value="#{avaliacao.escherichia}">
+						<f:convertNumber
+							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<h:outputText value="#{avaliacao.candida}">
+						<f:convertNumber
+							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<h:outputText maxlength="#{constantes.lAvaliacaoResultado}"
+						value="#{avaliacao.efeitosColaterais}" />
+				</h:column>
+
+			</rich:dataTable>
+			<br />
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>
