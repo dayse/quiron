@@ -8,7 +8,7 @@
 <ui:composition template="/WEB-INF/template/atendimento_list_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
-	<ui:define name="descricao">#{prompt.atendimento_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.atendimento_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">#{help.atendimento_Mostrar}</ui:define>
 	<ui:define name="corpo">
 
@@ -28,20 +28,20 @@
 
 				<h:panelGrid columns="3">
 
-					<h:outputText value="#{prompt.atendimento_codigo}" />:
+					<h:outputText value="#{prompt.atendimento_Codigo}" />:
 						<h:outputText id="codigo" value="#{atendimentoActions.atendimentoCorrente.codAtendimento}" />
 						
-					<h:outputText value="#{prompt.atendimento_dataAtendimento}" />:
+					<h:outputText value="#{prompt.atendimento_Data}" />:
 						<rich:calendar id="dataAtendimento"
 						datePattern="dd/MM/yyyy" value="#{atendimentoActions.atendimentoCorrente.dataAtendimento}" disabled="true" />
 						
-					<h:outputText value="#{prompt.atendimento_prognostico}" />:
+					<h:outputText value="#{prompt.atendimento_Prognostico}" />:
 						<h:outputText id="prognostico" value="#{atendimentoActions.atendimentoCorrente.prognostico}" />						
 
-					<h:outputText value="#{prompt.atendimento_nomeResponsavel}" />:
+					<h:outputText value="#{prompt.atendimento_NomeDoResponsavel}" />:
 						<h:outputText id="nomeResponsavel" value="#{atendimentoActions.atendimentoCorrente.nomeResponsavel}" disabled="#{atendimentoActions.maioridade}" />         	
  				
- 					<h:outputText value="#{prompt.atendimento_cpfResponsavel}" />:
+ 					<h:outputText value="#{prompt.atendimento_CPF}" />:
 						<h:outputText id="cpfResponsavel" value="#{atendimentoActions.atendimentoCorrente.cpfResponsavel}" disabled="#{atendimentoActions.maioridade}" />         	
  				
  					<h:outputText value="#{prompt.medico}" />:
@@ -54,7 +54,7 @@
 							<f:selectItems value="#{atendimentoActions.comboTecnicos.listaSelecao}" />
 						</h:selectOneMenu>
 						
- 					<h:outputText value="#{prompt.atendimento_status}" />:
+ 					<h:outputText value="#{prompt.atendimento_Status}" />:
  						<h:selectOneMenu id="comboStatus" value="#{atendimentoActions.comboStatus.selecao}" disabled="true">
 							<f:selectItems value="#{atendimentoActions.comboStatus.listaSelecao}" />
 						</h:selectOneMenu>																		

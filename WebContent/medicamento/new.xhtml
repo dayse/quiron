@@ -7,8 +7,8 @@
 
 <ui:composition template="/WEB-INF/template/medicamento_template.xhtml">
 
-	<ui:define name="titulo">#{prompt.medicamento}</ui:define>
-	<ui:define name="descricao">#{prompt.medicamento_Incluir}</ui:define>
+	<ui:define name="titulo">#{prompt.indicacao}</ui:define>
+	<ui:define name="descricao">#{prompt.indicacao_Incluir}</ui:define>
 	<ui:define name="descricao_ajuda">#{help.medicamento_Incluir}</ui:define>
 	<ui:define name="mensagemSistema" />
 
@@ -21,7 +21,7 @@
 			<rich:panel>
 
 				<f:facet name="header">
-					<h:outputText value="#{prompt.medicamento}" />
+					<h:outputText value="#{prompt.indicacao}" />
 				</f:facet>
 
 				<h:panelGrid columns="1">
@@ -33,7 +33,7 @@
 				<h:panelGrid columns="3">
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.medicamento_codigo}" />:
+						<h:outputText value="#{prompt.indicacao_Codigo}" />:
 					</h:panelGroup>
 					<h:inputText id="codigo"
 						value="#{medicamentoActions.medicamentoCorrente.codIndicacao}"
@@ -41,7 +41,7 @@
 					<h:message for="codigo" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.medicamento_nome}" />:
+						<h:outputText value="#{prompt.indicacao_Nome}" />:
 					</h:panelGroup>
 					<h:inputText id="nome"
 						value="#{medicamentoActions.medicamentoCorrente.nome}" size="20"
@@ -49,7 +49,7 @@
 					<h:message for="nome" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.medicamento_dosagem}" />:
+						<h:outputText value="#{prompt.indicacao_dosagem}" />:
 					</h:panelGroup>
 					<h:inputText id="dosagem"
 						value="#{medicamentoActions.medicamentoCorrente.dosagem}"

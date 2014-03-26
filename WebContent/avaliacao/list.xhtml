@@ -7,7 +7,7 @@
 
 <ui:composition template="/WEB-INF/template/avaliacao_template.xhtml">
 	<ui:define name="titulo">#{prompt.avaliacao}</ui:define>
-	<ui:define name="descricao">#{prompt.avaliacao_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.avaliacao_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
 		#{help.tecmodel_Cadastro}
 		<br />
@@ -44,7 +44,7 @@
 						<h:outputText id="nome"
 						value="#{pacienteActions.pacienteCorrente.nome}" />
 
-					<h:outputText value="#{prompt.atendimento_dataAtendimento}" />:
+					<h:outputText value="#{prompt.atendimento_Data}" />:
 						<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy"
 						value="#{atendimentoActions.atendimentoCorrente.dataAtendimento}"
 						disabled="true" />
@@ -64,7 +64,7 @@
 							value="#{atendimentoActions.comboTecnicos.listaSelecao}" />
 					</h:selectOneMenu>
 
-					<h:outputText value="#{prompt.atendimento_status}" />:
+					<h:outputText value="#{prompt.atendimento_Status}" />:
  						<h:selectOneMenu id="comboStatus"
 						value="#{atendimentoActions.comboStatus.selecao}" disabled="true">
 						<f:selectItems

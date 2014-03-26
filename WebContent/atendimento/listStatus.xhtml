@@ -7,7 +7,7 @@
 
 	<ui:composition template="/WEB-INF/template/atendimento_liststatus_template.xhtml">
 		<ui:define name="titulo">#{prompt.atendimento}</ui:define>
-		<ui:define name="descricao">#{prompt.atendimento_descList}</ui:define>
+		<ui:define name="descricao">#{prompt.atendimento_Cadastro}</ui:define>
 		<ui:define name="descricao_ajuda">
 			#{help.tecmodel_Cadastro}
 			<br /><br />
@@ -44,27 +44,27 @@
 					<rich:columnGroup>
 					
 						<rich:column>
-							<h:outputText title="#{tooltip.atendimento_codigo}"  value="#{prompt.atendimento_codigo}" />
+							<h:outputText title="#{tooltip.atendimento_Codigo}"  value="#{prompt.atendimento_Codigo}" />
 						</rich:column>
 
 						<rich:column>
-							<h:outputText title="#{tooltip.atendimento_data}" value="#{prompt.atendimento_dataAtendimento}" />
+							<h:outputText title="#{tooltip.atendimento_data}" value="#{prompt.atendimento_Data}" />
 						</rich:column>
 						
 						<rich:column>
-							<h:outputText title="#{tooltip.atendimento_medico}" value="#{prompt.atendimento_medico}" />
+							<h:outputText title="#{tooltip.atendimento_Medico}" value="#{prompt.atendimento_Medico}" />
 						</rich:column>
 						
 						<rich:column>
-							<h:outputText title="#{tooltip.atendimento_prognostico}" value="#{prompt.atendimento_prognostico}" />
+							<h:outputText title="#{tooltip.atendimento_Prognostico}" value="#{prompt.atendimento_Prognostico}" />
 						</rich:column>
 						
 						<rich:column>
-							<h:outputText title="#{tooltip.atendimento_tecnico}" value="#{prompt.atendimento_tecnico}" />
+							<h:outputText title="#{tooltip.atendimento_Tecnico}" value="#{prompt.atendimento_Tecnico}" />
 						</rich:column>
 						
 						<rich:column>
-							<h:outputText title="#{tooltip.atendimento_status}" value="#{prompt.atendimento_status}" />
+							<h:outputText title="#{tooltip.atendimento_Status}" value="#{prompt.atendimento_Status}" />
 						</rich:column>
 						
 					</rich:columnGroup>
@@ -100,7 +100,7 @@
 					
 					<h:panelGrid columns="2">
 					
-						<h:outputText value="#{prompt.numeroDeAtendimentos} = #{atendimentoActions.listaDeAtendimentos.rowCount}"/>
+						<h:outputText value="#{prompt.atendimento_Total} = #{atendimentoActions.listaDeAtendimentos.rowCount}"/>
 						
 					</h:panelGrid>
 					
@@ -109,7 +109,7 @@
 			</rich:dataTable>
 
 			<br />
-			<b><h:outputText value="#{prompt.msgDetalharAtendimento}" style="font:13px" /></b>
+			<b><h:outputText value="#{prompt.atendimento_Observacao}" style="font:13px" /></b>
 
 		</h:form>
 

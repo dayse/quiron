@@ -9,7 +9,7 @@
 	template="/WEB-INF/template/especialista_list_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.especialista}</ui:define>
-	<ui:define name="descricao">#{prompt.especialista_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.especialista_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
 	</ui:define>
 	<ui:define name="mensagemSistema" />
@@ -30,21 +30,21 @@
 
 						<rich:column>
 							<h:outputText title="#{tooltip.especialista_codigo}"
-								value="#{prompt.especialista_codigo}" />
+								value="#{prompt.especialista_Codigo}" />
 						</rich:column>
 
 						<rich:column>
-							<h:outputText title="#{tooltip.especialista_nome}"
-								value="#{prompt.especialista_nome}" />
+							<h:outputText title="#{tooltip.especialista_Nome}"
+								value="#{prompt.especialista_Nome}" />
 						</rich:column>
 
 						<rich:column>
-							<h:outputText title="#{tooltip.especialista_pesoAvaliador}"
-								value="#{prompt.especialista_pesoAvaliador}" />
+							<h:outputText title="#{tooltip.especialista_PesoAvaliador}"
+								value="#{prompt.especialista_PesoAvaliador}" />
 						</rich:column>
 
 						<rich:column>
-							<h:outputText value="#{prompt.avaliar}" />
+							<h:outputText value="#{prompt.especialista_IncluirAvaliacao}" />
 						</rich:column>
 	
 						<rich:column>
@@ -73,7 +73,7 @@
 				</rich:column>
 				
 				<rich:column>
-					<h:commandButton value="#{prompt.avaliar}"
+					<h:commandButton value="#{prompt.especialista_IncluirAvaliacao}"
 						action="#{especialistaActions.preparaAvaliacao}" />
 				</rich:column>
 
@@ -93,7 +93,7 @@
 					<h:panelGrid columns="2">
 
 						<h:outputText
-							value="#{prompt.numeroDeEspecialistas} = #{especialistaActions.listaDeEspecialistas.rowCount}" />
+							value="#{prompt.especialista_Total} = #{especialistaActions.listaDeEspecialistas.rowCount}" />
 
 					</h:panelGrid>
 
@@ -102,7 +102,7 @@
 			</rich:dataTable>
 
 			<br />
-			<b><h:outputText value="#{prompt.msgDetalharEspecialista}"
+			<b><h:outputText value="#{prompt.especialista_Observacao}"
 				style="font:13px" /></b>
 
 		</h:form>

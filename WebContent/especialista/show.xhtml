@@ -8,7 +8,7 @@
 <ui:composition template="/WEB-INF/template/especialista_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.especialista}</ui:define>
-	<ui:define name="descricao">#{prompt.especialista_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.especialista_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">#{help.especialista_Mostrar}</ui:define>
 	<ui:define name="corpo">
 
@@ -28,15 +28,15 @@
 
 				<h:panelGrid columns="3">
 
-					<h:outputText value="#{prompt.especialista_codigo}" />:
+					<h:outputText value="#{prompt.especialista_Codigo}" />:
 						<h:outputText id="codigo"
 						value="#{especialistaActions.especialistaCorrente.codEspecialista}" />
 
-					<h:outputText value="#{prompt.especialista_nome}" />:
+					<h:outputText value="#{prompt.especialista_Nome}" />:
 						<h:outputText id="nome"
 						value="#{especialistaActions.especialistaCorrente.nome}" />
 
-					<h:outputText value="#{prompt.especialista_pesoAvaliador}" />:
+					<h:outputText value="#{prompt.especialista_PesoAvaliador}" />:
 						<h:outputText id="pesoAvaliador"
 						value="#{especialistaActions.especialistaCorrente.pesoAvaliador}" />
 

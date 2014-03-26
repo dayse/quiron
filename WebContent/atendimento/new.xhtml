@@ -34,7 +34,7 @@
 				<h:panelGrid columns="3">
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_codigo}" />:
+						<h:outputText value="#{prompt.atendimento_Codigo}" />:
 			    	</h:panelGroup>
 
 					<h:inputText id="codigo"
@@ -44,7 +44,7 @@
 					<h:message for="codigo" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_dataAtendimento}" />:
+						<h:outputText value="#{prompt.atendimento_Data}" />:
 					</h:panelGroup>
 
 					<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy HH:mm"
@@ -76,7 +76,7 @@
 					<h:message for="comboTecnicos" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_status}" />:
+						<h:outputText value="#{prompt.atendimento_Status}" />:
 					</h:panelGroup>
 					<h:selectOneMenu id="comboStatus"
 						value="#{atendimentoActions.comboStatus.selecao}">

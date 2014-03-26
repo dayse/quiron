@@ -33,7 +33,7 @@
 				<h:panelGrid columns="3">
 				
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_codigo}" />:
+						<h:outputText value="#{prompt.atendimento_Codigo}" />:
 			    	</h:panelGroup>
 					
 					<h:inputText id="codigo" value="#{atendimentoActions.atendimentoCorrente.codAtendimento}"
@@ -41,7 +41,7 @@
 					<h:message for="codigo" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_dataAtendimento}" />:
+						<h:outputText value="#{prompt.atendimento_Data}" />:
 					</h:panelGroup>
 					
 					<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy HH:mm" 
@@ -50,14 +50,14 @@
 					<h:message for="dataAtendimento" styleClass="error" />
 					
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_nomeResponsavel}" />:
+						<h:outputText value="#{prompt.atendimento_NomeDoResponsavel}" />:
 					</h:panelGroup>					
 					<h:inputText id="nomeResponsavel" value="#{atendimentoActions.atendimentoCorrente.nomeResponsavel}"
 						maxlength="#{constantes.lAtendimentoPrognostico}" size="20" required="true" disabled="#{atendimentoActions.maioridade}" />
 					<h:message for="nomeResponsavel" styleClass="error" />
 					
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_cpfResponsavel}" />:
+						<h:outputText value="#{prompt.atendimento_CPF}" />:
 					</h:panelGroup>					
 					<h:inputText id="cpfResponsavel" value="#{atendimentoActions.atendimentoCorrente.cpfResponsavel}"
 						maxlength="#{constantes.lAtendimentoPrognostico}" size="20" required="true" disabled="#{atendimentoActions.maioridade}" />
@@ -72,7 +72,7 @@
 					<h:message for="comboMedicos" styleClass="error" />
 					
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_prognostico}" />:
+						<h:outputText value="#{prompt.atendimento_Prognostico}" />:
 					</h:panelGroup>
 					<h:inputText id="prognostico" value="#{atendimentoActions.atendimentoCorrente.prognostico}"
 						maxlength="#{constantes.lAtendimentoPrognostico}" size="20" required="true" />
@@ -87,7 +87,7 @@
 					<h:message for="comboTecnicos" styleClass="error" />
 					
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_status}" />:
+						<h:outputText value="#{prompt.atendimento_Status}" />:
 					</h:panelGroup>						
 						<h:selectOneMenu id="comboStatus" value="#{atendimentoActions.comboStatus.selecao}">
 							<f:selectItems value="#{atendimentoActions.comboStatus.listaSelecao}" />

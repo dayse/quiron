@@ -7,7 +7,7 @@
 
 <ui:composition template="/WEB-INF/template/atendimento_template.xhtml">
 	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
-	<ui:define name="descricao">#{prompt.atendimento_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.atendimento_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
 		#{help.tecmodel_Cadastro}
 		<br />
@@ -59,7 +59,7 @@
 						</rich:column>
 
 						<rich:column colspan="3">
-							<h:outputText value="#{prompt.atendimento_btnIncluir}" />
+							<h:outputText value="#{prompt.atendimento_Incluir}" />
 						</rich:column>
 					</rich:columnGroup>
 				</f:facet>
@@ -85,7 +85,7 @@
 
 				<rich:column colspan="3">
 					<h:commandButton action="#{atendimentoActions.preparaInclusao}"
-						value="#{prompt.atendimento_btnIncluir}" />
+						value="#{prompt.atendimento_Incluir}" />
 				</rich:column>
 
 				<rich:column breakBefore="true" colspan="10" styleClass="space-table"
@@ -107,8 +107,8 @@
 
 					<rich:column sortBy="#{atendimento.codAtendimento}">
 						<f:facet name="header">
-							<h:outputText title="#{tooltip.atendimento_codigo}"
-								value="#{prompt.atendimento_codigo}" />
+							<h:outputText title="#{tooltip.atendimento_Codigo}"
+								value="#{prompt.atendimento_Codigo}" />
 						</f:facet>
 						<h:commandLink value="#{atendimento.codAtendimento}"
 							action="#{atendimentoActions.mostrar}">
@@ -120,7 +120,7 @@
 					<rich:column>
 						<f:facet name="header">
 							<h:outputText title="#{tooltip.atendimento_data}"
-								value="#{prompt.atendimento_dataAtendimento}" />
+								value="#{prompt.atendimento_Data}" />
 						</f:facet>
 						<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy HH:mm"
 							value="#{atendimento.dataAtendimento}" disabled="true" />
@@ -130,15 +130,15 @@
 					<rich:column colspan="2">
 						<f:facet name="header">
 							<h:outputText title="#{tooltip.atendimento_medico}"
-								value="#{prompt.atendimento_medico}" />
+								value="#{prompt.atendimento_Medico}" />
 						</f:facet>
 						<h:outputText value="#{atendimento.medico}" />
 					</rich:column>
 
 					<rich:column colspan="2">
 						<f:facet name="header">
-							<h:outputText title="#{tooltip.atendimento_tecnico}"
-								value="#{prompt.atendimento_tecnico}" />
+							<h:outputText title="#{tooltip.atendimento_Tecnico}"
+								value="#{prompt.atendimento_Tecnico}" />
 						</f:facet>
 						<h:outputText value="#{atendimento.tecnico.nome}" />
 					</rich:column>
@@ -146,9 +146,9 @@
 					<rich:column>
 						<f:facet name="header">
 							<h:outputText title="#{tooltip.atendimento_status}"
-								value="#{prompt.atendimento_status}" />
+								value="#{prompt.atendimento_Status}" />
 						</f:facet>
-						<h:outputText value="#{atendimento.status}" />
+						<h:outputText value="#{atendimento.Status}" />
 					</rich:column>
 
 					<rich:column>
@@ -208,7 +208,7 @@
 						onclick="Richfaces.hideModalPanel('panelConfirmacaoExclusao')" />
 				</f:facet>
 
-				<h:outputText value="#{prompt.atendimento_confirmacaoExclusao}" />
+				<h:outputText value="#{prompt.atendimento_ConfirmacaoExclusao}" />
 
 				<center><br />
 				<br />

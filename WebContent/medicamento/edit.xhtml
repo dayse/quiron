@@ -7,8 +7,8 @@
 
 <ui:composition template="/WEB-INF/template/medicamento_template.xhtml">
 
-	<ui:define name="titulo">#{prompt.medicamento}</ui:define>
-	<ui:define name="descricao">#{prompt.medicamento_Alterar}</ui:define>
+	<ui:define name="titulo">#{prompt.indicacao}</ui:define>
+	<ui:define name="descricao">#{prompt.indicacao_Editar}</ui:define>
 	<ui:define name="corpo">
 
 		<a4j:keepAlive beanName="medicamentoActions" />
@@ -18,13 +18,13 @@
 			<rich:panel>
 
 				<f:facet name="header">
-					<h:outputText value="#{prompt.medicamento}" />
+					<h:outputText value="#{prompt.indicacao}" />
 				</f:facet>
 
 				<h:panelGrid columns="4">
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.medicamento_codigo}" />:
+						<h:outputText value="#{prompt.indicacao_Codigo}" />:
 					</h:panelGroup>
 					<h:inputText id="codigo"
 						value="#{medicamentoActions.medicamentoCorrente.codIndicacao}"
@@ -33,7 +33,7 @@
 					<h:outputText value="" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.medicamento_nome}" />:
+						<h:outputText value="#{prompt.indicacao_Nome}" />:
 					</h:panelGroup>
 					<h:inputText id="nome"
 						value="#{medicamentoActions.medicamentoCorrente.nome}" size="20"
@@ -42,7 +42,7 @@
 					<h:outputText value="" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.medicamento_dosagem}" />:
+						<h:outputText value="#{prompt.indicacao_dosagem}" />:
 					</h:panelGroup>
 					<h:inputText id="dosagem"
 						value="#{medicamentoActions.medicamentoCorrente.dosagem}"
