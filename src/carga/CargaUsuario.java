@@ -158,31 +158,6 @@ public class CargaUsuario extends CargaBase{
 		
 		
 		
-		usuarioAdmin.setNome("Administrador");
-		usuarioAdmin.setLogin("admin");
-		usuarioAdmin.setSenha("123456");
-		usuarioAdmin.setTipoUsuario(tipoUsuarioAdmin);
-		
-		usuarioAluno.setNome("Felipe Arruda");
-		usuarioAluno.setLogin("felipe");
-		usuarioAluno.setSenha("felipe");
-		usuarioAluno.setTipoUsuario(tipoUsuarioAluno);
-		
-		usuarioEngenheiro.setNome("Gabriel Souza");
-		usuarioEngenheiro.setLogin("gabriel");
-		usuarioEngenheiro.setSenha("gabriel");
-		usuarioEngenheiro.setTipoUsuario(tipoUsuarioEngenheiro);
-		
-		usuarioClinico.setNome("Marcos da Silva");
-		usuarioClinico.setLogin("marcos");
-		usuarioClinico.setSenha("marcos");
-		usuarioClinico.setTipoUsuario(tipoUsuarioClinico);
-		
-		usuarioTecnico.setNome("Rafael Souza");
-		usuarioTecnico.setLogin("rafael");
-		usuarioTecnico.setSenha("rafael");
-		usuarioTecnico.setTipoUsuario(tipoUsuarioTecnico);
-		
 			usuarioService.inclui(usuarioAdmin, usuarioAdmin.getSenha());
 			usuarioService.inclui(usuarioEngenheiro, usuarioEngenheiro.getSenha());
 			usuarioService.inclui(usuarioClinico, usuarioClinico.getSenha());
