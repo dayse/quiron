@@ -8,7 +8,7 @@
 <ui:composition template="/WEB-INF/template/parametro_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.parametro}</ui:define>
-	<ui:define name="descricao">#{prompt.parametro_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.parametro_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
 	</ui:define>
 	<ui:define name="mensagemSistema" />
@@ -30,12 +30,12 @@
 
 						<rich:column>
 							<h:outputText title="#{tooltip.medicamento_Codigo}"
-								value="#{prompt.parametro_codigo}" />
+								value="#{prompt.parametro_Codigo}" />
 						</rich:column>
 
 						<rich:column>
-							<h:outputText title="#{tooltip.medicamento_nome}"
-								value="#{prompt.parametro_nome}" />
+							<h:outputText title="#{tooltip.medicamento_Nome}"
+								value="#{prompt.parametro_Nome}" />
 						</rich:column>
 
 						<rich:column>
@@ -64,7 +64,7 @@
 					<h:panelGrid columns="2">
 
 						<h:outputText
-							value="#{prompt.numeroDeParametros} = #{parametroActions.listaParametros.rowCount}" />
+							value="#{prompt.parametro_Total} = #{parametroActions.listaParametros.rowCount}" />
 
 					</h:panelGrid>
 
@@ -73,7 +73,7 @@
 			</rich:dataTable>
 
 			<br />
-			<b><h:outputText value="#{prompt.msgDetalharParametro}"
+			<b><h:outputText value="#{prompt.parametro_Observacao}"
 				style="font:13px" /></b>
 
 		</h:form>

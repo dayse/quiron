@@ -25,7 +25,7 @@
 				<h:panelGrid columns="4">
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_codigo}" />:
+						<h:outputText value="#{prompt.paciente_Codigo}" />:
 					</h:panelGroup>
 					<h:inputText id="codigo"
 						value="#{pacienteActions.pacienteCorrente.codPaciente}"
@@ -35,7 +35,7 @@
 					<h:outputText value="" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_nome}" />:
+						<h:outputText value="#{prompt.paciente_Nome}" />:
 					</h:panelGroup>
 					<h:inputText id="nome"
 						value="#{pacienteActions.pacienteCorrente.nome}"
@@ -44,7 +44,7 @@
 					<h:outputText value="" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_dataNascimento}" />:
+						<h:outputText value="#{prompt.paciente_DataNascimento}" />:
 					</h:panelGroup>
 					<rich:calendar id="dataNascimento" datePattern="dd/MM/yyyy"
 						value="#{pacienteActions.pacienteCorrente.dataNascimento}" />
@@ -52,7 +52,7 @@
 					<h:outputText value="" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_sexo}" />:
+						<h:outputText value="#{prompt.paciente_Sexo}" />:
 					</h:panelGroup>
 					<h:selectOneRadio id="comboSexo"
 						value="#{pacienteActions.radioFlags.selecao}" required="true">
@@ -62,7 +62,7 @@
 					<h:outputText value="" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_endereco}" />:
+						<h:outputText value="#{prompt.paciente_Endereco}" />:
 					</h:panelGroup>
 					<h:inputText id="altura"
 						value="#{pacienteActions.pacienteCorrente.endereco}" size="20"
@@ -71,7 +71,7 @@
 					<h:outputText value="" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_nomeResponsavel}" />:
+						<h:outputText value="#{prompt.paciente_NomeResponsavel}" />:
 					</h:panelGroup>
 					<h:inputText id="nomeResponsavel"
 						value="#{pacienteActions.pacienteCorrente.nomeResponsavel}"
@@ -80,7 +80,7 @@
 					<h:outputText value="" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_documento}" />:
+						<h:outputText value="#{prompt.paciente_Documento}" />:
 					</h:panelGroup>
 					<h:inputText id="documento"
 						value="#{pacienteActions.pacienteCorrente.documento}" size="20"

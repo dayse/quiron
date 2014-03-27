@@ -8,7 +8,7 @@
 <ui:composition template="/WEB-INF/template/usuario_template.xhtml">
 	
 	<ui:define name="titulo">#{prompt.usuario}</ui:define>
-	<ui:define name="descricao">#{prompt.usuario_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.usuario_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
 		#{help.usuario_Cadastro}
 		<br /><br />
@@ -36,15 +36,15 @@
 					<rich:columnGroup>
 					
 						<rich:column>
-							<h:outputText title="#{tooltip.usuario_Nome}" value="#{prompt.usuario_nome}" />
+							<h:outputText title="#{tooltip.usuario_Nome}" value="#{prompt.usuario_Nome}" />
 						</rich:column>
 						
 						<rich:column>
-							<h:outputText title="#{tooltip.usuario_Login}" value="#{prompt.usuario_login}" />
+							<h:outputText title="#{tooltip.usuario_Login}" value="#{prompt.usuario_Login}" />
 						</rich:column>
 						
 						<rich:column>
-							<h:outputText title="#{tooltip.usuario_TipoUsuario}" value="#{prompt.usuario_tipo}" />
+							<h:outputText title="#{tooltip.usuario_TipoUsuario}" value="#{prompt.usuario_Tipo}" />
 						</rich:column>
 						
 						<rich:column>
@@ -83,13 +83,13 @@
 				</rich:column>
 
 				<f:facet name="footer">
-					<h:outputText value="#{prompt.numeroDeUsuarios} = #{usuarioActions.listaUsuarios.rowCount}"/>
+					<h:outputText value="#{prompt.usuario_Total} = #{usuarioActions.listaUsuarios.rowCount}"/>
 				</f:facet>
 
 			</rich:dataTable>
 
 			<br />
-			<b><h:outputText value="#{prompt.msgDetalharUsuario}" style="font:13px" /></b>
+			<b><h:outputText value="#{prompt.usuario_Observacao}" style="font:13px" /></b>
 
 		</h:form>
 
@@ -109,7 +109,7 @@
 						onclick="Richfaces.hideModalPanel('panelConfirmacaoExclusao')" />
 				</f:facet>
 
-				<h:outputText value="#{prompt.usuario_confirmarExclusao}"/>
+				<h:outputText value="#{prompt.usuario_ConfirmarExclusao}"/>
 
 				<center>
 				

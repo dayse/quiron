@@ -8,7 +8,7 @@
 <ui:composition template="/WEB-INF/template/paciente_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.paciente}</ui:define>
-	<ui:define name="descricao">#{prompt.paciente_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.paciente_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
 		#{help.paciente_Cadastro}
 		<br />
@@ -59,37 +59,37 @@
 
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Codigo}"
-								value="#{prompt.paciente_codigo}" />
+								value="#{prompt.paciente_Codigo}" />
 						</rich:column>
 
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Nome}"
-								value="#{prompt.paciente_nome}" />
+								value="#{prompt.paciente_Nome}" />
 						</rich:column>
 
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_DataNascimento}"
-								value="#{prompt.paciente_dataNascimento}" />
+								value="#{prompt.paciente_DataNascimento}" />
 						</rich:column>
 
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Sexo}"
-								value="#{prompt.paciente_sexo}" />
+								value="#{prompt.paciente_Sexo}" />
 						</rich:column>
 
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Endereco}"
-								value="#{prompt.paciente_endereco}" />
+								value="#{prompt.paciente_Endereco}" />
 						</rich:column>
 
 						<rich:column>
-							<h:outputText title="#{tooltip.paciente_nomeResponsavel}"
-								value="#{prompt.paciente_nomeResponsavel}" />
+							<h:outputText title="#{tooltip.paciente_NomeResponsavel}"
+								value="#{prompt.paciente_NomeResponsavel}" />
 						</rich:column>
 
 						<rich:column>
-							<h:outputText title="#{tooltip.paciente_documento}"
-								value="#{prompt.paciente_documento}" />
+							<h:outputText title="#{tooltip.paciente_Documento}"
+								value="#{prompt.paciente_Documento}" />
 						</rich:column>
 
 						<rich:column>
@@ -163,7 +163,7 @@
 					<h:panelGrid columns="2">
 
 						<h:outputText
-							value="#{prompt.numeroDePacientes} = #{pacienteActions.listaDePacientes.rowCount}" />
+							value="#{prompt.paciente_Total} = #{pacienteActions.listaDePacientes.rowCount}" />
 
 					</h:panelGrid>
 
@@ -172,7 +172,7 @@
 			</rich:dataTable>
 
 			<br />
-			<b><h:outputText value="#{prompt.msgDetalharPaciente}"
+			<b><h:outputText value="#{prompt.paciente_Observacao}"
 				style="font:13px" /></b>
 
 		</h:form>
@@ -192,7 +192,7 @@
 						onclick="Richfaces.hideModalPanel('panelConfirmacaoExclusao')" />
 				</f:facet>
 
-				<h:outputText value="#{prompt.confirmacaoExclusaoPaciente}" />
+				<h:outputText value="#{prompt.paciente_ConfimarExclusao}" />
 
 				<center><br />
 				<br />

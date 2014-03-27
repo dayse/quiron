@@ -32,7 +32,7 @@
 				<h:panelGrid columns="3">
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_codigo}" />:
+						<h:outputText value="#{prompt.paciente_Codigo}" />:
 					</h:panelGroup>
 					<h:inputText id="codigo"
 						value="#{pacienteActions.pacienteCorrente.codPaciente}"
@@ -41,7 +41,7 @@
 					<h:message for="codigo" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_nome}" />:
+						<h:outputText value="#{prompt.paciente_Nome}" />:
 					</h:panelGroup>
 					<h:inputText id="nome"
 						value="#{pacienteActions.pacienteCorrente.nome}"
@@ -49,7 +49,7 @@
 					<h:message for="nome" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_dataNascimento}" />
+						<h:outputText value="#{prompt.paciente_DataNascimento}" />
 					</h:panelGroup>
 					<rich:calendar id="dataNascimento" datePattern="dd/MM/yyyy"
 						value="#{pacienteActions.dataNascimento}" required="true"
@@ -57,7 +57,7 @@
 					<h:message for="altDataNascimento" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_sexo}" />:
+						<h:outputText value="#{prompt.paciente_Sexo}" />:
 					</h:panelGroup>
 					<h:selectOneRadio id="comboSexo"
 						value="#{pacienteActions.radioFlags.selecao}" required="true">
@@ -66,7 +66,7 @@
 					<h:message for="comboSexo" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_endereco}" />:
+						<h:outputText value="#{prompt.paciente_Endereco}" />:
 					</h:panelGroup>
 					<h:inputText id="endereco"
 						value="#{pacienteActions.pacienteCorrente.endereco}" size="20"
@@ -74,7 +74,7 @@
 					<h:message for="endereco" styleClass="error" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.paciente_nomeResponsavel}" />:
+						<h:outputText value="#{prompt.paciente_NomeResponsavel}" />:
 					</h:panelGroup>
 					<h:inputText id="nomeResponsavel"
 						value="#{pacienteActions.pacienteCorrente.nomeResponsavel}"
@@ -83,7 +83,7 @@
 				</h:panelGrid>
 
 				<h:panelGroup>
-					<h:outputText value="#{prompt.paciente_documento}" />:
+					<h:outputText value="#{prompt.paciente_Documento}" />:
 					</h:panelGroup>
 				<h:inputText id="documento"
 					value="#{pacienteActions.pacienteCorrente.documento}" size="20"

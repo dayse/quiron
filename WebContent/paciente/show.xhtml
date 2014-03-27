@@ -9,7 +9,7 @@
 	template="/WEB-INF/template/paciente_list_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.paciente}</ui:define>
-	<ui:define name="descricao">#{prompt.paciente_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.paciente_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">#{help.paciente_Mostrar}</ui:define>
 	<ui:define name="corpo">
 
@@ -29,34 +29,34 @@
 
 				<h:panelGrid columns="3">
 
-					<h:outputText value="#{prompt.paciente_codigo}" />:
+					<h:outputText value="#{prompt.paciente_Codigo}" />:
 						<h:outputText id="codigo"
 						value="#{pacienteActions.pacienteCorrente.codPaciente}" />
 
-					<h:outputText value="#{prompt.paciente_nome}" />:
+					<h:outputText value="#{prompt.paciente_Nome}" />:
 						<h:outputText id="nome"
 						value="#{pacienteActions.pacienteCorrente.nome}" />
 
-					<h:outputText value="#{prompt.paciente_dataNascimento}" />:
+					<h:outputText value="#{prompt.paciente_DataNascimento}" />:
 						<rich:calendar id="dataNascimento" datePattern="dd/MM/yyyy"
 						value="#{pacienteActions.pacienteCorrente.dataNascimento}"
 						disabled="true" />
 
-					<h:outputText value="#{prompt.paciente_sexo}" />:
+					<h:outputText value="#{prompt.paciente_Sexo}" />:
                   		<h:selectOneRadio id="comboSexo"
 						value="#{pacienteActions.radioFlags.selecao}" disabled="true">
 						<f:selectItems value="#{pacienteActions.radioFlags.listaSelecao}" />
 					</h:selectOneRadio>
 
-					<h:outputText value="#{prompt.paciente_endereco}" />:
+					<h:outputText value="#{prompt.paciente_Endereco}" />:
 						<h:outputText id="endereco"
 						value="#{pacienteActions.pacienteCorrente.endereco}" />
 
-					<h:outputText value="#{prompt.paciente_nomeResponsavel}" />:
+					<h:outputText value="#{prompt.paciente_NomeResponsavel}" />:
 						<h:outputText id="nomeResponsavel"
 						value="#{pacienteActions.pacienteCorrente.nomeResponsavel}" />
 
-					<h:outputText value="#{prompt.paciente_documento}" />:
+					<h:outputText value="#{prompt.paciente_Documento}" />:
 						<h:outputText id="documento"
 						value="#{pacienteActions.pacienteCorrente.documento}" />
 					<br />

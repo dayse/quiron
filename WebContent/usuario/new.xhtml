@@ -27,7 +27,7 @@
 				<h:panelGrid columns="3">
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.usuario_nome}" />:
+						<h:outputText value="#{prompt.usuario_Nome}" />:
 					</h:panelGroup>
 						<h:inputText id="nome" value="#{usuarioActions.usuarioCorrente.nome}"  
 							maxlength="#{constantes.lUsuarioNome}" size="20" required="true"/>
@@ -50,7 +50,7 @@
 					<h:message for="senha" styleClass="error" warnClass="warn" />
 						
 					<h:panelGroup>
-						<h:outputText value="#{prompt.usuario_confirmacaosenha}" />:
+						<h:outputText value="#{prompt.usuario_ConfirmarSenha}" />:
 					</h:panelGroup>
 					<h:inputSecret id="senhaConfirm" value="#{usuarioActions.confirmacaoSenha}"
 							size="20" required="true">
@@ -58,7 +58,7 @@
 					<h:message for="senhaConfirm" styleClass="error" warnClass="warn" />	
 					
 					<h:panelGroup>
-						<h:outputText value="#{prompt.usuario_tipo}" />
+						<h:outputText value="#{prompt.usuario_Tipo}" />
 					</h:panelGroup>
 					<h:selectOneMenu value="#{usuarioActions.comboTiposUsuario.selecao}">
 						<f:selectItems value="#{usuarioActions.comboTiposUsuario.listaSelecao}"/>

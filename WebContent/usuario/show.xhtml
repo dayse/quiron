@@ -8,7 +8,7 @@
 <ui:composition template="/WEB-INF/template/usuario_list_template.xhtml">
 	
 	<ui:define name="titulo">#{prompt.usuario}</ui:define>
-	<ui:define name="descricao">#{prompt.usuario_descList}</ui:define>
+	<ui:define name="descricao">#{prompt.usuario_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">#{help.usuario_Mostrar}</ui:define>
 	<ui:define name="mensagemSistema" />
 
@@ -33,7 +33,7 @@
 				<h:panelGrid columns="3">
 
 					
-						<h:outputText value="#{prompt.usuario_nome}" />:
+						<h:outputText value="#{prompt.usuario_Nome}" />:
 						<h:outputText id="nome" value="#{usuarioActions.usuarioCorrente.nome}"  
 							maxlength="#{constantes.lUsuarioNome}" size="20" required="true"/>
 						
@@ -43,7 +43,7 @@
 							maxlength="#{constantes.lUsuarioLogin}" size="20" required="true"/>
 										
 					
-					<h:outputText value="#{prompt.usuario_tipo}" />:
+					<h:outputText value="#{prompt.usuario_Tipo}" />:
 					<h:selectOneMenu value="#{usuarioActions.comboTiposUsuario.selecao}" disabled="true">
 						<f:selectItems value="#{usuarioActions.comboTiposUsuario.listaSelecao}"/>
 					</h:selectOneMenu>
