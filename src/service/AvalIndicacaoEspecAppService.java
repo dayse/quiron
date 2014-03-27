@@ -36,7 +36,7 @@ public class AvalIndicacaoEspecAppService {
 		try{
 			avalIndicacaoEspecBD = avalIndicacaoEspecDAO.getPorIdComLock(avalIndicacaoEspec.getId());
 		}catch(ObjetoNaoEncontradoException e){
-			throw new AplicacaoException("avalIndicacaoEspec.AVALIACAO_NAO_ENCONTRADA");
+			throw new AplicacaoException("avaliacaoDaIndicacao.NAO_ENCONTRADA");
 		}
 		avalIndicacaoEspecDAO.exclui(avalIndicacaoEspecBD);
 	}
@@ -45,7 +45,7 @@ public class AvalIndicacaoEspecAppService {
 	public void inclui(AvalIndicacaoEspec avalIndicacaoEspec) throws AplicacaoException{
 		try{
 			avalIndicacaoEspecDAO.recuperaAvalIndicacaoEspecPorID(avalIndicacaoEspec.getIndicacao(), avalIndicacaoEspec.getEspecialista());
-			throw new AplicacaoException("avalIndicacaoEspec.AVALIACAO_EXISTENTE");
+			throw new AplicacaoException("avaliacaoDaIndicacao.NAO_ENCONTRADA");
 		}catch(ObjetoNaoEncontradoException ob){
 		}
 		avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);

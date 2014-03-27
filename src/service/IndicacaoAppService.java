@@ -60,7 +60,7 @@ public class IndicacaoAppService {
 	public void inclui (Indicacao indicacao) throws AplicacaoException{
 		try{
 			indicacaoDAO.recuperaMedicamentoPorCodigo(indicacao.getCodIndicacao());
-			throw new AplicacaoException("indicacao.CODIGO_EXISTENTE");
+			throw new AplicacaoException("medicamento.CODIGO_EXISTENTE");
 		}catch(ObjetoNaoEncontradoException ob){
 			
 		}

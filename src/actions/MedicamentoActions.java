@@ -174,7 +174,7 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 			error(ex.getMessage());
 			return PAGINA_LIST;
 		}
-		info("medicamneto.SUCESSO_EXCLUSAO");
+		info("medicamento.SUCESSO_EXCLUSAO");
 		buscaEfetuada = false;
 		comboTiposDeBusca = null;
 		listaDeMedicamentos = null;
