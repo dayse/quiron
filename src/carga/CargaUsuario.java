@@ -1,12 +1,19 @@
 package carga;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import modelo.TipoUsuario;
 import modelo.Usuario;
-
 import service.TipoUsuarioAppService;
 import service.UsuarioAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
+import util.Constantes;
+import util.JsonConfigLoader;
+
+import com.google.gson.Gson;
 
 /**
  * 
@@ -70,6 +77,19 @@ public class CargaUsuario extends CargaBase{
 		this.incluirTiposDeUsuario();
 		return true;
 	}
+
+	public List<Usuario> recuperaUsuariosDeArquivoConfigJson(){
+
+		System.out.println(
+				JsonConfigLoader.getJson(Constantes.CAMINHO_ABSOLUTO_ARQUIVO_USUARIOS_CARGA)
+				);
+		String json = JsonConfigLoader.getJson(Constantes.CAMINHO_ABSOLUTO_ARQUIVO_USUARIOS_CARGA);
+		Gson gson = new Gson();
+		Usuario[] arrayUsuarios = gson.fromJson(json, Usuario[].class);
+		
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>(Arrays.asList(arrayUsuarios));
+		return usuarios;
+	}
 	
 	/**
 	 * 
@@ -117,12 +137,26 @@ public class CargaUsuario extends CargaBase{
 		tipoUsuarioService.inclui(tipoUsuarioTecnico);
 		tipoUsuarioService.inclui(tipoUsuarioEngenheiro);
 		
+
+		List<Usuario> usuarios = recuperaUsuariosDeArquivoConfigJson();
 		
-		Usuario usuarioAdmin = new Usuario();
-		Usuario usuarioAluno = new Usuario();
-		Usuario usuarioClinico = new Usuario();
-		Usuario usuarioTecnico = new Usuario();
-		Usuario usuarioEngenheiro = new Usuario();
+		Usuario usuarioAdmin = usuarios.get(0);
+		usuarioAdmin.setTipoUsuario(tipoUsuarioAdmin);
+		
+		Usuario usuarioAluno = usuarios.get(1);
+		usuarioAluno.setTipoUsuario(tipoUsuarioAluno);
+		
+		Usuario usuarioClinico = usuarios.get(2);
+		usuarioClinico.setTipoUsuario(tipoUsuarioClinico);
+
+		Usuario usuarioEngenheiro = usuarios.get(3);
+		usuarioEngenheiro.setTipoUsuario(tipoUsuarioEngenheiro);
+		
+
+		Usuario usuarioTecnico = usuarios.get(4);
+		usuarioTecnico.setTipoUsuario(tipoUsuarioTecnico);
+		
+		
 		
 		usuarioAdmin.setNome("Administrador");
 		usuarioAdmin.setLogin("admin");

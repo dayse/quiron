@@ -135,6 +135,8 @@ public class Constantes {
 	//----------------------- CONSTANTES DE CARGA ---------------------------
   	public final static String CAMINHO_ARQUIVOS_CARGA = "/WEB-INF/carga/";
 	public static String CAMINHO_ABSOLUTO_ARQUIVOS_CARGA;
+	public final static String CAMINHO_ARQUIVO_USUARIOS_CARGA = CAMINHO_ARQUIVOS_CARGA + "usuarios.json";
+	public static String CAMINHO_ABSOLUTO_ARQUIVO_USUARIOS_CARGA;
 	//----------------------------------------------------------------------------
 	
 	//----------------------- CONSTANTES DO PACKAGE XFUZZY ---------------------------
