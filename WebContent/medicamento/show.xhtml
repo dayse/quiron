@@ -9,7 +9,7 @@
 
 	<ui:define name="titulo">#{prompt.indicacao}</ui:define>
 	<ui:define name="descricao">#{prompt.indicacao_Cadastro}</ui:define>
-	<ui:define name="descricao_ajuda">#{help.medicamento_Mostrar}</ui:define>
+	<ui:define name="descricao_ajuda">#{help.indicacao_Mostrar}</ui:define>
 	<ui:define name="corpo">
 
 		<h:form id="formMedicamentoShow">
@@ -36,7 +36,7 @@
 						<h:outputText id="nome"
 						value="#{medicamentoActions.medicamentoCorrente.nome}" />
 
-					<h:outputText value="#{prompt.indicacao_dosagem}" />:
+					<h:outputText value="#{prompt.indicacao_Dosagem}" />:
 						<h:outputText id="dosagem"
 						value="#{medicamentoActions.medicamentoCorrente.dosagem}" />
 
