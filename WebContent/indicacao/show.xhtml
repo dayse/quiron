@@ -5,14 +5,14 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 
-<ui:composition template="/WEB-INF/template/medicamento_template.xhtml">
+<ui:composition template="/WEB-INF/template/indicacao_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.indicacao}</ui:define>
 	<ui:define name="descricao">#{prompt.indicacao_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">#{help.indicacao_Mostrar}</ui:define>
 	<ui:define name="corpo">
 
-		<h:form id="formMedicamentoShow">
+		<h:form id="formIndicacaoShow">
 
 			<rich:panel>
 
@@ -30,27 +30,27 @@
 
 					<h:outputText value="#{prompt.indicacao_Codigo}" />:
 						<h:outputText id="codigo"
-						value="#{medicamentoActions.medicamentoCorrente.codIndicacao}" />
+						value="#{indicacaoActions.indicacaoCorrente.codIndicacao}" />
 
 					<h:outputText value="#{prompt.indicacao_Nome}" />:
 						<h:outputText id="nome"
-						value="#{medicamentoActions.medicamentoCorrente.nome}" />
+						value="#{indicacaoActions.indicacaoCorrente.nome}" />
 
 					<h:outputText value="#{prompt.indicacao_Dosagem}" />:
 						<h:outputText id="dosagem"
-						value="#{medicamentoActions.medicamentoCorrente.dosagem}" />
+						value="#{indicacaoActions.indicacaoCorrente.dosagem}" />
 
 					<br />
 
 				</h:panelGrid>
 
 				<h:commandButton id="botaoVoltar" value="#{prompt.voltar}"
-					action="#{medicamentoActions.cancelar}" immediate="true" />
+					action="#{indicacaoActions.cancelar}" immediate="true" />
 
 			</rich:panel>
 
 		</h:form>
-		<a4j:keepAlive beanName="medicamentoActions" />
+		<a4j:keepAlive beanName="indicacaoActions" />
 
 	</ui:define>
 

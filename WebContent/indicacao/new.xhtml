@@ -5,18 +5,18 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 
-<ui:composition template="/WEB-INF/template/medicamento_template.xhtml">
+<ui:composition template="/WEB-INF/template/indicacao_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.indicacao}</ui:define>
 	<ui:define name="descricao">#{prompt.indicacao_Incluir}</ui:define>
-	<ui:define name="descricao_ajuda">#{help.medicamento_Incluir}</ui:define>
+	<ui:define name="descricao_ajuda">#{help.indicacao_Incluir}</ui:define>
 	<ui:define name="mensagemSistema" />
 
 	<ui:define name="corpo">
 
-		<a4j:keepAlive beanName="medicamentoActions" />
+		<a4j:keepAlive beanName="indicacaoActions" />
 
-		<h:form id="formMedicamentoNew">
+		<h:form id="formIndicacaoNew">
 
 			<rich:panel>
 
@@ -36,7 +36,7 @@
 						<h:outputText value="#{prompt.indicacao_Codigo}" />:
 					</h:panelGroup>
 					<h:inputText id="codigo"
-						value="#{medicamentoActions.medicamentoCorrente.codIndicacao}"
+						value="#{indicacaoActions.indicacaoCorrente.codIndicacao}"
 						size="20" required="true" />
 					<h:message for="codigo" styleClass="error" />
 
@@ -44,7 +44,7 @@
 						<h:outputText value="#{prompt.indicacao_Nome}" />:
 					</h:panelGroup>
 					<h:inputText id="nome"
-						value="#{medicamentoActions.medicamentoCorrente.nome}" size="20"
+						value="#{indicacaoActions.indicacaoCorrente.nome}" size="20"
 						required="true" />
 					<h:message for="nome" styleClass="error" />
 
@@ -52,7 +52,7 @@
 						<h:outputText value="#{prompt.indicacao_Dosagem}" />:
 					</h:panelGroup>
 					<h:inputText id="dosagem"
-						value="#{medicamentoActions.medicamentoCorrente.dosagem}"
+						value="#{indicacaoActions.indicacaoCorrente.dosagem}"
 						size="20" required="true" />
 					<h:message for="dosagem" styleClass="error" />
 
@@ -63,9 +63,9 @@
 
 			<h:commandButton id="botaoIncluir"
 				value="#{prompt.confirmarInclusao}"
-				action="#{medicamentoActions.inclui}" />
+				action="#{indicacaoActions.inclui}" />
 			<h:commandButton id="botaoCancelar" value="#{prompt.cancelar}"
-				action="#{medicamentoActions.cancelar}" immediate="true" />
+				action="#{indicacaoActions.cancelar}" immediate="true" />
 
 		</h:form>
 

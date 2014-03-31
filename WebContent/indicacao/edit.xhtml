@@ -5,15 +5,15 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 
-<ui:composition template="/WEB-INF/template/medicamento_template.xhtml">
+<ui:composition template="/WEB-INF/template/indicacao_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.indicacao}</ui:define>
 	<ui:define name="descricao">#{prompt.indicacao_Editar}</ui:define>
 	<ui:define name="corpo">
 
-		<a4j:keepAlive beanName="medicamentoActions" />
+		<a4j:keepAlive beanName="indicacaoActions" />
 
-		<h:form id="editMedicamento">
+		<h:form id="editIndicacao">
 
 			<rich:panel>
 
@@ -27,7 +27,7 @@
 						<h:outputText value="#{prompt.indicacao_Codigo}" />:
 					</h:panelGroup>
 					<h:inputText id="codigo"
-						value="#{medicamentoActions.medicamentoCorrente.codIndicacao}"
+						value="#{indicacaoActions.indicacaoCorrente.codIndicacao}"
 						size="20" disabled="true" />
 					<h:message for="codigo" styleClass="error" />
 					<h:outputText value="" />
@@ -36,7 +36,7 @@
 						<h:outputText value="#{prompt.indicacao_Nome}" />:
 					</h:panelGroup>
 					<h:inputText id="nome"
-						value="#{medicamentoActions.medicamentoCorrente.nome}" size="20"
+						value="#{indicacaoActions.indicacaoCorrente.nome}" size="20"
 						required="true" />
 					<h:message for="nome" styleClass="error" />
 					<h:outputText value="" />
@@ -45,7 +45,7 @@
 						<h:outputText value="#{prompt.indicacao_Dosagem}" />:
 					</h:panelGroup>
 					<h:inputText id="dosagem"
-						value="#{medicamentoActions.medicamentoCorrente.dosagem}"
+						value="#{indicacaoActions.indicacaoCorrente.dosagem}"
 						size="20" required="true" />
 					<h:message for="dosagem" styleClass="error" />
 					<h:outputText value="" />
@@ -57,9 +57,9 @@
 			<br />
 
 			<h:commandButton id="botaoAlterar" value="#{prompt.confirmarEdicao}"
-				action="#{medicamentoActions.altera}" />
+				action="#{indicacaoActions.altera}" />
 			<h:commandButton id="botaoCancelar" value="#{prompt.cancelar}"
-				action="#{medicamentoActions.cancelar}" immediate="true" />
+				action="#{indicacaoActions.cancelar}" immediate="true" />
 
 		</h:form>
 

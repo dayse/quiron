@@ -14,14 +14,14 @@ import javax.persistence.Table;
 
 @NamedQueries(
 		{
-			@NamedQuery(name = "Indicacao.recuperaListaDeMedicamentosPaginada",
+			@NamedQuery(name = "Indicacao.recuperaListaDeIndicacoesPaginada",
 						query = "select m from Indicacao m " +
 								"order by m.codIndicacao"
 			),
-			@NamedQuery(name = "Indicacao.recuperaListaDeMedicamentosPaginadaCount",
+			@NamedQuery(name = "Indicacao.recuperaListaDeIndicacoesPaginadaCount",
 						query = "select count(m) from Indicacao m "
 			),
-			@NamedQuery(name = "Indicacao.recuperaMedicamentoPorCodigo", 
+			@NamedQuery(name = "Indicacao.recuperaIndicacaoPorCodigo", 
 						query = "select m from Indicacao m " +
 								"where m.codIndicacao = ? "
 			),
@@ -119,7 +119,6 @@ public class Indicacao implements Serializable, Comparable<Indicacao>{
 	
 	@Override
 	public int compareTo(Indicacao arg0) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

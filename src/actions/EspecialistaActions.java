@@ -322,7 +322,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	public DataModel getListaDeIndicacao() {
 		if (listaDeIndicacao == null) {
 			listaDeIndicacao = new ListDataModel(indicacaoService
-					.recuperaListaDeMedicamentosPaginada());
+					.recuperaListaDeIndicacoesPaginada());
 		}
 		return listaDeIndicacao;
 	}

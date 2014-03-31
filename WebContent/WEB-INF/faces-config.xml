@@ -49,8 +49,8 @@
 	
 	<navigation-rule>
 		<navigation-case>
-			<from-outcome>listMedicamento</from-outcome>
-			<to-view-id>/medicamento/list.xhtml</to-view-id>
+			<from-outcome>listIndicacao</from-outcome>
+			<to-view-id>/indicacao/list.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
@@ -166,23 +166,23 @@
 	</navigation-rule>
 	<!-- Regras de navegacao (Avaliacao TesteFile) -->
 	
-	<!-- Regras de navegacao (Medicamento) -->
+	<!-- Regras de navegacao (Indicacao) -->
 	<navigation-rule>
-		<from-view-id>/medicamento/*</from-view-id>
+		<from-view-id>/indicacao/*</from-view-id>
 		<navigation-case>
-			<from-outcome>newMedicamento</from-outcome>
-			<to-view-id>/medicamento/new.xhtml</to-view-id>
+			<from-outcome>newIndicacao</from-outcome>
+			<to-view-id>/indicacao/new.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>editMedicamento</from-outcome>
-			<to-view-id>/medicamento/edit.xhtml</to-view-id>
+			<from-outcome>editIndicacao</from-outcome>
+			<to-view-id>/indicacao/edit.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>showMedicamento</from-outcome>
-			<to-view-id>/medicamento/show.xhtml</to-view-id>
+			<from-outcome>showIndicacao</from-outcome>
+			<to-view-id>/indicacao/show.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	<!-- Regras de navegacao (Medicamento) -->
+	<!-- Regras de navegacao (Indicacao) -->
 	
 	<!-- Regras de navegacao (Paciente) -->
 	<navigation-rule>
@@ -264,8 +264,8 @@
 	</managed-bean>
 	
 	<managed-bean>
-		<managed-bean-name>medicamentoActions</managed-bean-name>
-		<managed-bean-class>actions.MedicamentoActions</managed-bean-class>
+		<managed-bean-name>indicacaoActions</managed-bean-name>
+		<managed-bean-class>actions.IndicacaoActions</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 

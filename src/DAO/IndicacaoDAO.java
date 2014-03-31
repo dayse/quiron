@@ -17,16 +17,16 @@ import DAO.generico.DaoGenerico;
 public interface IndicacaoDAO extends DaoGenerico<Indicacao, Long> {
 	
 	@RecuperaListaPaginada(tamanhoPagina=10)
-	public List<Indicacao> recuperaListaDeMedicamentosPaginada();
+	public List<Indicacao> recuperaListaDeIndicacoesPaginada();
 	
 	@RecuperaObjeto
-	public Indicacao recuperaMedicamentoPorCodigo(String codMedicamento) throws ObjetoNaoEncontradoException;
+	public Indicacao recuperaIndicacaoPorCodigo(String codIndicacao) throws ObjetoNaoEncontradoException;
 	
 	@RecuperaLista
-	public List<Indicacao> recuperaMedicamentoPorCodigoLike(String codMedicamento);
+	public List<Indicacao> recuperaIndicacaoPorCodigoLike(String codIndicacao);
 	
 	@RecuperaLista
-	public List<Indicacao> recuperaMedicamentoPorNome(String nomeMedicamento);
+	public List<Indicacao> recuperaIndicacaoPorNome(String nomeIndicacao);
 
 	@RecuperaLista
 	public List<Indicacao> recuperaListaIndicacao();

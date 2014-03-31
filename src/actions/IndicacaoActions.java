@@ -16,34 +16,34 @@ import util.SelectOneDataModel;
 
 /**
  * 
- * MedicamentoActions é uma classe relacionada a manipulação de tela, ou seja, a
+ * IndicacaoActions é uma classe relacionada a manipulação de tela, ou seja, a
  * interação do usuário de fato dar-se-á através de objetos do tipo
- * MedicamentoActions quando estiver na tela de Medicamentos.
+ * IndicacaoActions quando estiver na tela de Indicações.
  * 
  * Objetos do "tipo actions" são managed beans.
  * 
  * @author bruno.oliveira
  *
  */
-public class MedicamentoActions extends BaseActions implements Serializable {
+public class IndicacaoActions extends BaseActions implements Serializable {
 
 	// Service
-	private static IndicacaoAppService medicamentoService;
+	private static IndicacaoAppService indicacaoService;
 
 	// Páginas
-	private final String PAGINA_EDIT = "editMedicamento";
-	private final String PAGINA_LIST = "listMedicamento";
-	private final String PAGINA_NEW = "newMedicamento";
-	private final String PAGINA_SHOW = "showMedicamento";
+	private final String PAGINA_EDIT = "editIndicacao";
+	private final String PAGINA_LIST = "listIndicacao";
+	private final String PAGINA_NEW = "newIndicacao";
+	private final String PAGINA_SHOW = "showIndicacao";
 	
 	// Componentes de Controle
 	private static final long serialVersionUID = 1L;
 	private String campoDeBusca;
-	private int paginaMedicamento = 1;
+	private int paginaIndicacao = 1;
 	private boolean buscaEfetuada = false;
 	private SelectOneDataModel<String> comboTiposDeBusca;
-	private Indicacao medicamentoCorrente;
-	private DataModel listaDeMedicamentos;
+	private Indicacao indicacaoCorrente;
+	private DataModel listaDeIndicacoes;
 	private final String BUSCA_POR_CODIGO = "Código";
 	private final String BUSCA_POR_NOME = "Nome";
 	
@@ -58,9 +58,9 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 * @author bruno.oliveira
 	 * 
 	 */
-	public MedicamentoActions() throws Exception{
+	public IndicacaoActions() throws Exception{
 		try{
-			medicamentoService = FabricaDeAppService.getAppService(IndicacaoAppService.class);
+			indicacaoService = FabricaDeAppService.getAppService(IndicacaoAppService.class);
 		}catch(Exception e){
 			throw e;
 		}
@@ -69,10 +69,10 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	/**
 	 * 
 	 * Método para alteração de um determinado 
-	 * registro de Medicamento já cadastrado.
+	 * registro de Indicação já cadastrado.
 	 * 
 	 * @return Caso ocorra erro, mantém na página de edição. 
-	 * Caso contrário retorna para página de listagem de medicamentos
+	 * Caso contrário retorna para página de listagem de indicações
 	 * e renderiza a mensagem de sucesso.
 	 * 
 	 * @author bruno.oliveira
@@ -80,53 +80,53 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 */
 	public String altera(){
 		try{
-			medicamentoService.altera(medicamentoCorrente);
+			indicacaoService.altera(indicacaoCorrente);
 		}catch(AplicacaoException e){
 			error(e.getMessage());
 			return PAGINA_LIST;
 		}
-		info("medicamento.SUCESSO_ALTERACAO");
+		info("indicacao.SUCESSO_ALTERACAO");
 		buscaEfetuada = false;
 		comboTiposDeBusca = null;
-		listaDeMedicamentos = null;
+		listaDeIndicacoes = null;
 		return PAGINA_LIST;
 	}
 	
 	/**
 	 * 
 	 * Método utilizado para fazer a busca
-	 * de um determinado medicamento no
+	 * de um determinado indicacao no
 	 * banco através de dados passados via
 	 * formulário pelo usuário.
 	 * 
-	 * @return A lista de medicamentos atualizada
+	 * @return A lista de indicações atualizada
 	 * com os resultados da pesquisa no banco ou
 	 * uma mensagem de erro, caso algum ocorra.
 	 * 
 	 * @author bruno.oliveira
 	 * 
 	 */
-	public String buscaMedicamento(){
-		List<Indicacao> medicamentosEncontrados = null;
+	public String buscaIndicacao(){
+		List<Indicacao> indicacoesEncontrados = null;
 		if(campoDeBusca.trim().isEmpty()){
-			error("medicamento.FORNECER_CAMPO_DE_BUSCA");
+			error("indicacao.FORNECER_CAMPO_DE_BUSCA");
 			return PAGINA_LIST;
 		}else{
-			listaDeMedicamentos = null;
+			listaDeIndicacoes = null;
 			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_CODIGO)){
-				medicamentosEncontrados = new ArrayList<Indicacao>(medicamentoService.recuperaMedicamentoPorCodigoLike(campoDeBusca));
+				indicacoesEncontrados = new ArrayList<Indicacao>(indicacaoService.recuperaIndicacaoPorCodigoLike(campoDeBusca));
 			}else{
-				medicamentosEncontrados = new ArrayList<Indicacao>(medicamentoService.recuperaMedicamentoPorNome(campoDeBusca));
+				indicacoesEncontrados = new ArrayList<Indicacao>(indicacaoService.recuperaIndicacaoPorNome(campoDeBusca));
 			}
-			if(medicamentosEncontrados.isEmpty()){
-				error("medicamento.NAO_ENCONTRADO");
-				listaDeMedicamentos = null;
+			if(indicacoesEncontrados.isEmpty()){
+				error("indicacao.NAO_ENCONTRADO");
+				listaDeIndicacoes = null;
 				return PAGINA_LIST;
 			}else{
-				info("medicamento.ENCONTRADOS");
+				info("indicacao.ENCONTRADOS");
 			}
 		}
-		listaDeMedicamentos = new ListDataModel(medicamentosEncontrados);
+		listaDeIndicacoes = new ListDataModel(indicacoesEncontrados);
 		buscaEfetuada = true;
 		return PAGINA_LIST;		
 	}
@@ -138,11 +138,11 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 * usadas em situações de manipulação
 	 * de entidades, como por exemplo,
 	 * edição ou inclusão e renderizar
-	 * para a tela de listagem de medicamentos.
+	 * para a tela de listagem de indicações.
 	 * 
 	 * @return Retorna uma String que corresponde
 	 * ao no mapeamento da tela de listagem de
-	 * medicamentos.
+	 * indicações.
 	 * 
 	 * @author bruno.oliveira
 	 * 
@@ -150,7 +150,7 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	public String cancelar(){
 		buscaEfetuada = false;
 		comboTiposDeBusca = null;
-		listaDeMedicamentos = null;
+		listaDeIndicacoes = null;
 		return PAGINA_LIST;
 	}
 	
@@ -160,7 +160,7 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 * determinado registro do
 	 * banco de dados.
 	 * 
-	 * @return Atualiza a listagem de medicamentos
+	 * @return Atualiza a listagem de indicações
 	 * na tela, ou se necessário renderiza uma
 	 * mensagem de erro.
 	 * 
@@ -169,15 +169,15 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 */
 	public String exclui(){
 		try{
-			medicamentoService.exclui(medicamentoCorrente);
+			indicacaoService.exclui(indicacaoCorrente);
 		}catch(AplicacaoException ex){
 			error(ex.getMessage());
 			return PAGINA_LIST;
 		}
-		info("medicamento.SUCESSO_EXCLUSAO");
+		info("indicacao.SUCESSO_EXCLUSAO");
 		buscaEfetuada = false;
 		comboTiposDeBusca = null;
-		listaDeMedicamentos = null;
+		listaDeIndicacoes = null;
 		return PAGINA_LIST;
 	}
 	
@@ -190,7 +190,7 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 * @return Renderiza uma mensagem de erro,
 	 * caso ocorra um problema na inclusão.
 	 * Ou redireciona para a tela de listagem
-	 * atualizada de medicamentos com uma
+	 * atualizada de indicações com uma
 	 * mensagem de sucesso.
 	 * 
 	 * @author bruno.oliveira
@@ -198,14 +198,14 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 */
 	public String inclui(){
 		try{
-			medicamentoService.inclui(medicamentoCorrente);
+			indicacaoService.inclui(indicacaoCorrente);
 		}catch(AplicacaoException ex){
 			error(ex.getMessage());
 			return PAGINA_NEW;
 		}
-		info("medicamento.SUCESSO_INCLUSAO");
+		info("indicacao.SUCESSO_INCLUSAO");
 		buscaEfetuada = false;
-		listaDeMedicamentos = null;
+		listaDeIndicacoes = null;
 		return PAGINA_LIST;
 	}
 	
@@ -213,19 +213,19 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 * 
 	 * Método usado para carregar as
 	 * informações especifícas de um
-	 * determinado medicamento
+	 * determinado indicação
 	 * na tela de detalhamento.
 	 * 
 	 * @return Retorna uma String
 	 * que redireciona o usuário
 	 * para a tela de detalhamento
-	 * das informações do medicamento.
+	 * das informações do indicação.
 	 * 
 	 * @author bruno.oliveira
 	 * 
 	 */
 	public String mostra(){
-		medicamentoCorrente = (Indicacao) listaDeMedicamentos.getRowData();
+		indicacaoCorrente = (Indicacao) listaDeIndicacoes.getRowData();
 		return PAGINA_SHOW;
 	}
 	
@@ -234,7 +234,7 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 * Método acionado antes da tela 
 	 * de edição ser renderizada.
 	 * Ele é responsável por capturar
-	 * qual foi o medicamento que o usuário
+	 * qual foi o indicação que o usuário
 	 * escolheu, de forma que seja possível
 	 * recuperar as informações necessárias
 	 * do banco.
@@ -248,21 +248,21 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String preparaAlteracao(){
-		medicamentoCorrente = (Indicacao) listaDeMedicamentos.getRowData();
+		indicacaoCorrente = (Indicacao) listaDeIndicacoes.getRowData();
 		return PAGINA_EDIT;
 	}
 	
 	/**
 	 * 
 	 * Método acionado antes do modal panel de exclusão ser renderizado. Ele é
-	 * responsável por capturar qual foi o medicamento que o usuário escolheu,
+	 * responsável por capturar qual foi o indicação que o usuário escolheu,
 	 * de forma que a referência não se perca.
 	 * 
 	 * @author bruno.oliveira
 	 * 
 	 */
 	public void preparaExclusao(){
-		medicamentoCorrente = (Indicacao) listaDeMedicamentos.getRowData();
+		indicacaoCorrente = (Indicacao) listaDeIndicacoes.getRowData();
 	}
 	
 	/**
@@ -272,7 +272,7 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 * Ele é responsável por preparar
 	 * as instâncias de todas as entidades
 	 * necessárias para a inclusão de um novo
-	 * medicamento. De forma a garantir que resíduos
+	 * indicação. De forma a garantir que resíduos
 	 * de procedimentos antigos não diminuam
 	 * a garantia de confiabilidade da inclusão.
 	 * 
@@ -286,8 +286,8 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	public String preparaInclusao(){
 		buscaEfetuada = false;
 		comboTiposDeBusca = null;
-		listaDeMedicamentos = null;
-		medicamentoCorrente = new Indicacao();
+		listaDeIndicacoes = null;
+		indicacaoCorrente = new Indicacao();
 		return PAGINA_NEW;
 	}
 	
@@ -295,13 +295,13 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	 * 
 	 * Método que zera as variáveis
 	 * relacionadas a lista de 
-	 * medicamentos. De forma que
+	 * indicações. De forma que
 	 * quando for chamado, a lista
 	 * será atualizada.
 	 * 
 	 * @return Retorna uma String que corresponde
 	 * ao nome do mapeamento da tela de listagem
-	 * de medicamentos no faces config.
+	 * de indicações no faces config.
 	 * 
 	 * @author bruno.oliveira
 	 * 
@@ -309,7 +309,7 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	public String preparaListagem(){
 		buscaEfetuada = false;
 		comboTiposDeBusca = null;
-		listaDeMedicamentos = null;
+		listaDeIndicacoes = null;
 		return PAGINA_LIST;
 	}
 	
@@ -322,7 +322,7 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 	public String voltar(){
 		buscaEfetuada = false;
 		comboTiposDeBusca = null;
-		listaDeMedicamentos = null;
+		listaDeIndicacoes = null;
 		return PAGINA_LIST;
 	}
 	
@@ -358,31 +358,31 @@ public class MedicamentoActions extends BaseActions implements Serializable {
 		this.buscaEfetuada = buscaEfetuada;
 	}
 	
-	public DataModel getListaDeMedicamentos(){
-		if(listaDeMedicamentos == null){
-			listaDeMedicamentos =  new ListDataModel(medicamentoService.recuperaListaDeMedicamentosPaginada());
+	public DataModel getListaDeIndicacoes(){
+		if(listaDeIndicacoes == null){
+			listaDeIndicacoes =  new ListDataModel(indicacaoService.recuperaListaDeIndicacoesPaginada());
 		}
-		return listaDeMedicamentos;
+		return listaDeIndicacoes;
 	}
 
-	public void setListaDeMedicamentos(DataModel listaDeMedicamentos) {
-		this.listaDeMedicamentos = listaDeMedicamentos;
+	public void setListaDeIndicacoes(DataModel listaDeIndicacoes) {
+		this.listaDeIndicacoes = listaDeIndicacoes;
 	}
 
-	public int getPaginaMedicamento() {
-		return paginaMedicamento;
+	public int getPaginaIndicacao() {
+		return paginaIndicacao;
 	}
 
-	public void setPaginaMedicamento(int paginaMedicamento) {
-		this.paginaMedicamento = paginaMedicamento;
+	public void setPaginaIndicacao(int paginaIndicacao) {
+		this.paginaIndicacao = paginaIndicacao;
 	}
 
-	public Indicacao getMedicamentoCorrente() {
-		return medicamentoCorrente;
+	public Indicacao getIndicacaoCorrente() {
+		return indicacaoCorrente;
 	}
 
-	public void setMedicamentoCorrente(Indicacao medicamentoCorrente) {
-		this.medicamentoCorrente = medicamentoCorrente;
+	public void setIndicacaoCorrente(Indicacao indicacaoCorrente) {
+		this.indicacaoCorrente = indicacaoCorrente;
 	}
 	
 	

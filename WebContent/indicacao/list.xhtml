@@ -6,7 +6,7 @@
 	xmlns:a4j="http://richfaces.org/a4j">
 
 <ui:composition
-	template="/WEB-INF/template/medicamento_list_template.xhtml">
+	template="/WEB-INF/template/indicacao_list_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.indicacao}</ui:define>
 	<ui:define name="descricao">#{prompt.indicacao_Cadastro}</ui:define>
@@ -16,37 +16,37 @@
 
 	<ui:define name="corpo">
 
-		<a4j:keepAlive beanName="medicamentoActions" />
+		<a4j:keepAlive beanName="indicacaoActions" />
 
-		<h:form id="formMedicamentoList">
+		<h:form id="formIndicacaoList">
 
 			<br />
 
 			<h:panelGrid columns="5">
 
 				<h:outputText value="#{prompt.areaDeBusca}" />
-				<h:inputText value="#{medicamentoActions.campoDeBusca}" />
+				<h:inputText value="#{indicacaoActions.campoDeBusca}" />
 				<h:selectOneMenu id="comboBusca"
-					value="#{medicamentoActions.comboTiposDeBusca.selecao}">
+					value="#{indicacaoActions.comboTiposDeBusca.selecao}">
 					<f:selectItems
-						value="#{medicamentoActions.comboTiposDeBusca.listaSelecao}" />
+						value="#{indicacaoActions.comboTiposDeBusca.listaSelecao}" />
 				</h:selectOneMenu>
 				<h:commandButton value="#{prompt.buscar}"
-					action="#{medicamentoActions.buscaMedicamento}" />
+					action="#{indicacaoActions.buscaIndicacao}" />
 				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
-					action="#{medicamentoActions.cancelar}"
-					rendered="#{medicamentoActions.buscaEfetuada}" />
+					action="#{indicacaoActions.cancelar}"
+					rendered="#{indicacaoActions.buscaEfetuada}" />
 			</h:panelGrid>
 
-			<rich:datascroller id="scrTabelaMedicamentos"
-				for="tabelaMedicamentos" maxPages="5" align="center"
+			<rich:datascroller id="scrTabelaIndicacoes"
+				for="tabelaIndicacoes" maxPages="5" align="center"
 				renderIfSinglePage="false"
-				page="#{medicamentoActions.paginaMedicamento}"
+				page="#{indicacaoActions.paginaIndicacao}"
 				pageIndexVar="paginaAtual" />
-			<rich:dataTable id="tabelaMedicamentos" var="medicamento"
-				align="center" value="#{medicamentoActions.listaDeMedicamentos}"
+			<rich:dataTable id="tabelaIndicacoes" var="indicacao"
+				align="center" value="#{indicacaoActions.listaDeIndicacoes}"
 				rows="10" width="700px"
-				reRender="#{medicamentoActions.buscaEfetuada}">
+				reRender="#{indicacaoActions.buscaEfetuada}">
 
 				<f:facet name="header">
 
@@ -80,26 +80,26 @@
 				</f:facet>
 
 				<rich:column styleClass="colunaCampoNumericoCentralizado">
-					<h:commandLink value="#{medicamento.codIndicacao}"
-						action="#{medicamentoActions.mostra}" />
+					<h:commandLink value="#{indicacao.codIndicacao}"
+						action="#{indicacaoActions.mostra}" />
 				</rich:column>
 
 				<rich:column>
-					<h:outputText value="#{medicamento.nome}" />
+					<h:outputText value="#{indicacao.nome}" />
 				</rich:column>
 
 				<rich:column>
-					<h:outputText value="#{medicamento.dosagem}" />
+					<h:outputText value="#{indicacao.dosagem}" />
 				</rich:column>
 
 				<rich:column>
 					<h:commandButton value="#{prompt.editar}"
-						action="#{medicamentoActions.preparaAlteracao}" />
+						action="#{indicacaoActions.preparaAlteracao}" />
 				</rich:column>
 
 				<rich:column>
 					<a4j:commandButton value="#{prompt.excluir}"
-						action="#{medicamentoActions.preparaExclusao}"
+						action="#{indicacaoActions.preparaExclusao}"
 						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" />
 				</rich:column>
 
@@ -108,7 +108,7 @@
 					<h:panelGrid columns="2">
 
 						<h:outputText
-							value="#{prompt.indicacao_Total} = #{medicamentoActions.listaDeMedicamentos.rowCount}" />
+							value="#{prompt.indicacao_Total} = #{indicacaoActions.listaDeIndicacoes.rowCount}" />
 
 					</h:panelGrid>
 
@@ -145,7 +145,7 @@
 				<h:panelGrid columns="2">
 
 					<h:commandButton id="ok" value="#{prompt.sim}"
-						action="#{medicamentoActions.exclui}" styleClass="botao">
+						action="#{indicacaoActions.exclui}" styleClass="botao">
 						<rich:componentControl for="panelConfirmacaoExclusao"
 							operation="hide" event="onclick" />
 					</h:commandButton>

@@ -47,20 +47,20 @@ public class IndicacaoAppService {
 
 	@Transacional
 	public void exclui(Indicacao indicacao) throws AplicacaoException {
-		Indicacao medicamentoBD = null;
+		Indicacao indicacaoBD = null;
 		try {
-			medicamentoBD = indicacaoDAO.getPorIdComLock(indicacao.getId());
+			indicacaoBD = indicacaoDAO.getPorIdComLock(indicacao.getId());
 		} catch (ObjetoNaoEncontradoException e) {
-			throw new AplicacaoException("medicamento.NAO_ENCONTRADO");
+			throw new AplicacaoException("indicacao.NAO_ENCONTRADO");
 		}
-		indicacaoDAO.exclui(medicamentoBD);
+		indicacaoDAO.exclui(indicacaoBD);
 	}
 
 	@Transacional
 	public void inclui (Indicacao indicacao) throws AplicacaoException{
 		try{
-			indicacaoDAO.recuperaMedicamentoPorCodigo(indicacao.getCodIndicacao());
-			throw new AplicacaoException("medicamento.CODIGO_EXISTENTE");
+			indicacaoDAO.recuperaIndicacaoPorCodigo(indicacao.getCodIndicacao());
+			throw new AplicacaoException("indicacao.CODIGO_EXISTENTE");
 		}catch(ObjetoNaoEncontradoException ob){
 			
 		}
@@ -77,17 +77,17 @@ public class IndicacaoAppService {
 		}
 	}
 
-	public List<Indicacao> recuperaListaDeMedicamentosPaginada() {
-		return indicacaoDAO.recuperaListaDeMedicamentosPaginada();
+	public List<Indicacao> recuperaListaDeIndicacoesPaginada() {
+		return indicacaoDAO.recuperaListaDeIndicacoesPaginada();
 	}
 
-	public List<Indicacao> recuperaMedicamentoPorCodigoLike(
-			String codMedicamento) {
-		return indicacaoDAO.recuperaMedicamentoPorCodigoLike(codMedicamento);
+	public List<Indicacao> recuperaIndicacaoPorCodigoLike(
+			String codIndicacao) {
+		return indicacaoDAO.recuperaIndicacaoPorCodigoLike(codIndicacao);
 	}
 
-	public List<Indicacao> recuperaMedicamentoPorNome(String nomeMedicamento) {
-		return indicacaoDAO.recuperaMedicamentoPorNome(nomeMedicamento);
+	public List<Indicacao> recuperaIndicacaoPorNome(String nomeIndicacao) {
+		return indicacaoDAO.recuperaIndicacaoPorNome(nomeIndicacao);
 	}
 
 }
