@@ -7,7 +7,7 @@
 
 <ui:composition template="/WEB-INF/template/especialista_template.xhtml">
 
-	<ui:define name="titulo">#{prompt.especialista}</ui:define>
+	<ui:define name="titulo">#{prompt.especialista_CadastroDeAvaliacao}</ui:define>
 	<ui:define name="descricao">#{prompt.especialista_Avaliacao}</ui:define>
 	<ui:define name="descricao_ajuda">#{help.especialista_Avaliacao}</ui:define>
 	<ui:define name="mensagemSistema" />
@@ -84,8 +84,8 @@
 
 						<rich:column colspan="1"
 							styleClass="colunaCampoNumericoCentralizado">
-							<h:outputText title="#{tooltip.parametro_enterococos}"
-								value="#{prompt.parametro_enterococos}" />
+							<h:outputText title="#{tooltip.parametro_Enterococos}"
+								value="#{prompt.parametro_Enterococos}" />
 						</rich:column>
 
 						<rich:column colspan="1"

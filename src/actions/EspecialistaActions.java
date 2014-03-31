@@ -119,7 +119,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 			error(e.getMessage());
 			return PAGINA_EDIT_AVAL;
 		}
-		info("parametros.SUCESSO_ALTERACAO");
+		info("parametro.SUCESSO_EDICAO");
 		listaDeAvalIndicEspec = null;
 		return PAGINA_AVALIACAO;
 	}
