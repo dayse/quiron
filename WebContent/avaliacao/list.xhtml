@@ -77,6 +77,54 @@
 			</rich:simpleTogglePanel>
 			<br />
 
+			<rich:simpleTogglePanel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.anamnese}" />
+				</f:facet>
+
+				<h:panelGrid columns="1">
+					<f:facet name="header">
+						<h:messages globalOnly="true" style="color: red" />
+					</f:facet>
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+
+					<h:outputText value="#{prompt.parametro_Febre}" />:
+						<h:outputText id="febre"
+						value="#{atendimentoActions.anamneseCorrente.febre}" />
+
+					<h:outputText value="#{prompt.parametro_Disuria}" />:
+						<h:outputText id="disuria"
+						value="#{atendimentoActions.anamneseCorrente.disuria}" />
+
+					<h:outputText value="#{prompt.parametro_Diabetes}" />:
+						<h:outputText id="diabetes"
+						value="#{atendimentoActions.anamneseCorrente.diabetes}" />
+						
+					<h:outputText value="#{prompt.parametro_Enterococos}" />:
+						<h:outputText id="enterococos"
+						value="#{atendimentoActions.anamneseCorrente.enterococos}" />
+						
+					<h:outputText value="#{prompt.parametro_Escherichia}" />:
+						<h:outputText id="escherichia"
+						value="#{atendimentoActions.anamneseCorrente.escherichia}" />												
+
+					<h:outputText value="#{prompt.parametro_Candida}" />:
+						<h:outputText id="candida"
+						value="#{atendimentoActions.anamneseCorrente.candida}" />
+
+					<h:outputText value="#{prompt.parametro_EfeitosColaterais}" />:
+						<h:outputText id="efeitosColaterais"
+						value="#{atendimentoActions.anamneseCorrente.efeitosColaterais}" />
+						
+					<br />
+
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+			<br />
+
 			<rich:dataTable id="lista" rows="2" align="center"
 				value="#{atendimentoActions.listaAvaliacao}" var="avaliacao"
 				width="470px">

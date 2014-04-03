@@ -145,6 +145,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}
 		info("atendimento.SUCESSO_ALTERACAO");
 		listaDePacientes = null;
+		atendimentoCorrente = null;
+		anamneseCorrente = null;
 		comboMedicos = null;
 		return PAGINA_LIST;
 	}
@@ -296,6 +298,25 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		} catch (ObjetoNaoEncontradoException ex) {
 			error(ex.getMessage());
 			return PAGINA_LIST;
+		}
+		try {
+			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+		} catch (AplicacaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			comboTecnicos = SelectOneDataModel
+					.criaComObjetoSelecionadoSemTextoInicial(
+							usuarioService
+									.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+											.recuperaTipoUsuarioTecnico()),
+							atendimentoCorrente.getTecnico());
+		} catch (AplicacaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return PAGINA_SHOW;
 	}
