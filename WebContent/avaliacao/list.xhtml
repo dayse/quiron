@@ -125,12 +125,12 @@
 			</rich:simpleTogglePanel>
 			<br />
 
-			<rich:dataTable id="lista" rows="2" align="center"
+			<rich:dataTable id="lista" align="center"
 				value="#{atendimentoActions.listaAvaliacao}" var="avaliacao"
 				width="470px">
 				<f:facet name="header">
 					<rich:columnGroup>
-						<rich:column colspan="9">
+						<rich:column colspan="10">
 							<h:outputText value="Avaliacao" />
 						</rich:column>
 
@@ -171,11 +171,21 @@
 							<h:outputText title="#{tooltip.parametro_EfeitosColaterais}"
 								value="#{prompt.parametro_EfeitosColaterais}" />
 						</rich:column>
+						
+						<rich:column>
+							<h:outputText title="#{tooltip.avaliacao_Somatorio}"
+										value="#{prompt.avaliacao_Somatorio}" />
+						</rich:column>
+						
+						<rich:column>
+							<h:outputText title="#{tooltip.avaliacao_GrauDeSemelhanca}"
+										value="#{prompt.avaliacao_GrauDeSemelhanca}" />
+						</rich:column>						
 					</rich:columnGroup>
 				</f:facet>
 
 				<h:column>
-					<h:outputText value="#{avaliacao.indicacao.nome}" />
+					<h:outputText value="#{avaliacao.nomeIndicacaoNaTabela}" />
 				</h:column>
 
 				<h:column>
@@ -224,7 +234,28 @@
 					<h:outputText maxlength="#{constantes.lAvaliacaoResultado}"
 						value="#{avaliacao.efeitosColaterais}" />
 				</h:column>
+				
+				<h:column>
+					<h:outputText value="#{avaliacao.somatorio}"
+								maxlength="#{constantes.lAvaliacaoResultado}" />
+				</h:column>
 
+				<h:column>
+					<h:outputText value="#{avaliacao.grauSemelhanca}"
+								maxlength="#{constantes.lAvaliacaoResultado}" />
+				</h:column>
+				
+				<f:facet name="footer">
+
+					<h:panelGrid columns="2">
+
+						<h:outputText
+							value="#{prompt.avaliacao_Indicacao} = #{avaliacao.indicacao}" />
+
+					</h:panelGrid>
+
+				</f:facet>
+				
 			</rich:dataTable>
 			<br />
 

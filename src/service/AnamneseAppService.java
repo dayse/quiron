@@ -65,7 +65,7 @@ public class AnamneseAppService {
 			List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
 					.recuperaListaDeAvaliacaoEspecPorIndicacao(indicacao);
 			
-			Double febre = 0.0;
+			Double febre = 1.0;
 			Double diabetes = 0.0;
 			Double disuria = 0.0;
 			Double enterococos = 0.0;
@@ -128,6 +128,9 @@ public class AnamneseAppService {
 			
 			avaliacaoIntersecao.setGrauSemelhanca(avaliacaoIntersecao.getSomatorio() / avaliacaoUniao.getSomatorio());
 			avaliacaoUniao.setGrauSemelhanca(avaliacaoIntersecao.getSomatorio() / avaliacaoUniao.getSomatorio());
+			
+			avaliacaoIntersecao.setNomeIndicacaoNaTabela(avaliacaoIntersecao.getIndicacao().getNome() + " Interseção");
+			avaliacaoUniao.setNomeIndicacaoNaTabela(avaliacaoIntersecao.getIndicacao().getNome() + " União");
 			
 			listAvaliacao.add(avaliacaoIntersecao);
 			listAvaliacao.add(avaliacaoUniao);

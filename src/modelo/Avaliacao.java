@@ -15,14 +15,15 @@ public class Avaliacao {
 		this.grauSemelhanca = 0;
 	}
 
-	public Avaliacao(Indicacao indicacao, Double febre,
-			Double disuria, 
-			Double diabetes,
-			Double enterococos, 
-			Double escherichia, 
-			Double candida, 
-			Double efeitosColaterais,  Double somatorio,
-			Double grauSemelhanca) {
+	public Avaliacao(Indicacao indicacao, double febre,
+			double disuria, 
+			double diabetes,
+			double enterococos, 
+			double escherichia, 
+			double candida, 
+			double efeitosColaterais,  
+			double somatorio,
+			double grauSemelhanca) {
 		this.indicacao = indicacao;
 		this.febre = febre;
 		this.disuria = disuria;
@@ -54,6 +55,8 @@ public class Avaliacao {
 	private double somatorio;
 
 	private double grauSemelhanca;
+	
+	private String nomeIndicacaoNaTabela;
 	
 	public double somaParametros(){
 		return febre + disuria + diabetes + enterococos + escherichia
@@ -142,6 +145,14 @@ public class Avaliacao {
 
 	public void setGrauSemelhanca(double grauSemelhanca) {
 		this.grauSemelhanca = grauSemelhanca;
+	}
+
+	public String getNomeIndicacaoNaTabela() {
+		return nomeIndicacaoNaTabela;
+	}
+
+	public void setNomeIndicacaoNaTabela(String nomeIndicacaoNaTabela) {
+		this.nomeIndicacaoNaTabela = nomeIndicacaoNaTabela;
 	}
 
 }

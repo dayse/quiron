@@ -164,6 +164,30 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public String calculaAvaliacao() {
 		listaAvaliacao = new ListDataModel(anamneseService
 				.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente));
+		try {
+			anamneseCorrente = anamneseService
+					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
+		} catch (ObjetoNaoEncontradoException ex) {
+			error(ex.getMessage());
+			return PAGINA_LIST;
+		}
+		try {
+			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}
+		try {
+			comboTecnicos = SelectOneDataModel
+					.criaComObjetoSelecionadoSemTextoInicial(
+							usuarioService
+									.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+											.recuperaTipoUsuarioTecnico()),
+							atendimentoCorrente.getTecnico());
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}
 		return PAGINA_AVALIACAO;
 	}
 
@@ -304,7 +328,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
 							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
 		} catch (AplicacaoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
@@ -315,7 +338,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 											.recuperaTipoUsuarioTecnico()),
 							atendimentoCorrente.getTecnico());
 		} catch (AplicacaoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return PAGINA_SHOW;
@@ -341,8 +363,25 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
 		} catch (ObjetoNaoEncontradoException ex) {
 			error(ex.getMessage());
-			return PAGINA_EDIT;
+			return PAGINA_LIST;
 		}
+		try {
+			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}
+		try {
+			comboTecnicos = SelectOneDataModel
+					.criaComObjetoSelecionadoSemTextoInicial(
+							usuarioService
+									.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+											.recuperaTipoUsuarioTecnico()),
+							atendimentoCorrente.getTecnico());
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}		
 		return PAGINA_EDIT;
 	}
 
