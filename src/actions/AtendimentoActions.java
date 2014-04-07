@@ -73,7 +73,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private Date dataAtendimento;
 	private int paginaAtendimento = 1;
 	private int pagina;
-	private boolean buscaEfetuada = false;
 	private boolean tecnicoEditavel;
 	private boolean clinicoEditavel;
 	private boolean maioridade;
@@ -144,10 +143,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			return PAGINA_EDIT;
 		}
 		info("atendimento.SUCESSO_ALTERACAO");
-		listaDePacientes = null;
-		atendimentoCorrente = null;
-		anamneseCorrente = null;
-		comboMedicos = null;
 		return PAGINA_LIST;
 	}
 
@@ -188,6 +183,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
 		}
+		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		return PAGINA_AVALIACAO;
 	}
 
@@ -203,8 +199,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String cancelaAvaliacao() {
-		listaAvaliacao = null;
-		atendimentoCorrente = null;
+		listaDeAtendimentos = null;
+		listaDePacientes = null;
 		return PAGINA_LIST;
 	}
 
@@ -221,10 +217,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String cancelar() {
-		anamneseCorrente = null;
-		atendimentoCorrente = null;
-		pacienteCorrente = null;
 		listaDePacientes = null;
+		listaDeAtendimentos = null;
+		pacienteCorrente = null;
 		return PAGINA_LIST;
 	}
 
@@ -262,8 +257,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			return PAGINA_LIST;
 		}
 		info("atendimento.SUCESSO_EXCLUSAO");
+		listaDeAtendimentos = null;
 		listaDePacientes = null;
-		comboMedicos = null;
 		return PAGINA_LIST;
 	}
 
@@ -297,9 +292,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			return PAGINA_NEW;
 		}
 		info("atendimento.SUCESSO_INCLUSAO");
+		listaDeAtendimentos = null;
 		listaDePacientes = null;
-		comboMedicos = null;
-		comboTecnicos = null;
 		return PAGINA_LIST;
 	}
 
@@ -340,6 +334,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
 		}
+		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		return PAGINA_SHOW;
 	}
 
@@ -381,7 +376,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 							atendimentoCorrente.getTecnico());
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
-		}		
+		}
+		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		return PAGINA_EDIT;
 	}
 
@@ -400,6 +396,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String preparaInclusao() {
+		comboMedicos = null;
+		comboTecnicos = null;
+		comboStatus = null;
 		dataAtendimento = null;
 		atendimentoCorrente = new Atendimento();
 		anamneseCorrente = new Anamnese();
@@ -594,14 +593,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 
 	public void setAnamneseCorrente(Anamnese anamneseCorrente) {
 		this.anamneseCorrente = anamneseCorrente;
-	}
-
-	public boolean isBuscaEfetuada() {
-		return buscaEfetuada;
-	}
-
-	public void setBuscaEfetuada(boolean buscaEfetuada) {
-		this.buscaEfetuada = buscaEfetuada;
 	}
 
 	/**
