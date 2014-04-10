@@ -109,7 +109,7 @@ public class AvalIndicacaoEspec implements Serializable, Comparable<AvalIndicaca
 		this.id = id;
 	}
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ESPECIALISTA_ID", nullable = false)
 	public Especialista getEspecialista() {
 		return especialista;
@@ -119,7 +119,7 @@ public class AvalIndicacaoEspec implements Serializable, Comparable<AvalIndicaca
 		this.especialista = especialista;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "INDICACAO_ID", nullable = false)
 	public Indicacao getIndicacao() {
 		return indicacao;

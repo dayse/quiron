@@ -1,14 +1,19 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -72,6 +77,11 @@ public class Indicacao implements Serializable, Comparable<Indicacao>{
 	 */
 	private String dosagem;
 	
+	/**
+	 * Lista de avaliações dadas as indicações pelos especiliastas.
+	 */
+	private List<AvalIndicacaoEspec> listAvalIndicacaoEspec = new ArrayList<AvalIndicacaoEspec>();
+	
 	
 	// ********* Construtor *********
 	
@@ -117,8 +127,18 @@ public class Indicacao implements Serializable, Comparable<Indicacao>{
 		this.dosagem = dosagem;
 	}
 	
+	@OneToMany(mappedBy = "especialista", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	public List<AvalIndicacaoEspec> getListAvalIndicacaoEspec() {
+		return listAvalIndicacaoEspec;
+	}
+	
+	public void setListAvalIndicacaoEspec(List<AvalIndicacaoEspec> listAvalIndicacaoEspec) {
+		this.listAvalIndicacaoEspec = listAvalIndicacaoEspec;
+	}
+
 	@Override
 	public int compareTo(Indicacao arg0) {
 		return 0;
 	}
+
 }
