@@ -39,9 +39,7 @@ public class JPAStartUpListener implements ServletContextListener {
         Constantes.CAMINHO_SERVLET_LOGO_INT =    servletContextEvent.getServletContext().getRealPath(Constantes.CAMINHO_SERVLET_LOGO_INT) + "/";
         Constantes.CAMINHO_SERVLET_LOGO_COPPE =  servletContextEvent.getServletContext().getRealPath(Constantes.CAMINHO_SERVLET_LOGO_COPPE) + "/";
         //------------------------------------------------------------------------------------------------------------------------------------
-		//---------------------- Bloco de inicialização de constantes do Caminho das Modelagens ----------------------------------------------------------
-        Constantes.CAMINHO_ABSOLUTO_MODELAGEM_UPLOADFILE = servletContextEvent.getServletContext().getRealPath(Constantes.CAMINHO_MODELAGEM_UPLOADFILE) + "/";
-      //---------------------- Bloco de inicialização de constantes do Caminho das Cargas  ----------------------------------------------------------
+        //---------------------- Bloco de inicialização de constantes do Caminho das Cargas  ----------------------------------------------------------
         Constantes.CAMINHO_ABSOLUTO_ARQUIVOS_CARGA = servletContextEvent.getServletContext().getRealPath(Constantes.CAMINHO_ARQUIVOS_CARGA) + "/";
         Constantes.CAMINHO_ABSOLUTO_ARQUIVO_USUARIOS_CARGA = servletContextEvent.getServletContext().getRealPath(Constantes.CAMINHO_ARQUIVO_USUARIOS_CARGA);
         //------------------------------------------------------------------------------------------------------------------------------------
