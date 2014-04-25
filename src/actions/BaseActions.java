@@ -1,5 +1,6 @@
 package actions;
 
+import java.util.logging.Logger;  
 import java.text.MessageFormat;
 
 import java.util.Locale;
@@ -20,6 +21,9 @@ import actions.controle.SessaoDoUsuario;
  */
 public class BaseActions {
 
+    protected Logger log =  
+          Logger.getLogger(this.getClass().getName());  
+    
 	// Componentes de Controle
 	private static final String CAMINHO_BUNDLE_MENSAGENS = "mensagens";
 	protected SessaoDoUsuario sessaoUsuarioCorrente;
@@ -34,6 +38,7 @@ public class BaseActions {
 	public BaseActions() {
 		sessaoUsuarioCorrente = (SessaoDoUsuario) this
 				.getManagedBean("sessaoDoUsuario");
+        //log.info("Instanciado:" + this.getClass().getName());  
 	}
 
 	/**
@@ -120,6 +125,7 @@ public class BaseActions {
 		mensagemSucesso.setSeverity(FacesMessage.SEVERITY_INFO);
 
 		FacesContext.getCurrentInstance().addMessage(null, mensagemSucesso);
+		log.info(mensagemSucesso.getSummary());
 	}
 
 	/**
@@ -140,6 +146,8 @@ public class BaseActions {
 		mensagemErro.setSeverity(FacesMessage.SEVERITY_ERROR);
 
 		FacesContext.getCurrentInstance().addMessage(null, mensagemErro);
+
+		log.warning(mensagemErro.getSummary());
 	}
 
 	/**
@@ -160,6 +168,7 @@ public class BaseActions {
 		mensagemWarning.setSeverity(FacesMessage.SEVERITY_WARN);
 
 		FacesContext.getCurrentInstance().addMessage(null, mensagemWarning);
+		log.warning(mensagemWarning.getSummary());
 	}
 
 	/**
