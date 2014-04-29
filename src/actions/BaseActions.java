@@ -264,4 +264,20 @@ public class BaseActions {
 		}
 		return loader;
 	}
+	
+	/**
+	 * Loga o Usuario autenticado e a mensagem passada no parametro
+	 * 
+	 * @author felipe.pontes
+	 */
+	protected void logUsuarioAutenticadoMsg(String msg) {
+		if(sessaoUsuarioCorrente.getUsuarioLogado() != null){
+			String log_msg = "Usuario: |";
+			log_msg += sessaoUsuarioCorrente.getUsuarioLogado().getLogin();
+			log_msg += "| - ";
+			log_msg += msg;
+			log.info(log_msg);	
+		}
+		
+	}
 }
