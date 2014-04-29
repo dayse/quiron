@@ -99,6 +99,7 @@ public class UsuarioActions extends BaseActions {
 			listaUsuarios = null;
 			return PAGINA_EDIT;
 		}
+		logUsuarioAutenticadoMsg("Admin - Altera Usuario:" + usuarioCorrente.getLogin());
 		info("usuario.SUCESSO_ALTERACAO");
 		listaUsuarios = null;
 		return PAGINA_LIST;
@@ -138,6 +139,7 @@ public class UsuarioActions extends BaseActions {
 			error(e.getMessage());
 			return PAGINA_LIST;
 		}
+		logUsuarioAutenticadoMsg("Admin - Exclui Usuario: " + usuarioCorrente.getLogin());
 		info("usuario.SUCESSO_EXCLUSAO");
 		listaUsuarios = null;
 		return PAGINA_LIST;
@@ -215,6 +217,7 @@ public class UsuarioActions extends BaseActions {
 			error(ex.getMessage());
 			return PAGINA_NEW;
 		}
+		logUsuarioAutenticadoMsg("Admin - Inclui Usuario:" + usuarioCorrente.getLogin());
 		info("usuario.SUCESSO_INCLUSAO");
 		listaUsuarios = null;
 		return PAGINA_LIST;
@@ -237,6 +240,8 @@ public class UsuarioActions extends BaseActions {
 				.criaComObjetoSelecionadoSemTextoInicial(tipoUsuarioService
 						.recuperaListaDeTipoUsuario(), usuarioCorrente
 						.getTipoUsuario());
+		
+		logUsuarioAutenticadoMsg("Admin - Mostra Usuario:" + usuarioCorrente.getLogin());
 		return PAGINA_SHOW;
 	}
 
