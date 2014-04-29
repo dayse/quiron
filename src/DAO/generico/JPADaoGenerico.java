@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
@@ -14,7 +15,6 @@ import javax.persistence.Query;
 
 import DAO.exception.InfraestruturaException;
 import DAO.exception.ObjetoNaoEncontradoException;
-
 import util.JPAUtil;
 import util.ListaComPaginacao;
 
@@ -29,6 +29,10 @@ import util.ListaComPaginacao;
  */
 public class JPADaoGenerico<T, PK extends Serializable> implements
 		DaoGenerico<T, PK> {
+
+    protected Logger log =  
+          Logger.getLogger(this.getClass().getName());  
+    
 	private Class<T> clazz;// tipo == Familia.class
 
 	public JPADaoGenerico(Class<T> tipo) {
@@ -65,6 +69,8 @@ public class JPADaoGenerico<T, PK extends Serializable> implements
 		} catch (RuntimeException e) {
 			throw new InfraestruturaException(e);
 		}
+
+        log.info("Excluindo: " + this.clazz.getName());  
 	}
 
 	public final T getPorId(PK id) throws ObjetoNaoEncontradoException {
