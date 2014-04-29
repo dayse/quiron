@@ -52,6 +52,8 @@ public class Constantes {
 	public static String CAMINHO_ABSOLUTO_ARQUIVO_USUARIOS_CARGA;
 	//----------------------------------------------------------------------------
 	
+	public static String SENHA_CARGABD;
+	
   	 /* ------- ATENDIMENTO ------- */
   	
   	public int getlAtendimentoCodigo(){

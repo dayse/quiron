@@ -8,7 +8,7 @@ import javax.faces.event.ValueChangeEvent;
 import service.CargaAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
-
+import util.Constantes;
 import util.SelectOneDataModel;
 
 /**
@@ -29,7 +29,7 @@ public class CargaActions extends BaseActions {
 	private static String PAGINA_CARGA = "cargabd";
 
 	// Componentes de Controle
-	private static String SENHA_CARGA = "senha_carga";
+	private static String SENHA_CARGA = Constantes.SENHA_CARGABD;
 	private static String OPCAO_BASICA = "Basica";
 	public List<String> tiposDeCarga = new ArrayList<String>();
 	private SelectOneDataModel<String> comboTiposDeCarga;

@@ -1,11 +1,19 @@
 package listener;     
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import modelo.Usuario;
+
+import com.google.gson.Gson;
+
 import util.Constantes;
 import util.JPAUtil;
+import util.JsonConfigLoader;
 
 /**
  * Classe relativa ao listener da aplicacao.
@@ -42,7 +50,20 @@ public class JPAStartUpListener implements ServletContextListener {
         //---------------------- Bloco de inicialização de constantes do Caminho das Cargas  ----------------------------------------------------------
         Constantes.CAMINHO_ABSOLUTO_ARQUIVOS_CARGA = servletContextEvent.getServletContext().getRealPath(Constantes.CAMINHO_ARQUIVOS_CARGA) + "/";
         Constantes.CAMINHO_ABSOLUTO_ARQUIVO_USUARIOS_CARGA = servletContextEvent.getServletContext().getRealPath(Constantes.CAMINHO_ARQUIVO_USUARIOS_CARGA);
-        //------------------------------------------------------------------------------------------------------------------------------------
         
+        //Senha da carga BD
+        Constantes.SENHA_CARGABD = getSenhaCargaBD();
+        //------------------------------------------------------------------------------------------------------------------------------------
+
+	}
+	
+	public String getSenhaCargaBD(){
+
+		String json = JsonConfigLoader.getJson(Constantes.CAMINHO_ABSOLUTO_ARQUIVO_USUARIOS_CARGA);
+		Gson gson = new Gson();
+		Usuario[] arrayUsuarios = gson.fromJson(json, Usuario[].class);
+		
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>(Arrays.asList(arrayUsuarios));
+		return usuarios.get(0).getSenha();
 	}
 }
