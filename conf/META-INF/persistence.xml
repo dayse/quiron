@@ -13,11 +13,11 @@
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/prototipo" />
-			<property name="hibernate.connection.username" value="admingesplan" />
-			<property name="hibernate.connection.password" value="admingesplan" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/QUIRON_DESENVOLVIMENTO" />
+			<property name="hibernate.connection.username" value="DESENVOLVEDOR" />
+			<property name="hibernate.connection.password" value="desenvolvedor" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.default_schema" value="prototipo" />  
+			<property name="hibernate.default_schema" value="quiron" />  
 			
 			<!-- 
 				propriedade para criar as tabelas no banco de dados automaticamente
@@ -27,8 +27,8 @@
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/prototipo" />
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+
 			 -->
-			 
 			<!--
 				Alternativamente é possível configurar o Hibernate para que ele
 				utilize um Pool de conexões denominado C3P0. Trata-se de um pool de
