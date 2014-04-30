@@ -79,7 +79,7 @@
 
 				<rich:column colspan="2">
 					<h:outputText
-						value="#{paciente.sexo == true ? 'Masculino' : 'Feminino'}" />
+						value="#{paciente.sexo == true ? prompt.masculino : prompt.feminino}" />
 				</rich:column>
 
 
@@ -140,7 +140,7 @@
 							<h:outputText title="#{tooltip.atendimento_Tecnico}"
 								value="#{prompt.atendimento_Tecnico}" />
 						</f:facet>
-						<h:outputText value="#{atendimento.tecnico.nome}" />
+						<h:outputText value="#{atendimento.tecnico == null ? prompt.atendimento_SemTecnico : atendimento.tecnico.nome}" />
 					</rich:column>
 
 					<rich:column>

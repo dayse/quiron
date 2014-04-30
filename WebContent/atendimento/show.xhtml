@@ -42,7 +42,7 @@
 						
  					<h:outputText value="#{prompt.tecnico}" />:
  						<h:selectOneMenu id="comboTecnicos" value="#{atendimentoActions.comboTecnicos.selecao}" disabled="true">
-							<f:selectItems value="#{atendimentoActions.comboTecnicos.listaSelecao}" />
+							<f:selectItems value="#{atendimento.tecnico == null ? prompt.atendimento_SemTecnico : atendimentoActions.comboTecnicos.listaSelecao}" />
 						</h:selectOneMenu>
 						
  					<h:outputText value="#{prompt.atendimento_Status}" />:
