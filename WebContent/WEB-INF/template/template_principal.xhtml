@@ -78,27 +78,15 @@
 						action="#{indicacaoActions.preparaListagem}"	icon="/recursos/imagens/open.gif">
 					</rich:menuItem>
 				</rich:dropDownMenu>				
-	            
-				<rich:dropDownMenu rendered="#{sessaoDoUsuario.administrador}">
-	                <f:facet name="label"> 
-	                    <h:panelGroup>
-	                        <h:outputText value="#{prompt.administracao}"/>
-	                    </h:panelGroup>
-	                </f:facet>
-	                <rich:menuItem submitMode="server" value="#{prompt.usuario_Cadastro}"
-	                    action="listUsuario"
-	                    icon="/recursos/imagens/open.gif">
-	                </rich:menuItem>
-	            </rich:dropDownMenu>
-	            
+
 	            <rich:dropDownMenu>
 	            	<f:facet name="label">
 	            		<h:panelGroup>
-	            			<h:outputText value="#{prompt.parametro}" />
+	            			<h:outputText value="#{prompt.especialista}" />
 	            		</h:panelGroup>
 	            	</f:facet>
-	            	<rich:menuItem submitMode="server" value="#{prompt.parametro_Cadastro}"
-	            		action="listParametro"
+	            	<rich:menuItem submitMode="server" value="#{prompt.especialista_Cadastro}"
+	            		action="listEspecialista"
 	            		icon="/recursos/imagens/open.gif">
 	            	</rich:menuItem>
 	            </rich:dropDownMenu>
@@ -114,18 +102,30 @@
 	            		icon="/recursos/imagens/open.gif">
 	            	</rich:menuItem>
 	            </rich:dropDownMenu>
-	            
+
 	            <rich:dropDownMenu>
 	            	<f:facet name="label">
 	            		<h:panelGroup>
-	            			<h:outputText value="#{prompt.avaliacao}" />
+	            			<h:outputText value="#{prompt.parametro}" />
 	            		</h:panelGroup>
 	            	</f:facet>
-	            	<rich:menuItem submitMode="server" value="#{prompt.especialista_CadastroDeAvaliacao}"
-	            		action="listAvaliacao"
+	            	<rich:menuItem submitMode="server" value="#{prompt.parametro_Cadastro}"
+	            		action="listParametro"
 	            		icon="/recursos/imagens/open.gif">
 	            	</rich:menuItem>
-	            </rich:dropDownMenu>	 
+	            </rich:dropDownMenu>
+	            
+				<rich:dropDownMenu rendered="#{sessaoDoUsuario.administrador}">
+	                <f:facet name="label"> 
+	                    <h:panelGroup>
+	                        <h:outputText value="#{prompt.administracao}"/>
+	                    </h:panelGroup>
+	                </f:facet>
+	                <rich:menuItem submitMode="server" value="#{prompt.usuario_Cadastro}"
+	                    action="listUsuario"
+	                    icon="/recursos/imagens/open.gif">
+	                </rich:menuItem>
+	            </rich:dropDownMenu>
 	            
 	            <h:commandLink class="linkMenu" value="#{prompt.sair}" action="#{autenticadorActions.logout}" />  	    
 		    
