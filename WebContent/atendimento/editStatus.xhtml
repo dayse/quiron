@@ -28,7 +28,7 @@
 						<h:outputText value="#{prompt.atendimento_Codigo}" />:
 					</h:panelGroup>
 						<h:inputText id="codigo" value="#{atendimentoActions.atendimentoCorrente.codAtendimento}"  
-							maxlength="#{constantes.lAtendimentoCodAtendimento}" size="20" disabled="true"/>
+							maxlength="#{constantes.lAtendimentoCodigo}" size="20" disabled="true"/>
 						<h:message for="codigo" styleClass="error" /><br />
 						
 					<h:panelGroup>
@@ -42,14 +42,14 @@
 						<h:outputText value="#{prompt.atendimento_NomeDoResponsavel}" />:
 					</h:panelGroup>					
 					<h:inputText id="nomeResponsavel" value="#{atendimentoActions.atendimentoCorrente.nomeResponsavel}"
-						maxlength="#{constantes.lAtendimentoPrognostico}" size="20" required="true" disabled="#{atendimentoActions.maioridade}" />
+						size="20" required="true" disabled="#{atendimentoActions.maioridade}" />
 					<h:message for="nomeResponsavel" styleClass="error" /><br />
 					
 					<h:panelGroup>
 						<h:outputText value="#{prompt.atendimento_CPF}" />:
 					</h:panelGroup>					
 					<h:inputText id="cpfResponsavel" value="#{atendimentoActions.atendimentoCorrente.cpfResponsavel}"
-						maxlength="#{constantes.lAtendimentoPrognostico}" size="20" required="true" disabled="#{atendimentoActions.maioridade}" />
+						size="20" required="true" disabled="#{atendimentoActions.maioridade}" />
 					<h:message for="cpfResponsavel" styleClass="error" /><br />
 						
 					<h:panelGroup>
@@ -64,7 +64,7 @@
 						<h:outputText value="#{prompt.atendimento_Prognostico}" />:
 					</h:panelGroup>
 						<h:inputText id="prognostico" value="#{atendimentoActions.atendimentoCorrente.prognostico}" 
-							maxlength="#{constantes.lAtendimentoPrognostico}" size="20" required="true"/>
+							size="20" required="true"/>
 						<h:message for="prognostico" styleClass="error" /><br />
 						
 					<h:panelGroup>
