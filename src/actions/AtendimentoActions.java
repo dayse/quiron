@@ -1,4 +1,4 @@
-package actions;
+	package actions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -142,6 +142,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			error(ex.getMessage());
 			return PAGINA_EDIT;
 		}
+		logUsuarioAutenticadoMsg("Atendimento - Altera atendimento:" + atendimentoCorrente.getCodAtendimento());
 		info("atendimento.SUCESSO_ALTERACAO");
 		return PAGINA_LIST;
 	}
@@ -256,6 +257,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			error(ex.getMessage());
 			return PAGINA_LIST;
 		}
+		logUsuarioAutenticadoMsg("Atendimento - Exclui atendimento:" + atendimentoCorrente.getCodAtendimento());
 		info("atendimento.SUCESSO_EXCLUSAO");
 		listaDeAtendimentos = null;
 		listaDePacientes = null;
@@ -291,6 +293,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			error(ex.getMessage());
 			return PAGINA_NEW;
 		}
+		logUsuarioAutenticadoMsg("Atendimento - Inclui atendimento:" + atendimentoCorrente.getCodAtendimento());
 		info("atendimento.SUCESSO_INCLUSAO");
 		listaDeAtendimentos = null;
 		listaDePacientes = null;
