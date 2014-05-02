@@ -108,6 +108,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 			error(e.getMessage());
 			return PAGINA_LIST;
 		}
+		logUsuarioAutenticadoMsg("Paciente - Altera paciente:" + pacienteCorrente.getCodPaciente());
 		info("paciente.SUCESSO_ALTERACAO");
 		listaDePacientes = null;
 		buscaEfetuada = false;
@@ -197,6 +198,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 			error(ex.getMessage());
 			return PAGINA_LIST;
 		}
+		logUsuarioAutenticadoMsg("Paciente - Exclui paciente:" + pacienteCorrente.getCodPaciente());
 		info("paciente.SUCESSO_EXCLUSAO");
 		listaDePacientes = null;
 		buscaEfetuada = false;
@@ -232,6 +234,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 			error(ex.getMessage());
 			return PAGINA_NEW;
 		}
+		logUsuarioAutenticadoMsg("Paciente - Inclui paciente:" + pacienteCorrente.getCodPaciente());
 		info("paciente.SUCESSO_INCLUSAO");
 		listaDePacientes = null;
 		buscaEfetuada = false;
