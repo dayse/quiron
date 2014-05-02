@@ -185,7 +185,7 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	}
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "TECNICO_ID", nullable = false)
+	@JoinColumn(name = "TECNICO_ID", nullable = true)
 	public Usuario getTecnico() {
 		return tecnico;
 	}

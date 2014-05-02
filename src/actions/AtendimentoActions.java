@@ -327,7 +327,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
 		}
-		if(!atendimentoCorrente.getTecnico().equals(null)){
+		
+		if(atendimentoCorrente.getTecnico() == null){
+			comboTecnicos = null;
+		}else{
 			try {
 				comboTecnicos = SelectOneDataModel
 						.criaComObjetoSelecionadoSemTextoInicial(
@@ -339,6 +342,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				e.printStackTrace();
 			}
 		}
+		
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		return PAGINA_SHOW;
 	}
@@ -372,18 +376,20 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
 		}
-		try {
-	/*		if(atendimentoCorrente.getTecnico().equals(null)){
-				combo
-			} */
-			comboTecnicos = SelectOneDataModel
-					.criaComObjetoSelecionadoSemTextoInicial(
-							usuarioService
-									.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-											.recuperaTipoUsuarioTecnico()),
-							atendimentoCorrente.getTecnico());
-		} catch (AplicacaoException e) {
-			e.printStackTrace();
+
+		if(atendimentoCorrente.getTecnico() == null){
+			comboTecnicos = null;
+		}else{
+			try {
+				comboTecnicos = SelectOneDataModel
+						.criaComObjetoSelecionadoSemTextoInicial(
+								usuarioService
+										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+												.recuperaTipoUsuarioTecnico()),
+								atendimentoCorrente.getTecnico());
+			} catch (AplicacaoException e) {
+				e.printStackTrace();
+			}
 		}
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		return PAGINA_EDIT;
