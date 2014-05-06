@@ -98,6 +98,8 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 	 * @throws AplicacaoException
 	 */
 	public void incluirAvaliacoesDeIndicacoesPorEspecialistas() throws AplicacaoException {
+		
+				
 		ArrayList<AvalIndicacaoEspec> avsParaIncluir = new ArrayList<AvalIndicacaoEspec>();
 		try {
 		
@@ -110,6 +112,7 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 		Especialista espec1 = especialistaService.recuperaEspecialistaPorCodigo("espec1");
 		Especialista espec2 = especialistaService.recuperaEspecialistaPorCodigo("espec2");
 		
+
 		//avals do espec 1:
 		AvalIndicacaoEspec av1 = criarAvalIndicacaoDeEspec(
 									espec1, amox500,
@@ -143,7 +146,7 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 		
 		//Incluir todas as avaliações
 		for (AvalIndicacaoEspec avalIndicacaoEspec : avsParaIncluir) {
-			avalIndicacaoEspecService.inclui(avalIndicacaoEspec);
+			avalIndicacaoEspecService.altera(avalIndicacaoEspec);
 			
 		}
 		
@@ -162,10 +165,9 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 									Double enterococos,
 									Double escherichia,
 									Double candida,
-									Double efeitosColaterais){
-		AvalIndicacaoEspec av = new AvalIndicacaoEspec();
-		av.setEspecialista(espec);
-		av.setIndicacao(indicacao);
+									Double efeitosColaterais) throws ObjetoNaoEncontradoException{
+		AvalIndicacaoEspec av =  avalIndicacaoEspecService.recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(
+				indicacao, espec);
 		
 		av.setFebre(febre);
 		av.setDisuria(disuria);
