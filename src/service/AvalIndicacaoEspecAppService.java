@@ -43,11 +43,11 @@ public class AvalIndicacaoEspecAppService {
 	
 	@Transacional
 	public void inclui(AvalIndicacaoEspec avalIndicacaoEspec) throws AplicacaoException{
-		try{
-			avalIndicacaoEspecDAO.recuperaAvalIndicacaoEspecPorID(avalIndicacaoEspec.getIndicacao(), avalIndicacaoEspec.getEspecialista());
-			throw new AplicacaoException("avaliacaoDaIndicacao.NAO_ENCONTRADA");
-		}catch(ObjetoNaoEncontradoException ob){
-		}
+//		try{
+//			avalIndicacaoEspecDAO.recuperaAvalIndicacaoEspecPorID(indicacao, especialista)(avalIndicacaoEspec.getIndicacao(), avalIndicacaoEspec.getEspecialista());
+//			throw new AplicacaoException("avaliacaoDaIndicacao.NAO_ENCONTRADA");
+//		}catch(ObjetoNaoEncontradoException ob){
+//		}
 		avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
 	}
 	
