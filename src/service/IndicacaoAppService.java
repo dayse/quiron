@@ -90,4 +90,8 @@ public class IndicacaoAppService {
 		return indicacaoDAO.recuperaIndicacaoPorNome(nomeIndicacao);
 	}
 
+	public Indicacao recuperaIndicacaoPorCodigo(String codIndicacao) throws ObjetoNaoEncontradoException {
+		return indicacaoDAO.recuperaIndicacaoPorCodigo(codIndicacao);
+	}
+
 }
