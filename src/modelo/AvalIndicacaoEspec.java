@@ -24,7 +24,7 @@ import javax.persistence.Table;
 			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvalIndicacaoEspecsPaginadaCount",
 						query = "select count(m) from AvalIndicacaoEspec m "
 			),
-			@NamedQuery(name = "AvalIndicacaoEspec.recuperaAvalIndicacaoEspecPorCodigo", 
+			@NamedQuery(name = "AvalIndicacaoEspec.recuperaAvalIndicacaoEspecPorID", 
 						query = "select m from AvalIndicacaoEspec m " +
 								"where m.id = ? "
 			),
