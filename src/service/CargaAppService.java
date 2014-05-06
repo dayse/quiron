@@ -82,6 +82,9 @@ public class CargaAppService {
 		//Inclui os especialistas
 		cargas.add(new CargaEspecialista());
 		
+		//Inclui os pacientes
+		cargas.add(new CargaPaciente());
+		
 		return executarCargas();
 	}
 
