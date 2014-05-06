@@ -81,7 +81,7 @@ public class CargaPaciente extends CargaBase{
 	 */
 	public void incluirPacientes() throws AplicacaoException {
 
-		
+
 		Paciente paciente1 = new Paciente();
 		paciente1.setCodPaciente("paciente1");
 		paciente1.setNome("Paciente 1");
@@ -91,8 +91,19 @@ public class CargaPaciente extends CargaBase{
 		paciente1.setDataNascimento(
 				retornaDataNascimentoPorIdade(68).getTime()
 				);
-		
+
+		Paciente paciente2 = new Paciente();
+		paciente2.setCodPaciente("paciente2");
+		paciente2.setNome("Paciente 2");
+		paciente2.setSexo(true);
+		paciente2.setDocumento("1234567-9");
+
+		paciente2.setDataNascimento(
+				retornaDataNascimentoPorIdade(68).getTime()
+				);
+
 		pacienteService.inclui(paciente1);
+		pacienteService.inclui(paciente2);
 		
 		
 	}
