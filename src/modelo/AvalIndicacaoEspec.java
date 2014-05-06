@@ -42,6 +42,11 @@ import javax.persistence.Table;
 			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecPorIndicacao", 
 						query = "select a from AvalIndicacaoEspec a " +
 								"where a.indicacao = ?"
+			),
+			@NamedQuery(name = "AvalIndicacaoEspec.recuperaAvalIndicacaoEspecPorIndicacaoPorEspec", 
+						query = "select a from AvalIndicacaoEspec a " +
+								"where a.indicacao = ?" +
+								"and a.especialista = ?"
 			)
 		}
 )

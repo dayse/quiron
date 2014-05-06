@@ -122,6 +122,12 @@ public interface AvalIndicacaoEspecDAO extends
 	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorID(Long ID)
 			throws ObjetoNaoEncontradoException;
 
+	@RecuperaObjeto
+	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(
+					Indicacao indicacao, Especialista especialista)
+			throws ObjetoNaoEncontradoException;
+
+	
 	/**
 	 * 
 	 * Consulta que recupera a média de peso de todos os especialistas

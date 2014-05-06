@@ -43,11 +43,12 @@ public class AvalIndicacaoEspecAppService {
 	
 	@Transacional
 	public void inclui(AvalIndicacaoEspec avalIndicacaoEspec) throws AplicacaoException{
-//		try{
-//			avalIndicacaoEspecDAO.recuperaAvalIndicacaoEspecPorID(indicacao, especialista)(avalIndicacaoEspec.getIndicacao(), avalIndicacaoEspec.getEspecialista());
-//			throw new AplicacaoException("avaliacaoDaIndicacao.NAO_ENCONTRADA");
-//		}catch(ObjetoNaoEncontradoException ob){
-//		}
+		try{
+			avalIndicacaoEspecDAO.recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(avalIndicacaoEspec.getIndicacao(), avalIndicacaoEspec.getEspecialista());
+			
+		}catch(ObjetoNaoEncontradoException ob){
+			throw new AplicacaoException("avaliacaoDaIndicacao.AVALIACAO_JA_EXISTENTE");
+		}
 		avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
 	}
 	
@@ -69,5 +70,10 @@ public class AvalIndicacaoEspecAppService {
 	
 	public Double recuperaMediaDoPesoAvaliadorDosEspecialistas(){
 		return recuperaMediaDoPesoAvaliadorDosEspecialistas();
+	}
+	
+	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(
+										Indicacao indicacao, Especialista especialista) throws ObjetoNaoEncontradoException{
+		return avalIndicacaoEspecDAO.recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(indicacao, especialista);
 	}
 }
