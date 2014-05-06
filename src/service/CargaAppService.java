@@ -81,6 +81,8 @@ public class CargaAppService {
 		cargas.add(new CargaIndicacao());
 		//Inclui os especialistas
 		cargas.add(new CargaEspecialista());
+		//Inclui as avaliações dos especialistas para as indicações cadastradas
+		cargas.add(new CargaAvalIndicacaoEspec());
 		
 		//Inclui os pacientes
 		cargas.add(new CargaPaciente());
