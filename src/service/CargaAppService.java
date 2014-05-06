@@ -3,7 +3,6 @@ package service;
 import java.util.ArrayList;
 
 import service.exception.AplicacaoException;
-
 import carga.*;
 
 /**
@@ -61,6 +60,7 @@ public class CargaAppService {
 	 * Executa a carga com os dados de estudo:<br />
 	 * ---- executarCargaBasica;<br />
 	 * ---- CargaIndicacao;<br />
+	 * ---- CargaEspecialista;<br />
 	 * 
 	 * @return Retorna o resultado da chamada do método executarCargas().
 	 * @throws AplicacaoException
@@ -79,6 +79,8 @@ public class CargaAppService {
 
 		//Inclui as indicações
 		cargas.add(new CargaIndicacao());
+		//Inclui os especialistas
+		cargas.add(new CargaEspecialista());
 		
 		return executarCargas();
 	}
