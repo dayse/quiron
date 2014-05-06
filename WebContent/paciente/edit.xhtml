@@ -65,7 +65,8 @@
 						<h:outputText value="#{prompt.paciente_Endereco}" />:
 					</h:panelGroup>
 					<h:inputText id="altura"
-						value="#{pacienteActions.pacienteCorrente.endereco}" size="20"
+						value="#{pacienteActions.pacienteCorrente.endereco}"
+						maxlength="#{constantes.lPacienteEndereco}" size="20"
 						required="true" />
 					<h:message for="endereco" styleClass="error" />
 					<h:outputText value="" />
@@ -75,6 +76,7 @@
 					</h:panelGroup>
 					<h:inputText id="nomeResponsavel"
 						value="#{pacienteActions.pacienteCorrente.nomeResponsavel}"
+						maxlength="#{constantes.lPacienteNomeResponsavel}"
 						size="20" required="true" />
 					<h:message for="nomeResponsavel" styleClass="error" />
 					<h:outputText value="" />
@@ -83,7 +85,8 @@
 						<h:outputText value="#{prompt.paciente_Documento}" />:
 					</h:panelGroup>
 					<h:inputText id="documento"
-						value="#{pacienteActions.pacienteCorrente.documento}" size="20"
+						value="#{pacienteActions.pacienteCorrente.documento}"
+						maxlength="#{constantes.lPacienteDocumento}" size="20"
 						required="true" />
 					<h:message for="documento" styleClass="error" />
 					<h:outputText value="" />

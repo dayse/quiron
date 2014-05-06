@@ -21,10 +21,13 @@ public class Constantes {
 	public static final int L_AVALIACAO_RESULTADO = 3;
 	
 	// --------------------- Paciente ---------------------
-	public static final int L_PACIENTE_CODIGO = 15; 
+	public static final int L_PACIENTE_CODIGO = 15;
+	public static final int L_PACIENTE_DOCUMENTO = 15;
+	public static final int L_PACIENTE_ENDERECO = 100;
 	public static final int L_PACIENTE_NOME = 30;
-	
-	// --------------------- INDICACAO ---------------------
+	public static final int L_PACIENTE_NOME_RESPONSAVEL = 30;
+		
+	// --------------------- Indicacao ---------------------
 	public static final int L_INDICACAO_CODIGO = 15;
 	public static final int L_INDICACAO_EFEITOSCOLATERAIS = 100;
 	public static final int L_INDICACAO_INDICACAO = 100;
@@ -74,9 +77,21 @@ public class Constantes {
 	public int getlPacienteCodigo() {
 		return L_PACIENTE_CODIGO;
 	}
+	
+	public int getlPacienteDocumento(){
+		return L_PACIENTE_DOCUMENTO;
+	}
+	
+	public int getlPacienteEndereco(){
+		return L_PACIENTE_ENDERECO;
+	}
 
 	public int getlPacienteNome() {
 		return L_PACIENTE_NOME;
+	}
+	
+	public int getlPacienteNomeResponsavel(){
+		return L_PACIENTE_NOME_RESPONSAVEL;
 	}
 
 	/* ------- USUARIO ------- */
