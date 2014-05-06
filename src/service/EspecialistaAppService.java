@@ -2,6 +2,9 @@ package service;
 
 import java.util.List;
 
+import modelo.AvalIndicacaoEspec;
+import modelo.Especialista;
+import modelo.Indicacao;
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
 import DAO.AvalIndicacaoEspecDAO;
@@ -12,9 +15,6 @@ import DAO.Impl.EspecialistaDAOImpl;
 import DAO.Impl.IndicacaoDAOImpl;
 import DAO.controle.FabricaDeDao;
 import DAO.exception.ObjetoNaoEncontradoException;
-import modelo.AvalIndicacaoEspec;
-import modelo.Especialista;
-import modelo.Indicacao;
 
 public class EspecialistaAppService {
 
@@ -78,5 +78,10 @@ public class EspecialistaAppService {
 	
 	public Double recuperaMediaDoPesoAvaliadorDosEspecialistas(){
 		return especialistaDAO.recuperaMediaDoPesoAvaliadorDosEspecialistas();
+	}
+
+
+	public Especialista recuperaEspecialistaPorCodigo(String codEspecialista) throws ObjetoNaoEncontradoException {
+		return especialistaDAO.recuperaEspecialistaPorCodigo(codEspecialista);
 	}
 }
