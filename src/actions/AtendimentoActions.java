@@ -22,7 +22,7 @@ import service.TipoUsuarioAppService;
 import service.UsuarioAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
-
+import util.DataUtil;
 import util.SelectOneDataModel;
 
 /**
@@ -75,7 +75,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private int pagina;
 	private boolean tecnicoEditavel;
 	private boolean clinicoEditavel;
-	private boolean maioridade;
 	private String campoDeBusca;
 
 	/**
@@ -280,7 +279,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String inclui() {
-		atendimentoCorrente.setDataAtendimento(dataAtendimento);
+		atendimentoCorrente.setDataAtendimento(DataUtil.dateToCalendar(dataAtendimento));
 		atendimentoCorrente.setMedico(comboMedicos.getObjetoSelecionado());
 		atendimentoCorrente.setTecnico(comboTecnicos.getObjetoSelecionado());
 		atendimentoCorrente.setStatus(comboStatus.getObjetoSelecionado());
@@ -611,28 +610,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 
 	public void setAnamneseCorrente(Anamnese anamneseCorrente) {
 		this.anamneseCorrente = anamneseCorrente;
-	}
-
-	/**
-	 * 
-	 * Método usado para calcular se um paciente já é legalmente independente ou
-	 * se precisa estar acompanhado de um responsável.
-	 * 
-	 * @return Boolean - True se o paciente for legamente independente, false se
-	 *         precisar de acompanhamento de responsável por ser tratar de uma
-	 *         criança/adolescente.
-	 * 
-	 * @author bruno.oliveira
-	 * 
-	 */
-	public boolean isMaioridade() {
-		maioridade = pacienteCorrente.calculaMaioridade();
-		System.out.println(maioridade);
-		return maioridade;
-	}
-
-	public void setMaioridade(boolean maioridade) {
-		this.maioridade = maioridade;
 	}
 
 	public DataModel getListaAvaliacao() {

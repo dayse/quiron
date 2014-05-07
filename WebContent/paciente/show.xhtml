@@ -38,10 +38,10 @@
 						value="#{pacienteActions.pacienteCorrente.nome}" />
 
 					<h:outputText value="#{prompt.paciente_DataNascimento}" />:
-						<rich:calendar id="dataNascimento" datePattern="dd/MM/yyyy"
-						value="#{pacienteActions.pacienteCorrente.dataNascimento}"
-						disabled="true" />
-
+					<h:outputText value="#{pacienteActions.pacienteCorrente.dataNascimento.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+	
 					<h:outputText value="#{prompt.paciente_Sexo}" />:
                   		<h:selectOneRadio id="comboSexo"
 						value="#{pacienteActions.radioFlags.selecao}" disabled="true">

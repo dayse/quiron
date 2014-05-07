@@ -1,7 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -81,7 +81,7 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	/**
 	 * Date e Hora do atendimento
 	 */
-	private Date dataAtendimento;
+	private Calendar dataAtendimento;
 	
 	/**
 	 * Prognóstico
@@ -148,11 +148,11 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 		this.codAtendimento = codAtendimento;
 	}
 
-	public Date getDataAtendimento() {
+	public Calendar getDataAtendimento() {
 		return dataAtendimento;
 	}
 
-	public void setDataAtendimento(Date dataAtendimento) {
+	public void setDataAtendimento(Calendar dataAtendimento) {
 		this.dataAtendimento = dataAtendimento;
 	}
 

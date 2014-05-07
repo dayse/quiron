@@ -73,8 +73,9 @@
 				</rich:column>
 
 				<rich:column colspan="2">
-					<rich:calendar id="dataNascimento" datePattern="dd/MM/yyyy"
-						value="#{paciente.dataNascimento}" disabled="true" />
+					<h:outputText value="#{paciente.dataNascimento.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
 				</rich:column>
 
 				<rich:column colspan="2">
@@ -122,8 +123,9 @@
 							<h:outputText title="#{tooltip.atendimento_data}"
 								value="#{prompt.atendimento_Data}" />
 						</f:facet>
-						<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy HH:mm"
-							value="#{atendimento.dataAtendimento}" disabled="true" />
+						<h:outputText value="#{atendimento.dataAtendimento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 					</rich:column>
 
 

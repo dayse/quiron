@@ -45,31 +45,18 @@
 						value="#{pacienteActions.pacienteCorrente.nome}" />
 
 					<h:outputText value="#{prompt.atendimento_Data}" />:
-						<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy"
-						value="#{atendimentoActions.atendimentoCorrente.dataAtendimento}"
-						disabled="true" />
+						<h:outputText value="#{atendimentoActions.atendimentoCorrente.dataAtendimento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 
 					<h:outputText value="#{prompt.medico}" />:
- 						<h:selectOneMenu id="comboMedicos"
-						value="#{atendimentoActions.comboMedicos.selecao}" disabled="true">
-						<f:selectItems
-							value="#{atendimentoActions.comboMedicos.listaSelecao}" />
-					</h:selectOneMenu>
+ 						<h:outputText value="#{atendimentoActions.comboMedicos.selecao}" />
 
 					<h:outputText value="#{prompt.tecnico}" />:
- 						<h:selectOneMenu id="comboTecnicos"
-						value="#{atendimentoActions.comboTecnicos.selecao}"
-						disabled="true">
-						<f:selectItems
-							value="#{atendimentoActions.comboTecnicos.listaSelecao}" />
-					</h:selectOneMenu>
+ 						<h:outputText value="#{atendimentoActions.comboTecnicos.selecao}" /> 
 
 					<h:outputText value="#{prompt.atendimento_Status}" />:
- 						<h:selectOneMenu id="comboStatus"
-						value="#{atendimentoActions.comboStatus.selecao}" disabled="true">
-						<f:selectItems
-							value="#{atendimentoActions.comboStatus.listaSelecao}" />
-					</h:selectOneMenu>
+ 						<h:outputText value="#{atendimentoActions.comboStatus.selecao}" />	
 
 					<br />
 

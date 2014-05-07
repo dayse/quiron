@@ -17,6 +17,8 @@ import modelo.Paciente;
 import service.PacienteAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
+
+import util.DataUtil;
 import util.SelectOneDataModel;
 
 /**
@@ -227,7 +229,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 		}else{
 			pacienteCorrente.setSexo(false);
 		}
-		pacienteCorrente.setDataNascimento(dataNascimento);
+		pacienteCorrente.setDataNascimento(DataUtil.dateToCalendar(dataNascimento));
 		try{
 			pacienteService.inclui(pacienteCorrente);
 		}catch(AplicacaoException ex){

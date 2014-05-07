@@ -10,6 +10,7 @@ import service.EspecialistaAppService;
 import service.PacienteAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
+import util.DataUtil;
 
 /**
  * 
@@ -88,8 +89,8 @@ public class CargaPaciente extends CargaBase{
 		paciente1.setSexo(true);
 		paciente1.setDocumento("1234567-8");
 
-		paciente1.setDataNascimento(
-				retornaDataNascimentoPorIdade(68).getTime()
+		paciente1.setDataNascimento(DataUtil.dateToCalendar(
+				retornaDataNascimentoPorIdade(68).getTime())
 				);
 
 		Paciente paciente2 = new Paciente();
@@ -98,8 +99,8 @@ public class CargaPaciente extends CargaBase{
 		paciente2.setSexo(true);
 		paciente2.setDocumento("1234567-9");
 
-		paciente2.setDataNascimento(
-				retornaDataNascimentoPorIdade(68).getTime()
+		paciente2.setDataNascimento(DataUtil.dateToCalendar(
+				retornaDataNascimentoPorIdade(68).getTime())
 				);
 
 		pacienteService.inclui(paciente1);

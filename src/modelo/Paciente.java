@@ -3,14 +3,11 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -118,7 +115,7 @@ public class Paciente implements Serializable, Comparable<Paciente> {
 	/**
 	 * Data de nascimento do paciente.
 	 */
-	private Date dataNascimento;
+	private Calendar dataNascimento;
 	
 	/**
 	 * Documento de identificação, ou do responsável caso seja menor.
@@ -281,11 +278,11 @@ public class Paciente implements Serializable, Comparable<Paciente> {
 		this.endereco = endereco;
 	}
 
-	public Date getDataNascimento() {
+	public Calendar getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(Calendar dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -297,34 +294,4 @@ public class Paciente implements Serializable, Comparable<Paciente> {
 		this.documento = documento;
 	}
 	
-    /**
-     * Método que calcula a idade de uma pessoa.
-     * 
-     * @author bruno.oliveira
-     * @param data - Data de nascimento da pessoa.
-     * @return idade - A idade calculada.
-     */
-	public int calculaIdade(){
-		Calendar nascimento = new GregorianCalendar();
-		nascimento.setTime(dataNascimento);
-		
-       	Calendar dataAtual = Calendar.getInstance();
-    	
-    	int idade = dataAtual.get(Calendar.YEAR) - nascimento.get(Calendar.YEAR);
-    	nascimento.add(Calendar.YEAR, idade);
-    	
-    	if(dataAtual.before(nascimento)){
-    		idade--;
-    	}
-    	return idade;
-    }
-	
-	/* Excluir ? */
-	public boolean calculaMaioridade(){
-		if(calculaIdade() < 18){
-			return false;
-		}else{
-			return true;
-		}
-	}
 }
