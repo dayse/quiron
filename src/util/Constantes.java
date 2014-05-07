@@ -17,6 +17,9 @@ public class Constantes {
 	// --------------------- Atendimento ---------------------
 	public static final int L_ATENDIMENTO_CODIGO = 15;
 	
+	// --------------------- Avaliacao ---------------------
+	public static final int L_AVALIACAO_RESULTADO = 3;
+	
 	// --------------------- Paciente ---------------------
 	public static final int L_PACIENTE_CODIGO = 15;
 	public static final int L_PACIENTE_DOCUMENTO = 15;
@@ -71,6 +74,12 @@ public class Constantes {
   	public int getlAtendimentoCodigo(){
   		return L_ATENDIMENTO_CODIGO;
   	}
+  	
+ 	 /* ------- AVALIACAO ------- */
+  	
+ 	public int getlAvaliacaoResultado(){
+ 		return L_AVALIACAO_RESULTADO;
+ 	}  	
   	
   	/* ------- PACIENTE ------- */
 
