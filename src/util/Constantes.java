@@ -17,16 +17,22 @@ public class Constantes {
 	// --------------------- Atendimento ---------------------
 	public static final int L_ATENDIMENTO_CODIGO = 15;
 	
-	// --------------------- Avalicao ---------------------
-	public static final int L_AVALIACAO_RESULTADO = 3;
-	
 	// --------------------- Paciente ---------------------
 	public static final int L_PACIENTE_CODIGO = 15;
 	public static final int L_PACIENTE_DOCUMENTO = 15;
 	public static final int L_PACIENTE_ENDERECO = 100;
 	public static final int L_PACIENTE_NOME = 30;
 	public static final int L_PACIENTE_NOME_RESPONSAVEL = 30;
-		
+	
+	// --------------------- Parametro ---------------------
+	public static final int L_PARAMETRO_CANDIDA = 3;
+	public static final int L_PARAMETRO_DIABETES = 3;
+	public static final int L_PARAMETRO_DISURIA = 3;
+	public static final int L_PARAMETRO_EFEITOS_COLATERAIS = 3;
+	public static final int L_PARAMETRO_ENTEROCOCOS = 3;
+	public static final int L_PARAMETRO_ESCHERICHIA = 3;
+	public static final int L_PARAMETRO_FEBRE = 2;
+	
 	// --------------------- Indicacao ---------------------
 	public static final int L_INDICACAO_CODIGO = 15;
 	public static final int L_INDICACAO_EFEITOSCOLATERAIS = 100;
@@ -66,12 +72,6 @@ public class Constantes {
   		return L_ATENDIMENTO_CODIGO;
   	}
   	
- 	/* ------- AVALIACAO ------- */
-  	
-  	public int getlAvaliacaoResultado(){
-  		return L_AVALIACAO_RESULTADO;
-  	}
-  	
   	/* ------- PACIENTE ------- */
 
 	public int getlPacienteCodigo() {
@@ -92,6 +92,36 @@ public class Constantes {
 	
 	public int getlPacienteNomeResponsavel(){
 		return L_PACIENTE_NOME_RESPONSAVEL;
+	}
+	
+	/* ------- PACIENTE ------- */
+	
+	public int getlParametroCandida(){
+		return L_PARAMETRO_CANDIDA;
+	}
+	
+	public int getlParametroDiabetes(){
+		return L_PARAMETRO_DIABETES;
+	}
+	
+	public int getlParametroDisuria(){
+		return L_PARAMETRO_DISURIA;
+	}
+	
+	public int getlParametroEfeitosColaterais(){
+		return L_PARAMETRO_EFEITOS_COLATERAIS;
+	}
+	
+	public int getlParametroEnterococos(){
+		return L_PARAMETRO_ENTEROCOCOS;
+	}
+	
+	public int getlParametroEscherichia(){
+		return L_PARAMETRO_ESCHERICHIA;
+	}
+	
+	public int getlParametroFebre(){
+		return L_PARAMETRO_FEBRE;
 	}
 
 	/* ------- USUARIO ------- */

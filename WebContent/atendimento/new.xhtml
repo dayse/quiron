@@ -99,7 +99,7 @@
 			    	</h:panelGroup>
 
 					<h:inputText id="febre" value="#{atendimentoActions.anamneseCorrente.febre}"
-						size="20" required="false" />
+						maxlength="#{constantes.lParametroFebre}" size="20" required="false" />
 					<h:message for="febre" styleClass="error" />
 
 					<h:panelGroup>
@@ -107,7 +107,7 @@
 			    	</h:panelGroup>
 
 					<h:inputText id="disuria" value="#{atendimentoActions.anamneseCorrente.disuria}"
-						size="20" required="false" />
+						maxlength="#{constantes.lParametroDisuria}" size="20" required="false" />
 					<h:message for="disuria" styleClass="error" />
 
 					<h:panelGroup>
@@ -115,7 +115,8 @@
 			    	</h:panelGroup>
 
 					<h:inputText id="diabetes"
-						value="#{atendimentoActions.anamneseCorrente.diabetes}" size="20"
+						value="#{atendimentoActions.anamneseCorrente.diabetes}"
+						maxlength="#{constantes.lParametroDiabetes}" size="20"
 						required="false" />
 					<h:message for="diabetes" styleClass="error" />
 
@@ -124,7 +125,8 @@
 			    	</h:panelGroup>
 
 					<h:inputText id="enterococos"
-						value="#{atendimentoActions.anamneseCorrente.enterococos}" size="20"
+						value="#{atendimentoActions.anamneseCorrente.enterococos}"
+						maxlength="#{constantes.lParametroEnterococos}" size="20"
 						required="false" />
 					<h:message for="enterococos" styleClass="error" />
 					
@@ -133,7 +135,8 @@
 			    	</h:panelGroup>
 
 					<h:inputText id="escherichia"
-						value="#{atendimentoActions.anamneseCorrente.escherichia}" size="20"
+						value="#{atendimentoActions.anamneseCorrente.escherichia}"
+						maxlength="#{constantes.lParametroEscherichia}" size="20"
 						required="false" />
 					<h:message for="escherichia" styleClass="error" />		
 					
@@ -142,7 +145,8 @@
 			    	</h:panelGroup>
 
 					<h:inputText id="candida"
-						value="#{atendimentoActions.anamneseCorrente.candida}" size="20"
+						value="#{atendimentoActions.anamneseCorrente.candida}"
+						maxlength="#{constantes.lParametroCandida}" size="20"
 						required="false" />
 					<h:message for="candida" styleClass="error" />	
 					
@@ -151,7 +155,8 @@
 			    	</h:panelGroup>
 
 					<h:inputText id="efeitosColaterais"
-						value="#{atendimentoActions.anamneseCorrente.efeitosColaterais}" size="20"
+						value="#{atendimentoActions.anamneseCorrente.efeitosColaterais}"
+						maxlength="#{constantes.lParametroEfeitosColaterais}" size="20"
 						required="false" />
 					<h:message for="efeitosColaterais" styleClass="error" />												
 				</h:panelGrid>
