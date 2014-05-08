@@ -36,7 +36,6 @@ public class CargaAppService {
 			
 	/**
 	 * Executa apenas a carga básica do sistema:<br />
-	 * ---- CargaLimparUploads;<br />
 	 * ---- CargaUsuario;<br />
 	 * ---- CargaParametros.
 	 * 
@@ -61,6 +60,9 @@ public class CargaAppService {
 	 * ---- executarCargaBasica;<br />
 	 * ---- CargaIndicacao;<br />
 	 * ---- CargaEspecialista;<br />
+	 * ---- CargaAvalIndicacaoEspec;<br />
+	 * ---- CargaPaciente;<br />
+	 * ---- CargaAtendimento;<br />
 	 * 
 	 * @return Retorna o resultado da chamada do método executarCargas().
 	 * @throws AplicacaoException
@@ -68,7 +70,7 @@ public class CargaAppService {
 	 * @author felipe.pontes
 	 * 
 	 */
-	public boolean executarCargaEstudos() throws AplicacaoException{
+	public boolean executarCargaExemplo1() throws AplicacaoException{
 		//Instancia a lista de cargas novamente, para ter certeza que
 		//apenas as cargas a seguir serao executadas.
 		cargas = new ArrayList<CargaBase>();
@@ -83,9 +85,11 @@ public class CargaAppService {
 		cargas.add(new CargaEspecialista());
 		//Inclui as avaliações dos especialistas para as indicações cadastradas
 		cargas.add(new CargaAvalIndicacaoEspec());
-		
+
 		//Inclui os pacientes
 		cargas.add(new CargaPaciente());
+		//Inclui os atendimentos e anamneses
+		cargas.add(new CargaAtendimento());
 		
 		return executarCargas();
 	}

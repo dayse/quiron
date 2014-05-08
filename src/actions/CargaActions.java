@@ -31,7 +31,7 @@ public class CargaActions extends BaseActions {
 	// Componentes de Controle
 	private static String SENHA_CARGA = Constantes.SENHA_CARGABD;
 	private static String OPCAO_BASICA = "Basica";
-	private static String OPCAO_ESTUDOS = "Estudos";
+	private static String OPCAO_EXEMPLO1 = "Exemplo1";
 	public List<String> tiposDeCarga = new ArrayList<String>();
 	private SelectOneDataModel<String> comboTiposDeCarga;
 
@@ -58,7 +58,7 @@ public class CargaActions extends BaseActions {
 			throw e;
 		}
 		tiposDeCarga.add(OPCAO_BASICA);
-		tiposDeCarga.add(OPCAO_ESTUDOS);
+		tiposDeCarga.add(OPCAO_EXEMPLO1);
 		descCarga = null;
 		comboTiposDeCarga = null;
 	}
@@ -94,8 +94,8 @@ public class CargaActions extends BaseActions {
 		if (opcao == null || opcao.equals(OPCAO_BASICA)) {
 			descCarga = "Insere tipos de usuarios, usuario administrador e parametros.";
 		}
-		if (opcao == null || opcao.equals(OPCAO_ESTUDOS)) {
-			descCarga = "Realiza carga Basica e depois insere os dados inicias dos estudos.";
+		if (opcao == null || opcao.equals(OPCAO_EXEMPLO1)) {
+			descCarga = "Realiza carga Basica e depois insere os do primeiro exemplo.";
 		}
 	}
 
@@ -122,8 +122,8 @@ public class CargaActions extends BaseActions {
 			if (opcao.equals(OPCAO_BASICA)) {
 				cargaService.executarCargaBasica();
 			}
-			if (opcao.equals(OPCAO_ESTUDOS)) {
-				cargaService.executarCargaEstudos();
+			if (opcao.equals(OPCAO_EXEMPLO1)) {
+				cargaService.executarCargaExemplo1();
 			}
 			info("carga.SUCESSO_CARGA");
 		} catch (AplicacaoException ex) {
