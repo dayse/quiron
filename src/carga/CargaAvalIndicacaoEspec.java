@@ -116,31 +116,56 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 		//avals do espec 1:
 		AvalIndicacaoEspec av1 = criarAvalIndicacaoDeEspec(
 									espec1, amox500,
-									0.8, 1.0, 0.8, 1.0, 0.8, 0.2, 0.9 );
+									0.6, 1.0, 0.7, 1.0, 0.7, 0.2, 0.8 );
 		avsParaIncluir.add(av1);
 		
 		AvalIndicacaoEspec av2 = criarAvalIndicacaoDeEspec(
 									espec1, bactrim,
-									0.7, 0.9, 0.7, 0.8, 0.7, 0.1, 0.8 );
+									0.5, 0.8, 0.5, 0.7, 0.5, 0.1, 0.7 );
 		avsParaIncluir.add(av2);
 		
 		AvalIndicacaoEspec av3 = criarAvalIndicacaoDeEspec(
 									espec1, amox1,
-									0.6, 0.4, 0.6, 0.7, 0.6, 0.1, 0.7 );
+									0.8, 0.4, 0.8, 0.5, 0.8, 0.1, 0.5 );
 		avsParaIncluir.add(av3);
 
 		AvalIndicacaoEspec av4 = criarAvalIndicacaoDeEspec(
 									espec1, levoflox,
-									1.0, 0.7, 1.0, 0.1, 0.8, 1.0, 0.6 );
+									1.0, 0.5, 1.0, 0.1, 0.7, 1.0, 0.8 );
 		avsParaIncluir.add(av4);
 
 		AvalIndicacaoEspec av5 = criarAvalIndicacaoDeEspec(
 									espec1, fluco,
-									0.9, 0.6, 0.9, 0.1, 0.7, 0.8, 0.5 );
+									0.8, 0.8, 0.8, 0.1, 0.5, 0.7, 0.5 );
 		avsParaIncluir.add(av5);
 		
 		
 		//avals do espec 2:
+
+		AvalIndicacaoEspec av1b = criarAvalIndicacaoDeEspec(
+									espec2, amox500,
+									0.9, 1.0, 0.85, 1.0, 0.85, 0.2, 0.95 );
+		avsParaIncluir.add(av1b);
+		
+		AvalIndicacaoEspec av2b = criarAvalIndicacaoDeEspec(
+									espec2, bactrim,
+									0.8, 0.95, 0.8, 0.85, 0.8, 0.1, 0.85 );
+		avsParaIncluir.add(av2b);
+		
+		AvalIndicacaoEspec av3b = criarAvalIndicacaoDeEspec(
+									espec2, amox1,
+									0.5, 0.4, 0.5, 0.8, 0.5, 0.1, 0.8 );
+		avsParaIncluir.add(av3b);
+
+		AvalIndicacaoEspec av4b = criarAvalIndicacaoDeEspec(
+									espec2, levoflox,
+									1.0, 0.8, 1.0, 0.1, 0.85, 1.0, 0.5 );
+		avsParaIncluir.add(av4b);
+
+		AvalIndicacaoEspec av5b = criarAvalIndicacaoDeEspec(
+									espec2, fluco,
+									0.95, 0.5, 0.95, 0.1, 0.8, 0.85, 0.5 );
+		avsParaIncluir.add(av5b);
 		
 		//...
 		
