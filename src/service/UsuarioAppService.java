@@ -195,5 +195,16 @@ public class UsuarioAppService {
 			throw new AplicacaoException("Usuario.RELATORIO_NAO_GERADO");
 		}
 	}
+
+	public Usuario recuperaPorLogin(String login) throws AplicacaoException {
+		Usuario usuario;
+		try {
+			usuario = usuarioDAO.recuperaPorLogin(login);
+		} catch (ObjetoNaoEncontradoException e) {
+			throw new AplicacaoException("usuario.ERRO_LOGIN_SENHA_INEXISTENTES");
+		}
+		
+		return usuario;
+	}
 		
 }
