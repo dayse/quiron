@@ -15,6 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @NamedQueries(
 		{
@@ -148,6 +150,7 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 		this.codAtendimento = codAtendimento;
 	}
 
+	@Temporal(value = TemporalType.DATE)
 	public Calendar getDataAtendimento() {
 		return dataAtendimento;
 	}

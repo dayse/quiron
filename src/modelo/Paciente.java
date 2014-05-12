@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @NamedQueries(
 		{
@@ -278,6 +280,7 @@ public class Paciente implements Serializable, Comparable<Paciente> {
 		this.endereco = endereco;
 	}
 
+	@Temporal(value = TemporalType.DATE)
 	public Calendar getDataNascimento() {
 		return dataNascimento;
 	}
