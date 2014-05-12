@@ -21,8 +21,8 @@
 
 			<br />
 
-			<rich:dataTable id="tabelaParametros" var="parametro" align="center"
-				value="#{parametroActions.listaParametros}" rows="10" width="700px">
+			<rich:dataTable id="tabelaParametros" align="center"
+				value="7" rows="10" width="700px">
 
 				<f:facet name="header">
 
@@ -46,25 +46,100 @@
 					</rich:columnGroup>
 
 				</f:facet>
-
-				<rich:column styleClass="colunaCampoNumericoCentralizado">
-					<h:outputText value="#{parametro.codParametro}" />
-				</rich:column>
-
-				<rich:column>
-					<h:outputText value="#{parametro.nome}" />
-				</rich:column>
-
-				<rich:column>
-					<h:outputText value="#{parametro.descricao}" />
-				</rich:column>
-
+				<rich:columnGroup>
+					<rich:column styleClass="colunaCampoNumericoCentralizado">
+						<h:outputText value="P1" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{prompt.parametro_Febre}" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{help.parametro_Febre}" />
+					</rich:column>
+				</rich:columnGroup>
+				<rich:columnGroup>
+					<rich:column styleClass="colunaCampoNumericoCentralizado">
+						<h:outputText value="P2" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{prompt.parametro_Disuria}" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{help.parametro_Disuria}" />
+					</rich:column>
+				</rich:columnGroup>	
+				<rich:columnGroup>
+					<rich:column styleClass="colunaCampoNumericoCentralizado">
+						<h:outputText value="P3" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{prompt.parametro_Diabetes}" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{help.parametro_Diabetes}" />
+					</rich:column>
+				</rich:columnGroup>		
+				<rich:columnGroup>
+					<rich:column styleClass="colunaCampoNumericoCentralizado">
+						<h:outputText value="P4" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{prompt.parametro_Enterococos}" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{help.parametro_Enterococos}" />
+					</rich:column>
+				</rich:columnGroup>		
+				<rich:columnGroup>
+					<rich:column styleClass="colunaCampoNumericoCentralizado">
+						<h:outputText value="P5" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{prompt.parametro_Escherichia}" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{help.parametro_Escherichia}" />
+					</rich:column>
+				</rich:columnGroup>						
+				<rich:columnGroup>
+					<rich:column styleClass="colunaCampoNumericoCentralizado">
+						<h:outputText value="P6" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{prompt.parametro_Candida}" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{help.parametro_Candida}" />
+					</rich:column>
+				</rich:columnGroup>
+				<rich:columnGroup>
+					<rich:column styleClass="colunaCampoNumericoCentralizado">
+						<h:outputText value="P7" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{prompt.parametro_EfeitosColaterais}" />
+					</rich:column>
+	
+					<rich:column>
+						<h:outputText value="#{help.parametro_EfeitosColaterais}" />
+					</rich:column>
+				</rich:columnGroup>																							
 				<f:facet name="footer">
 
 					<h:panelGrid columns="2">
-
-						<h:outputText
-							value="#{prompt.parametro_Total} = #{parametroActions.listaParametros.rowCount}" />
 
 					</h:panelGrid>
 

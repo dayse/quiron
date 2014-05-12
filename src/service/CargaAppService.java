@@ -50,7 +50,6 @@ public class CargaAppService {
 		cargas = new ArrayList<CargaBase>();
 	//	cargas.add(new CargaLimparUploads());
 		cargas.add(new CargaUsuario());
-		cargas.add(new CargaParametros());
 		return executarCargas();
 	}
 	
