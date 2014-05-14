@@ -23,7 +23,7 @@ public class Constantes {
 	// --------------------- Avaliacao ---------------------
 	public static final int L_ESPECIALISTA_CODIGO = 15;
 	public static final int L_ESPECIALISTA_NOME = 30;
-	public static final int L_ESPECIALISTA_PESO_AVALIADOR = 2;
+	public static final int L_ESPECIALISTA_PESO_AVALIADOR = 3;
 	
 	// --------------------- Paciente ---------------------
 	public static final int L_PACIENTE_CODIGO = 15;
@@ -43,12 +43,8 @@ public class Constantes {
 	
 	// --------------------- Indicacao ---------------------
 	public static final int L_INDICACAO_CODIGO = 15;
-	public static final int L_INDICACAO_EFEITOSCOLATERAIS = 100;
-	public static final int L_INDICACAO_INDICACAO = 100;
-	public static final int L_INDICACAO_INTERACAOMEDICAMENTOSA = 100;
+	public static final int L_INDICACAO_DOSAGEM = 100;
 	public static final int L_INDICACAO_NOME = 30;
-	public static final int L_INDICACAO_PERIODICIDADE = 100;
-	public static final int L_INDICACAO_POSOLOGIA = 100;
 	
 	// --------------------- Usuario ---------------------
 	public static final int L_USUARIO_NOME = 25;
@@ -102,31 +98,15 @@ public class Constantes {
  	
 	/* ------- INDICACAO ------- */
 	
-	public static int getlINDICACAOCodigo() {
-		return L_INDICACAO_CODIGO;
-	}
+  	public int getlIndicacaoCodigo(){
+  		return L_INDICACAO_CODIGO;
+  	}
 	
-	public static int getlINDICACAOEfeitosColaterais() {
-		return L_INDICACAO_EFEITOSCOLATERAIS;
-	}
-	
-	public static int getlINDICACAOIndicacao() {
-		return L_INDICACAO_INDICACAO;
-	}
-	
-	public static int getlINDICACAOInteracaoMedicamentosa() {
-		return L_INDICACAO_INTERACAOMEDICAMENTOSA;
-	}
-	
-	public static int getlINDICACAOPeriodicidade() {
-		return L_INDICACAO_PERIODICIDADE;
-	}
-	
-	public static int getlINDICACAOPosologia() {
-		return L_INDICACAO_POSOLOGIA;
+	public int getlIndicacaoDosagem() {
+		return L_INDICACAO_DOSAGEM;
 	}
 
-	public static int getlINDICACAONome() {
+	public int getlIndicacaoNome() {
 		return L_INDICACAO_NOME;
 	}	
  	

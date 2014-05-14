@@ -37,7 +37,7 @@
 					</h:panelGroup>
 					<h:inputText id="codigo"
 						value="#{indicacaoActions.indicacaoCorrente.codIndicacao}"
-						size="20" required="true" />
+						maxlength="#{constantes.lIndicacaoCodigo}" size="20" required="true" />
 					<h:message for="codigo" styleClass="error" />
 
 					<h:panelGroup>
@@ -45,7 +45,7 @@
 					</h:panelGroup>
 					<h:inputText id="nome"
 						value="#{indicacaoActions.indicacaoCorrente.nome}" size="20"
-						required="true" />
+						maxlength="#{constantes.lIndicacaoNome}" required="true" />
 					<h:message for="nome" styleClass="error" />
 
 					<h:panelGroup>
@@ -53,7 +53,7 @@
 					</h:panelGroup>
 					<h:inputText id="dosagem"
 						value="#{indicacaoActions.indicacaoCorrente.dosagem}"
-						size="20" required="true" />
+						maxlength="#{constantes.lIndicacaoDosagem}" size="20" required="true" />
 					<h:message for="dosagem" styleClass="error" />
 
 				</h:panelGrid>
