@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd">
+
+<suite name="Suite de Testes">
+
+    <test name="Testes Unitarios" verbose="1" preserve-order="true" >
+        <classes>
+        	<class name="tecido.TesteTecido"/>
+        	<!--  
+        	<class name="avaliacao.TesteAvaliacao"/>
+        	<class name="cadplan.TesteCadPlan"/>
+        	<class name="excecaoMens.TesteExcecaoMens"/>
+        	<class name="JPA.TesteJPA"/>
+        	<class name="HP.TesteHP"/>
+        	<class name="recurso.TesteRecurso"/>
+        	<class name="periopm.TestePerioPM"/>
+        	-->
+        </classes>
+    </test>
+	
+    
+</suite>
+
+
+<!-- TUTORIAIS BONS SOBRE O TESTNG:
+
+1) http://www.ibm.com/developerworks/java/library/j-testng/
+
+2) http://testng.org/doc/documentation-main.html
+
+3) http://testng.org/dtd/
+
+-->
