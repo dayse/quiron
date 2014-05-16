@@ -4,8 +4,9 @@
 
     <test name="Testes Unitarios" verbose="1" preserve-order="true" >
         <classes>
-        	<class name="tecido.TesteTecido"/>
+        	<class name="JPA.TesteJPA"/>
         	<!--  
+        	<class name="tecido.TesteTecido"/>
         	<class name="avaliacao.TesteAvaliacao"/>
         	<class name="cadplan.TesteCadPlan"/>
         	<class name="excecaoMens.TesteExcecaoMens"/>
