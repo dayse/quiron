@@ -5,6 +5,7 @@ import java.util.List;
 import modelo.Usuario;
 
 import org.testng.AssertJUnit;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -42,6 +43,24 @@ public class TesteCargaUsuario {
 		setConstantes();
 	}
 	
+	@AfterClass
+	public void tearDown(){
+		try {
+			System.out.println("-----------------------------> desligando a JPA...");
+			JPAUtil.closeEntityManager();
+			System.out.println("-----------------------------> JPA desligada com sucesso!");
+
+			tipoUsuarioService = FabricaDeAppService.getAppService(TipoUsuarioAppService.class);
+			usuarioService = FabricaDeAppService.getAppService(UsuarioAppService.class);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		System.out.println("AfterMethod");
+		
+	}
+	
 	public void setConstantes(){
 		String sep = java.io.File.separator;
 		String base_path = System.getProperty("user.dir") + sep + "WebContent";
@@ -69,5 +88,6 @@ public class TesteCargaUsuario {
 		usuarioService.recuperaPorLoginESenha("tecnico", "123");
 		
 	}
+	
 	
 }
