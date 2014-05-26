@@ -9,13 +9,10 @@
 	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
 	<ui:define name="descricao">#{prompt.atendimento_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
-		#{help.tecmodel_Cadastro}
+		#{help.atendimento_Cadastro}
 		<br />
 		<br />
-		<span class="negrito">#{prompt.excluir} -</span> #{help.tecmodel_Excluir}
-		<br />
-		<br />
-		<span class="negrito">#{prompt.imprimir} -</span> #{help.tecmodel_Imprimir}
+		<span class="negrito">#{prompt.excluir} -</span> #{help.atendimento_Excluir}
 		<br />
 		<br />
 		<span class="negrito">#{help.observacao_AlertaPadrao} </span> #{help.observacao_AcessoOutrosHelp}
@@ -59,7 +56,8 @@
 						</rich:column>
 
 						<rich:column colspan="3">
-							<h:outputText value="#{prompt.atendimento_Incluir}" />
+							<h:outputText title="#{tooltip.atendimento_Incluir}"
+							 value="#{prompt.atendimento_Incluir}" />
 						</rich:column>
 					</rich:columnGroup>
 				</f:facet>
@@ -120,7 +118,7 @@
 
 					<rich:column>
 						<f:facet name="header">
-							<h:outputText title="#{tooltip.atendimento_data}"
+							<h:outputText title="#{tooltip.atendimento_Data}"
 								value="#{prompt.atendimento_Data}" />
 						</f:facet>
 						<h:outputText value="#{atendimento.dataAtendimento.time}">
@@ -131,7 +129,7 @@
 
 					<rich:column colspan="2">
 						<f:facet name="header">
-							<h:outputText title="#{tooltip.atendimento_medico}"
+							<h:outputText title="#{tooltip.atendimento_Medico}"
 								value="#{prompt.atendimento_Medico}" />
 						</f:facet>
 						<h:outputText value="#{atendimento.medico.nome}" />
@@ -147,7 +145,7 @@
 
 					<rich:column>
 						<f:facet name="header">
-							<h:outputText title="#{tooltip.atendimento_status}"
+							<h:outputText title="#{tooltip.atendimento_Status}"
 								value="#{prompt.atendimento_Status}" />
 						</f:facet>
 						<h:outputText value="#{atendimento.status}" />
@@ -155,7 +153,7 @@
 
 					<rich:column>
 						<f:facet name="header">
-							<h:outputText title="#{tooltip.paciente_Avaliacao}"
+							<h:outputText title="#{tooltip.atendimento_Avaliacao}"
 								value="#{prompt.avaliacao}" />
 						</f:facet>
 						<h:commandButton value="#{prompt.avaliacao}"
@@ -167,7 +165,7 @@
 
 					<rich:column>
 						<f:facet name="header">
-							<h:outputText value="#{prompt.editar}" />
+							<h:outputText title="#{tooltip.atendimento_Editar}" value="#{prompt.editar}" />
 						</f:facet>
 						<h:commandButton value="#{prompt.editar}"
 							action="#{atendimentoActions.preparaAlteracao}">
@@ -178,7 +176,7 @@
 
 					<rich:column>
 						<f:facet name="header">
-							<h:outputText value="#{prompt.excluir}" />
+							<h:outputText title="#{tooltip.atendimento_Excluir}" value="#{prompt.excluir}" />
 						</f:facet>
 						<a4j:commandButton value="#{prompt.excluir}"
 							onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})">
