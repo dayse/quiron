@@ -65,6 +65,7 @@
     <url-pattern>/especialista/*</url-pattern>
     <url-pattern>/indicacao/*</url-pattern>
     <url-pattern>/paciente/*</url-pattern>
+    <url-pattern>/parametro/*</url-pattern>
     <url-pattern>/privado/*</url-pattern>
     <url-pattern>/testefile/*</url-pattern>
     <url-pattern>/usuario/*</url-pattern>
