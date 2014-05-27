@@ -49,21 +49,17 @@ public class AnamneseAppService {
 	public List<Avaliacao> recuperaAvaliacaoCalculadaPorIndicacao(
 			Atendimento atendimento) {
 
-//		Anamnese anamnese = new Anamnese();
-//		try {
-//			anamnese = anamneseDAO.recuperaAnamnesePorAtendimento(atendimento);
-//		} catch (ObjetoNaoEncontradoException e) {
-//		}
-//		
-//		List<Indicacao> listIndicacao = indicacaoDAO.recuperaListaIndicacao();
-//
-//		List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
-//
-//		for (Indicacao indicacao : listIndicacao) {
-//			
-//
-//			List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
-//					.recuperaListaDeAvaliacaoEspecPorIndicacao(indicacao);
+		List<Anamnese> anamneses = recuperaListaDeAnamnesePorAtendimento(atendimento);
+		
+		List<Indicacao> listIndicacao = indicacaoDAO.recuperaListaIndicacao();
+
+		List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
+
+		for (Indicacao indicacao : listIndicacao) {
+			
+
+			List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
+					.recuperaListaDeAvaliacaoEspecPorIndicacao(indicacao);
 //			
 //			Double febre = 1.0;
 //			Double diabetes = 0.0;
@@ -134,10 +130,9 @@ public class AnamneseAppService {
 //			
 //			listAvaliacao.add(avaliacaoIntersecao);
 //			listAvaliacao.add(avaliacaoUniao);
-//		}
+		}
 //
-//		return listAvaliacao;
-		return null;
+		return listAvaliacao;
 	}
 
 	@Transacional
