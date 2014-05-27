@@ -36,20 +36,10 @@ public class Anamnese implements Serializable, Comparable<Anamnese> {
 	private Long id;
 
 	private Atendimento atendimento;
+	private Parametro parametro;
 
-	private double febre;
+	private double valor;
 
-	private double disuria;
-
-	private double diabetes;
-
-	private double enterococos;
-
-	private double escherichia;
-
-	private double candida;
-
-	private double efeitosColaterais;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA")
@@ -63,6 +53,24 @@ public class Anamnese implements Serializable, Comparable<Anamnese> {
 	}
 
 	@ManyToOne
+	@JoinColumn(name = "PARAMETRO_ID", nullable = false)
+	public Parametro getParametro() {
+		return parametro;
+	}
+
+	public void setParametro(Parametro parametro) {
+		this.parametro = parametro;
+	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+	@ManyToOne
 	@JoinColumn(name = "ATENDIMENTO_ID", nullable = false)
 	public Atendimento getAtendimento() {
 		return atendimento;
@@ -72,61 +80,6 @@ public class Anamnese implements Serializable, Comparable<Anamnese> {
 		this.atendimento = atendimento;
 	}
 
-	public double getFebre() {
-		return febre;
-	}
-
-	public void setFebre(double febre) {
-		this.febre = febre;
-	}
-
-	public double getDisuria() {
-		return disuria;
-	}
-
-	public void setDisuria(double disuria) {
-		this.disuria = disuria;
-	}
-
-	public double getDiabetes() {
-		return diabetes;
-	}
-
-	public void setDiabetes(double diabetes) {
-		this.diabetes = diabetes;
-	}
-
-	public double getEnterococos() {
-		return enterococos;
-	}
-
-	public void setEnterococos(double enterococos) {
-		this.enterococos = enterococos;
-	}
-
-	public double getEscherichia() {
-		return escherichia;
-	}
-
-	public void setEscherichia(double escherichia) {
-		this.escherichia = escherichia;
-	}
-
-	public double getCandida() {
-		return candida;
-	}
-
-	public void setCandida(double candida) {
-		this.candida = candida;
-	}
-
-	public double getEfeitosColaterais() {
-		return efeitosColaterais;
-	}
-
-	public void setEfeitosColaterais(double efeitosColaterais) {
-		this.efeitosColaterais = efeitosColaterais;
-	}
 
 	@Override
 	public int compareTo(Anamnese arg0) {
