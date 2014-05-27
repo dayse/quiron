@@ -16,9 +16,14 @@ import javax.persistence.Table;
 
 @NamedQueries(
 		{
-			@NamedQuery(name = "Anamnese.recuperaAnamnesePorAtendimento", 
+			@NamedQuery(name = "Anamnese.recuperaListaDeAnamnesePorAtendimento", 
 						query = "select a from Anamnese a " +
 								"where a.atendimento = ?"
+			),
+			@NamedQuery(name = "Anamnese.recuperaAnamnesePorAtendimentoPorParametro", 
+						query = "select a from Anamnese a " +
+								"where a.atendimento = ?" +
+								"and a.parametro = ?"
 			)
 		}
 )

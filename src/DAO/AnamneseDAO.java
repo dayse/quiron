@@ -1,7 +1,11 @@
 package DAO;
 
+import java.util.List;
+
 import modelo.Anamnese;
 import modelo.Atendimento;
+import modelo.Parametro;
+import DAO.anotacao.RecuperaLista;
 import DAO.anotacao.RecuperaObjeto;
 import DAO.exception.ObjetoNaoEncontradoException;
 import DAO.generico.DaoGenerico;
@@ -18,22 +22,20 @@ public interface AnamneseDAO extends DaoGenerico<Anamnese, Long> {
 
 	/**
 	 * 
-	 * Consulta que recupera uma anmnese utilizando um atendimento como
+	 * Consulta que recupera uma lista de anmneses utilizando um atendimento como
 	 * parâmetro.
 	 * 
 	 * @param atendimento
-	 *            - Para consultar uma anmnese é necessário de qual atendimento
+	 *            - Para consultar uma lista de anmneses é necessário de qual atendimento
 	 *            ela pertence, já que ambas entidades relacionam-se.
-	 * @return anamnese - Retorna um objeto do tipo anmnese com os dados
-	 *         preenchidos conforme as informações encontradas no banco.
-	 * @throws ObjetoNaoEncontradoException
-	 *             - Retorna um exception caso nenhum registro for encontrado
-	 *             com o parâmetro passado.
 	 *             
-	 * @author bruno.oliveira
+	 * @author bruno.oliveira, felipe.pontes
 	 * 
 	 */
+	@RecuperaLista
+	public List<Anamnese>  recuperaListaDeAnamnesePorAtendimento(Atendimento atendimento);
+	
 	@RecuperaObjeto
-	public Anamnese recuperaAnamnesePorAtendimento(Atendimento atendimento)
+	public Anamnese  recuperaAnamnesePorAtendimentoPorParametro(Atendimento atendimento, Parametro parametro)
 			throws ObjetoNaoEncontradoException;
 }
