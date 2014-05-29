@@ -2,23 +2,36 @@ package service;
 
 import java.util.List;
 
+import DAO.AvalIndicacaoEspecDAO;
+import DAO.EspecialistaDAO;
+import DAO.IndicacaoDAO;
 import DAO.ParametroDAO;
+import DAO.Impl.AvalIndicacaoEspecDAOImpl;
+import DAO.Impl.EspecialistaDAOImpl;
+import DAO.Impl.IndicacaoDAOImpl;
 import DAO.Impl.ParametroDAOImpl;
 import DAO.controle.FabricaDeDao;
 import DAO.exception.ObjetoNaoEncontradoException;
-
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
-
+import modelo.AvalIndicacaoEspec;
+import modelo.Especialista;
+import modelo.Indicacao;
 import modelo.Parametro;
 
 public class ParametroAppService {
 	
 	private static ParametroDAO parametroDAO;
+	private static EspecialistaDAO especialistaDAO;
+	private static IndicacaoDAO indicacaoDAO;
+	private static AvalIndicacaoEspecDAO avalIndicacaoEspecDAO;
 	
 	public ParametroAppService() throws Exception{
 		try{
 			parametroDAO = FabricaDeDao.getDao(ParametroDAOImpl.class);
+			especialistaDAO = FabricaDeDao.getDao(EspecialistaDAOImpl.class);
+			indicacaoDAO = FabricaDeDao.getDao(IndicacaoDAOImpl.class);
+			avalIndicacaoEspecDAO = FabricaDeDao.getDao(AvalIndicacaoEspecDAOImpl.class);
 		}catch(Exception e){
 			e.printStackTrace();
 			System.exit(1);	
@@ -38,6 +51,23 @@ public class ParametroAppService {
 		}catch(ObjetoNaoEncontradoException ob){
 		}
 		parametroDAO.inclui(parametro);
+		
+		List<Especialista> especialistaBD = especialistaDAO.recuperaListaEspecialista();
+		List<Indicacao> indicacaoBD = indicacaoDAO.recuperaListaIndicacao();
+		
+		if(!especialistaBD.isEmpty() && !indicacaoBD.isEmpty()){
+			for(Especialista especialista : especialistaBD){
+				
+				AvalIndicacaoEspec avalIndicacaoEspec = new AvalIndicacaoEspec();
+				avalIndicacaoEspec.setEspecialista(especialista);
+				avalIndicacaoEspec.setParametro(parametro);
+				
+				for(Indicacao indicacao : indicacaoBD){
+					avalIndicacaoEspec.setIndicacao(indicacao);
+					avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
+				}
+			}
+		}
 	}
 
 	public List<Parametro> recuperaListaDeParametrosPaginada(){

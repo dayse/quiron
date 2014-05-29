@@ -127,12 +127,12 @@ public class AvalIndicacaoEspec implements Serializable, Comparable<AvalIndicaca
 		return indicacao;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PARAMETRO_ID", nullable = false)
 	public void setIndicacao(Indicacao indicacao) {
 		this.indicacao = indicacao;
 	}
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PARAMETRO_ID", nullable = false)	
 	public Parametro getParametro(){
 		return parametro;
 	}

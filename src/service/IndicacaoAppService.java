@@ -4,17 +4,18 @@ import java.util.List;
 
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
-
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
 import modelo.Indicacao;
-
+import modelo.Parametro;
 import DAO.AvalIndicacaoEspecDAO;
 import DAO.EspecialistaDAO;
 import DAO.IndicacaoDAO;
+import DAO.ParametroDAO;
 import DAO.Impl.AvalIndicacaoEspecDAOImpl;
 import DAO.Impl.EspecialistaDAOImpl;
 import DAO.Impl.IndicacaoDAOImpl;
+import DAO.Impl.ParametroDAOImpl;
 import DAO.controle.FabricaDeDao;
 import DAO.exception.ObjetoNaoEncontradoException;
 
@@ -27,12 +28,14 @@ public class IndicacaoAppService {
 
 	private static IndicacaoDAO indicacaoDAO;
 	private static EspecialistaDAO especialistaDAO;
+	private static ParametroDAO parametroDAO;
 	private static AvalIndicacaoEspecDAO avalIndicacaoEspecDAO;
 
 	public IndicacaoAppService() throws Exception {
 		try {
 			indicacaoDAO = FabricaDeDao.getDao(IndicacaoDAOImpl.class);
 			especialistaDAO = FabricaDeDao.getDao(EspecialistaDAOImpl.class);
+			parametroDAO = FabricaDeDao.getDao(ParametroDAOImpl.class);
 			avalIndicacaoEspecDAO = FabricaDeDao.getDao(AvalIndicacaoEspecDAOImpl.class);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,12 +70,19 @@ public class IndicacaoAppService {
 		indicacaoDAO.inclui(indicacao);
 		
 		List<Especialista> especialistaBD = especialistaDAO.recuperaListaEspecialista();
-		if(!especialistaBD.isEmpty()){
+		List<Parametro> parametroBD = parametroDAO.recuperaListaDeParametros();
+		
+		if(!especialistaBD.isEmpty() && !parametroBD.isEmpty()){
 			for(Especialista especialista : especialistaBD){
+				
 				AvalIndicacaoEspec avalIndicacaoEspec = new AvalIndicacaoEspec();
 				avalIndicacaoEspec.setIndicacao(indicacao);
 				avalIndicacaoEspec.setEspecialista(especialista);
-				avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
+				
+				for(Parametro parametro : parametroBD){
+					avalIndicacaoEspec.setParametro(parametro);
+					avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
+				}
 			}
 		}
 	}

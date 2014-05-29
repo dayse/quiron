@@ -6,6 +6,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import service.AvalIndicacaoEspecAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
 import util.JPAUtil;
@@ -17,7 +18,7 @@ import util.JPAUtil;
  */
 public class TesteAvalIndicacaoEspec {
 
-	public AvalIndicacaoEspec avalIndicacaoEspec;
+	public AvalIndicacaoEspecAppService avalIndicacaoEspecService;
 
 	@BeforeClass
 	public void setupClass(){
@@ -26,7 +27,7 @@ public class TesteAvalIndicacaoEspec {
 			JPAUtil.JPAstartUp();
 			System.out.println("-----------------------------> JPA startada com sucesso!");
 
-			avalIndicacaoEspec = FabricaDeAppService.getAppService(AvalIndicacaoEspec.class);
+			avalIndicacaoEspecService = FabricaDeAppService.getAppService(AvalIndicacaoEspecAppService.class);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,7 +52,8 @@ public class TesteAvalIndicacaoEspec {
 	}
 	
 	@Test
-	public void testeRecuperaAvaliacaoCalculadaPorIndicacao() throws AplicacaoException {
+	public void testeCargaRecuperaAvaliacaoCalculadaPorIndicacao() throws AplicacaoException {
+		
 	//	anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimento);
 		
 	}

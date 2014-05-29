@@ -127,7 +127,7 @@ public class Indicacao implements Serializable, Comparable<Indicacao>{
 		this.dosagem = dosagem;
 	}
 	
-	@OneToMany(mappedBy = "especialista", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "indicacao", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	public List<AvalIndicacaoEspec> getListAvalIndicacaoEspec() {
 		return listAvalIndicacaoEspec;
 	}

@@ -12,6 +12,9 @@ import modelo.Parametro;
 public interface ParametroDAO extends DaoGenerico<Parametro, Long> {
 
 	@RecuperaLista
+	public List<Parametro> recuperaListaDeParametros();
+	
+	@RecuperaLista
 	public List<Parametro> recuperaListaDeParametrosPaginada();
 	
 	@RecuperaObjeto

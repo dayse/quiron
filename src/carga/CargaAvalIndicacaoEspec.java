@@ -293,8 +293,7 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 		
 		//Incluir todas as avaliações
 		for (AvalIndicacaoEspec avalIndicacaoEspec : avsParaIncluir) {
-			avalIndicacaoEspecService.altera(avalIndicacaoEspec);
-			
+			avalIndicacaoEspecService.altera(avalIndicacaoEspec);		
 		}
 		
 		} catch (ObjetoNaoEncontradoException e) {

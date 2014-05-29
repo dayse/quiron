@@ -5,14 +5,17 @@ import java.util.List;
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
 import modelo.Indicacao;
+import modelo.Parametro;
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
 import DAO.AvalIndicacaoEspecDAO;
 import DAO.EspecialistaDAO;
 import DAO.IndicacaoDAO;
+import DAO.ParametroDAO;
 import DAO.Impl.AvalIndicacaoEspecDAOImpl;
 import DAO.Impl.EspecialistaDAOImpl;
 import DAO.Impl.IndicacaoDAOImpl;
+import DAO.Impl.ParametroDAOImpl;
 import DAO.controle.FabricaDeDao;
 import DAO.exception.ObjetoNaoEncontradoException;
 
@@ -20,12 +23,14 @@ public class EspecialistaAppService {
 
 	private static EspecialistaDAO especialistaDAO;
 	private static IndicacaoDAO indicacaoDAO;
+	private static ParametroDAO parametroDAO;
 	private static AvalIndicacaoEspecDAO avalIndicacaoEspecDAO;
 
 	public EspecialistaAppService() throws Exception {
 		try {
 			especialistaDAO = FabricaDeDao.getDao(EspecialistaDAOImpl.class);
 			indicacaoDAO = FabricaDeDao.getDao(IndicacaoDAOImpl.class);
+			parametroDAO = FabricaDeDao.getDao(ParametroDAOImpl.class);
 			avalIndicacaoEspecDAO = FabricaDeDao
 					.getDao(AvalIndicacaoEspecDAOImpl.class);
 		} catch (Exception e) {
@@ -62,12 +67,19 @@ public class EspecialistaAppService {
 		especialistaDAO.inclui(especialista);
 
 		List<Indicacao> indicacaoBD = indicacaoDAO.recuperaListaIndicacao();
-		if(!indicacaoBD.isEmpty()){
+		List<Parametro> parametroBD = parametroDAO.recuperaListaDeParametros();
+		
+		if(!indicacaoBD.isEmpty() && !parametroBD.isEmpty()){
 			for(Indicacao indicacao : indicacaoBD){
+				
 				AvalIndicacaoEspec avalIndicacaoEspec = new AvalIndicacaoEspec();
 				avalIndicacaoEspec.setEspecialista(especialista);
 				avalIndicacaoEspec.setIndicacao(indicacao);
-				avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
+				
+				for(Parametro parametro : parametroBD){
+					avalIndicacaoEspec.setParametro(parametro);
+					avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
+				}
 			}
 		}
 	}

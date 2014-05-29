@@ -1,34 +1,43 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @NamedQueries(
 		{
+			@NamedQuery(name = "Parametro.recuperaListaDeParametros", 
+						query = "select p from Parametro p " +
+								"order by p.codParametro"
+			),
 			@NamedQuery(name = "Parametro.recuperaListaDeParametrosPaginada",
-						query = "select m from Parametro m " +
-								"order by m.codParametro"
+						query = "select p from Parametro p " +
+								"order by p.codParametro"
 			),
 			@NamedQuery(name = "Parametro.recuperaListaDeParametrosPaginadaCount",
-						query = "Select count(m) from Parametro m "
+						query = "Select count(p) from Parametro p "
 				
 			),
 			@NamedQuery(name = "Parametro.recuperaParametroPorCodigo", 
-						query = "select m from Parametro m " +
-								"where m.codParametro = ? "
+						query = "select p from Parametro p " +
+								"where p.codParametro = ? "
 			),
 			@NamedQuery(name = "Parametro.recuperaParametroPorNome",
-						query = "select m from Parametro m " +
-								"where m.nome = ? "
+						query = "select p from Parametro p " +
+								"where p.nome = ? "
 			)
 		}
 )
@@ -63,6 +72,10 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	 */
 	private String descricao;
 	
+	/**
+	 * Lista de avaliações dadas as indicações pelos especialistas.
+	 */
+	private List<AvalIndicacaoEspec> listAvalIndicacaoEspec = new ArrayList<AvalIndicacaoEspec>();
 	
 	// ********* Construtor *********
 	
@@ -106,6 +119,15 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	@OneToMany(mappedBy = "parametro", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	public List<AvalIndicacaoEspec> getListAvalIndicacaoEspec(){
+		return listAvalIndicacaoEspec;
+	}
+	
+	public void setListAvalIndicacaoEspec(List<AvalIndicacaoEspec> listAvalIndicacaoEspec){
+		this.listAvalIndicacaoEspec = listAvalIndicacaoEspec;
 	}
 	
 	@Override
