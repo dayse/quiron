@@ -83,19 +83,16 @@ public class AvalIndicacaoEspec implements Serializable, Comparable<AvalIndicaca
 	 */
 	private Indicacao indicacao;
 	
-	private double febre = 0;
+	/**
+	 * ID do parametro
+	 */
+	private Parametro parametro;
+	
+	/**
+	 * Valor do parametro
+	 */
+	private double valor;
 
-	private double disuria = 0;
-
-	private double diabetes = 0;
-
-	private double enterococos = 0;
-
-	private double escherichia = 0;
-
-	private double candida = 0;
-
-	private double efeitosColaterais = 0;
 	// ********* Construtor *********
 	
 	public AvalIndicacaoEspec(){
@@ -130,66 +127,28 @@ public class AvalIndicacaoEspec implements Serializable, Comparable<AvalIndicaca
 		return indicacao;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PARAMETRO_ID", nullable = false)
 	public void setIndicacao(Indicacao indicacao) {
 		this.indicacao = indicacao;
 	}
 	
-	public double getFebre() {
-		return febre;
+	public Parametro getParametro(){
+		return parametro;
 	}
-
-	public void setFebre(double febre) {
-		this.febre = febre;
+	
+	public void setParametro(Parametro parametro){
+		this.parametro = parametro;
 	}
-
-	public double getDisuria() {
-		return disuria;
+	
+	public double getValor(){
+		return valor;
 	}
-
-	public void setDisuria(double disuria) {
-		this.disuria = disuria;
+	
+	public void setValor(double valor){
+		this.valor = valor;
 	}
-
-	public double getDiabetes() {
-		return diabetes;
-	}
-
-	public void setDiabetes(double diabetes) {
-		this.diabetes = diabetes;
-	}
-
-	public double getEnterococos() {
-		return enterococos;
-	}
-
-	public void setEnterococos(double enterococos) {
-		this.enterococos = enterococos;
-	}
-
-	public double getEscherichia() {
-		return escherichia;
-	}
-
-	public void setEscherichia(double escherichia) {
-		this.escherichia = escherichia;
-	}
-
-	public double getCandida() {
-		return candida;
-	}
-
-	public void setCandida(double candida) {
-		this.candida = candida;
-	}
-
-	public double getEfeitosColaterais() {
-		return efeitosColaterais;
-	}
-
-	public void setEfeitosColaterais(double efeitosColaterais) {
-		this.efeitosColaterais = efeitosColaterais;
-	}
-
+	
 	@Override
 	public int compareTo(AvalIndicacaoEspec arg0) {
 		// TODO Auto-generated method stub

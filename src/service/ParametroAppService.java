@@ -43,4 +43,14 @@ public class ParametroAppService {
 	public List<Parametro> recuperaListaDeParametrosPaginada(){
 		return parametroDAO.recuperaListaDeParametrosPaginada();
 	}
+	
+	public Parametro recuperaParametroPorCodigio(String codigo) throws AplicacaoException{
+		Parametro parametro = null;
+		try {
+			parametro = parametroDAO.recuperaParametroPorCodigo(codigo);
+		} catch (ObjetoNaoEncontradoException ob) {
+			throw new AplicacaoException("parametro.CODIGO_NAO_ENCONTRADO");
+		}
+		return parametro;
+	}
 }
