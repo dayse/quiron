@@ -73,6 +73,7 @@ public class CargaAtendimento extends CargaBase{
 	public List<CargaBase> getCargasDependentes(){
 		List<CargaBase> dependencias = new ArrayList<CargaBase>();
 		dependencias.add(new CargaUsuario());
+		dependencias.add(new CargaParametros());
 		dependencias.add(new CargaPaciente());
 		return dependencias;
 	}
@@ -151,13 +152,13 @@ public class CargaAtendimento extends CargaBase{
 	public void incluirAnamneses(Atendimento atendimentoPaciente1, Atendimento atendimentoPaciente2) 
 									throws AplicacaoException {
 
-		Parametro febre = parametroService.recuperaParametroPorCodigio("febre");
-		Parametro disuria = parametroService.recuperaParametroPorCodigio("disuria");
-		Parametro diabetes = parametroService.recuperaParametroPorCodigio("diabetes");
-		Parametro enterococos = parametroService.recuperaParametroPorCodigio("enterococos");
-		Parametro escherichia = parametroService.recuperaParametroPorCodigio("escherichia");
-		Parametro candida = parametroService.recuperaParametroPorCodigio("candida");
-		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigio("efeitosColaterais");
+		Parametro febre = parametroService.recuperaParametroPorCodigio("P1");
+		Parametro disuria = parametroService.recuperaParametroPorCodigio("P2");
+		Parametro diabetes = parametroService.recuperaParametroPorCodigio("P3");
+		Parametro enterococos = parametroService.recuperaParametroPorCodigio("P4");
+		Parametro escherichia = parametroService.recuperaParametroPorCodigio("P5");
+		Parametro candida = parametroService.recuperaParametroPorCodigio("P6");
+		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigio("P7");
 		
 		
 		Anamnese atendimentoPc1_febre = new Anamnese(atendimentoPaciente1, febre, 0.7);

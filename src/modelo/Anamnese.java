@@ -33,6 +33,16 @@ import javax.persistence.Table;
 @SequenceGenerator(name = "SEQUENCIA", sequenceName = "SEQ_ANAMNESE", allocationSize = 1)
 public class Anamnese implements Serializable, Comparable<Anamnese> {
 
+	
+	public Anamnese() {
+	}
+	
+	public Anamnese(Atendimento atendimento, Parametro parametro, Double valor){
+		this.atendimento = atendimento;
+		this.parametro = parametro;
+		this.valor = valor;
+	}
+	
 	/**
 	 * 
 	 */
