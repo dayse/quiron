@@ -10,6 +10,7 @@ import modelo.Atendimento;
 import modelo.AvalIndicacaoEspec;
 import modelo.Avaliacao;
 import modelo.Indicacao;
+import modelo.Parametro;
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
 import DAO.AnamneseDAO;
@@ -159,5 +160,13 @@ public class AnamneseAppService {
 
 	public List<Anamnese> recuperaListaDeAnamnesePorAtendimento(Atendimento atendimento) {
 		return anamneseDAO.recuperaListaDeAnamnesePorAtendimento(atendimento);
+	}
+	
+	public Anamnese recuperaAnamnesePorAtendimentoPorParametro(Atendimento atendimento, Parametro parametro) throws AplicacaoException{
+		try {
+			return anamneseDAO.recuperaAnamnesePorAtendimentoPorParametro(atendimento, parametro);
+		} catch (ObjetoNaoEncontradoException e) {
+			throw new AplicacaoException("anamnese.NAO_ENCONTRADA");
+		}
 	}
 }
