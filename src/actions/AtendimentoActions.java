@@ -9,12 +9,10 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 import DAO.exception.ObjetoNaoEncontradoException;
-
 import modelo.Atendimento;
 import modelo.Paciente;
 import modelo.Anamnese;
 import modelo.Usuario;
-
 import service.AnamneseAppService;
 import service.AtendimentoAppService;
 import service.PacienteAppService;
@@ -160,13 +158,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public String calculaAvaliacao() {
 		listaAvaliacao = new ListDataModel(anamneseService
 				.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente));
-		try {
-			anamnesesCorrente = anamneseService
-					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
-		} catch (ObjetoNaoEncontradoException ex) {
-			error(ex.getMessage());
-			return PAGINA_LIST;
-		}
+//		try {
+//			anamnesesCorrente = anamneseService
+//					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
+//		} catch (ObjetoNaoEncontradoException ex) {
+//			error(ex.getMessage());
+//			return PAGINA_LIST;
+//		}
 		try {
 			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
 					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
@@ -242,13 +240,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		/**
 		 * Implementar exclusão em cascata. Economia de código!
 		 */
-		try {
-			anamnesesCorrente = anamneseService
-					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
-		} catch (ObjetoNaoEncontradoException ex) {
-			error(ex.getMessage());
-			return PAGINA_LIST;
-		}
+//		try {
+//			anamnesesCorrente = anamneseService
+//					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
+//		} catch (ObjetoNaoEncontradoException ex) {
+//			error(ex.getMessage());
+//			return PAGINA_LIST;
+//		}
 		try {
 			anamneseService.exclui(anamnesesCorrente);
 		} catch (AplicacaoException ex) {
@@ -279,6 +277,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * @author bruno.oliveira
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	public String inclui() {
 		atendimentoCorrente.setDataAtendimento(DataUtil.dateToCalendar(dataAtendimento));
 		atendimentoCorrente.setMedico(comboMedicos.getObjetoSelecionado());
@@ -290,17 +289,23 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			error(ex.getMessage());
 			return PAGINA_NEW;
 		}
-		anamnesesCorrente.setAtendimento(atendimentoCorrente);
-		try {
-			anamneseService.inclui(anamnesesCorrente);
-		} catch (AplicacaoException ex) {
-			error(ex.getMessage());
-			return PAGINA_NEW;
+		
+		List<Anamnese> anamneses = (List<Anamnese>) listaDeAnamneses.getWrappedData();
+		for (Anamnese anamnese : anamneses) {
+
+//			anamnesesCorrente.setAtendimento(atendimentoCorrente);
+			try {
+				anamneseService.inclui(anamnese);
+			} catch (AplicacaoException ex) {
+				error(ex.getMessage());
+				return PAGINA_NEW;
+			}
 		}
 		logUsuarioAutenticadoMsg("Atendimento - Inclui atendimento:" + atendimentoCorrente.getCodAtendimento());
 		info("atendimento.SUCESSO_INCLUSAO");
 		listaDeAtendimentos = null;
 		listaDePacientes = null;
+		listaDeAnamneses = null;
 		return PAGINA_LIST;
 	}
 
@@ -317,13 +322,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String mostrar() {
-		try {
-			anamnesesCorrente = anamneseService
-					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
-		} catch (ObjetoNaoEncontradoException ex) {
-			error(ex.getMessage());
-			return PAGINA_LIST;
-		}
+//		try {
+//			anamnesesCorrente = anamneseService
+//					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
+//		} catch (ObjetoNaoEncontradoException ex) {
+//			error(ex.getMessage());
+//			return PAGINA_LIST;
+//		}
 		try {
 			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
 					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
@@ -366,13 +371,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 */
 	public String preparaAlteracao() {
 		pacienteCorrente = atendimentoCorrente.getPaciente();
-		try {
-			anamnesesCorrente = anamneseService
-					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
-		} catch (ObjetoNaoEncontradoException ex) {
-			error(ex.getMessage());
-			return PAGINA_LIST;
-		}
+//		try {
+//			anamnesesCorrente = anamneseService
+//					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
+//		} catch (ObjetoNaoEncontradoException ex) {
+//			error(ex.getMessage());
+//			return PAGINA_LIST;
+//		}
 		try {
 			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
 					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
@@ -478,7 +483,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public DataModel getListaDeAnamneses() {
 
 		if (listaDeAnamneses == null) {
-			if(atendimentoCorrente == null){
+			if(atendimentoCorrente.getId() == null){
 				listaDeAnamneses = new ListDataModel(anamneseService
 						.geraListaDeAnamnesesPadroesParaAtendimento(atendimentoCorrente));
 			}

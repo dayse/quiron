@@ -92,74 +92,39 @@
 				<f:facet name="header">
 					<h:outputText value="#{prompt.parametro}" />
 				</f:facet>
+			
+			
+			<rich:dataTable id="lista" 
+				value="#{atendimentoActions.listaDeAnamneses}" var="anamnese"
+				width="470px">
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column >
+							<h:outputText title="#{tooltip.parametro}"
+								value="#{prompt.parametro_Nome}" />
+						</rich:column>
+						<rich:column colspan="2">
+							<h:outputText title="#{tooltip.parametro_valor}"
+								value="#{prompt.parametro_Valor}" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
 
-				<h:panelGrid columns="3">
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Febre}" />:
-			    	</h:panelGroup>
+				<h:column>
+					<h:outputText value="#{anamnese.parametro.nome}" />
+				</h:column>
 
-					<h:inputText id="febre" value="#{atendimentoActions.anamneseCorrente.febre}"
-						maxlength="#{constantes.lParametroFebre}" size="20" required="false" />
-					<h:message for="febre" styleClass="error" />
-
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Disuria}" />:
-			    	</h:panelGroup>
-
-					<h:inputText id="disuria" value="#{atendimentoActions.anamneseCorrente.disuria}"
-						maxlength="#{constantes.lParametroDisuria}" size="20" required="false" />
-					<h:message for="disuria" styleClass="error" />
-
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Diabetes}" />:
-			    	</h:panelGroup>
-
-					<h:inputText id="diabetes"
-						value="#{atendimentoActions.anamneseCorrente.diabetes}"
-						maxlength="#{constantes.lParametroDiabetes}" size="20"
+				<rich:column colspan="2">
+				
+					<h:inputText id="#{anamnese.parametro.nome}_valor"
+						value="#{anamnese.valor}"
 						required="false" />
-					<h:message for="diabetes" styleClass="error" />
-
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Enterococos}" />:
-			    	</h:panelGroup>
-
-					<h:inputText id="enterococos"
-						value="#{atendimentoActions.anamneseCorrente.enterococos}"
-						maxlength="#{constantes.lParametroEnterococos}" size="20"
-						required="false" />
-					<h:message for="enterococos" styleClass="error" />
-					
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Escherichia}" />:
-			    	</h:panelGroup>
-
-					<h:inputText id="escherichia"
-						value="#{atendimentoActions.anamneseCorrente.escherichia}"
-						maxlength="#{constantes.lParametroEscherichia}" size="20"
-						required="false" />
-					<h:message for="escherichia" styleClass="error" />		
-					
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Candida}" />:
-			    	</h:panelGroup>
-
-					<h:inputText id="candida"
-						value="#{atendimentoActions.anamneseCorrente.candida}"
-						maxlength="#{constantes.lParametroCandida}" size="20"
-						required="false" />
-					<h:message for="candida" styleClass="error" />	
-					
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_EfeitosColaterais}" />:
-			    	</h:panelGroup>
-
-					<h:inputText id="efeitosColaterais"
-						value="#{atendimentoActions.anamneseCorrente.efeitosColaterais}"
-						maxlength="#{constantes.lParametroEfeitosColaterais}" size="20"
-						required="false" />
-					<h:message for="efeitosColaterais" styleClass="error" />												
-				</h:panelGrid>
+					<h:message for="#{anamnese.parametro.nome}_valor" styleClass="error" />
+				</rich:column>
+						
+			</rich:dataTable>
+						
+									
 			</rich:simpleTogglePanel>
 
 			<h:commandButton id="botaoIncluir"
