@@ -75,6 +75,14 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 		}
 	}
 
+	@Override
+	public List<CargaBase> getCargasDependentes(){
+		List<CargaBase> dependencias = new ArrayList<CargaBase>();
+		dependencias.add(new CargaEspecialista());
+		dependencias.add(new CargaIndicacao());
+		return dependencias;
+	}
+	
 	/**
 	 * 
 	 * Método herdado de CargaBase e utilizado para definir as etapas

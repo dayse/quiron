@@ -1,5 +1,7 @@
 package carga;
 
+import java.util.List;
+
 import service.exception.AplicacaoException;
 
 /**
@@ -33,4 +35,10 @@ public abstract class CargaBase {
 	 * 
 	 */
 	public abstract boolean executar() throws AplicacaoException;
+	
+	/**
+	 * Lista de cargas que a carga atual depende para rodar com sucesso
+	 */
+	public abstract List<CargaBase> getCargasDependentes();
+	
 }

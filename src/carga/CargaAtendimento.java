@@ -1,14 +1,18 @@
 package carga;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import modelo.Anamnese;
 import modelo.Atendimento;
 import modelo.Paciente;
+import modelo.Parametro;
 import modelo.Usuario;
 import service.AnamneseAppService;
 import service.AtendimentoAppService;
 import service.PacienteAppService;
+import service.ParametroAppService;
 import service.UsuarioAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -39,8 +43,10 @@ public class CargaAtendimento extends CargaBase{
 	// Services
 	private static PacienteAppService pacienteService;
 	private static AtendimentoAppService atendimentoService;
+	private static ParametroAppService parametroService;
 	private static AnamneseAppService anamneseService;
 	private static UsuarioAppService usuarioService;
+	
 	
 	/**
 	 * 
@@ -53,6 +59,7 @@ public class CargaAtendimento extends CargaBase{
 		try {
 			pacienteService = FabricaDeAppService.getAppService(PacienteAppService.class);
 			atendimentoService = FabricaDeAppService.getAppService(AtendimentoAppService.class);
+			parametroService = FabricaDeAppService.getAppService(ParametroAppService.class);
 			anamneseService = FabricaDeAppService
 					.getAppService(AnamneseAppService.class);
 			usuarioService = FabricaDeAppService
@@ -62,6 +69,14 @@ public class CargaAtendimento extends CargaBase{
 		}
 	}
 
+	@Override
+	public List<CargaBase> getCargasDependentes(){
+		List<CargaBase> dependencias = new ArrayList<CargaBase>();
+		dependencias.add(new CargaUsuario());
+		dependencias.add(new CargaPaciente());
+		return dependencias;
+	}
+	
 	/**
 	 * 
 	 * Método herdado de CargaBase e utilizado para definir as etapas
@@ -136,28 +151,48 @@ public class CargaAtendimento extends CargaBase{
 	public void incluirAnamneses(Atendimento atendimentoPaciente1, Atendimento atendimentoPaciente2) 
 									throws AplicacaoException {
 
-		Anamnese anamneseAtendimentoPc1 = new Anamnese();
-		anamneseAtendimentoPc1.setAtendimento(atendimentoPaciente1);
-		anamneseAtendimentoPc1.setFebre(0.7);
-		anamneseAtendimentoPc1.setDisuria(0.8);
-		anamneseAtendimentoPc1.setDiabetes(0.7);
-		anamneseAtendimentoPc1.setEnterococos(0.0);
-		anamneseAtendimentoPc1.setEscherichia(0.0);
-		anamneseAtendimentoPc1.setCandida(1.0);
-		anamneseAtendimentoPc1.setEfeitosColaterais(1.0);
+		Parametro febre = parametroService.recuperaParametroPorCodigio("febre");
+		Parametro disuria = parametroService.recuperaParametroPorCodigio("disuria");
+		Parametro diabetes = parametroService.recuperaParametroPorCodigio("diabetes");
+		Parametro enterococos = parametroService.recuperaParametroPorCodigio("enterococos");
+		Parametro escherichia = parametroService.recuperaParametroPorCodigio("escherichia");
+		Parametro candida = parametroService.recuperaParametroPorCodigio("candida");
+		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigio("efeitosColaterais");
+		
+		
+		Anamnese atendimentoPc1_febre = new Anamnese(atendimentoPaciente1, febre, 0.7);
+		Anamnese atendimentoPc1_disuria = new Anamnese(atendimentoPaciente1, disuria, 0.8);
+		Anamnese atendimentoPc1_diabetes = new Anamnese(atendimentoPaciente1, diabetes, 0.7);
+		Anamnese atendimentoPc1_enterococos = new Anamnese(atendimentoPaciente1, enterococos, 0.0);
+		Anamnese atendimentoPc1_escherichia = new Anamnese(atendimentoPaciente1, escherichia, 0.0);
+		Anamnese atendimentoPc1_candida = new Anamnese(atendimentoPaciente1, candida, 1.0);
+		Anamnese atendimentoPc1_efeitosColaterais = new Anamnese(atendimentoPaciente1, efeitosColaterais, 1.0);
+		
+		anamneseService.inclui(atendimentoPc1_febre);
+		anamneseService.inclui(atendimentoPc1_disuria);
+		anamneseService.inclui(atendimentoPc1_diabetes);
+		anamneseService.inclui(atendimentoPc1_enterococos);
+		anamneseService.inclui(atendimentoPc1_escherichia);
+		anamneseService.inclui(atendimentoPc1_candida);
+		anamneseService.inclui(atendimentoPc1_efeitosColaterais);
+		
 
-		Anamnese anamneseAtendimentoPc2 = new Anamnese();
-		anamneseAtendimentoPc2.setAtendimento(atendimentoPaciente2);
-		anamneseAtendimentoPc2.setFebre(0.2);
-		anamneseAtendimentoPc2.setDisuria(0.4);
-		anamneseAtendimentoPc2.setDiabetes(0.3);
-		anamneseAtendimentoPc2.setEnterococos(1.0);
-		anamneseAtendimentoPc2.setEscherichia(0.0);
-		anamneseAtendimentoPc2.setCandida(0.0);
-		anamneseAtendimentoPc2.setEfeitosColaterais(1.0);
+		Anamnese atendimentoPc2_febre = new Anamnese(atendimentoPaciente2, febre, 0.2);
+		Anamnese atendimentoPc2_disuria = new Anamnese(atendimentoPaciente2, disuria, 0.4);
+		Anamnese atendimentoPc2_diabetes = new Anamnese(atendimentoPaciente2, diabetes, 0.3);
+		Anamnese atendimentoPc2_enterococos = new Anamnese(atendimentoPaciente2, enterococos, 1.0);
+		Anamnese atendimentoPc2_escherichia = new Anamnese(atendimentoPaciente2, escherichia, 0.0);
+		Anamnese atendimentoPc2_candida = new Anamnese(atendimentoPaciente2, candida, 0.0);
+		Anamnese atendimentoPc2_efeitosColaterais = new Anamnese(atendimentoPaciente2, efeitosColaterais, 1.0);
 
-		anamneseService.inclui(anamneseAtendimentoPc1);
-		anamneseService.inclui(anamneseAtendimentoPc2);
+		anamneseService.inclui(atendimentoPc2_febre);
+		anamneseService.inclui(atendimentoPc2_disuria);
+		anamneseService.inclui(atendimentoPc2_diabetes);
+		anamneseService.inclui(atendimentoPc2_enterococos);
+		anamneseService.inclui(atendimentoPc2_escherichia);
+		anamneseService.inclui(atendimentoPc2_candida);
+		anamneseService.inclui(atendimentoPc2_efeitosColaterais);
+		
 	}
 	
 

@@ -1,8 +1,10 @@
 package carga;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import modelo.Especialista;
 import modelo.Paciente;
@@ -51,6 +53,12 @@ public class CargaPaciente extends CargaBase{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<CargaBase> getCargasDependentes(){
+		List<CargaBase> dependencias = new ArrayList<CargaBase>();
+		return dependencias;
 	}
 
 	/**

@@ -59,6 +59,12 @@ public class CargaUsuario extends CargaBase{
 		}
 	}
 
+	@Override
+	public List<CargaBase> getCargasDependentes(){
+		List<CargaBase> dependencias = new ArrayList<CargaBase>();
+		return dependencias;
+	}
+	
 	/**
 	 * 
 	 * Método herdado de CargaBase e utilizado para definir as etapas

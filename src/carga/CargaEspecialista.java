@@ -1,5 +1,8 @@
 package carga;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import modelo.Especialista;
 import service.EspecialistaAppService;
 import service.controleTransacao.FabricaDeAppService;
@@ -64,7 +67,12 @@ public class CargaEspecialista extends CargaBase{
 		this.incluirEspecialistas();
 		return true;
 	}
-	
+
+	@Override
+	public List<CargaBase> getCargasDependentes(){
+		List<CargaBase> dependencias = new ArrayList<CargaBase>();
+		return dependencias;
+	}
 
 	/**
 	 * Metodo responsável por preparar e inserir os valores padrões de

@@ -1,5 +1,8 @@
 package carga;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import modelo.Parametro;
 import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
@@ -47,6 +50,12 @@ public class CargaParametros extends CargaBase {
 		}
 	}
 
+	@Override
+	public List<CargaBase> getCargasDependentes(){
+		List<CargaBase> dependencias = new ArrayList<CargaBase>();
+		return dependencias;
+	}
+	
 	/**
 	 * 
 	 * Método herdado de CargaBase e utilizado para definir as etapas
