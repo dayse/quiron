@@ -134,12 +134,18 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			error(e.getMessage());
 			return PAGINA_EDIT;
 		}
-		try {
-			anamneseService.altera(anamnesesCorrente);
-		} catch (AplicacaoException ex) {
-			error(ex.getMessage());
-			return PAGINA_EDIT;
+
+		List<Anamnese> anamneses = (List<Anamnese>) listaDeAnamneses.getWrappedData();
+		for (Anamnese anamnese : anamneses) {
+
+			try {
+				anamneseService.altera(anamnese);
+			} catch (AplicacaoException ex) {
+				error(ex.getMessage());
+				return PAGINA_EDIT;
+			}
 		}
+		
 		logUsuarioAutenticadoMsg("Atendimento - Altera atendimento:" + atendimentoCorrente.getCodAtendimento());
 		info("atendimento.SUCESSO_ALTERACAO");
 		return PAGINA_LIST;
@@ -401,6 +407,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			}
 		}
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+
+		listaDeAnamneses = null;
 		return PAGINA_EDIT;
 	}
 
@@ -425,6 +433,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		dataAtendimento = null;
 		atendimentoCorrente = new Atendimento();
 		anamnesesCorrente = new Anamnese();
+		listaDeAnamneses = null;
 		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
 		atendimentoCorrente.setPaciente(pacienteCorrente);
 		return PAGINA_NEW;
