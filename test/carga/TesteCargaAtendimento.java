@@ -2,7 +2,10 @@ package carga;
 
 import java.util.List;
 
+import modelo.Anamnese;
 import modelo.Atendimento;
+import modelo.Paciente;
+import modelo.Parametro;
 import modelo.Usuario;
 
 import org.testng.AssertJUnit;
@@ -103,7 +106,108 @@ public class TesteCargaAtendimento {
 		
 		int num_atendimentos = 2;
 		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());;
+
+		Paciente paciente1 = pacienteService.recuperaPacientePorCodigo("paciente1");
+		Paciente paciente2 = pacienteService.recuperaPacientePorCodigo("paciente2");
+
+		Usuario clinico = usuarioService.recuperaPorLogin("clinico");
+		Usuario tecnico = usuarioService.recuperaPorLogin("tecnico");
+
+		Atendimento atendimentoPaciente1 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp1");
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getPaciente(), 
+				paciente1);
 		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getMedico(), 
+				clinico);
+		
+		Atendimento atendimentoPaciente2 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp2");
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente2.getPaciente(), 
+				paciente2);
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente2.getMedico(), 
+				clinico);
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente2.getTecnico(), 
+				tecnico);
+		
+	}
+	
+	@Test(dependsOnMethods="testeCargaIncluirAtendimentos")
+	public void testeCargaIncluirAnamneses() throws AplicacaoException {
+
+		Parametro febre = parametroService.recuperaParametroPorCodigio("P1");
+		Parametro disuria = parametroService.recuperaParametroPorCodigio("P2");
+		Parametro diabetes = parametroService.recuperaParametroPorCodigio("P3");
+		Parametro enterococos = parametroService.recuperaParametroPorCodigio("P4");
+		Parametro escherichia = parametroService.recuperaParametroPorCodigio("P5");
+		Parametro candida = parametroService.recuperaParametroPorCodigio("P6");
+		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigio("P7");
+		
+		Atendimento atendimentoPaciente1 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp1");
+		Atendimento atendimentoPaciente2 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp2");
+		
+		List<Anamnese> anamnesesAtp1 = anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoPaciente1);
+		
+
+		int num_anamnesesAtp1 = 7;
+		AssertJUnit.assertEquals(num_anamnesesAtp1, anamnesesAtp1.size());
+
+		Anamnese atendimentoPc1_febre = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,febre);
+		AssertJUnit.assertEquals(0.7, atendimentoPc1_febre.getValor());
+
+		Anamnese atendimentoPc1_disuria = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,disuria);
+		AssertJUnit.assertEquals(0.8, atendimentoPc1_disuria.getValor());
+
+		Anamnese atendimentoPc1_diabetes = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,diabetes);
+		AssertJUnit.assertEquals(0.7, atendimentoPc1_diabetes.getValor());
+
+		Anamnese atendimentoPc1_enterococos = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,enterococos);
+		AssertJUnit.assertEquals(0.0, atendimentoPc1_enterococos.getValor());
+
+		Anamnese atendimentoPc1_escherichia = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,escherichia);
+		AssertJUnit.assertEquals(0.0, atendimentoPc1_escherichia.getValor());
+
+		Anamnese atendimentoPc1_candida = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,candida);
+		AssertJUnit.assertEquals(1.0, atendimentoPc1_candida.getValor());
+
+		Anamnese atendimentoPc1_efeitosColaterais = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,efeitosColaterais);
+		AssertJUnit.assertEquals(1.0, atendimentoPc1_efeitosColaterais.getValor());
+
+		
+
+		List<Anamnese> anamnesesAtp2 = anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoPaciente2);
+		
+		int num_anamnesesAtp2 = 7;
+		AssertJUnit.assertEquals(num_anamnesesAtp2, anamnesesAtp2.size());
+
+		Anamnese atendimentoPc2_febre = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,febre);
+		AssertJUnit.assertEquals(0.2, atendimentoPc2_febre.getValor());
+
+		Anamnese atendimentoPc2_disuria = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,disuria);
+		AssertJUnit.assertEquals(0.4, atendimentoPc2_disuria.getValor());
+
+		Anamnese atendimentoPc2_diabetes = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,diabetes);
+		AssertJUnit.assertEquals(0.3, atendimentoPc2_diabetes.getValor());
+
+		Anamnese atendimentoPc2_enterococos = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,enterococos);
+		AssertJUnit.assertEquals(1.0, atendimentoPc2_enterococos.getValor());
+
+		Anamnese atendimentoPc2_escherichia = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,escherichia);
+		AssertJUnit.assertEquals(0.0, atendimentoPc2_escherichia.getValor());
+
+		Anamnese atendimentoPc2_candida = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,candida);
+		AssertJUnit.assertEquals(0.0, atendimentoPc2_candida.getValor());
+
+		Anamnese atendimentoPc2_efeitosColaterais = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,efeitosColaterais);
+		AssertJUnit.assertEquals(1.0, atendimentoPc2_efeitosColaterais.getValor());
+
 		
 	}
 	
