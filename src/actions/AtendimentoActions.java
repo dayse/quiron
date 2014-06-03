@@ -47,6 +47,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private DataModel listaDePacientes;
 	private DataModel listaDeAtendimentos;
 	private DataModel listaAvaliacao;
+	private DataModel listaDeAnamneses;
 	private List<String> status = new ArrayList<String>();
 
 	// Páginas
@@ -67,7 +68,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private static UsuarioAppService usuarioService;
 
 	// Variáveis de tela
-	private Anamnese anamneseCorrente;
+	private Anamnese anamnesesCorrente;
 	private Atendimento atendimentoCorrente;
 	private Paciente pacienteCorrente;
 	private Date dataAtendimento;
@@ -136,7 +137,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			return PAGINA_EDIT;
 		}
 		try {
-			anamneseService.altera(anamneseCorrente);
+			anamneseService.altera(anamnesesCorrente);
 		} catch (AplicacaoException ex) {
 			error(ex.getMessage());
 			return PAGINA_EDIT;
@@ -160,7 +161,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaAvaliacao = new ListDataModel(anamneseService
 				.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente));
 		try {
-			anamneseCorrente = anamneseService
+			anamnesesCorrente = anamneseService
 					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
 		} catch (ObjetoNaoEncontradoException ex) {
 			error(ex.getMessage());
@@ -242,14 +243,14 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		 * Implementar exclusão em cascata. Economia de código!
 		 */
 		try {
-			anamneseCorrente = anamneseService
+			anamnesesCorrente = anamneseService
 					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
 		} catch (ObjetoNaoEncontradoException ex) {
 			error(ex.getMessage());
 			return PAGINA_LIST;
 		}
 		try {
-			anamneseService.exclui(anamneseCorrente);
+			anamneseService.exclui(anamnesesCorrente);
 		} catch (AplicacaoException ex) {
 			error(ex.getMessage());
 			return PAGINA_LIST;
@@ -289,9 +290,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			error(ex.getMessage());
 			return PAGINA_NEW;
 		}
-		anamneseCorrente.setAtendimento(atendimentoCorrente);
+		anamnesesCorrente.setAtendimento(atendimentoCorrente);
 		try {
-			anamneseService.inclui(anamneseCorrente);
+			anamneseService.inclui(anamnesesCorrente);
 		} catch (AplicacaoException ex) {
 			error(ex.getMessage());
 			return PAGINA_NEW;
@@ -317,7 +318,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 */
 	public String mostrar() {
 		try {
-			anamneseCorrente = anamneseService
+			anamnesesCorrente = anamneseService
 					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
 		} catch (ObjetoNaoEncontradoException ex) {
 			error(ex.getMessage());
@@ -366,7 +367,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public String preparaAlteracao() {
 		pacienteCorrente = atendimentoCorrente.getPaciente();
 		try {
-			anamneseCorrente = anamneseService
+			anamnesesCorrente = anamneseService
 					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
 		} catch (ObjetoNaoEncontradoException ex) {
 			error(ex.getMessage());
@@ -418,7 +419,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		comboStatus = null;
 		dataAtendimento = null;
 		atendimentoCorrente = new Atendimento();
-		anamneseCorrente = new Anamnese();
+		anamnesesCorrente = new Anamnese();
 		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
 		atendimentoCorrente.setPaciente(pacienteCorrente);
 		return PAGINA_NEW;
@@ -472,6 +473,26 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			listaDeAtendimentos = new ListDataModel(atendimentos);
 		}
 		return listaDeAtendimentos;
+	}
+
+	public DataModel getListaDeAnamneses() {
+
+		if (listaDeAnamneses == null) {
+			if(atendimentoCorrente == null){
+				listaDeAnamneses = new ListDataModel(anamneseService
+						.geraListaDeAnamnesesPadroesParaAtendimento(atendimentoCorrente));
+			}
+			else{
+				listaDeAnamneses = new ListDataModel(anamneseService
+						.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente));
+			}
+		}
+		
+		return listaDeAnamneses;
+	}
+
+	public void setListaDeAnamneses(DataModel listaDeAnamneses) {
+		this.listaDeAnamneses = listaDeAnamneses;
 	}
 
 	public void setListaDeAtendimentos(DataModel listaDeAtendimentos) {
@@ -605,11 +626,11 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	}
 
 	public Anamnese getAnamneseCorrente() {
-		return anamneseCorrente;
+		return anamnesesCorrente;
 	}
 
 	public void setAnamneseCorrente(Anamnese anamneseCorrente) {
-		this.anamneseCorrente = anamneseCorrente;
+		this.anamnesesCorrente = anamneseCorrente;
 	}
 
 	public DataModel getListaAvaliacao() {
@@ -619,5 +640,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public void setListaAvaliacao(DataModel listaAvaliacao) {
 		this.listaAvaliacao = listaAvaliacao;
 	}
+
 
 }

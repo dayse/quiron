@@ -17,10 +17,12 @@ import DAO.AnamneseDAO;
 import DAO.AvalIndicacaoEspecDAO;
 import DAO.EspecialistaDAO;
 import DAO.IndicacaoDAO;
+import DAO.ParametroDAO;
 import DAO.Impl.AnamneseDAOImpl;
 import DAO.Impl.AvalIndicacaoEspecDAOImpl;
 import DAO.Impl.EspecialistaDAOImpl;
 import DAO.Impl.IndicacaoDAOImpl;
+import DAO.Impl.ParametroDAOImpl;
 import DAO.controle.FabricaDeDao;
 import DAO.exception.ObjetoNaoEncontradoException;
 
@@ -29,6 +31,7 @@ public class AnamneseAppService {
 	private static AnamneseDAO anamneseDAO;
 	private static AvalIndicacaoEspecDAO avalIndicacaoEspecDAO;
 	private static IndicacaoDAO indicacaoDAO;
+	private static ParametroDAO parametroDAO;
 
 	public AnamneseAppService() throws Exception {
 		try {
@@ -36,6 +39,7 @@ public class AnamneseAppService {
 			avalIndicacaoEspecDAO = FabricaDeDao
 					.getDao(AvalIndicacaoEspecDAOImpl.class);
 			indicacaoDAO = FabricaDeDao.getDao(IndicacaoDAOImpl.class);
+			parametroDAO = FabricaDeDao.getDao(ParametroDAOImpl.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -156,6 +160,27 @@ public class AnamneseAppService {
 		} catch (ObjetoNaoEncontradoException ob) {
 		}
 		anamneseDAO.inclui(anamnese);
+	}
+	
+	/**
+	 * Utilizando todos os parametros disponiveis gera uma lista de anamneses
+	 * para um dado atendimento.
+	 * com os dados de parametros já preenchidos (para cada parametro no banco).
+	 * Esses objetos não foram persistidos ainda!
+	 * A ideia é que possam ser usados em conjunto com um atendimento não persistido
+	 * em banco também.
+	 * 
+	 * @return
+	 */
+	public List<Anamnese> geraListaDeAnamnesesPadroesParaAtendimento(Atendimento atendimento){
+		List<Parametro> parametros = parametroDAO.recuperaListaDeParametros();
+		
+		List<Anamnese> anamneses = new ArrayList<Anamnese>();
+		for (Parametro parametro : parametros) {
+			Anamnese anamnese = new Anamnese(atendimento, parametro, 0.0);
+			anamneses.add(anamnese);
+		}
+		return anamneses;
 	}
 
 	public List<Anamnese> recuperaListaDeAnamnesePorAtendimento(Atendimento atendimento) {
