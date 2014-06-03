@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import service.anotacao.Transacional;
+import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
@@ -29,14 +30,16 @@ public class IndicacaoAppService {
 	private static IndicacaoDAO indicacaoDAO;
 	private static EspecialistaDAO especialistaDAO;
 	private static ParametroDAO parametroDAO;
-	private static AvalIndicacaoEspecDAO avalIndicacaoEspecDAO;
+	
+	private static AvalIndicacaoEspecAppService avalIndicacaoEspecService;
 
 	public IndicacaoAppService() throws Exception {
 		try {
 			indicacaoDAO = FabricaDeDao.getDao(IndicacaoDAOImpl.class);
 			especialistaDAO = FabricaDeDao.getDao(EspecialistaDAOImpl.class);
 			parametroDAO = FabricaDeDao.getDao(ParametroDAOImpl.class);
-			avalIndicacaoEspecDAO = FabricaDeDao.getDao(AvalIndicacaoEspecDAOImpl.class);
+
+			avalIndicacaoEspecService = FabricaDeAppService.getAppService(AvalIndicacaoEspecAppService.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -74,17 +77,20 @@ public class IndicacaoAppService {
 		
 		if(!especialistaBD.isEmpty() && !parametroBD.isEmpty()){
 			for(Especialista especialista : especialistaBD){
+				for(Parametro parametro : parametroBD){
 				
 				AvalIndicacaoEspec avalIndicacaoEspec = new AvalIndicacaoEspec();
+				
+				avalIndicacaoEspec.setValor(0);
+				
 				avalIndicacaoEspec.setIndicacao(indicacao);
 				avalIndicacaoEspec.setEspecialista(especialista);
+				avalIndicacaoEspec.setParametro(parametro);
 				
-				for(Parametro parametro : parametroBD){
-					avalIndicacaoEspec.setParametro(parametro);
-					avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
+				avalIndicacaoEspecService.inclui(avalIndicacaoEspec);
 				}
 			}
-		}
+		} 
 	}
 
 	public List<Indicacao> recuperaListaDeIndicacoesPaginada() {

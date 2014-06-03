@@ -5,6 +5,7 @@ import java.util.List;
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
 import modelo.Indicacao;
+import modelo.Parametro;
 import DAO.anotacao.RecuperaLista;
 import DAO.anotacao.RecuperaListaPaginada;
 import DAO.anotacao.RecuperaObjeto;
@@ -124,8 +125,7 @@ public interface AvalIndicacaoEspecDAO extends
 
 	@RecuperaObjeto
 	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(
-					Indicacao indicacao, Especialista especialista)
-			throws ObjetoNaoEncontradoException;
+					Indicacao indicacao, Especialista especialista);
 
 	
 	/**
@@ -141,5 +141,9 @@ public interface AvalIndicacaoEspecDAO extends
 	 */
 	@RecuperaObjeto
 	public Double recuperaMediaDoPesoAvaliadorDosEspecialistas();
+	
+	@RecuperaObjeto
+	public AvalIndicacaoEspec recuperaAvaliacaoPorEspecialistaIndicacaoParametro(
+					Especialista especialista, Indicacao indicacao, Parametro parametro) throws ObjetoNaoEncontradoException;
 
 }

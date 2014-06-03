@@ -47,7 +47,13 @@ import javax.persistence.Table;
 						query = "select a from AvalIndicacaoEspec a " +
 								"where a.indicacao = ?" +
 								"and a.especialista = ?"
-			)
+			),
+			@NamedQuery(name = "AvalIndicacaoEspec.recuperaAvaliacaoPorEspecialistaIndicacaoParametro", 
+						query = "Select a from AvalIndicacaoEspec a " +
+								"where a.especialista = ? " +
+								"and a.indicacao = ? " +
+								"and a.parametro = ?"
+						)
 		}
 )
 

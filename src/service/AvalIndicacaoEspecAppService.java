@@ -5,6 +5,7 @@ import java.util.List;
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
 import modelo.Indicacao;
+import modelo.Parametro;
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
 import DAO.AvalIndicacaoEspecDAO;
@@ -44,12 +45,16 @@ public class AvalIndicacaoEspecAppService {
 	@Transacional
 	public void inclui(AvalIndicacaoEspec avalIndicacaoEspec) throws AplicacaoException{
 		try{
-			avalIndicacaoEspecDAO.recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(avalIndicacaoEspec.getIndicacao(), avalIndicacaoEspec.getEspecialista());
-			
-		}catch(ObjetoNaoEncontradoException ob){
+			avalIndicacaoEspecDAO.recuperaAvaliacaoPorEspecialistaIndicacaoParametro
+									(avalIndicacaoEspec.getEspecialista(), avalIndicacaoEspec.getIndicacao(), avalIndicacaoEspec.getParametro());
 			throw new AplicacaoException("avaliacaoDaIndicacao.AVALIACAO_JA_EXISTENTE");
+		}catch(ObjetoNaoEncontradoException ob){			
 		}
 		avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
+	}
+	
+	public AvalIndicacaoEspec recuperaAvaliacaoPorEspecialistaIndicacaoParametro(Especialista especialista, Indicacao indicacao, Parametro parametro)throws ObjetoNaoEncontradoException{
+		return avalIndicacaoEspecDAO.recuperaAvaliacaoPorEspecialistaIndicacaoParametro(especialista, indicacao, parametro);
 	}
 	
 	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPaginada(Especialista especialista){
@@ -73,7 +78,7 @@ public class AvalIndicacaoEspecAppService {
 	}
 	
 	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(
-										Indicacao indicacao, Especialista especialista) throws ObjetoNaoEncontradoException{
+										Indicacao indicacao, Especialista especialista){
 		return avalIndicacaoEspecDAO.recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(indicacao, especialista);
 	}
 }
