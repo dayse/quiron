@@ -357,7 +357,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				e.printStackTrace();
 			}
 		}
-		
+		listaDeAnamneses = null;
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		return PAGINA_SHOW;
 	}

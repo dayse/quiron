@@ -57,68 +57,31 @@
 					<h:outputText value="#{prompt.parametro}" />
 				</f:facet>
 
-				<h:panelGrid columns="3">
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Febre}" />:
-			    	</h:panelGroup>
-
-					<h:outputText id="febre" value="#{atendimentoActions.anamneseCorrente.febre}"
-						size="20" required="false" />
-					<h:message for="febre" styleClass="error" />
-
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Disuria}" />:
-			    	</h:panelGroup>
-
-					<h:outputText id="disuria" value="#{atendimentoActions.anamneseCorrente.disuria}"
-						size="20" required="false" />
-					<h:message for="disuria" styleClass="error" />
-
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Diabetes}" />:
-			    	</h:panelGroup>
-
-					<h:outputText id="diabetes"
-						value="#{atendimentoActions.anamneseCorrente.diabetes}" size="20"
-						required="false" />
-					<h:message for="diabetes" styleClass="error" />
-
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Enterococos}" />:
-			    	</h:panelGroup>
-
-					<h:outputText id="enterococos"
-						value="#{atendimentoActions.anamneseCorrente.enterococos}" size="20"
-						required="false" />
-					<h:message for="enterococos" styleClass="error" />
-					
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Escherichia}" />:
-			    	</h:panelGroup>
-
-					<h:outputText id="escherichia"
-						value="#{atendimentoActions.anamneseCorrente.escherichia}" size="20"
-						required="false" />
-					<h:message for="escherichia" styleClass="error" />		
-					
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_Enterococos}" />:
-			    	</h:panelGroup>
-
-					<h:outputText id="candida"
-						value="#{atendimentoActions.anamneseCorrente.candida}" size="20"
-						required="false" />
-					<h:message for="candida" styleClass="error" />	
-					
-					<h:panelGroup>
-						<h:outputText value="#{prompt.parametro_EfeitosColaterais}" />:
-			    	</h:panelGroup>
-
-					<h:outputText id="efeitosColaterais"
-						value="#{atendimentoActions.anamneseCorrente.efeitosColaterais}" size="20"
-						required="false" />
-					<h:message for="efeitosColaterais" styleClass="error" />												
-				</h:panelGrid>
+				<rich:dataTable id="lista" 
+					value="#{atendimentoActions.listaDeAnamneses}" var="anamnese"
+					width="470px">
+					<f:facet name="header">
+						<rich:columnGroup>
+							<rich:column >
+								<h:outputText title="#{tooltip.parametro}"
+									value="#{prompt.parametro_Nome}" />
+							</rich:column>
+							<rich:column colspan="2">
+								<h:outputText title="#{tooltip.parametro_valor}"
+									value="#{prompt.parametro_Valor}" />
+							</rich:column>
+						</rich:columnGroup>
+					</f:facet>
+	
+					<h:column>
+						<h:outputText value="#{anamnese.parametro.nome}" />
+					</h:column>
+	
+					<rich:column colspan="2">
+						<h:outputText value="#{anamnese.valor}" />
+					</rich:column>
+							
+				</rich:dataTable>
 			</rich:simpleTogglePanel>			
 			
 		
