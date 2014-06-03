@@ -40,6 +40,19 @@ public interface AtendimentoDAO extends DaoGenerico<Atendimento, Long> {
 			throws ObjetoNaoEncontradoException;
 
 	/**
+	 * Faz o mesmo que o recuperaAtendimentoPorCodigo, porém 
+	 * retorna o atendimento trazendo junto seu paciente (que é lazy).
+	 * 
+	 * @param codAtendimento
+	 * @return
+	 * @throws ObjetoNaoEncontradoException
+	 */
+	@RecuperaObjeto
+	public Atendimento recuperaAtendimentoPorCodigoComPaciente(String codAtendimento)
+			throws ObjetoNaoEncontradoException;
+
+	
+	/**
 	 * 
 	 * Consulta que recupera a lista paginada de todos os atendimentos
 	 * registrados no banco.

@@ -25,6 +25,12 @@ import javax.persistence.TemporalType;
 								"where a.codAtendimento = ? " +
 								"order by a.codAtendimento"
 			),
+			@NamedQuery(name = "Atendimento.recuperaAtendimentoPorCodigoComPaciente",
+						query = "select a from Atendimento a " +
+								"left outer join fetch a.paciente p " +
+								"where a.codAtendimento = ? " +
+								"order by a.codAtendimento"
+			),
 			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosPaginada",
 						query = "select a from Atendimento a " +
 								"inner join a.paciente pa " +

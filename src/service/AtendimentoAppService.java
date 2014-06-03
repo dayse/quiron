@@ -58,11 +58,21 @@ public class AtendimentoAppService {
 		atendimentoDAO.inclui(atendimento);
 	}
 
-	
+
 	public Atendimento recuperaAtendimentoPorCodigo(String codAtendimento) throws AplicacaoException{
 		Atendimento atendimentoBD = null;
 		try{
 			atendimentoBD = atendimentoDAO.recuperaAtendimentoPorCodigo(codAtendimento);
+		}catch(ObjetoNaoEncontradoException exc){
+			throw new AplicacaoException("atendimento.NAO_ENCONTRADO");
+		}
+		return atendimentoBD;		
+	}
+	
+	public Atendimento recuperaAtendimentoPorCodigoComPaciente(String codAtendimento) throws AplicacaoException{
+		Atendimento atendimentoBD = null;
+		try{
+			atendimentoBD = atendimentoDAO.recuperaAtendimentoPorCodigoComPaciente(codAtendimento);
 		}catch(ObjetoNaoEncontradoException exc){
 			throw new AplicacaoException("atendimento.NAO_ENCONTRADO");
 		}
