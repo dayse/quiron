@@ -253,12 +253,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 //			error(ex.getMessage());
 //			return PAGINA_LIST;
 //		}
-		try {
-			anamneseService.exclui(anamnesesCorrente);
-		} catch (AplicacaoException ex) {
-			error(ex.getMessage());
-			return PAGINA_LIST;
-		}
+//		try {
+//			anamneseService.exclui(anamnesesCorrente);
+//		} catch (AplicacaoException ex) {
+//			error(ex.getMessage());
+//			return PAGINA_LIST;
+//		}
 		try {
 			atendimentoService.exclui(atendimentoCorrente);
 		} catch (AplicacaoException ex) {
