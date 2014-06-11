@@ -59,7 +59,7 @@ public class TesteAnamnese {
 	
 	@Test
 	public void testeRecuperaAvaliacaoCalculadaPorIndicacao() throws AplicacaoException {
-		anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimento);
+//		anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimento);
 		
 	}
 	
