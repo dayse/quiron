@@ -1,8 +1,11 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Column;
@@ -13,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -130,6 +134,8 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	private Usuario tecnico;
 	
 
+	private List<Anamnese> anamneses = new ArrayList<Anamnese>();
+	
 	@Override
 	public int compareTo(Atendimento arg0) {
 		// TODO Auto-generated method stub
@@ -201,6 +207,15 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 
 	public void setTecnico(Usuario tecnico) {
 		this.tecnico = tecnico;
+	}
+
+	@OneToMany(mappedBy = "atendimento", cascade=CascadeType.REMOVE)
+	public List<Anamnese> getAnamneses() {
+		return anamneses;
+	}
+
+	public void setAnamneses(List<Anamnese> anamneses) {
+		this.anamneses = anamneses;
 	}
 
 	public String getNomeResponsavel() {
