@@ -99,6 +99,11 @@ public interface AvalIndicacaoEspecDAO extends
 	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPorIndicacao(
 			Indicacao indicacao);
 
+	
+	@RecuperaLista
+	public List<AvalIndicacaoEspec> recuperaAvaliacaoPorIndicacaoParametro(
+			Indicacao indicacao, Parametro parametro);
+
 	/**
 	 * 
 	 * Consulta que recupera uma avaliação através do código identificador (ID).
@@ -126,7 +131,6 @@ public interface AvalIndicacaoEspecDAO extends
 	@RecuperaObjeto
 	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(
 					Indicacao indicacao, Especialista especialista);
-
 	
 	/**
 	 * 
