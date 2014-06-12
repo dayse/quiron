@@ -2,55 +2,12 @@ package modelo;
 
 public class Avaliacao {
 
-	public Avaliacao() {
-		this.indicacao = new Indicacao();
-		this.febre = 0;
-		this.disuria = 0;
-		this.diabetes = 0;
-		this.enterococos = 0;
-		this.escherichia = 0;
-		this.candida = 0;
-		this.efeitosColaterais = 0;
-		this.somatorio = 0;
-		this.grauSemelhanca = 0;
-	}
-
-	public Avaliacao(Indicacao indicacao, double febre,
-			double disuria, 
-			double diabetes,
-			double enterococos, 
-			double escherichia, 
-			double candida, 
-			double efeitosColaterais,  
-			double somatorio,
-			double grauSemelhanca) {
-		this.indicacao = indicacao;
-		this.febre = febre;
-		this.disuria = disuria;
-		this.diabetes = diabetes;
-		this.enterococos = enterococos;
-		this.escherichia = escherichia;
-		this.candida = candida;
-		this.efeitosColaterais = efeitosColaterais;
-		this.somatorio = somatorio;
-		this.grauSemelhanca = grauSemelhanca;		
-	}
-
 	private Indicacao indicacao;
+	private Parametro parametro;
 
-	private double febre;
+	private double uniao;
 
-	private double disuria;
-
-	private double diabetes;
-
-	private double enterococos;
-
-	private double escherichia;
-
-	private double candida;
-
-	private double efeitosColaterais;
+	private double intersecao;
 
 	private double somatorio;
 
@@ -58,70 +15,33 @@ public class Avaliacao {
 	
 	private String nomeIndicacaoNaTabela;
 	
+	public Avaliacao() {
+		this.uniao = 0;
+		this.intersecao = 0;
+		this.somatorio = 0;
+		this.grauSemelhanca = 0;
+	}
+
+	public Avaliacao(Indicacao indicacao, Parametro parametro,
+			double uniao,
+			double intersecao, 
+			double somatorio,
+			double grauSemelhanca) {
+
+		this.indicacao = indicacao;
+		this.parametro = parametro;
+		this.uniao = uniao;
+		this.intersecao = intersecao;
+		this.somatorio = somatorio;
+		this.grauSemelhanca = grauSemelhanca;		
+	}
+
 	public double somaParametros(){
-		return febre + disuria + diabetes + enterococos + escherichia
-				+ candida + efeitosColaterais;		
+		return 0;		
 	}
 	
 	// ================================== Métodos get() e set()
 	// ================================== //
-
-	public double getFebre() {
-		return febre;
-	}
-
-	public void setFebre(double febre) {
-		this.febre = febre;
-	}
-
-	public double getDisuria() {
-		return disuria;
-	}
-
-	public void setDisuria(double disuria) {
-		this.disuria = disuria;
-	}
-
-	public double getDiabetes() {
-		return diabetes;
-	}
-
-	public void setDiabetes(double diabetes) {
-		this.diabetes = diabetes;
-	}
-
-	public double getEnterococos() {
-		return enterococos;
-	}
-
-	public void setEnterococos(double enterococos) {
-		this.enterococos = enterococos;
-	}
-
-	public double getEscherichia() {
-		return escherichia;
-	}
-
-	public void setEscherichia(double escherichia) {
-		this.escherichia = escherichia;
-	}
-
-	public double getCandida() {
-		return candida;
-	}
-
-	public void setCandida(double candida) {
-		this.candida = candida;
-	}
-
-	public double getEfeitosColaterais() {
-		return efeitosColaterais;
-	}
-
-	public void setEfeitosColaterais(
-			double efeitosColaterais) {
-		this.efeitosColaterais = efeitosColaterais;
-	}
 
 	public Indicacao getIndicacao() {
 		return indicacao;
@@ -131,6 +51,22 @@ public class Avaliacao {
 		this.indicacao = indicacao;
 	}
 
+	public double getUniao() {
+		return uniao;
+	}
+
+	public void setUniao(double uniao) {
+		this.uniao = uniao;
+	}
+
+	public double getIntersecao() {
+		return intersecao;
+	}
+
+	public void setIntersecao(double intersecao) {
+		this.intersecao = intersecao;
+	}
+
 	public double getSomatorio() {
 		return somatorio;
 	}
@@ -138,7 +74,7 @@ public class Avaliacao {
 	public void setSomatorio(double somatorio) {
 		this.somatorio = somatorio;
 	}
-	
+
 	public double getGrauSemelhanca() {
 		return grauSemelhanca;
 	}
@@ -147,6 +83,7 @@ public class Avaliacao {
 		this.grauSemelhanca = grauSemelhanca;
 	}
 
+	
 	public String getNomeIndicacaoNaTabela() {
 		return nomeIndicacaoNaTabela;
 	}

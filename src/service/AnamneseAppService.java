@@ -9,6 +9,7 @@ import modelo.Anamnese;
 import modelo.Atendimento;
 import modelo.AvalIndicacaoEspec;
 import modelo.Avaliacao;
+import modelo.ConjuntoAvaliacao;
 import modelo.Indicacao;
 import modelo.Parametro;
 import service.anotacao.Transacional;
@@ -54,18 +55,56 @@ public class AnamneseAppService {
 	public List<Avaliacao> recuperaAvaliacaoCalculadaPorIndicacao(
 			Atendimento atendimento) {
 
-		List<Anamnese> anamneses = recuperaListaDeAnamnesePorAtendimento(atendimento);
+//		List<Anamnese> anamneses = recuperaListaDeAnamnesePorAtendimento(atendimento);
 		
+
 		List<Indicacao> listIndicacao = indicacaoDAO.recuperaListaIndicacao();
+		List<Parametro> listParametro = parametroDAO.recuperaListaDeParametros();
 
-		List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
 
+		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
+		
 		for (Indicacao indicacao : listIndicacao) {
+			ConjuntoAvaliacao conjuntoAvaliacao = new ConjuntoAvaliacao();
+			conjuntoAvaliacao.setIndicacao(indicacao);
 			
 
-			List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
-					.recuperaListaDeAvaliacaoEspecPorIndicacao(indicacao);
-//			
+			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
+			for (Parametro parametro : listParametro) {
+				Anamnese anamneseCorrente = null;
+				try {
+					anamneseCorrente = anamneseDAO.recuperaAnamnesePorAtendimentoPorParametro(atendimento, parametro);
+				} catch (ObjetoNaoEncontradoException e) {
+					e.printStackTrace();
+				}
+				
+				List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
+						.recuperaAvaliacaoPorIndicacaoParametro(indicacao, parametro);
+
+				Double somatorioValorEspecialistas = 0.0;
+				Double mediaValorEspecialistas = 0.0;
+				Double mediaPesoAvaliador = 0.0;
+				for (AvalIndicacaoEspec avalIndicacaoEspec : listAvalIndicacaoEspec) {
+					mediaPesoAvaliador += avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
+					somatorioValorEspecialistas += avalIndicacaoEspec.getValor() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
+					
+				}
+				mediaValorEspecialistas = somatorioValorEspecialistas/mediaPesoAvaliador;
+				
+
+				Avaliacao avaliacaoCorrente = new Avaliacao();
+				avaliacaoCorrente.setIndicacao(indicacao);
+				avaliacaoCorrente.setIntersecao(Math.min(mediaValorEspecialistas, anamneseCorrente.getValor()));
+				avaliacaoCorrente.setUniao(Math.max(mediaValorEspecialistas, anamneseCorrente.getValor()));
+				listAvaliacao.add(avaliacaoCorrente);
+			}
+			
+			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
+//			conjuntoAvaliacao.setGrauSemelhanca(grauSemelhanca);
+//			conjuntoAvaliacao.setSomatorio(somatorio);
+			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
+			
+			
 //			Double febre = 1.0;
 //			Double diabetes = 0.0;
 //			Double disuria = 0.0;
@@ -137,7 +176,7 @@ public class AnamneseAppService {
 //			listAvaliacao.add(avaliacaoUniao);
 		}
 //
-		return listAvaliacao;
+		return null;
 	}
 
 	@Transacional
