@@ -9,27 +9,17 @@ public class ConjuntoAvaliacao {
 	private Indicacao indicacao;
 	
 	private List<Avaliacao> avaliacoes;
-	
-	private double somatorio;
+
+	private double somatorioIntersecao;
+
+	private double somatorioUniao;
 
 	private double grauSemelhanca;
 	
 	
 	public ConjuntoAvaliacao() {
-		this.somatorio = 0;
-		this.grauSemelhanca = 0;
 	}
 
-	public ConjuntoAvaliacao(Indicacao indicacao,
-			List<Avaliacao> avaliacoes,
-			double somatorio,
-			double grauSemelhanca) {
-		
-		this.indicacao = indicacao;
-		this.avaliacoes = avaliacoes;
-		this.somatorio = somatorio;
-		this.grauSemelhanca = grauSemelhanca;		
-	}
 
 	public double somaParametrosIntersecao(){
 		double total = 0.0;
@@ -66,21 +56,34 @@ public class ConjuntoAvaliacao {
 		this.avaliacoes = avaliacoes;
 	}
 
-	public double getSomatorio() {
-		return somatorio;
+	public double getSomatorioIntersecao() {
+		return somatorioIntersecao;
 	}
 
-	public void setSomatorio(double somatorio) {
-		this.somatorio = somatorio;
+	public void setSomatorioIntersecao(double somatorioIntersecao) {
+		this.somatorioIntersecao = somatorioIntersecao;
 	}
+
 
 	public double getGrauSemelhanca() {
 		return grauSemelhanca;
 	}
 
+
 	public void setGrauSemelhanca(double grauSemelhanca) {
 		this.grauSemelhanca = grauSemelhanca;
 	}
+
+
+	public double getSomatorioUniao() {
+		return somatorioUniao;
+	}
+
+
+	public void setSomatorioUniao(double somatorioUniao) {
+		this.somatorioUniao = somatorioUniao;
+	}
+
 
 	
 

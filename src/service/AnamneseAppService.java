@@ -52,11 +52,43 @@ public class AnamneseAppService {
 		anamneseDAO.altera(anamnese);
 	}
 
-	public List<Avaliacao> recuperaAvaliacaoCalculadaPorIndicacao(
+
+	public Avaliacao calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametro(
+			Atendimento atendimento, Indicacao indicacao, Parametro parametro) {
+		
+		Anamnese anamneseCorrente = null;
+		try {
+			anamneseCorrente = anamneseDAO.recuperaAnamnesePorAtendimentoPorParametro(atendimento, parametro);
+		} catch (ObjetoNaoEncontradoException e) {
+			e.printStackTrace();
+		}
+		
+		List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
+				.recuperaAvaliacaoPorIndicacaoParametro(indicacao, parametro);
+
+		Double somatorioValorEspecialistas = 0.0;
+		Double mediaValorEspecialistas = 0.0;
+		Double mediaPesoAvaliador = 0.0;
+		for (AvalIndicacaoEspec avalIndicacaoEspec : listAvalIndicacaoEspec) {
+			mediaPesoAvaliador += avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
+			somatorioValorEspecialistas += avalIndicacaoEspec.getValor() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
+			
+		}
+		mediaValorEspecialistas = somatorioValorEspecialistas/mediaPesoAvaliador;
+		
+
+		Avaliacao avaliacaoCorrente = new Avaliacao();
+		avaliacaoCorrente.setIndicacao(indicacao);
+		avaliacaoCorrente.setIntersecao(Math.min(mediaValorEspecialistas, anamneseCorrente.getValor()));
+		avaliacaoCorrente.setUniao(Math.max(mediaValorEspecialistas, anamneseCorrente.getValor()));
+		return avaliacaoCorrente;
+	}
+	
+	
+	
+	public List<ConjuntoAvaliacao> recuperaAvaliacaoCalculadaPorIndicacao(
 			Atendimento atendimento) {
 
-//		List<Anamnese> anamneses = recuperaListaDeAnamnesePorAtendimento(atendimento);
-		
 
 		List<Indicacao> listIndicacao = indicacaoDAO.recuperaListaIndicacao();
 		List<Parametro> listParametro = parametroDAO.recuperaListaDeParametros();
@@ -71,112 +103,17 @@ public class AnamneseAppService {
 
 			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
 			for (Parametro parametro : listParametro) {
-				Anamnese anamneseCorrente = null;
-				try {
-					anamneseCorrente = anamneseDAO.recuperaAnamnesePorAtendimentoPorParametro(atendimento, parametro);
-				} catch (ObjetoNaoEncontradoException e) {
-					e.printStackTrace();
-				}
-				
-				List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
-						.recuperaAvaliacaoPorIndicacaoParametro(indicacao, parametro);
-
-				Double somatorioValorEspecialistas = 0.0;
-				Double mediaValorEspecialistas = 0.0;
-				Double mediaPesoAvaliador = 0.0;
-				for (AvalIndicacaoEspec avalIndicacaoEspec : listAvalIndicacaoEspec) {
-					mediaPesoAvaliador += avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
-					somatorioValorEspecialistas += avalIndicacaoEspec.getValor() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
-					
-				}
-				mediaValorEspecialistas = somatorioValorEspecialistas/mediaPesoAvaliador;
-				
-
-				Avaliacao avaliacaoCorrente = new Avaliacao();
-				avaliacaoCorrente.setIndicacao(indicacao);
-				avaliacaoCorrente.setIntersecao(Math.min(mediaValorEspecialistas, anamneseCorrente.getValor()));
-				avaliacaoCorrente.setUniao(Math.max(mediaValorEspecialistas, anamneseCorrente.getValor()));
+				Avaliacao avaliacaoCorrente = calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametro(atendimento, indicacao, parametro);
 				listAvaliacao.add(avaliacaoCorrente);
 			}
 			
 			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
-//			conjuntoAvaliacao.setGrauSemelhanca(grauSemelhanca);
-//			conjuntoAvaliacao.setSomatorio(somatorio);
+			conjuntoAvaliacao.setSomatorioIntersecao(conjuntoAvaliacao.somaParametrosIntersecao());
+			conjuntoAvaliacao.setSomatorioUniao(conjuntoAvaliacao.somaParametrosUniao());
+			conjuntoAvaliacao.setGrauSemelhanca(conjuntoAvaliacao.getSomatorioIntersecao() / conjuntoAvaliacao.getSomatorioUniao());
 			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
-			
-			
-//			Double febre = 1.0;
-//			Double diabetes = 0.0;
-//			Double disuria = 0.0;
-//			Double enterococos = 0.0;
-//			Double escherichia = 0.0;
-//			Double candida = 0.0;
-//			Double efeitosColaterais = 0.0; 
-//			Avaliacao avaliacaoIntersecao = new Avaliacao();
-//			Avaliacao avaliacaoUniao = new Avaliacao();
-//			Double mediaPesoAvaliador = 0.0;
-//
-//			for (AvalIndicacaoEspec avalIndicacaoEspec : listAvalIndicacaoEspec) {
-//				
-//				mediaPesoAvaliador += avalIndicacaoEspec.getEspecialista()
-//						.getPesoAvaliador();
-//				
-//				febre = febre + (avalIndicacaoEspec.getFebre() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador());
-//				diabetes = diabetes + (avalIndicacaoEspec.getDiabetes() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador());
-//				disuria = disuria + (avalIndicacaoEspec.getDisuria() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador());
-//				enterococos = enterococos + (avalIndicacaoEspec.getEnterococos() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador());
-//				escherichia = escherichia + (avalIndicacaoEspec.getEscherichia() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador());
-//				candida = candida + (avalIndicacaoEspec.getCandida() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador());
-//				efeitosColaterais = efeitosColaterais + (avalIndicacaoEspec.getEfeitosColaterais() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador());
-//	
-//			}
-//			
-//			febre = febre / mediaPesoAvaliador;
-//			diabetes = diabetes / mediaPesoAvaliador;
-//			disuria = disuria / mediaPesoAvaliador;
-//			enterococos = enterococos / mediaPesoAvaliador;
-//			escherichia = escherichia / mediaPesoAvaliador;
-//			candida = candida / mediaPesoAvaliador;
-//			efeitosColaterais = efeitosColaterais / mediaPesoAvaliador;
-//			
-//			avaliacaoIntersecao.setIndicacao(indicacao);
-//			avaliacaoUniao.setIndicacao(indicacao);
-//			
-//			avaliacaoIntersecao.setFebre(Math.min(febre, anamnese.getFebre()));
-//			avaliacaoUniao.setFebre(Math.max(febre, anamnese.getFebre()));
-//			
-//			avaliacaoIntersecao.setDiabetes(Math.min(diabetes, anamnese.getDiabetes()));
-//			avaliacaoUniao.setDiabetes(Math.max(diabetes, anamnese.getDiabetes()));			
-//
-//			avaliacaoIntersecao.setDisuria(Math.min(disuria, anamnese.getDisuria()));
-//			avaliacaoUniao.setDisuria(Math.max(disuria, anamnese.getDisuria()));
-//			
-//			avaliacaoIntersecao.setEnterococos(Math.min(enterococos, anamnese.getEnterococos()));
-//			avaliacaoUniao.setEnterococos(Math.max(enterococos, anamnese.getEnterococos()));
-//			
-//			avaliacaoIntersecao.setEscherichia(Math.min(escherichia, anamnese.getEscherichia()));
-//			avaliacaoUniao.setEscherichia(Math.max(escherichia, anamnese.getEscherichia()));
-//			
-//			avaliacaoIntersecao.setCandida(Math.min(candida, anamnese.getCandida()));
-//			avaliacaoUniao.setCandida(Math.max(candida, anamnese.getCandida()));		
-//			
-//			avaliacaoIntersecao.setEfeitosColaterais(Math.min(efeitosColaterais, anamnese.getEfeitosColaterais()));
-//			avaliacaoUniao.setEfeitosColaterais(Math.max(efeitosColaterais, anamnese.getEfeitosColaterais()));			
-//			
-//			avaliacaoIntersecao.setSomatorio(avaliacaoIntersecao.somaParametros());
-//			avaliacaoUniao.setSomatorio(avaliacaoUniao.somaParametros());
-//			
-//			avaliacaoIntersecao.setGrauSemelhanca(avaliacaoIntersecao.getSomatorio() / avaliacaoUniao.getSomatorio());
-//			avaliacaoUniao.setGrauSemelhanca(avaliacaoIntersecao.getSomatorio() / avaliacaoUniao.getSomatorio());
-//			
-//			avaliacaoIntersecao.setNomeIndicacaoNaTabela(avaliacaoIntersecao.getIndicacao().getNome() + " Interseção");
-//			avaliacaoUniao.setNomeIndicacaoNaTabela(avaliacaoIntersecao.getIndicacao().getNome() + " União");
-//			
-//			listAvaliacao.add(avaliacaoIntersecao);
-//			listAvaliacao.add(avaliacaoUniao);
 		}
-//
-		return null;
+		return conjuntosDeAvaliacoes;
 	}
 
 	@Transacional
