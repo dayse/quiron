@@ -1,10 +1,13 @@
 package Anamnese;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Atendimento;
+import modelo.Avaliacao;
 import modelo.ConjuntoAvaliacao;
+import modelo.Parametro;
 import modelo.Usuario;
 
 import org.testng.AssertJUnit;
@@ -86,20 +89,76 @@ public class TesteAnamnese {
 	
 	@Test
 	public void testeRecuperaAvaliacaoCalculadaPorIndicacao() throws AplicacaoException {
-//		cargaAtendimento.executar();
-//		Atendimento atendimentoPaciente1 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp1");
-//		
-//		List<ConjuntoAvaliacao> conjuntoDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoPaciente1);
-//
-//		int num_conjuntos = 5;
-//		
-//		
-//		AssertJUnit.assertEquals(num_conjuntos, conjuntoDeAvaliacoes.size());
+		cargaAtendimento.executar();
+
+		DecimalFormat df = new DecimalFormat("0.00"); 
 		
-		//teste avaliação amoxilina 500:
-//		ConjuntoAvaliacao conjuntoAvaliacaoAmox500 = conjuntoDeAvaliacoes.get(0);
-//		
-//		AssertJUnit.assertEquals(conjuntoDeAvaliacoes., actual);
+		Parametro febre = parametroService.recuperaParametroPorCodigio("P1");
+		Parametro disuria = parametroService.recuperaParametroPorCodigio("P2");
+		Parametro diabetes = parametroService.recuperaParametroPorCodigio("P3");
+		Parametro enterococos = parametroService.recuperaParametroPorCodigio("P4");
+		Parametro escherichia = parametroService.recuperaParametroPorCodigio("P5");
+		Parametro candida = parametroService.recuperaParametroPorCodigio("P6");
+		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigio("P7");
+		
+		Atendimento atendimentoPaciente1 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp1");
+		
+		List<ConjuntoAvaliacao> conjuntoDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoPaciente1);
+
+		int num_conjuntos = 5;
+		
+		
+		AssertJUnit.assertEquals(num_conjuntos, conjuntoDeAvaliacoes.size());
+		
+//		teste avaliação amoxilina 1:
+		ConjuntoAvaliacao conjuntoAvaliacaoAmox1 = conjuntoDeAvaliacoes.get(0);
+		AssertJUnit.assertEquals("amox1", conjuntoAvaliacaoAmox1.getIndicacao().getCodIndicacao());
+
+		Avaliacao amox1Febre = conjuntoAvaliacaoAmox1.getAvaliacoes().get(0);
+
+		AssertJUnit.assertEquals(febre.getCodParametro(), amox1Febre.getParametro().getCodParametro());
+		AssertJUnit.assertEquals(df.format(0.6), df.format(amox1Febre.getIntersecao()));
+		AssertJUnit.assertEquals(df.format(0.7), df.format(amox1Febre.getUniao()));
+		
+		AssertJUnit.assertEquals(df.format(2.4), df.format(conjuntoAvaliacaoAmox1.getSomatorioIntersecao()));
+		AssertJUnit.assertEquals(df.format(5.5), df.format(conjuntoAvaliacaoAmox1.getSomatorioUniao()));
+		AssertJUnit.assertEquals(df.format(0.436), df.format(conjuntoAvaliacaoAmox1.getGrauSemelhanca()));
+
+//		teste avaliação amoxilina 500:
+		ConjuntoAvaliacao conjuntoAvaliacaoAmox500 = conjuntoDeAvaliacoes.get(1);
+		AssertJUnit.assertEquals("amox500", conjuntoAvaliacaoAmox500.getIndicacao().getCodIndicacao());
+
+		Avaliacao amox500Disuria = conjuntoAvaliacaoAmox500.getAvaliacoes().get(1);
+
+		AssertJUnit.assertEquals(disuria.getCodParametro(), amox500Disuria.getParametro().getCodParametro());
+		AssertJUnit.assertEquals(df.format(0.8), df.format(amox500Disuria.getIntersecao()));
+		AssertJUnit.assertEquals(df.format(1.0), df.format(amox500Disuria.getUniao()));
+		
+		AssertJUnit.assertEquals(df.format(3.3), df.format(conjuntoAvaliacaoAmox500.getSomatorioIntersecao()));
+		AssertJUnit.assertEquals(df.format(6.4), df.format(conjuntoAvaliacaoAmox500.getSomatorioUniao()));
+		AssertJUnit.assertEquals(df.format(0.516), df.format(conjuntoAvaliacaoAmox500.getGrauSemelhanca()));
+
+//		teste avaliação amoxilina 500:
+		ConjuntoAvaliacao conjuntoAvaliacaoBactrim = conjuntoDeAvaliacoes.get(2);
+		AssertJUnit.assertEquals("bactrim", conjuntoAvaliacaoBactrim.getIndicacao().getCodIndicacao());
+
+		Avaliacao bactrimDiabetes = conjuntoAvaliacaoBactrim.getAvaliacoes().get(2);
+
+		AssertJUnit.assertEquals(diabetes.getCodParametro(), bactrimDiabetes.getParametro().getCodParametro());
+		AssertJUnit.assertEquals(df.format(0.7), df.format(bactrimDiabetes.getIntersecao()));
+		AssertJUnit.assertEquals(df.format(0.7), df.format(bactrimDiabetes.getUniao()));
+		
+		AssertJUnit.assertEquals(df.format(3.1), df.format(conjuntoAvaliacaoBactrim.getSomatorioIntersecao()));
+		AssertJUnit.assertEquals(df.format(5.8), df.format(conjuntoAvaliacaoBactrim.getSomatorioUniao()));
+		AssertJUnit.assertEquals(df.format(0.534), df.format(conjuntoAvaliacaoBactrim.getGrauSemelhanca()));
+		
+		double max_grau_semalhanca = 0.0;
+		for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntoDeAvaliacoes) {
+			if (conjuntoAvaliacao.getGrauSemelhanca() >= max_grau_semalhanca){
+				max_grau_semalhanca = conjuntoAvaliacao.getGrauSemelhanca();
+			}
+			
+		}
 		
 	}
 
@@ -131,7 +190,7 @@ public class TesteAnamnese {
 		//Inclui os especialistas
 		cargas.add(new CargaEspecialista());
 		//Inclui as avaliações dos especialistas para as indicações cadastradas
-//		cargas.add(new CargaAvalIndicacaoEspec());
+		cargas.add(new CargaAvalIndicacaoEspec());
 		//Inclui os pacientes
 		cargas.add(new CargaPaciente());
 		

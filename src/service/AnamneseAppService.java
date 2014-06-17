@@ -78,6 +78,7 @@ public class AnamneseAppService {
 		
 
 		Avaliacao avaliacaoCorrente = new Avaliacao();
+		avaliacaoCorrente.setParametro(parametro);
 		avaliacaoCorrente.setIndicacao(indicacao);
 		avaliacaoCorrente.setIntersecao(Math.min(mediaValorEspecialistas, anamneseCorrente.getValor()));
 		avaliacaoCorrente.setUniao(Math.max(mediaValorEspecialistas, anamneseCorrente.getValor()));

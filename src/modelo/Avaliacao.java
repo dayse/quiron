@@ -92,4 +92,11 @@ public class Avaliacao {
 		this.nomeIndicacaoNaTabela = nomeIndicacaoNaTabela;
 	}
 
+	public Parametro getParametro() {
+		return parametro;
+	}
+
+	public void setParametro(Parametro parametro) {
+		this.parametro = parametro;
+	}
 }
