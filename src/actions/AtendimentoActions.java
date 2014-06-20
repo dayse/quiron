@@ -44,8 +44,17 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private SelectOneDataModel<String> comboTiposDeBusca;
 	private DataModel listaDePacientes;
 	private DataModel listaDeAtendimentos;
+	public DataModel getListaConjuntoAvaliacao() {
+		return listaConjuntoAvaliacao;
+	}
+
+	public void setListaConjuntoAvaliacao(DataModel listaConjuntoAvaliacao) {
+		this.listaConjuntoAvaliacao = listaConjuntoAvaliacao;
+	}
+
 	private DataModel listaAvaliacao;
 	private DataModel listaDeAnamneses;
+	private DataModel listaConjuntoAvaliacao;
 	private List<String> status = new ArrayList<String>();
 
 	// Páginas
@@ -162,8 +171,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String calculaAvaliacao() {
-		listaAvaliacao = new ListDataModel(anamneseService
-				.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente));
+		listaConjuntoAvaliacao = new ListDataModel(
+								anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente)
+								);
+		
+//		listaAvaliacao = new ListDataModel(anamneseService
+//				.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente));
 //		try {
 //			anamnesesCorrente = anamneseService
 //					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
@@ -171,28 +184,28 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 //			error(ex.getMessage());
 //			return PAGINA_LIST;
 //		}
-		try {
-			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-		} catch (AplicacaoException e) {
-			e.printStackTrace();
-		}
-		if(atendimentoCorrente.getTecnico() == null){
-			comboTecnicos = null;
-		}else{
-			try {
-				comboTecnicos = SelectOneDataModel
-						.criaComObjetoSelecionadoSemTextoInicial(
-								usuarioService
-										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-												.recuperaTipoUsuarioTecnico()),
-								atendimentoCorrente.getTecnico());
-			} catch (AplicacaoException e) {
-				e.printStackTrace();
-			}
-		}
-		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+//		try {
+//			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+//					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+//							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+//		} catch (AplicacaoException e) {
+//			e.printStackTrace();
+//		}
+//		if(atendimentoCorrente.getTecnico() == null){
+//			comboTecnicos = null;
+//		}else{
+//			try {
+//				comboTecnicos = SelectOneDataModel
+//						.criaComObjetoSelecionadoSemTextoInicial(
+//								usuarioService
+//										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+//												.recuperaTipoUsuarioTecnico()),
+//								atendimentoCorrente.getTecnico());
+//			} catch (AplicacaoException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		return PAGINA_AVALIACAO;
 	}
 
