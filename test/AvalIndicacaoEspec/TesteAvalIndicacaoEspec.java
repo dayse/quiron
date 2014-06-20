@@ -1,11 +1,20 @@
 package AvalIndicacaoEspec;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import modelo.AvalIndicacaoEspec;
 
+import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import carga.CargaAvalIndicacaoEspec;
+import carga.CargaBase;
+import carga.CargaEspecialista;
+import carga.CargaIndicacao;
+import carga.CargaParametros;
 import service.AvalIndicacaoEspecAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -13,7 +22,7 @@ import util.JPAUtil;
 
 /**
  * Classe para testes dos metodos necessários ao funcionamento da biblioteca XFuzzy
- * @author dayse.arruda
+ * @author bruno.oliveira
  *
  */
 public class TesteAvalIndicacaoEspec {
@@ -33,8 +42,9 @@ public class TesteAvalIndicacaoEspec {
 			e.printStackTrace();
 			System.exit(1);
 		}
+		cargaDependencias();
 	}
-	
+
 	@AfterClass
 	public void tearDown(){
 		try {
@@ -51,12 +61,22 @@ public class TesteAvalIndicacaoEspec {
 		
 	}
 	
-	@Test
-	public void testeCargaRecuperaAvaliacaoCalculadaPorIndicacao() throws AplicacaoException {
+	public void cargaDependencias(){
+		List<CargaBase> cargas;
+		cargas = new ArrayList<CargaBase>();
 		
-	//	anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimento);
+		cargas.add(new CargaIndicacao());
+		cargas.add(new CargaEspecialista());
+		cargas.add(new CargaParametros());
 		
+		try{
+			for(CargaBase carga : cargas){
+			//	System.out.println(carga.toString());
+				carga.executar();
+			}
+		}catch(AplicacaoException e ){
+			AssertJUnit.fail("Erro na carga: " + e.getMessage());
+		}
 	}
-	
 	
 }
