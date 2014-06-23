@@ -17,12 +17,14 @@ import javax.persistence.Table;
 
 @NamedQueries(
 		{
-			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvalIndicacaoEspecsPaginada",
+			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecPaginada",
 						query = "select m from AvalIndicacaoEspec m " +
+								"where m.especialista = ? " +
 								"order by m.id"
 			),
-			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvalIndicacaoEspecsPaginadaCount",
-						query = "select count(m) from AvalIndicacaoEspec m "
+			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecPaginadaCount",
+						query = "select count(m) from AvalIndicacaoEspec m " +
+								"where m.especialista = ?"
 			),
 			@NamedQuery(name = "AvalIndicacaoEspec.recuperaAvalIndicacaoEspecPorID", 
 						query = "select m from AvalIndicacaoEspec m " +
@@ -166,5 +168,16 @@ public class AvalIndicacaoEspec implements Serializable, Comparable<AvalIndicaca
 		return 0;
 	}
 	
-	
+	@Override
+	public boolean equals(Object object){
+		AvalIndicacaoEspec avaliacao = (AvalIndicacaoEspec) object;
+		
+		if(this.especialista == avaliacao.especialista 
+				&& this.indicacao == avaliacao.indicacao
+					&& this.parametro == avaliacao.parametro
+						&& this.valor == avaliacao.valor){
+			return true;
+		}
+		return false;
+	}
 }

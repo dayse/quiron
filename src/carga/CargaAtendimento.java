@@ -152,13 +152,13 @@ public class CargaAtendimento extends CargaBase{
 	public void incluirAnamneses(Atendimento atendimentoPaciente1, Atendimento atendimentoPaciente2) 
 									throws AplicacaoException {
 
-		Parametro febre = parametroService.recuperaParametroPorCodigio("P1");
-		Parametro disuria = parametroService.recuperaParametroPorCodigio("P2");
-		Parametro diabetes = parametroService.recuperaParametroPorCodigio("P3");
-		Parametro enterococos = parametroService.recuperaParametroPorCodigio("P4");
-		Parametro escherichia = parametroService.recuperaParametroPorCodigio("P5");
-		Parametro candida = parametroService.recuperaParametroPorCodigio("P6");
-		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigio("P7");
+		Parametro febre = parametroService.recuperaParametroPorCodigo("P1");
+		Parametro disuria = parametroService.recuperaParametroPorCodigo("P2");
+		Parametro diabetes = parametroService.recuperaParametroPorCodigo("P3");
+		Parametro enterococos = parametroService.recuperaParametroPorCodigo("P4");
+		Parametro escherichia = parametroService.recuperaParametroPorCodigo("P5");
+		Parametro candida = parametroService.recuperaParametroPorCodigo("P6");
+		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigo("P7");
 		
 		
 		Anamnese atendimentoPc1_febre = new Anamnese(atendimentoPaciente1, febre, 0.7);

@@ -80,7 +80,7 @@ public class ParametroAppService {
 		return parametroDAO.recuperaListaDeParametrosPaginada();
 	}
 	
-	public Parametro recuperaParametroPorCodigio(String codigo) throws AplicacaoException{
+	public Parametro recuperaParametroPorCodigo(String codigo) throws AplicacaoException{
 		Parametro parametro = null;
 		try {
 			parametro = parametroDAO.recuperaParametroPorCodigo(codigo);

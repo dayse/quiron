@@ -84,7 +84,6 @@ public class TesteCargaAvalIndicacaoEspec {
 	
 	@Test
 	public void testeCargaAvalIndicacaoEspec() throws AplicacaoException{
-		System.out.println("nsdklnfkjlfdkfnsdfhklsdfkjsdfkjshdjkfsdfkfsd");
 		cargaAvalIndicacaoEspec.executar();
 		
 		Especialista especialista1 = new Especialista();
@@ -106,7 +105,7 @@ public class TesteCargaAvalIndicacaoEspec {
 		List<AvalIndicacaoEspec> listaDeAvaliacaoDoEspec2 =
 				avalIndicacaoEspecService.recuperaListaDeAvaliacaoEspecPaginada(especialista2);
 		
-		AssertJUnit.assertEquals(num_avaliacao, listaDeAvaliacaoDoEspec1);
-		AssertJUnit.assertEquals(num_avaliacao, listaDeAvaliacaoDoEspec2);
+		AssertJUnit.assertEquals(num_avaliacao, listaDeAvaliacaoDoEspec1.size());
+		AssertJUnit.assertEquals(num_avaliacao, listaDeAvaliacaoDoEspec2.size());
 	}
 }
