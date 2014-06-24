@@ -17,6 +17,7 @@ import modelo.Usuario;
 import service.AnamneseAppService;
 import service.AtendimentoAppService;
 import service.PacienteAppService;
+import service.ParametroAppService;
 import service.TipoUsuarioAppService;
 import service.UsuarioAppService;
 import service.controleTransacao.FabricaDeAppService;
@@ -48,7 +49,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private DataModel listaAvaliacao;
 	private DataModel listaDeAnamneses;
 	private DataModel listaConjuntoAvaliacao;
-	private List<Parametro> listDeParametros; 
+	private List<Parametro> listaDeParametros; 
 	private List<String> status = new ArrayList<String>();
 
 	// Páginas
@@ -65,6 +66,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private static AtendimentoAppService atendimentoService;
 	private static AnamneseAppService anamneseService;
 	private static PacienteAppService pacienteService;
+	private static ParametroAppService parametroService;
 	private static TipoUsuarioAppService tipoUsuarioService;
 	private static UsuarioAppService usuarioService;
 
@@ -75,6 +77,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private Date dataAtendimento;
 	private int paginaAtendimento = 1;
 	private int pagina;
+	private int numParametros;
 	private boolean tecnicoEditavel;
 	private boolean clinicoEditavel;
 	private String campoDeBusca;
@@ -103,6 +106,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 					.getAppService(TipoUsuarioAppService.class);
 			usuarioService = FabricaDeAppService
 					.getAppService(UsuarioAppService.class);
+			parametroService = FabricaDeAppService
+					.getAppService(ParametroAppService.class);
+			
+			
 		} catch (Exception e) {
 			throw e;
 		}
@@ -168,7 +175,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaConjuntoAvaliacao = new ListDataModel(
 								anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente)
 								);
-		
+		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
 //		listaAvaliacao = new ListDataModel(anamneseService
 //				.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente));
 //		try {
@@ -671,18 +678,19 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 
 
 
-	public List<Parametro> getListDeParametros() {
-		List<Parametro> parametros = new ArrayList<Parametro>();
-		Parametro p1 = new Parametro();
-		p1.setNome("p1");
-		parametros.add(p1);
-		Parametro p2 = new Parametro();
-		p2.setNome("p2");
-		parametros.add(p2);
-		return parametros;
+	public List<Parametro> getListaDeParametros() {
+		return this.listaDeParametros;
 	}
 
-	public void setListDeParametros(List<Parametro> listDeParametros) {
-		this.listDeParametros = listDeParametros;
+	public void setListaDeParametros(List<Parametro> listaDeParametros) {
+		this.listaDeParametros = listaDeParametros;
+	}
+
+	public int getNumParametros() {
+		return this.listaDeParametros.size();
+	}
+
+	public void setNumParametros(int numParametros) {
+		this.numParametros = numParametros;
 	}
 }

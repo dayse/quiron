@@ -66,53 +66,26 @@
 			<br />
 
 			<rich:dataTable id="lista" align="center"
-				value="#{atendimentoActions.listaConjuntoAvaliacao}" var="avaliacao"
+				value="#{atendimentoActions.listaConjuntoAvaliacao}" var="conjuntoAvaliacao"
 				width="470px">
 				<f:facet name="header">
 					<rich:columnGroup>
-						<rich:column colspan="10">
+						<rich:column colspan="#{atendimentoActions.numParametros + 4}">
 							<h:outputText value="Avaliacao" />
 						</rich:column>
 
 	
-						<rich:column breakBefore="true">
+						<rich:column colspan="2" breakBefore="true">
 							<h:outputText title="#{tooltip.parametro}"
 								value="#{prompt.parametro}" />
 						</rich:column>
 
-						<rich:column>
-							<h:outputText title="#{tooltip.parametro_Febre}"
-								value="#{prompt.parametro_Febre}" />
-						</rich:column>
-						<rich:column>
-							<h:outputText title="#{tooltip.parametro_Disuria}"
-								value="#{prompt.parametro_Disuria}" />
-						</rich:column>
-						<rich:column>
-							<h:outputText title="#{tooltip.parametro_Diabetes}"
-								value="#{prompt.parametro_Diabetes}" />
-						</rich:column>
-
-						<rich:column>
-							<h:outputText title="#{tooltip.parametro_Enterococos}"
-								value="#{prompt.parametro_Enterococos}" />
-						</rich:column>
-
-						<rich:column>
-							<h:outputText title="#{tooltip.parametro_Escherichia}"
-								value="#{prompt.parametro_Escherichia}" />
-						</rich:column>
-
-						<rich:column>
-							<h:outputText title="#{tooltip.parametro_Candida}"
-								value="#{prompt.parametro_Candida}" />
-						</rich:column>
-
-						<rich:column>
-							<h:outputText title="#{tooltip.parametro_EfeitosColaterais}"
-								value="#{prompt.parametro_EfeitosColaterais}" />
-						</rich:column>
-						
+					   <c:forEach items="#{atendimentoActions.listaDeParametros}" var="parametro">
+					      <rich:column>
+					         <h:outputText value="#{parametro.nome}" />
+					      </rich:column>
+					   </c:forEach>
+					   
 						<rich:column>
 							<h:outputText title="#{tooltip.avaliacao_Somatorio}"
 										value="#{prompt.avaliacao_Somatorio}" />
@@ -128,20 +101,24 @@
 								value="#{prompt.indicacao}" />
 						</rich:column>
 						
-					   <c:forEach items="#{atendimentoActions.listDeParametros}" var="parametro">
-					      <rich:column>
-					         <h:outputText value="#{parametro.nome}" />
-					      </rich:column>
-					   </c:forEach>
 					</rich:columnGroup>
 				</f:facet>
 				
 				<rich:columnGroup>
 						
 						<rich:column >
-							<h:outputText value="#{avaliacao.grauSemelhanca}" />
+							<h:outputText value="#{conjuntoAvaliacao.indicacao.nome}" />
+						</rich:column>
+						<rich:column >
+							<h:outputText value="Interceção" />
 						</rich:column>
 						
+					   <c:forEach items="#{conjuntoAvaliacao.avaliacoes}" var="avaliacao">
+					      <rich:column>
+					         <h:outputText value="#{avaliacao.intercecao}" />
+					      </rich:column>
+					   </c:forEach>
+					   
 				</rich:columnGroup>
 				
 			</rich:dataTable>
