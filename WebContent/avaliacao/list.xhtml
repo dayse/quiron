@@ -64,56 +64,8 @@
 			</rich:simpleTogglePanel>
 			<br />
 
-			<rich:simpleTogglePanel>
-
-				<f:facet name="header">
-					<h:outputText value="#{prompt.anamnese}" />
-				</f:facet>
-
-				<h:panelGrid columns="1">
-					<f:facet name="header">
-						<h:messages globalOnly="true" style="color: red" />
-					</f:facet>
-				</h:panelGrid>
-
-				<h:panelGrid columns="3">
-
-					<h:outputText value="#{prompt.parametro_Febre}" />:
-						<h:outputText id="febre"
-						value="#{atendimentoActions.anamneseCorrente.febre}" />
-
-					<h:outputText value="#{prompt.parametro_Disuria}" />:
-						<h:outputText id="disuria"
-						value="#{atendimentoActions.anamneseCorrente.disuria}" />
-
-					<h:outputText value="#{prompt.parametro_Diabetes}" />:
-						<h:outputText id="diabetes"
-						value="#{atendimentoActions.anamneseCorrente.diabetes}" />
-						
-					<h:outputText value="#{prompt.parametro_Enterococos}" />:
-						<h:outputText id="enterococos"
-						value="#{atendimentoActions.anamneseCorrente.enterococos}" />
-						
-					<h:outputText value="#{prompt.parametro_Escherichia}" />:
-						<h:outputText id="escherichia"
-						value="#{atendimentoActions.anamneseCorrente.escherichia}" />												
-
-					<h:outputText value="#{prompt.parametro_Candida}" />:
-						<h:outputText id="candida"
-						value="#{atendimentoActions.anamneseCorrente.candida}" />
-
-					<h:outputText value="#{prompt.parametro_EfeitosColaterais}" />:
-						<h:outputText id="efeitosColaterais"
-						value="#{atendimentoActions.anamneseCorrente.efeitosColaterais}" />
-						
-					<br />
-
-				</h:panelGrid>
-			</rich:simpleTogglePanel>
-			<br />
-
 			<rich:dataTable id="lista" align="center"
-				value="#{atendimentoActions.listaAvaliacao}" var="avaliacao"
+				value="#{atendimentoActions.listaConjuntoAvaliacao}" var="avaliacao"
 				width="470px">
 				<f:facet name="header">
 					<rich:columnGroup>
@@ -121,9 +73,10 @@
 							<h:outputText value="Avaliacao" />
 						</rich:column>
 
+	
 						<rich:column breakBefore="true">
-							<h:outputText title="#{tooltip.indicacao}"
-								value="#{prompt.indicacao}" />
+							<h:outputText title="#{tooltip.parametro}"
+								value="#{prompt.parametro}" />
 						</rich:column>
 
 						<rich:column>
@@ -168,82 +121,26 @@
 							<h:outputText title="#{tooltip.avaliacao_GrauDeSemelhanca}"
 										value="#{prompt.avaliacao_GrauDeSemelhanca}" />
 						</rich:column>						
+						
+						<rich:column breakBefore="true">
+							<h:outputText title="#{tooltip.indicacao}"
+								value="#{prompt.indicacao}" />
+						</rich:column>
 					</rich:columnGroup>
 				</f:facet>
-
-				<h:column>
-					<h:outputText value="#{avaliacao.nomeIndicacaoNaTabela}" />
-				</h:column>
-
-				<h:column>
-					<h:outputText value="#{avaliacao.febre}">
-						<f:convertNumber
-							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
-					</h:outputText>
-				</h:column>
-
-				<h:column>
-					<h:outputText value="#{avaliacao.disuria}">
-						<f:convertNumber
-							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
-					</h:outputText>
-				</h:column>
-
-				<h:column>
-					<h:outputText value="#{avaliacao.diabetes}">
-						<f:convertNumber
-							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
-					</h:outputText>
-				</h:column>
-
-				<h:column>
-					<h:outputText value="#{avaliacao.enterococos}">
-						<f:convertNumber
-							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
-					</h:outputText>
-				</h:column>
-
-				<h:column>
-					<h:outputText value="#{avaliacao.escherichia}">
-						<f:convertNumber
-							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
-					</h:outputText>
-				</h:column>
-
-				<h:column>
-					<h:outputText value="#{avaliacao.candida}">
-						<f:convertNumber
-							minFractionDigits="#{constantes.lAvaliacaoResultado}" />
-					</h:outputText>
-				</h:column>
-
-				<h:column>
-					<h:outputText maxlength="#{constantes.lAvaliacaoResultado}"
-						value="#{avaliacao.efeitosColaterais}" />
-				</h:column>
 				
-				<h:column>
-					<h:outputText value="#{avaliacao.somatorio}"
-								maxlength="#{constantes.lAvaliacaoResultado}" />
-				</h:column>
-
-				<h:column>
-					<h:outputText value="#{avaliacao.grauSemelhanca}"
-								maxlength="#{constantes.lAvaliacaoResultado}" />
-				</h:column>
-				
-				<f:facet name="footer">
-
-					<h:panelGrid columns="2">
-
-						<h:outputText
-							value="#{prompt.avaliacao_Indicacao} = #{avaliacao.indicacao}" />
-
-					</h:panelGrid>
-
-				</f:facet>
+				<rich:columnGroup>
+						
+						<rich:column >
+							<h:outputText value="#{avaliacao.grauSemelhanca}" />
+						</rich:column>
+				</rich:columnGroup>
 				
 			</rich:dataTable>
+				
+			<br />
+
+
 			<br />
 
 		</h:form>

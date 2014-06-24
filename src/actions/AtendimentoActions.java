@@ -44,14 +44,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private SelectOneDataModel<String> comboTiposDeBusca;
 	private DataModel listaDePacientes;
 	private DataModel listaDeAtendimentos;
-	public DataModel getListaConjuntoAvaliacao() {
-		return listaConjuntoAvaliacao;
-	}
-
-	public void setListaConjuntoAvaliacao(DataModel listaConjuntoAvaliacao) {
-		this.listaConjuntoAvaliacao = listaConjuntoAvaliacao;
-	}
-
 	private DataModel listaAvaliacao;
 	private DataModel listaDeAnamneses;
 	private DataModel listaConjuntoAvaliacao;
@@ -667,6 +659,14 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public void setListaAvaliacao(DataModel listaAvaliacao) {
 		this.listaAvaliacao = listaAvaliacao;
 	}
+	public DataModel getListaConjuntoAvaliacao() {
+		return listaConjuntoAvaliacao;
+	}
+
+	public void setListaConjuntoAvaliacao(DataModel listaConjuntoAvaliacao) {
+		this.listaConjuntoAvaliacao = listaConjuntoAvaliacao;
+	}
+
 
 
 }
