@@ -57,6 +57,9 @@ import javax.persistence.Table;
 						),
 			@NamedQuery(name = "AvalIndicacaoEspec.recuperaAvaliacaoPorEspecialistaIndicacaoParametro", 
 						query = "Select a from AvalIndicacaoEspec a " +
+								"left outer join fetch a.indicacao i " +
+								"left outer join fetch a.especialista e " +
+								"left outer join fetch a.parametro p " +
 								"where a.especialista = ? " +
 								"and a.indicacao = ? " +
 								"and a.parametro = ?"

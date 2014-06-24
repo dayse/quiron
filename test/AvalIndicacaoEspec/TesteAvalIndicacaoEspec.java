@@ -98,7 +98,6 @@ public class TesteAvalIndicacaoEspec {
 		Indicacao amox500 = new Indicacao();
 		Parametro febre = new Parametro();
 		AvalIndicacaoEspec avaliacaoRecuperada = new AvalIndicacaoEspec();
-		AvalIndicacaoEspec avaliacaoDeTeste = new AvalIndicacaoEspec();
 				
 		febre = parametroService.recuperaParametroPorCodigo("P1");
 		
@@ -113,20 +112,17 @@ public class TesteAvalIndicacaoEspec {
 			e.printStackTrace();
 		}
 
-		avaliacaoDeTeste.setEspecialista(espec1);
-		avaliacaoDeTeste.setIndicacao(amox500);
-		avaliacaoDeTeste.setParametro(febre);
-		avaliacaoDeTeste.setValor(0.0);
-
 		try {
 			avaliacaoRecuperada =
 					avalIndicacaoEspecService.
-						recuperaAvaliacaoPorEspecialistaIndicacaoParametro(espec1, amox500, febre);
+					recuperaAvaliacaoPorEspecialistaIndicacaoParametro(espec1, amox500, febre);
 		} catch (ObjetoNaoEncontradoException e) {
 			e.printStackTrace();
 		}
 		
-		AssertJUnit.assertEquals(avaliacaoDeTeste, avaliacaoRecuperada);
+		AssertJUnit.assertEquals("amox500", avaliacaoRecuperada.getIndicacao().getCodIndicacao());
+		AssertJUnit.assertEquals("espec1", avaliacaoRecuperada.getEspecialista().getCodEspecialista());
+		AssertJUnit.assertEquals("P1", avaliacaoRecuperada.getParametro().getCodParametro());
 	}
 	
 }
