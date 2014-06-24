@@ -12,6 +12,7 @@ import DAO.exception.ObjetoNaoEncontradoException;
 import modelo.Atendimento;
 import modelo.Paciente;
 import modelo.Anamnese;
+import modelo.Parametro;
 import modelo.Usuario;
 import service.AnamneseAppService;
 import service.AtendimentoAppService;
@@ -47,6 +48,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private DataModel listaAvaliacao;
 	private DataModel listaDeAnamneses;
 	private DataModel listaConjuntoAvaliacao;
+	private List<Parametro> listDeParametros; 
 	private List<String> status = new ArrayList<String>();
 
 	// Páginas
@@ -669,4 +671,18 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 
 
 
+	public List<Parametro> getListDeParametros() {
+		List<Parametro> parametros = new ArrayList<Parametro>();
+		Parametro p1 = new Parametro();
+		p1.setNome("p1");
+		parametros.add(p1);
+		Parametro p2 = new Parametro();
+		p2.setNome("p2");
+		parametros.add(p2);
+		return parametros;
+	}
+
+	public void setListDeParametros(List<Parametro> listDeParametros) {
+		this.listDeParametros = listDeParametros;
+	}
 }
