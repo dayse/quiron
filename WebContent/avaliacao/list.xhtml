@@ -105,22 +105,61 @@
 				</f:facet>
 				
 				<rich:columnGroup>
-						
 						<rich:column >
 							<h:outputText value="#{conjuntoAvaliacao.indicacao.nome}" />
 						</rich:column>
+						
 						<rich:column >
 							<h:outputText value="Interceção" />
 						</rich:column>
 						  
 						<c:forEach var="i" begin="0" end="#{atendimentoActions.numParametros - 	1}">
-					      <rich:column>
-					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].intersecao}" />
+					      <rich:column styleClass="colunaCampoNumerico">
+					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].intersecao}">
+							 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+							</h:outputText>
 					      </rich:column>
 						</c:forEach>
-						   
 						
-					   
+				      <rich:column styleClass="colunaCampoNumerico">
+				         <h:outputText value="#{conjuntoAvaliacao.somatorioIntersecao}">
+						 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+						</h:outputText>
+				      </rich:column>
+				      
+				      <rich:column styleClass="colunaCampoNumerico" >
+				         <h:outputText value="#{conjuntoAvaliacao.grauSemelhanca}">
+						 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+						</h:outputText>
+				      </rich:column>
+				      
+				      
+						<rich:column breakBefore="true">
+							<h:outputText value=" " />
+						</rich:column>
+						
+						<rich:column >
+							<h:outputText value="União" />
+						</rich:column>
+						
+						<c:forEach var="i" begin="0" end="#{atendimentoActions.numParametros - 	1}">
+					      <rich:column styleClass="colunaCampoNumerico">
+					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].uniao}">
+							 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+							</h:outputText>
+					      </rich:column>
+						</c:forEach>
+						
+				      <rich:column styleClass="colunaCampoNumerico">
+				         <h:outputText value="#{conjuntoAvaliacao.somatorioUniao}">
+						 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+						</h:outputText>
+				      </rich:column>
+						
+						<rich:column >
+							<h:outputText value=" " />
+						</rich:column>
+						
 				</rich:columnGroup>
 				
 			</rich:dataTable>
