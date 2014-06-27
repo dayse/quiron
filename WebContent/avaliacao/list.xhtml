@@ -64,6 +64,30 @@
 				</h:panelGrid>
 			</rich:simpleTogglePanel>
 			<br />
+			<rich:simpleTogglePanel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.anamnese}" />
+				</f:facet>
+
+				<h:panelGrid columns="1">
+					<f:facet name="header">
+						<h:messages globalOnly="true" style="color: red" />
+					</f:facet>
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+					<a4j:repeat value="#{atendimentoActions.listaDeAnamneses}" var="anamnese">
+						<h:outputText value="#{anamnese.parametro.nome}" />:
+							<h:outputText value="#{anamnese.valor}" />
+					<br />
+					</a4j:repeat>
+						
+					<br />
+
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+			<br />
 
 			<rich:dataTable id="lista" align="center"
 				value="#{atendimentoActions.listaConjuntoAvaliacao}" var="conjuntoAvaliacao"

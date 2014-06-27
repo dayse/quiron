@@ -183,6 +183,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
 		}
+		listaDeAnamneses = new ListDataModel(
+					anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
+				);
 		
 		if(atendimentoCorrente.getTecnico() == null){
 			comboTecnicos = null;
