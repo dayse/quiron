@@ -124,20 +124,20 @@
 						<c:forEach var="i" begin="0" end="#{atendimentoActions.numParametros - 	1}">
 					      <rich:column styleClass="colunaCampoNumerico">
 					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].intersecao}">
-							 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+							 	<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="default" />
 							</h:outputText>
 					      </rich:column>
 						</c:forEach>
 						
 				      <rich:column styleClass="colunaCampoNumerico">
 				         <h:outputText value="#{conjuntoAvaliacao.somatorioIntersecao}">
-						 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+						 	<f:convertNumber minFractionDigits="3" maxFractionDigits="3" locale="default" />
 						</h:outputText>
 				      </rich:column>
 				      
 				      <rich:column styleClass="colunaCampoNumerico" >
 				         <h:outputText value="#{conjuntoAvaliacao.grauSemelhanca}">
-						 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+						 	<f:convertNumber minFractionDigits="3" maxFractionDigits="3" locale="default" />
 						</h:outputText>
 				      </rich:column>
 				      
@@ -153,14 +153,14 @@
 						<c:forEach var="i" begin="0" end="#{atendimentoActions.numParametros - 	1}">
 					      <rich:column styleClass="colunaCampoNumerico">
 					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].uniao}">
-							 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+							 	<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="default" />
 							</h:outputText>
 					      </rich:column>
 						</c:forEach>
 						
 				      <rich:column styleClass="colunaCampoNumerico">
 				         <h:outputText value="#{conjuntoAvaliacao.somatorioUniao}">
-						 	<f:convertNumber minFractionDigits="0" maxFractionDigits="3" locale="default" />
+						 	<f:convertNumber minFractionDigits="3" maxFractionDigits="3" locale="default" />
 						</h:outputText>
 				      </rich:column>
 						

@@ -176,37 +176,29 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 								anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente)
 								);
 		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
-//		listaAvaliacao = new ListDataModel(anamneseService
-//				.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente));
-//		try {
-//			anamnesesCorrente = anamneseService
-//					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
-//		} catch (ObjetoNaoEncontradoException ex) {
-//			error(ex.getMessage());
-//			return PAGINA_LIST;
-//		}
-//		try {
-//			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-//					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-//							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-//		} catch (AplicacaoException e) {
-//			e.printStackTrace();
-//		}
-//		if(atendimentoCorrente.getTecnico() == null){
-//			comboTecnicos = null;
-//		}else{
-//			try {
-//				comboTecnicos = SelectOneDataModel
-//						.criaComObjetoSelecionadoSemTextoInicial(
-//								usuarioService
-//										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-//												.recuperaTipoUsuarioTecnico()),
-//								atendimentoCorrente.getTecnico());
-//			} catch (AplicacaoException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+		try {
+			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}
+		
+		if(atendimentoCorrente.getTecnico() == null){
+			comboTecnicos = null;
+		}else{
+			try {
+				comboTecnicos = SelectOneDataModel
+						.criaComObjetoSelecionadoSemTextoInicial(
+								usuarioService
+										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+												.recuperaTipoUsuarioTecnico()),
+								atendimentoCorrente.getTecnico());
+			} catch (AplicacaoException e) {
+				e.printStackTrace();
+			}
+		}
+		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		return PAGINA_AVALIACAO;
 	}
 
