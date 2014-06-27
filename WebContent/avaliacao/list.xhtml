@@ -112,12 +112,14 @@
 						<rich:column >
 							<h:outputText value="Interceção" />
 						</rich:column>
-						
-					   <c:forEach items="#{conjuntoAvaliacao.avaliacoes}" var="avaliacao">
+						  
+						<c:forEach var="i" begin="0" end="#{atendimentoActions.numParametros - 	1}">
 					      <rich:column>
-					         <h:outputText value="#{avaliacao.intercecao}" />
+					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].intersecao}" />
 					      </rich:column>
-					   </c:forEach>
+						</c:forEach>
+						   
+						
 					   
 				</rich:columnGroup>
 				
