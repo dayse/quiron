@@ -128,9 +128,9 @@ public interface AvalIndicacaoEspecDAO extends
 	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorID(Long ID)
 			throws ObjetoNaoEncontradoException;
 
-	@RecuperaObjeto
-	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(
-					Indicacao indicacao, Especialista especialista);
+	@RecuperaLista
+	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao(
+					Especialista especialista, Indicacao indicacao);
 	
 	/**
 	 * 

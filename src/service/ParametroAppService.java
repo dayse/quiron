@@ -89,4 +89,8 @@ public class ParametroAppService {
 		}
 		return parametro;
 	}
+	
+	public List<Parametro> recuperaListaDeParametros(){
+		return parametroDAO.recuperaListaDeParametros();
+	}
 }

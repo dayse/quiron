@@ -14,7 +14,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import DAO.exception.ObjetoNaoEncontradoException;
-import carga.CargaAvalIndicacaoEspec;
 import carga.CargaBase;
 import carga.CargaEspecialista;
 import carga.CargaIndicacao;
@@ -93,7 +92,6 @@ public class TesteAvalIndicacaoEspec {
 	
 	@Test
 	public void testeRecuperaAvalIndicacaoEspec() throws AplicacaoException{
-		/** falta um try catch em parametroService **/
 		Especialista espec1 = new Especialista();
 		Indicacao amox500 = new Indicacao();
 		Parametro febre = new Parametro();

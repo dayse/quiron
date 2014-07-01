@@ -28,7 +28,14 @@ public class AvalIndicacaoEspecAppService {
 	
 	@Transacional
 	public void altera(AvalIndicacaoEspec avalIndicacaoEspec) throws AplicacaoException{
-		avalIndicacaoEspecDAO.altera(avalIndicacaoEspec);
+		AvalIndicacaoEspec avaliacao = null;
+		try {
+			avaliacao = avalIndicacaoEspecDAO.getPorIdComLock(avalIndicacaoEspec.getId());
+			avaliacao.setValor(avalIndicacaoEspec.getValor());
+		} catch (ObjetoNaoEncontradoException e) {
+			throw new AplicacaoException("avaliacaoDaIndicacao.NAO_ENCONTRADA");
+		}
+		avalIndicacaoEspecDAO.altera(avaliacao);
 	}
 	
 	@Transacional
@@ -77,8 +84,8 @@ public class AvalIndicacaoEspecAppService {
 		return recuperaMediaDoPesoAvaliadorDosEspecialistas();
 	}
 	
-	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(
-										Indicacao indicacao, Especialista especialista){
-		return avalIndicacaoEspecDAO.recuperaAvalIndicacaoEspecPorIndicacaoPorEspec(indicacao, especialista);
+	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao(
+										Especialista especialista, Indicacao indicacao){
+		return avalIndicacaoEspecDAO.recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao(especialista, indicacao);
 	}
 }

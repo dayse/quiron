@@ -33,8 +33,9 @@ import javax.persistence.Table;
 			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecComIndicacaoDeUmEspec", 
 						query = "select a from AvalIndicacaoEspec a " +
 								"left outer join fetch a.indicacao i " +
+								"left outer join fetch a.parametro p " +
 								"where a.especialista = ? " +
-								"order by i.nome, a.id"
+								"order by i.id, p.id"
 			),
 			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecComIndicacaoComEspec", 
 						query = "select a from AvalIndicacaoEspec a " +
@@ -45,10 +46,14 @@ import javax.persistence.Table;
 						query = "select a from AvalIndicacaoEspec a " +
 								"where a.indicacao = ?"
 			),
-			@NamedQuery(name = "AvalIndicacaoEspec.recuperaAvalIndicacaoEspecPorIndicacaoPorEspec", 
+			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao", 
 						query = "select a from AvalIndicacaoEspec a " +
-								"where a.indicacao = ?" +
-								"and a.especialista = ?"
+								"left outer join fetch a.indicacao i " +
+								"left outer join fetch a.especialista e " +
+								"left outer join fetch a.parametro p " +			
+								"where a.especialista = ?" +
+								"and a.indicacao = ? " +
+								"order by a.parametro.id"
 			),
 			@NamedQuery(name = "AvalIndicacaoEspec.recuperaAvaliacaoPorIndicacaoParametro", 
 						query = "Select a from AvalIndicacaoEspec a " +

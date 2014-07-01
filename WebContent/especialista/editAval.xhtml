@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
 
 <ui:composition template="/WEB-INF/template/especialista_template.xhtml">
 
@@ -49,49 +50,15 @@
 					<h:outputText value="#{prompt.indicacao} : "
 						style="font-weight: bold;" />
 					<h:outputText
-						value="#{especialistaActions.avalIndicacaoEspecCorrente.indicacao.nome}" />
+						value="#{especialistaActions.indicacaoCorrente.nome}" />
 							
-					<h:outputText value="#{prompt.parametro_Febre} : "
-						style="font-weight: bold;" />
-					<h:inputText
-						value="#{especialistaActions.avalIndicacaoEspecCorrente.febre}"
-						maxlength="#{constantes.lParametroFebre}" size="20" required="true" />
-					
-					<h:outputText value="#{prompt.parametro_Disuria} : "
-						style="font-weight: bold;" />
-					<h:inputText
-						value="#{especialistaActions.avalIndicacaoEspecCorrente.disuria}"
-						maxlength="#{constantes.lParametroDisuria}" size="20" required="true" />
-					
-					<h:outputText value="#{prompt.parametro_Diabetes} : "
-						style="font-weight: bold;" />
-					<h:inputText
-						value="#{especialistaActions.avalIndicacaoEspecCorrente.diabetes}"
-						maxlength="#{constantes.lParametroDiabetes}" size="20" required="true" />
-					
-					<h:outputText value="#{prompt.parametro_Enterococos} : "
-						style="font-weight: bold;" />
-					<h:inputText
-						value="#{especialistaActions.avalIndicacaoEspecCorrente.enterococos}"
-						maxlength="#{constantes.lParametroEnterococos}" size="20" required="true" />
-					
-					<h:outputText value="#{prompt.parametro_Escherichia} : "
-						style="font-weight: bold;" />
-					<h:inputText
-						value="#{especialistaActions.avalIndicacaoEspecCorrente.escherichia}"
-						maxlength="#{constantes.lParametroEscherichia}" size="20" required="true" />
-					
-					<h:outputText value="#{prompt.parametro_Candida} : "
-						style="font-weight: bold;" />
-					<h:inputText
-						value="#{especialistaActions.avalIndicacaoEspecCorrente.candida}"
-						maxlength="#{constantes.lParametroCandida}" size="20" required="true" />
-					
-					<h:outputText value="#{prompt.parametro_EfeitosColaterais} : "
-						style="font-weight: bold;" />
-					<h:inputText
-						value="#{especialistaActions.avalIndicacaoEspecCorrente.efeitosColaterais}"
-						maxlength="#{constantes.lParametroEfeitosColaterais}" size="20" required="true" />
+					<c:forEach var="i" begin="0" end="6">
+						<h:outputText value="#{especialistaActions.avaliacaoAlterada[i].parametro.nome} : "
+							style="font-weight: bold;" />
+						<h:inputText
+							value="#{especialistaActions.avaliacaoAlterada[i].valor}"
+							maxlength="#{constantes.lParametroCandida}" size="20" required="true" />						
+					</c:forEach>
 				</h:panelGrid>
 			</rich:simpleTogglePanel>
 			<br /><br />

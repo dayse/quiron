@@ -1,6 +1,7 @@
 package actions;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -8,12 +9,13 @@ import javax.faces.model.ListDataModel;
 import service.AvalIndicacaoEspecAppService;
 import service.EspecialistaAppService;
 import service.IndicacaoAppService;
+import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
-
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
 import modelo.Indicacao;
+import modelo.Parametro;
 
 /**
  * 
@@ -32,6 +34,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	public static EspecialistaAppService especialistaService;
 	public static IndicacaoAppService indicacaoService;
 	public static AvalIndicacaoEspecAppService avalIndicacaoEspecService;
+	public static ParametroAppService parametroService;
 
 	// Páginas
 	public final String PAGINA_LIST = "listEspecialista";
@@ -44,10 +47,13 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	// Componentes de Controle & Variáveis de Tela
 	private int paginaEspecialista = 1;
 	private int paginaIndicacao = 1;
+	private int numParametros;
 	private static final long serialVersionUID = 1L;
 	private DataModel listaDeEspecialistas;
 	private DataModel listaDeIndicacao;
-	private DataModel listaDeAvalIndicEspec;
+	private List<Parametro> listaDeParametros;
+	private List<AvalIndicacaoEspec> avaliacaoAlterada;
+	private List<AvalIndicacaoEspec> listaDeAvaliacoes;
 	private Especialista especialistaCorrente;
 	private Indicacao indicacaoCorrente;
 	private AvalIndicacaoEspec avalIndicacaoEspecCorrente;
@@ -72,6 +78,8 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 					.getAppService(IndicacaoAppService.class);
 			avalIndicacaoEspecService = FabricaDeAppService
 					.getAppService(AvalIndicacaoEspecAppService.class);
+			parametroService = FabricaDeAppService
+					.getAppService(ParametroAppService.class);
 		} catch (Exception e) {
 			throw e;
 		}
@@ -97,7 +105,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		}
 		info("especialista.SUCESSO_ALTERACAO");
 		listaDeEspecialistas = null;
-		listaDeAvalIndicEspec = null;
+		avaliacaoAlterada = null;
 		return PAGINA_LIST;
 	}
 
@@ -113,14 +121,24 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String alteraAvaliacao() {
-		try {
-			avalIndicacaoEspecService.altera(avalIndicacaoEspecCorrente);
-		} catch (AplicacaoException e) {
-			error(e.getMessage());
-			return PAGINA_EDIT_AVAL;
+		for(AvalIndicacaoEspec avaliacao : avaliacaoAlterada){
+			System.out.println(avaliacao.getValor());
+			try {
+				avalIndicacaoEspecService.altera(avaliacao);
+			} catch (AplicacaoException e) {
+				error(e.getMessage());
+				return PAGINA_EDIT_AVAL;
+			}
 		}
 		info("parametro.SUCESSO_EDICAO");
-		listaDeAvalIndicEspec = null;
+		avaliacaoAlterada = null;
+		indicacaoCorrente = null;
+		listaDeParametros = null;
+	/*	listaDeAvaliacoes = avalIndicacaoEspecService
+				.recuperaListaDeAvaliacaoEspecComIndicacaoDeUmEspec(especialistaCorrente);
+/*		listaDeAvaliacoes = avalIndicacaoEspecService
+				.recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao
+					(especialistaCorrente, indicacaoCorrente);	*/
 		return PAGINA_AVALIACAO;
 	}
 
@@ -144,7 +162,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		}
 		info("especialista.SUCESSO_INCLUSAO");
 		listaDeEspecialistas = null;
-		listaDeAvalIndicEspec = null;
+		avaliacaoAlterada = null;
 		return PAGINA_LIST;
 	}
 
@@ -163,7 +181,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 */
 	public String cancelar() {
 		listaDeEspecialistas = null;
-		listaDeAvalIndicEspec = null;
+		avaliacaoAlterada = null;
 		especialistaCorrente = new Especialista();
 		return PAGINA_LIST;
 	}
@@ -188,7 +206,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		}
 		info("especialista.SUCESSO_EXCLUSAO");
 		listaDeEspecialistas = null;
-		listaDeAvalIndicEspec = null;
+		avaliacaoAlterada = null;
 		return PAGINA_LIST;
 	}
 
@@ -236,8 +254,10 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String preparaAlteracaoAval() {
-		avalIndicacaoEspecCorrente = (AvalIndicacaoEspec) listaDeAvalIndicEspec
-				.getRowData();
+		indicacaoCorrente = (Indicacao) listaDeIndicacao.getRowData();
+		System.out.println(indicacaoCorrente.getNome());
+	//	listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
+		listaDeAvaliacoes = null;		
 		return PAGINA_EDIT_AVAL;
 	}
 
@@ -255,7 +275,9 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 */
 	public String preparaAvaliacao() {
 		especialistaCorrente = (Especialista) listaDeEspecialistas.getRowData();
-		listaDeAvalIndicEspec = null;
+		avaliacaoAlterada = null;
+		listaDeParametros = parametroService.recuperaListaDeParametros();
+		listaDeAvaliacoes = null;
 		avalIndicacaoEspecCorrente = new AvalIndicacaoEspec();
 		return PAGINA_AVALIACAO;
 	}
@@ -331,17 +353,16 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		this.listaDeIndicacao = listaDeIndicacao;
 	}
 
-	public DataModel getListaDeAvalIndicEspec() {
-		if (listaDeAvalIndicEspec == null) {
-			listaDeAvalIndicEspec = new ListDataModel(
-					avalIndicacaoEspecService
-							.recuperaListaDeAvaliacaoEspecComIndicacaoDeUmEspec(especialistaCorrente));
+	public List<AvalIndicacaoEspec> getAvaliacaoAlterada() {
+		if (avaliacaoAlterada == null) {
+			avaliacaoAlterada = avalIndicacaoEspecService
+				.recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao(especialistaCorrente, indicacaoCorrente);
 		}
-		return listaDeAvalIndicEspec;
+		return avaliacaoAlterada;
 	}
 
-	public void setListaDeAvalIndicEspec(DataModel listaDeAvalIndicEspec) {
-		this.listaDeAvalIndicEspec = listaDeAvalIndicEspec;
+	public void setAvaliacaoAlterada(List<AvalIndicacaoEspec> avaliacaoAlterada) {
+		this.avaliacaoAlterada = avaliacaoAlterada;
 	}
 
 	public Indicacao getIndicacaoCorrente() {
@@ -367,4 +388,32 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	public void setPaginaIndicacao(int pagina) {
 		this.paginaIndicacao = pagina;
 	}
+	
+	public int getNumParametros(){
+		return this.listaDeParametros.size();
+	}
+	
+	public void setNumParametros(int numParametros){
+		this.numParametros = numParametros;
+	}
+	
+	public List<Parametro> getListaDeParametros(){
+		return this.listaDeParametros;
+	}
+	
+	public void setListaDeParametros(List<Parametro> listaDeParametros){
+		this.listaDeParametros = listaDeParametros;
+	}
+	
+	public List<AvalIndicacaoEspec> getListaDeAvaliacoes(){
+		if(listaDeAvaliacoes == null){
+			listaDeAvaliacoes = avalIndicacaoEspecService
+				.recuperaListaDeAvaliacaoEspecComIndicacaoDeUmEspec(especialistaCorrente);
+		}
+		return listaDeAvaliacoes;
+	}
+	
+	public void setListaDeAvaliacoes(List<AvalIndicacaoEspec> listaDeAvaliacoes){
+		this.listaDeAvaliacoes = listaDeAvaliacoes;
+	}	
 }
