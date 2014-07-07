@@ -6,6 +6,10 @@
         <classes>
         	<class name="JPA.TesteJPA"/>
         	<class name="carga.TesteCargaUsuario"/>
+        	<class name="Anamnese.TesteAnamnese"/>
+        	<class name="carga.TesteCargaAtendimento"/>
+        	<class name="carga.TesteCargaAvalIndicacaoEspec"/>
+        	<class name="AvalIndicacaoEspec.TesteAvalIndicacaoEspec"/>
         	<!--  
         	<class name="tecido.TesteTecido"/>
         	<class name="avaliacao.TesteAvaliacao"/>
