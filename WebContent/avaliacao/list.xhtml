@@ -75,23 +75,22 @@
 						<h:messages globalOnly="true" style="color: red" />
 					</f:facet>
 				</h:panelGrid>
-
-				<h:panelGrid columns="3">
-					<a4j:repeat value="#{atendimentoActions.listaDeAnamneses}" var="anamnese">
-						<h:outputText value="#{anamnese.parametro.nome}" />:
-							<h:outputText value="#{anamnese.valor}" />
-					<br />
-					</a4j:repeat>
-						
-					<br />
-
-				</h:panelGrid>
+				
+				<h:dataTable var="anamnese" value="#{atendimentoActions.listaDeAnamneses}">
+				    <h:column>
+						<h:outputText value="#{anamnese.parametro.nome}" />
+				    </h:column>
+				    <h:column>
+						<h:outputText value="#{anamnese.valor}" />
+				    </h:column>
+							
+				</h:dataTable>
 			</rich:simpleTogglePanel>
 			<br />
 
 			<rich:dataTable id="lista" align="center"
 				value="#{atendimentoActions.listaConjuntoAvaliacao}" var="conjuntoAvaliacao"
-				width="470px">
+				width="470px" rowClasses="even-row, odd-row">
 				<f:facet name="header">
 					<rich:columnGroup>
 						<rich:column colspan="#{atendimentoActions.numParametros + 4}">
