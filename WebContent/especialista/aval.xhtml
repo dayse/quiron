@@ -45,8 +45,8 @@
 			<br />
 
 			<rich:dataTable id="tabelaAvalIndicacaoEspec"
-				var="indicacao" align="center"
-				value="#{especialistaActions.listaDeIndicacao}"
+				var="conjuntos" align="center"
+				value="#{especialistaActions.listaDeAvaliacao}"
 				width="700px">
 				<f:facet name="header">
 					<rich:columnGroup>
@@ -74,19 +74,22 @@
 
 				<rich:columnGroup>
 					<rich:column styleClass="colunaCampoNumericoCentralizado space-table">
-						<h:outputText value="#{indicacao.nome}" />
+						<h:outputText value="#{conjuntos.indicacao.nome}" />
 					</rich:column>
 					
-					<c:forEach var="i" begin="0" end="6">
+					<c:forEach var="i" begin="0" end="#{especialistaActions.numParametros - 1}">
 						<rich:column styleClass="colunaCampoNumericoCentralizado">
-					         <h:outputText value="#{especialistaActions.listaDeAvaliacoes[i].valor}">
+					         <h:outputText value="#{conjuntos.avaliacao[i].valor}">
 							 	<f:convertNumber minFractionDigits="1" maxFractionDigits="1" locale="default" />
 							</h:outputText>
 						</rich:column>
 					</c:forEach>
 					
 					<rich:column styleClass="colunaCampoNumericoCentralizado">
-						<h:commandButton action="#{especialistaActions.preparaAlteracaoAval}" value="#{prompt.editar}" />
+						<h:commandButton action="#{especialistaActions.preparaAlteracaoAval}" value="#{prompt.editar}">
+							<f:setPropertyActionListener value="#{conjuntos.indicacao}"
+								target="#{especialistaActions.indicacaoCorrente}" />
+						</h:commandButton>
 					</rich:column>
 				</rich:columnGroup>
 			</rich:dataTable>

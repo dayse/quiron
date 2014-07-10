@@ -6,7 +6,7 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:c="http://java.sun.com/jstl/core">
 
-<ui:composition template="/WEB-INF/template/especialista_template.xhtml">
+<ui:composition template="/WEB-INF/template/especialista_editAval_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.especialista}</ui:define>
 	<ui:define name="descricao">#{prompt.especialista_EditarAvaliacao}</ui:define>
@@ -52,7 +52,7 @@
 					<h:outputText
 						value="#{especialistaActions.indicacaoCorrente.nome}" />
 							
-					<c:forEach var="i" begin="0" end="6">
+					<c:forEach var="i" begin="0" end="#{especialistaActions.numParametros - 1}">
 						<h:outputText value="#{especialistaActions.avaliacaoAlterada[i].parametro.nome} : "
 							style="font-weight: bold;" />
 						<h:inputText
@@ -65,7 +65,7 @@
 			<h:commandButton id="botaoAlterar" value="#{prompt.confirmarEdicao}"
 				action="#{especialistaActions.alteraAvaliacao}" />
 			<h:commandButton id="botaoCancelar" value="#{prompt.cancelar}"
-				action="#{especialistaActions.cancelar}" immediate="true" />
+				action="#{especialistaActions.cancelarAvaliacao}" immediate="true" />
 		</h:form>
 	</ui:define>
 </ui:composition>

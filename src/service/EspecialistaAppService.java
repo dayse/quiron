@@ -1,19 +1,19 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import modelo.AvalIndicacaoEspec;
+import modelo.ConjuntoIndicacaoParaAvaliacao;
 import modelo.Especialista;
 import modelo.Indicacao;
 import modelo.Parametro;
 import service.anotacao.Transacional;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
-import DAO.AvalIndicacaoEspecDAO;
 import DAO.EspecialistaDAO;
 import DAO.IndicacaoDAO;
 import DAO.ParametroDAO;
-import DAO.Impl.AvalIndicacaoEspecDAOImpl;
 import DAO.Impl.EspecialistaDAOImpl;
 import DAO.Impl.IndicacaoDAOImpl;
 import DAO.Impl.ParametroDAOImpl;
@@ -100,5 +100,32 @@ public class EspecialistaAppService {
 
 	public Especialista recuperaEspecialistaPorCodigo(String codEspecialista) throws ObjetoNaoEncontradoException {
 		return especialistaDAO.recuperaEspecialistaPorCodigo(codEspecialista);
+	}
+
+	/**
+	 * 
+	 * Método necessário para preencher a tela Avaliação do Especilista para cada Indicação. Tela esta que tem uma tabela
+	 * onde tanto as colunas como as linhas são criadas de maneira dinâmica.
+	 * 
+	 * @param especialista - Recebe como parametro o especialista que irá avaliar as indicações.
+	 * @return ConjuntoIndicacaoParaAvaliacao - lista pronta para preencher uma tabela dinâmica.
+	 * 
+	 * @author bruno.oliveira
+	 */
+	public List<ConjuntoIndicacaoParaAvaliacao> recuperaConjuntoAvaliacaoDeUmEspecialista(
+			Especialista especialista) {
+		
+		List<Indicacao> indicacoes = indicacaoDAO.recuperaListaIndicacao();
+		List<ConjuntoIndicacaoParaAvaliacao> conjuntos = new ArrayList<ConjuntoIndicacaoParaAvaliacao>();
+		
+		for(Indicacao indicacao : indicacoes){
+			ConjuntoIndicacaoParaAvaliacao conjunto = new ConjuntoIndicacaoParaAvaliacao();
+			conjunto.setIndicacao(indicacao);
+			conjunto.setAvaliacao(avalIndicacaoEspecService
+					.recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao(especialista, indicacao));
+			conjuntos.add(conjunto);			
+		}
+		
+		return conjuntos;
 	}
 }
