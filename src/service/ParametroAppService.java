@@ -8,6 +8,8 @@ import modelo.Especialista;
 import modelo.Indicacao;
 import modelo.Paciente;
 import modelo.Parametro;
+import modelo.TipoUsuario;
+import modelo.Usuario;
 import service.anotacao.Transacional;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -131,6 +133,24 @@ public class ParametroAppService {
 
 	public List<Parametro> recuperaListaDeParametrosPaginada(){
 		return parametroDAO.recuperaListaDeParametrosPaginada();
+	}
+	
+	/**
+	 * Retorna true se o usuario autenticado for administrador ou engenheiro do conhecimento,
+	 * caso contrário levanta uma AplicacaoException de permissão
+	 * @param usuarioAutenticado
+	 * @return
+	 * @throws AplicacaoException
+	 * @author felipe.pontes
+	 */
+	public Boolean verificaUsuarioAutenticadoTemPermissao(Usuario usuarioAutenticado) throws AplicacaoException{
+		
+		if (!usuarioAutenticado.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR) &&
+			!usuarioAutenticado.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO)) {
+			throw new AplicacaoException(2,"usuario.NAO_POSSUI_PERMISSAO");
+		}
+		
+		return true;
 	}
 	
 	public Parametro recuperaParametroPorCodigo(String codigo) throws AplicacaoException{
