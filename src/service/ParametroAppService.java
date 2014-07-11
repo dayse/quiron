@@ -2,23 +2,21 @@ package service;
 
 import java.util.List;
 
-import DAO.AvalIndicacaoEspecDAO;
+import modelo.AvalIndicacaoEspec;
+import modelo.Especialista;
+import modelo.Indicacao;
+import modelo.Parametro;
+import service.anotacao.Transacional;
+import service.controleTransacao.FabricaDeAppService;
+import service.exception.AplicacaoException;
 import DAO.EspecialistaDAO;
 import DAO.IndicacaoDAO;
 import DAO.ParametroDAO;
-import DAO.Impl.AvalIndicacaoEspecDAOImpl;
 import DAO.Impl.EspecialistaDAOImpl;
 import DAO.Impl.IndicacaoDAOImpl;
 import DAO.Impl.ParametroDAOImpl;
 import DAO.controle.FabricaDeDao;
 import DAO.exception.ObjetoNaoEncontradoException;
-import service.anotacao.Transacional;
-import service.controleTransacao.FabricaDeAppService;
-import service.exception.AplicacaoException;
-import modelo.AvalIndicacaoEspec;
-import modelo.Especialista;
-import modelo.Indicacao;
-import modelo.Parametro;
 
 public class ParametroAppService {
 	
@@ -74,6 +72,11 @@ public class ParametroAppService {
 				}
 			}
 		} 
+	}
+
+	@Transacional
+	public void altera(Parametro parametro) throws AplicacaoException {
+		parametroDAO.altera(parametro);
 	}
 
 	public List<Parametro> recuperaListaDeParametrosPaginada(){

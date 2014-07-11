@@ -5,8 +5,10 @@ import java.io.Serializable;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import modelo.Parametro;
 import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
+import service.exception.AplicacaoException;
 
 /**
  * 
@@ -28,6 +30,14 @@ public class ParametroActions extends BaseActions implements Serializable {
 	// Componentes de Controle
 	private static final long serialVersionUID = 1L;
 	private DataModel listaParametros;
+	private Parametro parametroCorrente;
+	
+
+	// Páginas
+	public final String PAGINA_LIST = "listParametro";
+	public final String PAGINA_NEW = "newParametro";
+	public final String PAGINA_SHOW = "showParametro";
+	public final String PAGINA_EDIT = "editParametro";
 	
 	/**
 	 * 
@@ -47,7 +57,86 @@ public class ParametroActions extends BaseActions implements Serializable {
 			throw e;
 		}
 	}
+	
+	/**
+	 * 
+	 * Método utilizado para sair de um tela interna do menu Parametro e
+	 * voltar para a tela de listagem de parametro. Além, zera variáveis
+	 * importantes para que não as mesmas não fiquem com dados residuais das
+	 * últimas ações feitas pelo usuário.
+	 * 
+	 * 
+	 * @author felipe.pontes
+	 * 
+	 */
+	public String cancelar() {
+		listaParametros = null;
+		parametroCorrente = new Parametro();
+		return PAGINA_LIST;
+	}
 
+
+	/**
+	 * 
+	 * Método acionado antes que a tela de inclusão seja renderizada. Zera a
+	 * instância de parametro para garantir que não haja resíduos.
+	 * 
+	 * 
+	 * @author felipe.pontes
+	 * 
+	 */
+	public String preparaInclusao() {
+		parametroCorrente = new Parametro();
+		return PAGINA_NEW;
+	}
+	/**
+	 * 
+	 * Método para inclusão de parametro no banco de dados.
+	 * 
+	 * @author felipe.pontes
+	 * 
+	 */
+	public String inclui() {
+		try {
+			parametroService.inclui(parametroCorrente);
+		} catch (AplicacaoException ex) {
+			error(ex.getMessage());
+			return PAGINA_NEW;
+		}
+		info("parametro.SUCESSO_INCLUSAO");
+		listaParametros = null;
+		return PAGINA_LIST;
+	}
+
+	/**
+	 * 
+	 * Método acionado antes que a tela de edição seja renderizada. Salva o
+	 * parametro selecionado pelo usuário para que a referência não se perca.
+	 * 
+	 * @author felipe.pontes
+	 * 
+	 */
+	public String preparaAlteracao() {
+		parametroCorrente = (Parametro) listaParametros.getRowData();
+		return PAGINA_EDIT;
+	}
+
+	/**
+	 * Altera o parametroCorrente para os valores passados pelo usuario em tela.
+	 * @author felipe.pontes
+	 */
+	public String altera() {
+		try {
+			parametroService.altera(parametroCorrente);
+		} catch (AplicacaoException e) {
+			error(e.getMessage());
+			return PAGINA_EDIT;
+		}
+		info("parametro.SUCESSO_ALTERACAO");
+		listaParametros = null;
+		return PAGINA_LIST;
+		
+	}
 	/* ************* Get & Set ************ */
 	
 	public DataModel getListaParametros(){
@@ -59,5 +148,13 @@ public class ParametroActions extends BaseActions implements Serializable {
 	
 	public void setListaParametros(DataModel listaParametros){
 		this.listaParametros = listaParametros;
+	}
+
+	public Parametro getParametroCorrente() {
+		return parametroCorrente;
+	}
+
+	public void setParametroCorrente(Parametro parametroCorrente) {
+		this.parametroCorrente = parametroCorrente;
 	}
 }

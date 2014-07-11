@@ -210,7 +210,7 @@
 			<to-view-id>/parametro/new.xhtml</to-view-id>
 		</navigation-case>		
 		<navigation-case>
-			<from-outcome>editPaciente</from-outcome>
+			<from-outcome>editParametro</from-outcome>
 			<to-view-id>/parametro/edit.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>

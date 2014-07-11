@@ -5,7 +5,7 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 
-<ui:composition template="/WEB-INF/template/parametro_template.xhtml">
+<ui:composition template="/WEB-INF/template/parametro_list_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.parametro}</ui:define>
 	<ui:define name="descricao">#{prompt.parametro_Cadastro}</ui:define>
@@ -43,6 +43,13 @@
 								value="#{prompt.parametro_Descricao}" />
 						</rich:column>
 
+						<rich:column>
+							<h:outputText value="#{prompt.editar}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText value="#{prompt.excluir}" />
+						</rich:column>
 					</rich:columnGroup>
 
 				</f:facet>
@@ -57,6 +64,17 @@
 
 				<rich:column>
 					<h:outputText value="#{parametro.descricao}" />
+				</rich:column>
+				
+				<rich:column>
+					<h:commandButton value="#{prompt.editar}"
+						action="#{parametroActions.preparaAlteracao}" />
+				</rich:column>
+
+				<rich:column>
+					<a4j:commandButton value="#{prompt.excluir}"
+						action="#{parametroActions.preparaExclusao}"
+						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" />
 				</rich:column>
 
 				<f:facet name="footer">
@@ -78,6 +96,45 @@
 
 		</h:form>
 
+		<h:form id="formExclusao">
+			<rich:modalPanel id="panelConfirmacaoExclusao" height="120"
+				width="500">
+
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atencao}"></h:outputText>
+					</h:panelGroup>
+				</f:facet>
+
+				<f:facet name="controls">
+					<h:graphicImage class="close"
+						onclick="Richfaces.hideModalPanel('panelConfirmacaoExclusao')" />
+				</f:facet>
+
+				<h:outputText value="#{prompt.parametro_ConfirmarExclusao}" />
+
+				<center><br />
+				<br />
+
+				<h:panelGrid columns="2">
+
+					<h:commandButton id="ok" value="#{prompt.sim}"
+						action="#{parametroActions.exclui}" styleClass="botao">
+						<rich:componentControl for="panelConfirmacaoExclusao"
+							operation="hide" event="onclick" />
+					</h:commandButton>
+
+					<h:commandButton id="cancelar" value="#{prompt.nao}"
+						action="Richfaces.hideModalPanel('panelConfirmacaoExclusao')">
+						<rich:componentControl for="panelConfirmacaoExclusao"
+							operation="hide" event="onclick" />
+					</h:commandButton>
+
+				</h:panelGrid></center>
+
+			</rich:modalPanel>
+
+		</h:form>
 	</ui:define>
 
 </ui:composition>

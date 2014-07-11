@@ -41,6 +41,11 @@ public class Constantes {
 	public static final int L_PARAMETRO_ESCHERICHIA = 3;
 	public static final int L_PARAMETRO_FEBRE = 2;
 	
+	public static final int L_PARAMETRO_CODIGO = 15;
+	public static final int L_PARAMETRO_NOME = 30;
+	public static final int L_PARAMETRO_DESCRICAO = 30;
+	
+	
 	// --------------------- Indicacao ---------------------
 	public static final int L_INDICACAO_CODIGO = 15;
 	public static final int L_INDICACAO_DOSAGEM = 100;
@@ -133,6 +138,18 @@ public class Constantes {
 	}
 	
 	/* ------- PARAMETRO ------- */
+
+	public int getlParametroCodigo() {
+		return L_PARAMETRO_CODIGO;
+	}
+
+	public int getlParametroNome() {
+		return L_PARAMETRO_NOME;
+	}
+
+	public int getlParametroDescricao() {
+		return L_PARAMETRO_DESCRICAO;
+	}
 	
 	public int getlParametroCandida(){
 		return L_PARAMETRO_CANDIDA;
@@ -175,5 +192,6 @@ public class Constantes {
 	public int getlUsuarioSenha() {
 		return L_USUARIO_SENHA;
 	}
+
 	
 }

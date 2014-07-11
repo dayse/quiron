@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/parametro_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.parametro}</ui:define>
+	<ui:define name="descricao">#{prompt.parametro_editar}</ui:define>
+	<ui:define name="descricao_ajuda">
+	</ui:define>
+	<ui:define name="mensagemSistema" />
+	<ui:define name="corpo">
+
+		<h:form id="editParametro">
+
+			<rich:panel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.parametro}" />
+				</f:facet>
+
+				<h:panelGrid columns="4">
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_Codigo}" />:
+					</h:panelGroup>
+					<h:inputText id="codigo"
+						value="#{parametroActions.parametroCorrente.codParametro}"
+						maxlength="#{constantes.lParametroCodigo}" size="20"
+						disabled="true" />
+					<h:message for="codigo" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_Nome}" />:
+					</h:panelGroup>
+					<h:inputText id="nome"
+						value="#{parametroActions.parametroCorrente.nome}"
+						maxlength="#{constantes.lParametroNome}" size="20" required="true" />
+					<h:message for="nome" styleClass="error" />
+					<h:outputText value="" />
+					
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_Descricao}" />:
+					</h:panelGroup>
+					<h:inputText id="descricao"
+						value="#{parametroActions.parametroCorrente.descricao}"
+						maxlength="#{constantes.lParametroDescricao}" size="20" required="true" />
+					<h:message for="descricao" styleClass="error" />
+					<h:outputText value="" />
+
+				</h:panelGrid>
+			</rich:panel>
+
+			<br />
+			<br />
+
+			<h:commandButton id="botaoAlterar" value="#{prompt.confirmarEdicao}"
+				action="#{parametroActions.altera}" />
+			<h:commandButton id="botaoCancelar" value="#{prompt.cancelar}"
+				action="#{parametroActions.cancelar}" immediate="true" />
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
