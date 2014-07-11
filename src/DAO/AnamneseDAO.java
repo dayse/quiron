@@ -34,6 +34,20 @@ public interface AnamneseDAO extends DaoGenerico<Anamnese, Long> {
 	 */
 	@RecuperaLista
 	public List<Anamnese>  recuperaListaDeAnamnesePorAtendimento(Atendimento atendimento);
+
+	/**
+	 * 
+	 * Consulta que recupera uma lista de anmneses utilizando um parametro.
+	 * 
+	 * @param parametro
+	 *            - Para consultar uma lista de anmneses é necessário de qual parametro
+	 *            ela pertence, já que ambas entidades relacionam-se.
+	 *             
+	 * @author felipe.pontes
+	 * 
+	 */
+	@RecuperaLista
+	public List<Anamnese>  recuperaListaDeAnamnesePorParametro(Parametro parametro);
 	
 	@RecuperaObjeto
 	public Anamnese  recuperaAnamnesePorAtendimentoPorParametro(Atendimento atendimento, Parametro parametro)

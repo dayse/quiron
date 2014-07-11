@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import modelo.Paciente;
 import modelo.Parametro;
 import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
@@ -136,6 +137,45 @@ public class ParametroActions extends BaseActions implements Serializable {
 		listaParametros = null;
 		return PAGINA_LIST;
 		
+	}
+	
+	/**
+	 * 
+	 * Método acionado antes do
+	 * modal panel de exclusão ser
+	 * renderizado.
+	 * Ele é responsável por capturar
+	 * qual foi o parametro que o usuário
+	 * escolheu, de forma que a referência
+	 * não se perca.
+	 * 
+	 * @author felipe.pontes
+	 * 
+	 */
+	public void preparaExclusao(){
+		parametroCorrente = (Parametro) listaParametros.getRowData();
+	}
+
+	/**
+	 * 
+	 * Método usado para exclusão de 
+	 * determinado registro de parametro do
+	 * banco de dados.
+	 * 
+	 * @author felipe.pontes
+	 * 
+	 */
+	public String exclui(){
+		try{
+			parametroService.excluiComSeguranca(parametroCorrente);
+		}catch(AplicacaoException ex){
+			error(ex.getMessage());
+			return PAGINA_LIST;
+		}
+		logUsuarioAutenticadoMsg("Parametro - Exclui parametro:" + parametroCorrente.getCodParametro());
+		info("parametro.SUCESSO_EXCLUSAO");
+		listaParametros = null;
+		return PAGINA_LIST;
 	}
 	/* ************* Get & Set ************ */
 	

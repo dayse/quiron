@@ -46,6 +46,10 @@ import javax.persistence.Table;
 						query = "select a from AvalIndicacaoEspec a " +
 								"where a.indicacao = ?"
 			),
+			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecPorParametro", 
+			query = "select a from AvalIndicacaoEspec a " +
+					"where a.parametro = ?"
+			),
 			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao", 
 						query = "select a from AvalIndicacaoEspec a " +
 								"left outer join fetch a.indicacao i " +

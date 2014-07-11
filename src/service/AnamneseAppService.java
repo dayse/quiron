@@ -164,6 +164,10 @@ public class AnamneseAppService {
 		return anamneseDAO.recuperaListaDeAnamnesePorAtendimento(atendimento);
 	}
 	
+	public List<Anamnese> recuperaListaDeAnamnesePorParametro(Parametro parametro) {
+		return anamneseDAO.recuperaListaDeAnamnesePorParametro(parametro);
+	}
+	
 	public Anamnese recuperaAnamnesePorAtendimentoPorParametro(Atendimento atendimento, Parametro parametro) throws AplicacaoException{
 		try {
 			return anamneseDAO.recuperaAnamnesePorAtendimentoPorParametro(atendimento, parametro);

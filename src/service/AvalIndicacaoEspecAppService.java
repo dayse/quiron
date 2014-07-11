@@ -79,7 +79,10 @@ public class AvalIndicacaoEspecAppService {
 	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPorIndicacao(Indicacao indicacao){
 		return avalIndicacaoEspecDAO.recuperaListaDeAvaliacaoEspecPorIndicacao(indicacao);
 	}
-	
+
+	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPorParametro(Parametro parametro){
+		return avalIndicacaoEspecDAO.recuperaListaDeAvaliacaoEspecPorParametro(parametro);
+	}
 	public Double recuperaMediaDoPesoAvaliadorDosEspecialistas(){
 		return recuperaMediaDoPesoAvaliadorDosEspecialistas();
 	}

@@ -99,6 +99,23 @@ public interface AvalIndicacaoEspecDAO extends
 	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPorIndicacao(
 			Indicacao indicacao);
 
+	/**
+	 * 
+	 * Consulta que recupera uma lista não paginada de avaliações de
+	 * especialistas para um parametro específico.
+	 * 
+	 * @param parametro
+	 *            - Objeto do tipo Indicação que representa um registro de
+	 *            parametro no banco, caso exista.
+	 * @return list de avalIndicacaoEspec - Retorna uma lista não paginada de
+	 *         avaliações para o parametro passada, caso existam.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	@RecuperaLista
+	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPorParametro(
+			Parametro parametro);
 	
 	@RecuperaLista
 	public List<AvalIndicacaoEspec> recuperaAvaliacaoPorIndicacaoParametro(
