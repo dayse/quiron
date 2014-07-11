@@ -87,6 +87,13 @@ public class ParametroAppService {
 		} 
 	}
 
+	@Transacional
+	public void incluiComVerificacaoUsuario(Parametro parametro, Usuario usuarioAutenticado) throws AplicacaoException {
+		if(verificaUsuarioAutenticadoTemPermissao(usuarioAutenticado)){
+			this.inclui(parametro);			
+		}
+	}
+
 	/**
 	 * Exclui um parametro, não deve ser utilizado fora deste service,
 	 * pois um parametro só deve ser excluido utilizando meotodo:
@@ -127,8 +134,22 @@ public class ParametroAppService {
 	}
 	
 	@Transacional
+	public void excluiComSegurancaComVerificacaoUsuario(Parametro parametro, Usuario usuarioAutenticado) throws AplicacaoException {
+		if(verificaUsuarioAutenticadoTemPermissao(usuarioAutenticado)){
+			this.excluiComSeguranca(parametro);			
+		}
+	}
+
+	@Transacional
 	public void altera(Parametro parametro) throws AplicacaoException {
 		parametroDAO.altera(parametro);
+	}
+	
+	@Transacional
+	public void alteraComVerificacaoUsuario(Parametro parametro, Usuario usuarioAutenticado) throws AplicacaoException {
+		if(verificaUsuarioAutenticadoTemPermissao(usuarioAutenticado)){
+			this.altera(parametro);			
+		}
 	}
 
 	public List<Parametro> recuperaListaDeParametrosPaginada(){

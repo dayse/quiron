@@ -99,7 +99,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 */
 	public String inclui() {
 		try {
-			parametroService.inclui(parametroCorrente);
+			parametroService.incluiComVerificacaoUsuario(parametroCorrente, sessaoUsuarioCorrente.getUsuarioLogado());
 		} catch (AplicacaoException ex) {
 			error(ex.getMessage());
 			return PAGINA_NEW;
@@ -128,7 +128,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 */
 	public String altera() {
 		try {
-			parametroService.altera(parametroCorrente);
+			parametroService.alteraComVerificacaoUsuario(parametroCorrente,sessaoUsuarioCorrente.getUsuarioLogado());
 		} catch (AplicacaoException e) {
 			error(e.getMessage());
 			return PAGINA_EDIT;
@@ -167,7 +167,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 */
 	public String exclui(){
 		try{
-			parametroService.excluiComSeguranca(parametroCorrente);
+			parametroService.excluiComSegurancaComVerificacaoUsuario(parametroCorrente,sessaoUsuarioCorrente.getUsuarioLogado());
 		}catch(AplicacaoException ex){
 			error(ex.getMessage());
 			return PAGINA_LIST;
