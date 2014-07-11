@@ -8,6 +8,8 @@ import modelo.ConjuntoIndicacaoParaAvaliacao;
 import modelo.Especialista;
 import modelo.Indicacao;
 import modelo.Parametro;
+import modelo.TipoUsuario;
+import modelo.Usuario;
 import service.anotacao.Transacional;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -43,50 +45,71 @@ public class EspecialistaAppService {
 
 	@Transacional
 	public void altera(Especialista especialista) throws AplicacaoException {
-		especialistaDAO.altera(especialista);
+			especialistaDAO.altera(especialista);
+	}
+	
+	@Transacional
+	public void alteraComSeguranca(Especialista especialista, Usuario usuarioAutenticado) throws AplicacaoException{
+		if(verificaUsuarioAutenticadoTemPermissao(usuarioAutenticado)){
+			this.altera(especialista);
+		}
 	}
 
 	@Transacional
 	public void exclui(Especialista especialista) throws AplicacaoException {
-		Especialista especialistaBD = null;
-		try {
-			especialistaBD = especialistaDAO.getPorIdComLock(especialista
-					.getId());
-		} catch (ObjetoNaoEncontradoException e) {
-			throw new AplicacaoException("especialista.NAO_ENCONTRADO");
+			Especialista especialistaBD = null;
+			try {
+				especialistaBD = especialistaDAO.getPorIdComLock(especialista
+						.getId());
+			} catch (ObjetoNaoEncontradoException e) {
+				throw new AplicacaoException("especialista.NAO_ENCONTRADO");
+			}
+			especialistaDAO.exclui(especialistaBD);
+	}
+	
+	@Transacional
+	public void excluiComSeguranca(Especialista especialista, Usuario usuarioAutenticado) throws AplicacaoException{
+		if(verificaUsuarioAutenticadoTemPermissao(usuarioAutenticado)){
+			this.exclui(especialista);
 		}
-		especialistaDAO.exclui(especialistaBD);
 	}
 
 	@Transacional
 	public void inclui(Especialista especialista) throws AplicacaoException {
-		try {
-			especialistaDAO.recuperaEspecialistaPorCodigo(especialista
-					.getCodEspecialista());
-			throw new AplicacaoException("especialista.CODIGO_EXISTENTE");
-		} catch (ObjetoNaoEncontradoException ob) {
-		}
-		especialistaDAO.inclui(especialista);
-
-		List<Indicacao> indicacaoBD = indicacaoDAO.recuperaListaIndicacao();
-		List<Parametro> parametroBD = parametroDAO.recuperaListaDeParametros();
-		
-		if(!indicacaoBD.isEmpty() && !parametroBD.isEmpty()){
-			for(Indicacao indicacao : indicacaoBD){
-				for(Parametro parametro : parametroBD){
-				
-				AvalIndicacaoEspec avalIndicacaoEspec = new AvalIndicacaoEspec();
-				
-				avalIndicacaoEspec.setValor(0);
-				
-				avalIndicacaoEspec.setEspecialista(especialista);
-				avalIndicacaoEspec.setIndicacao(indicacao);
-				avalIndicacaoEspec.setParametro(parametro);
-				
-				avalIndicacaoEspecService.inclui(avalIndicacaoEspec);
+			try {
+				especialistaDAO.recuperaEspecialistaPorCodigo(especialista
+						.getCodEspecialista());
+				throw new AplicacaoException("especialista.CODIGO_EXISTENTE");
+			} catch (ObjetoNaoEncontradoException ob) {
+			}
+			especialistaDAO.inclui(especialista);
+	
+			List<Indicacao> indicacaoBD = indicacaoDAO.recuperaListaIndicacao();
+			List<Parametro> parametroBD = parametroDAO.recuperaListaDeParametros();
+			
+			if(!indicacaoBD.isEmpty() && !parametroBD.isEmpty()){
+				for(Indicacao indicacao : indicacaoBD){
+					for(Parametro parametro : parametroBD){
+					
+					AvalIndicacaoEspec avalIndicacaoEspec = new AvalIndicacaoEspec();
+					
+					avalIndicacaoEspec.setValor(0);
+					
+					avalIndicacaoEspec.setEspecialista(especialista);
+					avalIndicacaoEspec.setIndicacao(indicacao);
+					avalIndicacaoEspec.setParametro(parametro);
+					
+					avalIndicacaoEspecService.inclui(avalIndicacaoEspec);
+					}
 				}
 			}
-		} 
+	}
+	
+	@Transacional
+	public void incluiComSeguranca(Especialista especialista, Usuario usuarioAutenticado) throws AplicacaoException{
+		if(verificaUsuarioAutenticadoTemPermissao(usuarioAutenticado)){
+			this.inclui(especialista);
+		}
 	}
 
 	public List<Especialista> recuperaListaDeEspecialistasPaginada() {
@@ -127,5 +150,24 @@ public class EspecialistaAppService {
 		}
 		
 		return conjuntos;
+	}
+	
+	/**
+	 * Retorna true se o usuario autenticado for administrador ou engenheiro do conhecimento,
+	 * caso contrário levanta uma AplicacaoException de permissão
+	 * @param usuarioAutenticado
+	 * @return
+	 * @throws AplicacaoException
+	 * @author felipe.pontes
+	 */
+	@Transacional
+	public Boolean verificaUsuarioAutenticadoTemPermissao(Usuario usuarioAutenticado) throws AplicacaoException{
+		
+		if (!usuarioAutenticado.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR) &&
+			!usuarioAutenticado.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO)) {
+			throw new AplicacaoException(2,"usuario.NAO_POSSUI_PERMISSAO");
+		}
+		
+		return true;
 	}
 }

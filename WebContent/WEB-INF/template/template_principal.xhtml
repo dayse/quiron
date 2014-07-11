@@ -79,7 +79,7 @@
 					</rich:menuItem>
 				</rich:dropDownMenu>				
 
-	            <rich:dropDownMenu>
+	            <rich:dropDownMenu rendered="#{(sessaoDoUsuario.administrador or sessaoDoUsuario.engenheiroConhecimento)}">
 	            	<f:facet name="label">
 	            		<h:panelGroup>
 	            			<h:outputText value="#{prompt.especialista}" />

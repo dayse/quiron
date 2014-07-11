@@ -90,7 +90,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 */
 	public String altera() {
 		try {
-			especialistaService.altera(especialistaCorrente);
+			especialistaService.alteraComSeguranca(especialistaCorrente, sessaoUsuarioCorrente.getUsuarioLogado());
 		} catch (AplicacaoException e) {
 			error(e.getMessage());
 			return PAGINA_EDIT;
@@ -142,7 +142,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 */
 	public String inclui() {
 		try {
-			especialistaService.inclui(especialistaCorrente);
+			especialistaService.incluiComSeguranca(especialistaCorrente, sessaoUsuarioCorrente.getUsuarioLogado());
 		} catch (AplicacaoException ex) {
 			error(ex.getMessage());
 			return PAGINA_NEW;
@@ -195,7 +195,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 */
 	public String exclui() {
 		try {
-			especialistaService.exclui(especialistaCorrente);
+			especialistaService.excluiComSeguranca(especialistaCorrente, sessaoUsuarioCorrente.getUsuarioLogado());
 		} catch (AplicacaoException ex) {
 			error(ex.getMessage());
 			return PAGINA_LIST;
