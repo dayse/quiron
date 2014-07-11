@@ -164,6 +164,7 @@ public class ParametroAppService {
 	 * @throws AplicacaoException
 	 * @author felipe.pontes
 	 */
+	@Transacional
 	public Boolean verificaUsuarioAutenticadoTemPermissao(Usuario usuarioAutenticado) throws AplicacaoException{
 		
 		if (!usuarioAutenticado.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR) &&
