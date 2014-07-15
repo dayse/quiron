@@ -93,9 +93,6 @@
 				width="470px" rowClasses="even-row, odd-row">
 				<f:facet name="header">
 					<rich:columnGroup>
-						<rich:column colspan="#{atendimentoActions.numParametros + 4}">
-							<h:outputText value="Avaliacao" />
-						</rich:column>
 
 	
 						
@@ -104,92 +101,24 @@
 								value="#{prompt.indicacao}" />
 						</rich:column>
 						
-						<rich:column colspan="#{atendimentoActions.numParametros}" >
-							<h:outputText title="#{tooltip.parametro}"
-								value="#{prompt.parametro}" />
+						<rich:column colspan="2">
+							<h:outputText value="#{tooltip.avaliacao}" title="#{tooltip.avaliacao_GrauDeSemelhanca}"/>
 						</rich:column>
 						
-						<rich:column>
-							<h:outputText title="#{tooltip.avaliacao_Somatorio}"
-										value="#{prompt.avaliacao_Somatorio}" />
-						</rich:column>
-						
-						<rich:column >
-							<h:outputText title="#{tooltip.avaliacao_GrauDeSemelhanca}"
-										value="#{prompt.avaliacao_GrauDeSemelhanca}" />
-						</rich:column>						
-						<rich:column colspan="2" breakBefore="true">
-							<h:outputText value=" " />
-						</rich:column>						
-
-					   <c:forEach items="#{atendimentoActions.listaDeParametros}" var="parametro">
-					      <rich:column>
-					         <h:outputText value="#{parametro.nome}" />
-					      </rich:column>
-					   </c:forEach>
-						<rich:column colspan="2" >
-							<h:outputText value=" " />
-						</rich:column>						
-					   
 						
 					</rich:columnGroup>
 				</f:facet>
 				
 				<rich:columnGroup>
-						<rich:column >
+						<rich:column colspan="2">
 							<h:outputText value="#{conjuntoAvaliacao.indicacao.nome}" />
 						</rich:column>
 						
-						<rich:column >
-							<h:outputText value="Interceção" />
-						</rich:column>
-						  
-						<c:forEach var="i" begin="0" end="#{atendimentoActions.numParametros - 	1}">
-					      <rich:column styleClass="colunaCampoNumerico">
-					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].intersecao}">
-							 	<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="default" />
-							</h:outputText>
-					      </rich:column>
-						</c:forEach>
-						
-				      <rich:column styleClass="colunaCampoNumerico">
-				         <h:outputText value="#{conjuntoAvaliacao.somatorioIntersecao}">
-						 	<f:convertNumber minFractionDigits="3" maxFractionDigits="3" locale="default" />
-						</h:outputText>
-				      </rich:column>
-				      
-				      <rich:column styleClass="colunaCampoNumerico" >
+				      <rich:column styleClass="colunaCampoNumerico" colspan="2">
 				         <h:outputText value="#{conjuntoAvaliacao.grauSemelhanca}">
 						 	<f:convertNumber minFractionDigits="3" maxFractionDigits="3" locale="default" />
 						</h:outputText>
 				      </rich:column>
-				      
-				      
-						<rich:column breakBefore="true">
-							<h:outputText value=" " />
-						</rich:column>
-						
-						<rich:column >
-							<h:outputText value="União" />
-						</rich:column>
-						
-						<c:forEach var="i" begin="0" end="#{atendimentoActions.numParametros - 	1}">
-					      <rich:column styleClass="colunaCampoNumerico">
-					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].uniao}">
-							 	<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="default" />
-							</h:outputText>
-					      </rich:column>
-						</c:forEach>
-						
-				      <rich:column styleClass="colunaCampoNumerico">
-				         <h:outputText value="#{conjuntoAvaliacao.somatorioUniao}">
-						 	<f:convertNumber minFractionDigits="3" maxFractionDigits="3" locale="default" />
-						</h:outputText>
-				      </rich:column>
-						
-						<rich:column >
-							<h:outputText value=" " />
-						</rich:column>
 						
 				</rich:columnGroup>
 				
