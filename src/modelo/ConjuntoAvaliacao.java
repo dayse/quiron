@@ -1,11 +1,13 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ConjuntoAvaliacao {
+public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvaliacao>{
 
 
-	
+	private static final long serialVersionUID = 1L;
+
 	private Indicacao indicacao;
 	
 	private List<Avaliacao> avaliacoes;
@@ -15,6 +17,8 @@ public class ConjuntoAvaliacao {
 	private double somatorioUniao;
 
 	private double grauSemelhanca;
+	
+	private int ranking;
 	
 	
 	public ConjuntoAvaliacao() {
@@ -82,6 +86,22 @@ public class ConjuntoAvaliacao {
 
 	public void setSomatorioUniao(double somatorioUniao) {
 		this.somatorioUniao = somatorioUniao;
+	}
+
+
+	public int getRanking() {
+		return ranking;
+	}
+
+
+	public void setRanking(int ranking) {
+		this.ranking = ranking;
+	}
+
+
+	@Override
+	public int compareTo(ConjuntoAvaliacao o) {
+		return this.getGrauSemelhanca() > o.getGrauSemelhanca() ? -1 : this.getGrauSemelhanca() < o.getGrauSemelhanca() ? 1 : 0;
 	}
 
 

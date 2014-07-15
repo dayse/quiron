@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,6 +114,12 @@ public class AnamneseAppService {
 			conjuntoAvaliacao.setSomatorioUniao(conjuntoAvaliacao.somaParametrosUniao());
 			conjuntoAvaliacao.setGrauSemelhanca(conjuntoAvaliacao.getSomatorioIntersecao() / conjuntoAvaliacao.getSomatorioUniao());
 			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
+		}
+		//ordena e poem ranking
+		Collections.sort(conjuntosDeAvaliacoes);
+		for (int i = 0; i < conjuntosDeAvaliacoes.size(); i++) {
+			ConjuntoAvaliacao conjuntoAvaliacao = conjuntosDeAvaliacoes.get(i);
+			conjuntoAvaliacao.setRanking(i+1);
 		}
 		return conjuntosDeAvaliacoes;
 	}
