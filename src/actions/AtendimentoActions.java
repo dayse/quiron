@@ -59,6 +59,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_SHOW = "showAtendimento";
 	public final String PAGINA_STATUS = "listStatusAtendimento";
 	public final String PAGINA_AVALIACAO = "listAvaliacao";
+	public final String PAGINA_AVALIACAO_DETALHADA = "listAvaliacaoDetail";
 	public final String BUSCA_POR_COD_PACIENTE = "Cód. do Paciente";
 	public final String BUSCA_POR_NOME = "Nome";
 
@@ -203,6 +204,21 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		return PAGINA_AVALIACAO;
+	}
+	
+	/**
+	 * 
+	 * Método que calcula a avaliação para um determinado atendimento, mostrando os dados detalhados
+	 * do algoritimo, como os valores de interceção/união de cada parametro.
+	 * 
+	 * @return Redireciona para a página de avaliação detalhada, exibindo os dados da
+	 *         avaliação, por parâmetro e por indicação.
+	 * 
+	 * @author felipe.pontes
+	 * 
+	 */
+	public String calculaAvaliacaoDetalhado() {
+		return PAGINA_AVALIACAO_DETALHADA;
 	}
 
 	/**

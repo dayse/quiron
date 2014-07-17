@@ -130,6 +130,16 @@
 	</navigation-rule>
 	<!-- FIM-Regras de navegacao (Atendimento) -->	
 	
+	<!-- Regras de navegacao (Avaliacao) -->
+	<navigation-rule>
+		<from-view-id>/avaliacao/*</from-view-id>
+		<navigation-case>
+			<from-outcome>listAvaliacaoDetail</from-outcome>
+			<to-view-id>/avaliacao/list_detail.xhtml</to-view-id>
+		</navigation-case>		
+	</navigation-rule>
+	<!-- FIM-Regras de navegacao (Atendimento) -->	
+	
 	<!-- Regras de navegacao (Especialista) -->
 	<navigation-rule>
 		<from-view-id>/especialista/*</from-view-id>
