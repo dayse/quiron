@@ -1,0 +1,16 @@
+quirondb:
+  build: ./dockers/pgserver
+  ports:
+    - "5434:5432"
+#  volumes:
+    # - ./dockers/pgserver/dbs:/var/lib/postgresql
+    # - ./dockers/pgserver/log:/var/log/postgresql
+quironapp:
+  build: ./dockers/tomcat6
+  ports:
+    - "8080:8080"
+  links:
+    - quirondb:db
+  volumes:
+    - ./dockers/tomcat6/deploy:/usr/share/tomcat/webapps/my_app
+    - ./dockers/tomcat6/logs:/usr/share/tomcat/logs

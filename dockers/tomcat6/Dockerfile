@@ -28,6 +28,8 @@ RUN ln -s /usr/lib/jvm/java-6-oracle/ /usr/lib/jvm/default-java
 
 ENV TOMCAT_VERSION 6.0.37
 RUN mkdir -p /usr/share/tomcat
+
+
 RUN wget --no-verbose -O /tmp/apache-tomcat-$TOMCAT_VERSION.tar.gz \
     http://archive.apache.org/dist/tomcat/tomcat-6/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 # stop building if md5sum does not match
@@ -38,6 +40,7 @@ RUN tar xzf /tmp/apache-tomcat-$TOMCAT_VERSION.tar.gz \
     --strip-components=1 -C /usr/share/tomcat
 ENV CATALINA_HOME /usr/share/tomcat
 
+VOLUME  ["/usr/share/tomcat/webapps/my_app", "/usr/share/tomcat/logs"]
 
 EXPOSE 8080
 
