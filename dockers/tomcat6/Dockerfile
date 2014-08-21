@@ -3,6 +3,7 @@ MAINTAINER Felipe Arruda Pontes <contato@arruda.blog.br>
 
 ENV http_proxy http://felipe.pontes:qualquercoisa@proxy.corp.int.gov.br:3128
 ENV https_proxy http://felipe.pontes:qualquercoisa@proxy.corp.int.gov.br:3128
+
 RUN echo 'Acquire::http::Proxy "http://felipe.pontes:qualquercoisa@proxy.corp.int.gov.br:3128";' >> "/etc/apt/apt.conf.d/01proxy"
 RUN echo 'Acquire::https::Proxy "http://felipe.pontes:qualquercoisa@proxy.corp.int.gov.br:3128";' >> "/etc/apt/apt.conf.d/01proxy"
 
