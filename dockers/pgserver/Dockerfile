@@ -31,12 +31,11 @@ USER postgres
 
 # Create a PostgreSQL role named ``DESENVOLVEDOR`` with ``desenvolvedor`` as the password and
 # then create a database `QUIRON_DESENVOLVIMENTO` owned by the ``DESENVOLVEDOR`` role.
-RUN    /etc/init.d/postgresql start &&\
-    psql --command "CREATE USER DESENVOLVEDOR WITH SUPERUSER PASSWORD 'desenvolvedor';" &&\
-    createdb -O DESENVOLVEDOR QUIRON_DESENVOLVIMENTO
-
 #Create schema ``quiron`` in `QUIRON_DESENVOLVIMENTO` database with ``DESENVOLVEDOR`` as owner
-RUN psql --command "\connect QUIRON_DESENVOLVIMENTO; CREATE SCHEMA AUTHORIZATION DESENVOLVEDOR;"
+RUN    /etc/init.d/postgresql start &&\
+    psql --command "CREATE USER \"DESENVOLVEDOR\" WITH SUPERUSER PASSWORD 'desenvolvedor';" &&\
+    createdb -O DESENVOLVEDOR QUIRON_DESENVOLVIMENTO &&\
+    psql QUIRON_DESENVOLVIMENTO --command "CREATE SCHEMA quiron AUTHORIZATION \"DESENVOLVEDOR\";" 
 
 # Adjust PostgreSQL configuration so that remote connections to the 
 # database are possible.
