@@ -43,6 +43,7 @@ ENV CATALINA_HOME /usr/share/tomcat
 VOLUME  ["/usr/share/tomcat/webapps/my_app", "/usr/share/tomcat/logs"]
 
 ADD ./conf/tomcat-users.xml /usr/share/tomcat/conf/tomcat-users.xml
+ADD ./lib/postgresql-8.3-607.jdbc3.jar /usr/share/tomcat/lib/postgresql-8.3-607.jdbc3.jar
 
 EXPOSE 8080
 
