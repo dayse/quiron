@@ -6,3 +6,4 @@ bin/*
 /.settings
 /build
 /test-output
+/dockers/tomcat6/logs

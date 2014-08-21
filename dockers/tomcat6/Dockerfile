@@ -42,6 +42,8 @@ ENV CATALINA_HOME /usr/share/tomcat
 
 VOLUME  ["/usr/share/tomcat/webapps/my_app", "/usr/share/tomcat/logs"]
 
+ADD ./conf/tomcat-users.xml /usr/share/tomcat/conf/tomcat-users.xml
+
 EXPOSE 8080
 
 CMD /usr/share/tomcat/bin/startup.sh && tail -F /usr/share/tomcat/logs/catalina.out
