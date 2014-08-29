@@ -10,6 +10,9 @@ RUN echo 'Acquire::https::Proxy "http://felipe.pontes:qualquercoisa@proxy.corp.i
 # It should be the same key as https://www.postgresql.org/media/keys/ACCC4CF8.asc
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
 
+RUN locale-gen en_US.UTF-8 && \
+    echo 'LANG="en_US.UTF-8"' > /etc/default/locale
+
 # Add PostgreSQL's repository. It contains the most recent stable release
 #     of PostgreSQL, ``9.3``.
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list

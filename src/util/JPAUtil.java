@@ -1,5 +1,8 @@
 package util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -13,6 +16,45 @@ public class JPAUtil
 	private static final ThreadLocal<EntityManager> threadEntityManager = new ThreadLocal<EntityManager>();
 	private static final ThreadLocal<EntityTransaction> threadTransaction = new ThreadLocal<EntityTransaction>();
 
+	public static String getDBURLFromEnv(Map<String, String> env){
+		//ex: tcp://172.17.0.32:5432
+		String dbTPCURL = env.get("DB_PORT");
+		String dbNoTPCURL = dbTPCURL.replaceFirst("tcp://", "");
+		
+		//ex: QUIRON_DESENVOLVIMENTO
+		String dbName = env.get("QUIRON_DB_NAME");
+		
+		//ex: jdbc:postgresql://172.17.0.32:5432/QUIRON_DESENVOLVIMENTO
+		String dbURl = "jdbc:postgresql://";
+		
+		dbURl = new StringBuilder()
+	    .append(dbURl)
+	    .append(dbNoTPCURL)
+	    .append("/")
+	    .append(dbName)
+	    .toString();
+//		dbURl.concat(dbTPCURL.replace("tpc://", "")).concat("/").concat(dbName);
+		return dbURl;
+	}
+	
+	public static Map<String, Object> getConfigOverrides(){
+		Map<String, String> env = System.getenv();
+		Map<String, Object> configOverrides = new HashMap<String, Object>();
+		System.out.println(env.keySet());
+		for (String envName : env.keySet()) {
+		    if (envName.contains("ON_PRODUCTION")) {
+		        configOverrides.put("hibernate.connection.url", getDBURLFromEnv(env)); 
+		         
+		        configOverrides.put("hibernate.default_schema", env.get("QUIRON_DB_SCHEMA")); 
+		        configOverrides.put("hibernate.connection.username", env.get("QUIRON_DB_USER"));
+		        configOverrides.put("hibernate.connection.password", env.get("QUIRON_DB_PASS")); 
+		          
+		    }
+		}
+		System.out.println(configOverrides.values());
+		return configOverrides;
+		
+	}
 	/**
 	 * cria o entity manager factory
 	 */
@@ -20,7 +62,7 @@ public class JPAUtil
 	{
 		try
 		{	
-			emf = Persistence.createEntityManagerFactory("prototipo");
+			emf = Persistence.createEntityManagerFactory("prototipo", getConfigOverrides());
 		}
 		catch(Throwable e)
 		{	
@@ -32,7 +74,7 @@ public class JPAUtil
 	{
 	
 		EntityManager s = threadEntityManager.get();
-		// Abre uma nova Sessão, se a thread ainda não possui uma.
+		// Abre uma nova Sessï¿½o, se a thread ainda nï¿½o possui uma.
 		try 
 		{	if (s == null) 
 			{	
@@ -64,7 +106,7 @@ public class JPAUtil
 			{	
 				rollbackTransaction();
 				throw new RuntimeException("EntityManager sendo fechado " +
-						                   "com transação ativa.");
+						                   "com transaï¿½ï¿½o ativa.");
 			}
 		} 	
 		catch (RuntimeException ex) 
