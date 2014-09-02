@@ -6,9 +6,10 @@ db:
     - ./dockers/docker-postgresql/data:/data
     - ./dockers/docker-postgresql/log:/var/log/postgresql
   environment:
-    - USER="deses"
-    - DB="quiron"
-    - PASS="deses"
+    - USER=DESENVOLVEDOR
+    - DB=QUIRON_DESENVOLVIMENTO
+    - PASS=desenvolvedor
+    - SCHEMA=quiron
 tomcat:
   build: ./dockers/tomcat6
   ports:
