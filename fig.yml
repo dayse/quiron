@@ -1,10 +1,14 @@
 db:
-  build: ./dockers/pgserver
+  build: ./dockers/docker-postgresql
   ports:
     - "5434:5432"
-#  volumes:
-    # - ./dockers/pgserver/dbs:/var/lib/postgresql
-    # - ./dockers/pgserver/log:/var/log/postgresql
+  volumes:
+    - ./dockers/docker-postresql/data:/data
+    - ./dockers/docker-postresql/log:/var/log/postgresql
+  environment:
+    - USER="deses"
+    - DB="quiron"
+    - PASS="deses"
 tomcat:
   build: ./dockers/tomcat6
   ports:
@@ -20,4 +24,6 @@ tomcat:
   volumes:
     - ./dockers/tomcat6/deploy:/usr/share/tomcat/webapps/my_app
     - ./dockers/tomcat6/logs:/usr/share/tomcat/logs
+  mem_limit: 524288
+
 
