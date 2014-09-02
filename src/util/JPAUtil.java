@@ -16,6 +16,13 @@ public class JPAUtil
 	private static final ThreadLocal<EntityManager> threadEntityManager = new ThreadLocal<EntityManager>();
 	private static final ThreadLocal<EntityTransaction> threadTransaction = new ThreadLocal<EntityTransaction>();
 
+	/**
+	 * Metodo que retorna a url do banco de dados relativa ao docker
+	 * de banco de dados chamado de DB, através das variaveis de ambiente
+	 * relativas ao mesmo.
+	 * @param env
+	 * @return
+	 */
 	public static String getDBURLFromEnv(Map<String, String> env){
 		//ex: tcp://172.17.0.32:5432
 		String dbTPCURL = env.get("DB_PORT");
@@ -37,12 +44,28 @@ public class JPAUtil
 		return dbURl;
 	}
 	
+	/**
+	 * Usado para gerar dados para sobreescrever as configuracoes do persistence
+	 * no caso se no ambiente da maquina houver a variavel de ambiente: ON_PRODUCTION
+	 * entao ele troca os dados de url do banco de dados, username, password e schema para 
+	 * os dados da maquina.
+	 * Muito interessante usar em producao, assim remove a necessidade colocar a informacoes
+	 * sensiveis como senhas no arquivo persistence.xml.
+	 * 
+	 * Para desenvolvimento, como nao existe a variavel de ambiente ON_PRODUCTION ele simplesmente ignora
+	 * e nao faz alteracao nenhuma, utilizando aquilo que foi configurado pelo persistence.xml
+	 * 
+	 * OBS: no tomcat pode ser necessario configurar para que o mesmo tenha estas variaveis de ambiente
+	 * configuradas. 
+	 * @return
+	 */
 	public static Map<String, Object> getConfigOverrides(){
 		Map<String, String> env = System.getenv();
 		Map<String, Object> configOverrides = new HashMap<String, Object>();
-		System.out.println(env.keySet());
 		for (String envName : env.keySet()) {
 		    if (envName.contains("ON_PRODUCTION")) {
+		    	System.out.println("SYSTEM ON PRODUCTION");
+				System.out.println(env.keySet());
 		        configOverrides.put("hibernate.connection.url", getDBURLFromEnv(env)); 
 		         
 		        configOverrides.put("hibernate.default_schema", env.get("QUIRON_DB_SCHEMA")); 
