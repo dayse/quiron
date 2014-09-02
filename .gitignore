@@ -7,3 +7,4 @@ bin/*
 /build
 /test-output
 /dockers/tomcat6/logs
+/dockers/tomcat6/deploy/*

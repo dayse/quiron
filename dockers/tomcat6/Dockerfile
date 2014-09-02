@@ -40,9 +40,8 @@ RUN tar xzf /tmp/apache-tomcat-$TOMCAT_VERSION.tar.gz \
     --strip-components=1 -C /usr/share/tomcat
 ENV CATALINA_HOME /usr/share/tomcat
 
-VOLUME  ["/usr/share/tomcat/webapps/my_app", "/usr/share/tomcat/logs"]
+VOLUME  ["/usr/share/tomcat/webapps", "/usr/share/tomcat/logs"]
 
-ADD ./deploy/quiron.war /usr/share/tomcat/webapps/quiron.war
 ADD ./conf/tomcat-users.xml /usr/share/tomcat/conf/tomcat-users.xml
 ADD ./lib/postgresql-8.3-607.jdbc3.jar /usr/share/tomcat/lib/postgresql-8.3-607.jdbc3.jar
 
