@@ -26,9 +26,9 @@
                 acesso ao banco no servidor local (localhost)
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/prototipo" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 
 			 -->
-			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<!--
 				Alternativamente é possível configurar o Hibernate para que ele
 				utilize um Pool de conexões denominado C3P0. Trata-se de um pool de
