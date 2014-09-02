@@ -1,7 +1,7 @@
 db:
   build: ./dockers/docker-postgresql
   ports:
-    - "5434:5432"
+    - "5432:5432"
   volumes:
     - ./dockers/docker-postgresql/data:/data
     - ./dockers/docker-postgresql/log:/var/log/postgresql
