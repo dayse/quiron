@@ -94,6 +94,55 @@ public class CargaAppService {
 		return executarCargas();
 	}
 
+	/**
+	 * Executa a carga com os dados de estudo:<br />
+	 * ---- executarCargaBasica;<br />
+	 * ---- CargaIndicacao;<br />
+	 * ---- CargaEspecialista;<br />
+	 * ---- CargaAvalIndicacaoEspec;<br />
+	 * ---- CargaPaciente;<br />
+	 * ---- CargaAtendimento;<br />
+	 * 
+	 * @return Retorna o resultado da chamada do método executarCargas().
+	 * @throws AplicacaoException
+	 * 
+	 * @author felipe.pontes
+	 * 
+	 */
+	public boolean executarCargaExemplo2() throws AplicacaoException{
+		//Instancia a lista de cargas novamente, para ter certeza que
+		//apenas as cargas a seguir serao executadas.
+		cargas = new ArrayList<CargaBase>();
+
+		//Executa a carga basica, se ela nao rodar, retorna falso.
+		if(!this.executarCargaExemplo1())
+			return false;
+		
+		// Inclui mais indicações
+		cargas.add(new CargaEstudoMultiplasIndicacao());
+		
+		// Inclui mais parametros
+		cargas.add(new CargaEstudoMultiplosParametros());
+		
+		// Inclui mais avaliacoes
+		
+		// Talvez inclui mais especialistas
+		
+		// Talvez inclui as avaliacoes para novos especialistas
+		
+		/*
+		
+		//Inclui as indicações
+		cargas.add(new CargaIndicacao());
+		//Inclui os especialistas
+		cargas.add(new CargaEspecialista());
+		//Inclui as avaliações dos especialistas para as indicações cadastradas
+		cargas.add(new CargaAvalIndicacaoEspec());
+*/
+		
+		return executarCargas();
+	}
+
 
 	/**
 	 * Esse método executa genericamente a lista de cargas
