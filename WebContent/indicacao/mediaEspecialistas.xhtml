@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition
+	template="/WEB-INF/template/indicacao_list_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.indicacao}</ui:define>
+	<ui:define name="descricao">#{prompt.indicacao_MediaEspecialistas}</ui:define>
+	<ui:define name="descricao_ajuda">
+	</ui:define>
+	<ui:define name="mensagemSistema" />
+
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="indicacaoActions" />
+
+		<h:form id="formMediaEspecialistas">
+
+
+			<rich:datascroller id="scrTabelaIndicacoes"
+				for="tabelaMediaEspecialistas" maxPages="5" align="center"
+				renderIfSinglePage="false"
+				page="#{indicacaoActions.paginaIndicacao}"
+				pageIndexVar="paginaAtual" />
+			<rich:dataTable id="tabelaMediaEspecialistas" var="mediaIndicacao"
+				align="center" value="#{indicacaoActions.listaDeMediasDeEspecialistasdeIndicacoes}"
+				rows="10" width="700px">
+
+				<f:facet name="header">
+
+					<rich:columnGroup>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.indicacao_Codigo}"
+								value="#{prompt.indicacao_Codigo}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.indicacao_Nome}"
+								value="#{prompt.indicacao_Nome}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.indicacao_dosagem}"
+								value="#{prompt.indicacao_Dosagem}" />
+						</rich:column>
+
+					</rich:columnGroup>
+
+				</f:facet>
+
+				<rich:column styleClass="colunaCampoNumericoCentralizado">
+					<h:outputText value="#{mediaIndicacao.indicacao.codIndicacao}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{mediaIndicacao.indicacao.nome}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{mediaIndicacao.indicacao.dosagem}" />
+				</rich:column>
+
+
+				<f:facet name="footer">
+
+					<h:panelGrid columns="2">
+
+						<h:outputText
+							value="#{prompt.indicacao_Total} = #{indicacaoActions.listaDeMediasDeEspecialistasdeIndicacoes.rowCount}" />
+
+					</h:panelGrid>
+
+				</f:facet>
+
+			</rich:dataTable>
+
+
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
