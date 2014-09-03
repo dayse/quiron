@@ -35,6 +35,7 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	private final String PAGINA_LIST = "listIndicacao";
 	private final String PAGINA_NEW = "newIndicacao";
 	private final String PAGINA_SHOW = "showIndicacao";
+	private final String PAGINA_MEDIA_ESPEC = "mediaEspecialistas";
 	
 	// Componentes de Controle
 	private static final long serialVersionUID = 1L;
@@ -46,6 +47,8 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	private DataModel listaDeIndicacoes;
 	private final String BUSCA_POR_CODIGO = "Código";
 	private final String BUSCA_POR_NOME = "Nome";
+
+	private DataModel listaDeMediasDeEspecialistasdeIndicacoes;
 	
 	/**
 	 * 
@@ -383,6 +386,15 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 
 	public void setIndicacaoCorrente(Indicacao indicacaoCorrente) {
 		this.indicacaoCorrente = indicacaoCorrente;
+	}
+
+	public DataModel getListaDeMediasDeEspecialistasdeIndicacoes() {
+		return listaDeMediasDeEspecialistasdeIndicacoes;
+	}
+
+	public void setListaDeMediasDeEspecialistasdeIndicacoes(
+			DataModel listaDeMediasDeEspecialistasdeIndicacoes) {
+		this.listaDeMediasDeEspecialistasdeIndicacoes = listaDeMediasDeEspecialistasdeIndicacoes;
 	}
 	
 	
