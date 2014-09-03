@@ -26,5 +26,18 @@ tomcat:
     - ./dockers/tomcat6/deploy:/usr/share/tomcat/webapps
     - ./dockers/tomcat6/logs:/usr/share/tomcat/logs
   mem_limit: 512000000
+test:
+  build: ./dockers/testng
+  links:
+    - db:db
+  environment:
+    - ON_PRODUCTION=true
+    - QUIRON_DB_NAME=QUIRON_DESENVOLVIMENTO
+    - QUIRON_DB_SCHEMA=quiron
+    - QUIRON_DB_USER=DESENVOLVEDOR
+    - QUIRON_DB_PASS=desenvolvedor
+  volumes:
+    - .:/project
+  mem_limit: 512000000
 
 
