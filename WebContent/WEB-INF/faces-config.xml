@@ -191,6 +191,10 @@
 			<from-outcome>showIndicacao</from-outcome>
 			<to-view-id>/indicacao/show.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>mediaEspecialistas</from-outcome>
+			<to-view-id>/indicacao/mediaEspecialistas.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	<!-- Regras de navegacao (Indicacao) -->
 	
