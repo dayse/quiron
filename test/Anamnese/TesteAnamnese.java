@@ -111,7 +111,7 @@ public class TesteAnamnese {
 		AssertJUnit.assertEquals(num_conjuntos, conjuntoDeAvaliacoes.size());
 		
 //		teste avaliação amoxilina 1:
-		ConjuntoAvaliacao conjuntoAvaliacaoAmox1 = conjuntoDeAvaliacoes.get(0);
+		ConjuntoAvaliacao conjuntoAvaliacaoAmox1 = conjuntoDeAvaliacoes.get(4);
 		AssertJUnit.assertEquals("amox1", conjuntoAvaliacaoAmox1.getIndicacao().getCodIndicacao());
 
 		Avaliacao amox1Febre = conjuntoAvaliacaoAmox1.getAvaliacoes().get(0);
@@ -125,7 +125,7 @@ public class TesteAnamnese {
 		AssertJUnit.assertEquals(df.format(0.436), df.format(conjuntoAvaliacaoAmox1.getGrauSemelhanca()));
 
 //		teste avaliação amoxilina 500:
-		ConjuntoAvaliacao conjuntoAvaliacaoAmox500 = conjuntoDeAvaliacoes.get(1);
+		ConjuntoAvaliacao conjuntoAvaliacaoAmox500 = conjuntoDeAvaliacoes.get(3);
 		AssertJUnit.assertEquals("amox500", conjuntoAvaliacaoAmox500.getIndicacao().getCodIndicacao());
 
 		Avaliacao amox500Disuria = conjuntoAvaliacaoAmox500.getAvaliacoes().get(1);
@@ -138,7 +138,7 @@ public class TesteAnamnese {
 		AssertJUnit.assertEquals(df.format(6.4), df.format(conjuntoAvaliacaoAmox500.getSomatorioUniao()));
 		AssertJUnit.assertEquals(df.format(0.516), df.format(conjuntoAvaliacaoAmox500.getGrauSemelhanca()));
 
-//		teste avaliação amoxilina 500:
+//		teste avaliação bactrim:
 		ConjuntoAvaliacao conjuntoAvaliacaoBactrim = conjuntoDeAvaliacoes.get(2);
 		AssertJUnit.assertEquals("bactrim", conjuntoAvaliacaoBactrim.getIndicacao().getCodIndicacao());
 
