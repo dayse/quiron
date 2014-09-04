@@ -124,40 +124,33 @@ public class AnamneseAppService {
 		return conjuntosDeAvaliacoes;
 	}
 
-//	public List<ConjuntoAvaliacao> recuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas() {
-//
-//
-//		List<Indicacao> listIndicacao = avalIndicacaoEspecDAO.recuperaListaIndicacao();
-//		List<Parametro> listParametro = parametroDAO.recuperaListaDeParametros();
-//
-//
-//		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
-//		
-//		for (Indicacao indicacao : listIndicacao) {
-//			ConjuntoAvaliacao conjuntoAvaliacao = new ConjuntoAvaliacao();
-//			conjuntoAvaliacao.setIndicacao(indicacao);
-//			
-//
-//			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
-//			for (Parametro parametro : listParametro) {
+	public List<ConjuntoAvaliacao> recuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas() {
+
+
+		List<Indicacao> listIndicacao = indicacaoDAO.recuperaListaIndicacao();
+		List<Parametro> listParametro = parametroDAO.recuperaListaDeParametros();
+
+
+		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
+		
+		for (Indicacao indicacao : listIndicacao) {
+			ConjuntoAvaliacao conjuntoAvaliacao = new ConjuntoAvaliacao();
+			conjuntoAvaliacao.setIndicacao(indicacao);
+			
+
+			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
+			for (Parametro parametro : listParametro) {
 //				Avaliacao avaliacaoCorrente = calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametro(atendimento, indicacao, parametro);
 //				listAvaliacao.add(avaliacaoCorrente);
-//			}
-//			
-//			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
-//			conjuntoAvaliacao.setSomatorioIntersecao(conjuntoAvaliacao.somaParametrosIntersecao());
-//			conjuntoAvaliacao.setSomatorioUniao(conjuntoAvaliacao.somaParametrosUniao());
-//			conjuntoAvaliacao.setGrauSemelhanca(conjuntoAvaliacao.getSomatorioIntersecao() / conjuntoAvaliacao.getSomatorioUniao());
-//			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
-//		}
-//		//ordena e poem ranking
-//		Collections.sort(conjuntosDeAvaliacoes);
-//		for (int i = 0; i < conjuntosDeAvaliacoes.size(); i++) {
-//			ConjuntoAvaliacao conjuntoAvaliacao = conjuntosDeAvaliacoes.get(i);
-//			conjuntoAvaliacao.setRanking(i+1);
-//		}
-//		return conjuntosDeAvaliacoes;
-//	}
+			}
+			
+			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
+			//usando apenas a união que é a media dos especialistas para um determinado parametro para uma indicacao
+			conjuntoAvaliacao.setSomatorioUniao(conjuntoAvaliacao.somaParametrosUniao());
+			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
+		}
+		return conjuntosDeAvaliacoes;
+	}
 
 	@Transacional
 	public void exclui(Anamnese anamnese) throws AplicacaoException {
