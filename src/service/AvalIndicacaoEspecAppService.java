@@ -64,8 +64,8 @@ public class AvalIndicacaoEspecAppService {
 		return avalIndicacaoEspecDAO.recuperaAvaliacaoPorEspecialistaIndicacaoParametro(especialista, indicacao, parametro);
 	}
 	
-	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPaginada(Especialista especialista){
-		return avalIndicacaoEspecDAO.recuperaListaDeAvaliacaoEspecPaginada(especialista);
+	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPorEspecialistaPaginada(Especialista especialista){
+		return avalIndicacaoEspecDAO.recuperaListaDeAvaliacaoEspecPorEspecialistaPaginada(especialista);
 	}
 	
 	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecComIndicacaoDeUmEspec(Especialista especialista){

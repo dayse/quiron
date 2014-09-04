@@ -101,9 +101,9 @@ public class TesteCargaAvalIndicacaoEspec {
 		int num_avaliacao = 35;
 		
 		List<AvalIndicacaoEspec> listaDeAvaliacaoDoEspec1 =
-				avalIndicacaoEspecService.recuperaListaDeAvaliacaoEspecPaginada(especialista1);
+				avalIndicacaoEspecService.recuperaListaDeAvaliacaoEspecPorEspecialistaPaginada(especialista1);
 		List<AvalIndicacaoEspec> listaDeAvaliacaoDoEspec2 =
-				avalIndicacaoEspecService.recuperaListaDeAvaliacaoEspecPaginada(especialista2);
+				avalIndicacaoEspecService.recuperaListaDeAvaliacaoEspecPorEspecialistaPaginada(especialista2);
 		
 		AssertJUnit.assertEquals(num_avaliacao, listaDeAvaliacaoDoEspec1.size());
 		AssertJUnit.assertEquals(num_avaliacao, listaDeAvaliacaoDoEspec2.size());

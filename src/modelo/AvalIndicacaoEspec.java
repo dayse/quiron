@@ -17,12 +17,12 @@ import javax.persistence.Table;
 
 @NamedQueries(
 		{
-			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecPaginada",
+			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecPorEspecialistaPaginada",
 						query = "select m from AvalIndicacaoEspec m " +
 								"where m.especialista = ? " +
 								"order by m.id"
 			),
-			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecPaginadaCount",
+			@NamedQuery(name = "AvalIndicacaoEspec.recuperaListaDeAvaliacaoEspecPorEspecialistaPaginadaCount",
 						query = "select count(m) from AvalIndicacaoEspec m " +
 								"where m.especialista = ?"
 			),

@@ -43,7 +43,7 @@ public interface AvalIndicacaoEspecDAO extends
 	 * 
 	 */
 	@RecuperaListaPaginada(tamanhoPagina = 10)
-	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPaginada(
+	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPorEspecialistaPaginada(
 			Especialista especialista);
 
 	/**
