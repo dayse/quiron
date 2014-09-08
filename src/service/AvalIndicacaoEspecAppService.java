@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import modelo.AvalIndicacaoEspec;
+import modelo.Avaliacao;
 import modelo.Especialista;
 import modelo.Indicacao;
 import modelo.Parametro;
@@ -60,6 +61,49 @@ public class AvalIndicacaoEspecAppService {
 		avalIndicacaoEspecDAO.inclui(avalIndicacaoEspec);
 	}
 	
+
+	public Double calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(Indicacao indicacao, Parametro parametro) {
+
+		List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
+				.recuperaAvaliacaoPorIndicacaoParametro(indicacao, parametro);
+
+		Double somatorioValorEspecialistas = 0.0;
+		Double mediaValorEspecialistas = 0.0;
+		Double mediaPesoAvaliador = 0.0;
+		for (AvalIndicacaoEspec avalIndicacaoEspec : listAvalIndicacaoEspec) {
+
+			mediaPesoAvaliador += avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
+			
+			somatorioValorEspecialistas += avalIndicacaoEspec.getValor() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
+			
+		}
+		mediaValorEspecialistas = somatorioValorEspecialistas/mediaPesoAvaliador;
+		return mediaValorEspecialistas;
+	}
+	
+	public Avaliacao calculaAvaliacaoPorIndicacaoPorParametro(Indicacao indicacao, Parametro parametro) {
+		List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
+				.recuperaAvaliacaoPorIndicacaoParametro(indicacao, parametro);
+
+		Double somatorioValorEspecialistas = 0.0;
+		Double mediaValorEspecialistas = 0.0;
+		Double mediaPesoAvaliador = 0.0;
+		for (AvalIndicacaoEspec avalIndicacaoEspec : listAvalIndicacaoEspec) {
+			mediaPesoAvaliador += avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
+			somatorioValorEspecialistas += avalIndicacaoEspec.getValor() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
+			
+		}
+		mediaValorEspecialistas = somatorioValorEspecialistas/mediaPesoAvaliador;
+		
+
+		Avaliacao avaliacaoCorrente = new Avaliacao();
+		avaliacaoCorrente.setParametro(parametro);
+		avaliacaoCorrente.setIndicacao(indicacao);
+		avaliacaoCorrente.setIntersecao(mediaValorEspecialistas);
+		avaliacaoCorrente.setUniao(mediaValorEspecialistas);
+		return avaliacaoCorrente;
+	}
+	
 	public AvalIndicacaoEspec recuperaAvaliacaoPorEspecialistaIndicacaoParametro(Especialista especialista, Indicacao indicacao, Parametro parametro)throws ObjetoNaoEncontradoException{
 		return avalIndicacaoEspecDAO.recuperaAvaliacaoPorEspecialistaIndicacaoParametro(especialista, indicacao, parametro);
 	}
@@ -86,9 +130,15 @@ public class AvalIndicacaoEspecAppService {
 	public Double recuperaMediaDoPesoAvaliadorDosEspecialistas(){
 		return recuperaMediaDoPesoAvaliadorDosEspecialistas();
 	}
-	
+
 	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao(
 										Especialista especialista, Indicacao indicacao){
 		return avalIndicacaoEspecDAO.recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao(especialista, indicacao);
 	}
+
+	public List<AvalIndicacaoEspec> recuperaAvaliacaoPorIndicacaoParametro(
+										Indicacao indicacao, Parametro parametro){
+		return avalIndicacaoEspecDAO.recuperaAvaliacaoPorIndicacaoParametro(indicacao, parametro);
+	}
+	
 }
