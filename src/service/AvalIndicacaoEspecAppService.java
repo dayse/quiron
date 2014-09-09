@@ -1,26 +1,36 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import modelo.AvalIndicacaoEspec;
 import modelo.Avaliacao;
+import modelo.ConjuntoAvaliacao;
 import modelo.Especialista;
 import modelo.Indicacao;
 import modelo.Parametro;
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
 import DAO.AvalIndicacaoEspecDAO;
+import DAO.IndicacaoDAO;
+import DAO.ParametroDAO;
 import DAO.Impl.AvalIndicacaoEspecDAOImpl;
+import DAO.Impl.IndicacaoDAOImpl;
+import DAO.Impl.ParametroDAOImpl;
 import DAO.controle.FabricaDeDao;
 import DAO.exception.ObjetoNaoEncontradoException;
 
 public class AvalIndicacaoEspecAppService {
 
 	private static AvalIndicacaoEspecDAO avalIndicacaoEspecDAO;
+	private static IndicacaoDAO indicacaoDAO;
+	private static ParametroDAO parametroDAO;
 	
 	public AvalIndicacaoEspecAppService() throws Exception{
 		try{
 			avalIndicacaoEspecDAO = FabricaDeDao.getDao(AvalIndicacaoEspecDAOImpl.class);
+			indicacaoDAO = FabricaDeDao.getDao(IndicacaoDAOImpl.class);
+			parametroDAO = FabricaDeDao.getDao(ParametroDAOImpl.class);
 		}catch(Exception e){
 			e.printStackTrace();
 			System.exit(1);
@@ -92,6 +102,36 @@ public class AvalIndicacaoEspecAppService {
 		avaliacaoCorrente.setUniao(mediaValorEspecialistas);
 		return avaliacaoCorrente;
 	}
+
+	public List<ConjuntoAvaliacao> recuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas() {
+
+
+		List<Indicacao> listIndicacao = indicacaoDAO.recuperaListaIndicacao();
+		List<Parametro> listParametro = parametroDAO.recuperaListaDeParametros();
+
+
+		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
+		
+		for (Indicacao indicacao : listIndicacao) {
+			ConjuntoAvaliacao conjuntoAvaliacao = new ConjuntoAvaliacao();
+			conjuntoAvaliacao.setIndicacao(indicacao);
+			
+
+			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
+			for (Parametro parametro : listParametro) {
+				Avaliacao avaliacaoCorrente = calculaAvaliacaoPorIndicacaoPorParametro(indicacao, parametro);
+				listAvaliacao.add(avaliacaoCorrente);
+			}
+			
+			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
+			//Colocando a unicao e intersecao para serem ambas as medias dos especialistas
+			conjuntoAvaliacao.setSomatorioUniao(conjuntoAvaliacao.somaParametrosUniao());
+			conjuntoAvaliacao.setSomatorioIntersecao(conjuntoAvaliacao.somaParametrosIntersecao());
+			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
+		}
+		return conjuntosDeAvaliacoes;
+	}
+
 	
 	public AvalIndicacaoEspec recuperaAvaliacaoPorEspecialistaIndicacaoParametro(Especialista especialista, Indicacao indicacao, Parametro parametro)throws ObjetoNaoEncontradoException{
 		return avalIndicacaoEspecDAO.recuperaAvaliacaoPorEspecialistaIndicacaoParametro(especialista, indicacao, parametro);
