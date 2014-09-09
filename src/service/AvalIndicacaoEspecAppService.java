@@ -72,6 +72,14 @@ public class AvalIndicacaoEspecAppService {
 	}
 	
 
+	/**
+	 * Metodo usado para calcular a media da avaliação do especialista para uma
+	 * determinada combinação de indicação e parametro.
+	 * 
+	 * @param indicacao
+	 * @param parametro
+	 * @return
+	 */
 	public Double calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(Indicacao indicacao, Parametro parametro) {
 
 		List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
@@ -91,6 +99,13 @@ public class AvalIndicacaoEspecAppService {
 		return mediaValorEspecialistas;
 	}
 	
+	/**
+	 * Calcula a uma avaliação para uma combinação de indicação e parametro.
+	 * 
+	 * @param indicacao
+	 * @param parametro
+	 * @return
+	 */
 	public Avaliacao calculaAvaliacaoPorIndicacaoPorParametro(Indicacao indicacao, Parametro parametro) {
 		Double mediaValorEspecialistas = calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(indicacao, parametro);
 		
@@ -103,6 +118,10 @@ public class AvalIndicacaoEspecAppService {
 		return avaliacaoCorrente;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<ConjuntoAvaliacao> recuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas() {
 
 
