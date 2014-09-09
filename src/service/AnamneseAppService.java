@@ -14,6 +14,7 @@ import modelo.ConjuntoAvaliacao;
 import modelo.Indicacao;
 import modelo.Parametro;
 import service.anotacao.Transacional;
+import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
 import DAO.AnamneseDAO;
 import DAO.AvalIndicacaoEspecDAO;
@@ -34,6 +35,8 @@ public class AnamneseAppService {
 	private static AvalIndicacaoEspecDAO avalIndicacaoEspecDAO;
 	private static IndicacaoDAO indicacaoDAO;
 	private static ParametroDAO parametroDAO;
+	
+	public AvalIndicacaoEspecAppService avalIndicacaoEspecService;
 
 	public AnamneseAppService() throws Exception {
 		try {
@@ -42,6 +45,8 @@ public class AnamneseAppService {
 					.getDao(AvalIndicacaoEspecDAOImpl.class);
 			indicacaoDAO = FabricaDeDao.getDao(IndicacaoDAOImpl.class);
 			parametroDAO = FabricaDeDao.getDao(ParametroDAOImpl.class);
+			
+			avalIndicacaoEspecService = FabricaDeAppService.getAppService(AvalIndicacaoEspecAppService.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -64,18 +69,8 @@ public class AnamneseAppService {
 			e.printStackTrace();
 		}
 		
-		List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
-				.recuperaAvaliacaoPorIndicacaoParametro(indicacao, parametro);
-
-		Double somatorioValorEspecialistas = 0.0;
-		Double mediaValorEspecialistas = 0.0;
-		Double mediaPesoAvaliador = 0.0;
-		for (AvalIndicacaoEspec avalIndicacaoEspec : listAvalIndicacaoEspec) {
-			mediaPesoAvaliador += avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
-			somatorioValorEspecialistas += avalIndicacaoEspec.getValor() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
-			
-		}
-		mediaValorEspecialistas = somatorioValorEspecialistas/mediaPesoAvaliador;
+		Double mediaValorEspecialistas = 
+				avalIndicacaoEspecService.calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(indicacao, parametro);
 		
 
 		Avaliacao avaliacaoCorrente = new Avaliacao();

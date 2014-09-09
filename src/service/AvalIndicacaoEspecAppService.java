@@ -82,18 +82,7 @@ public class AvalIndicacaoEspecAppService {
 	}
 	
 	public Avaliacao calculaAvaliacaoPorIndicacaoPorParametro(Indicacao indicacao, Parametro parametro) {
-		List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecDAO
-				.recuperaAvaliacaoPorIndicacaoParametro(indicacao, parametro);
-
-		Double somatorioValorEspecialistas = 0.0;
-		Double mediaValorEspecialistas = 0.0;
-		Double mediaPesoAvaliador = 0.0;
-		for (AvalIndicacaoEspec avalIndicacaoEspec : listAvalIndicacaoEspec) {
-			mediaPesoAvaliador += avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
-			somatorioValorEspecialistas += avalIndicacaoEspec.getValor() * avalIndicacaoEspec.getEspecialista().getPesoAvaliador();
-			
-		}
-		mediaValorEspecialistas = somatorioValorEspecialistas/mediaPesoAvaliador;
+		Double mediaValorEspecialistas = calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(indicacao, parametro);
 		
 
 		Avaliacao avaliacaoCorrente = new Avaliacao();

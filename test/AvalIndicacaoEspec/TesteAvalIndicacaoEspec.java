@@ -195,7 +195,7 @@ public class TesteAvalIndicacaoEspec {
 		Indicacao amox500 = new Indicacao();
 		Parametro febre = new Parametro();
 		DecimalFormat df = new DecimalFormat("0.00"); 
-		Double valorFebreAmox500 = 0.8;
+		Double valorFebreAmox500 = 0.6;
 
 		febre = parametroService.recuperaParametroPorCodigo("P1");
 		
@@ -208,7 +208,7 @@ public class TesteAvalIndicacaoEspec {
 		List<AvalIndicacaoEspec> listAvalIndicacaoEspec = avalIndicacaoEspecService
 				.recuperaAvaliacaoPorIndicacaoParametro(amox500, febre);
 		AvalIndicacaoEspec avEspec1Amox500Febre = listAvalIndicacaoEspec.get(0);
-		AssertJUnit.assertEquals(df.format(0.6), df.format(avEspec1Amox500Febre.getValor()));
+		AssertJUnit.assertEquals(df.format(valorFebreAmox500), df.format(avEspec1Amox500Febre.getValor()));
 	}
 
 	
