@@ -119,6 +119,8 @@ public class AvalIndicacaoEspecAppService {
 	}
 
 	/**
+	 * Metodo utilizado para achar a media de Avaliação de Indicação de todos os especialistas.
+	 * Esse metodo é utilizado na tela de media dos especialistas
 	 * 
 	 * @return
 	 */
@@ -143,9 +145,6 @@ public class AvalIndicacaoEspecAppService {
 			}
 			
 			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
-			//Colocando a unicao e intersecao para serem ambas as medias dos especialistas
-			conjuntoAvaliacao.setSomatorioUniao(conjuntoAvaliacao.somaParametrosUniao());
-			conjuntoAvaliacao.setSomatorioIntersecao(conjuntoAvaliacao.somaParametrosIntersecao());
 			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
 		}
 		return conjuntosDeAvaliacoes;

@@ -6,6 +6,7 @@ import java.util.List;
 
 import modelo.AvalIndicacaoEspec;
 import modelo.Avaliacao;
+import modelo.ConjuntoAvaliacao;
 import modelo.Especialista;
 import modelo.Indicacao;
 import modelo.Parametro;
@@ -142,6 +143,60 @@ public class TesteAvalIndicacaoEspec {
 		AssertJUnit.assertEquals("P1", avaliacaoRecuperada.getParametro().getCodParametro());
 	}
 
+	@Test
+	public void testRecuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas()  throws AplicacaoException{
+
+		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
+		conjuntosDeAvaliacoes =  avalIndicacaoEspecService.recuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas();
+
+		DecimalFormat df = new DecimalFormat("0.00"); 
+		int num_conjuntosDeAvaliacoes = indicacaoService.recuperaListaDeIndicacoesPaginada().size();
+
+		AssertJUnit.assertEquals(num_conjuntosDeAvaliacoes, conjuntosDeAvaliacoes.size());
+		
+		//pega o conjunto de avaliações da amoxilina 1
+		ConjuntoAvaliacao avaliacoesAmox = conjuntosDeAvaliacoes.get(0);
+
+		//pega a avaliação da amoxilina x Febre
+		Avaliacao avaliacaoAmoxFebre = avaliacoesAmox.getAvaliacoes().get(0);
+
+		//testa se essa realmente é a avaliação "Amoxilina1 x Febre"
+		AssertJUnit.assertEquals("amox1", avaliacaoAmoxFebre.getIndicacao().getCodIndicacao());
+		AssertJUnit.assertEquals("P1", avaliacaoAmoxFebre.getParametro().getCodParametro());
+		//testa se a media dos especialistas para essa cominação "Amox1 x Febre" é correta
+		AssertJUnit.assertEquals(df.format(0.6), df.format(avaliacaoAmoxFebre.getIntersecao()));
+		AssertJUnit.assertEquals(df.format(0.6), df.format(avaliacaoAmoxFebre.getUniao()));
+		
+
+		//pega o conjunto de avaliações da Bactrim
+		ConjuntoAvaliacao avaliacoesBactrim = conjuntosDeAvaliacoes.get(2);
+
+		//pega a avaliação da Bactrim x Diabetes
+		Avaliacao avaliacaoBactrimDiabetes = avaliacoesBactrim.getAvaliacoes().get(2);
+
+		//testa se essa realmente é a avaliação "Bactrim x Diabetes"
+		AssertJUnit.assertEquals("bactrim", avaliacaoBactrimDiabetes.getIndicacao().getCodIndicacao());
+		AssertJUnit.assertEquals("P3", avaliacaoBactrimDiabetes.getParametro().getCodParametro());
+		//testa se a media dos especialistas para essa cominação "Bactrim x Diabetes" é correta
+		AssertJUnit.assertEquals(df.format(0.7), df.format(avaliacaoBactrimDiabetes.getIntersecao()));
+		AssertJUnit.assertEquals(df.format(0.7), df.format(avaliacaoBactrimDiabetes.getUniao()));
+
+		//pega o conjunto de avaliações da Amox500
+		ConjuntoAvaliacao avaliacoesAmox500 = conjuntosDeAvaliacoes.get(1);
+
+		//pega a avaliação da Amox500 x Candida
+		Avaliacao avaliacaoAmox500Candida = avaliacoesAmox500.getAvaliacoes().get(5);
+
+		//testa se essa realmente é a avaliação "Amox500 x Candida"
+		AssertJUnit.assertEquals("amox500", avaliacaoAmox500Candida.getIndicacao().getCodIndicacao());
+		AssertJUnit.assertEquals("P6", avaliacaoAmox500Candida.getParametro().getCodParametro());
+		//testa se a media dos especialistas para essa cominação "Amox500 x Candida" é correta
+		AssertJUnit.assertEquals(df.format(0.2), df.format(avaliacaoAmox500Candida.getIntersecao()));
+		AssertJUnit.assertEquals(df.format(0.2), df.format(avaliacaoAmox500Candida.getUniao()));
+		
+		
+	}
+	
 	@Test
 	public void testCalculaAvaliacaoPorIndicacaoPorParametro()  throws AplicacaoException{
 		Indicacao amox500 = new Indicacao();
