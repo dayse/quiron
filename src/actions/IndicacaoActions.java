@@ -8,8 +8,10 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 import modelo.Indicacao;
-
+import modelo.Parametro;
+import service.AvalIndicacaoEspecAppService;
 import service.IndicacaoAppService;
+import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
 import util.SelectOneDataModel;
@@ -29,6 +31,8 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 
 	// Service
 	private static IndicacaoAppService indicacaoService;
+	private static AvalIndicacaoEspecAppService avalIndicacaoEspecService;
+	private static ParametroAppService parametroService;
 
 	// Páginas
 	private final String PAGINA_EDIT = "editIndicacao";
@@ -49,6 +53,7 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	private final String BUSCA_POR_NOME = "Nome";
 
 	private DataModel listaDeMediasDeEspecialistasdeIndicacoes;
+	private List<Parametro> listaDeParametros; 
 	
 	/**
 	 * 
@@ -64,6 +69,10 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	public IndicacaoActions() throws Exception{
 		try{
 			indicacaoService = FabricaDeAppService.getAppService(IndicacaoAppService.class);
+			avalIndicacaoEspecService = FabricaDeAppService.getAppService(AvalIndicacaoEspecAppService.class);
+			parametroService = FabricaDeAppService
+					.getAppService(ParametroAppService.class);
+			
 		}catch(Exception e){
 			throw e;
 		}
@@ -233,6 +242,20 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	}
 	
 	/**
+	 * Mostra media dos especialistas
+	 * @return
+	 */
+	public String mostraMediaEspecialistas(){
+
+		listaDeMediasDeEspecialistasdeIndicacoes= new ListDataModel(
+								avalIndicacaoEspecService.recuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas());
+		
+		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
+		
+		return PAGINA_MEDIA_ESPEC;
+	}
+	
+	/**
 	 * 
 	 * Método acionado antes da tela 
 	 * de edição ser renderizada.
@@ -396,6 +419,13 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 			DataModel listaDeMediasDeEspecialistasdeIndicacoes) {
 		this.listaDeMediasDeEspecialistasdeIndicacoes = listaDeMediasDeEspecialistasdeIndicacoes;
 	}
-	
+
+	public List<Parametro> getListaDeParametros() {
+		return this.listaDeParametros;
+	}
+
+	public void setListaDeParametros(List<Parametro> listaDeParametros) {
+		this.listaDeParametros = listaDeParametros;
+	}
 	
 }
