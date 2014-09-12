@@ -39,5 +39,16 @@ test:
   volumes:
     - .:/project
   mem_limit: 512000000
+dbdoc:
+  build: ./dockers/docker-pgdoc
+  links:
+    - db:db
+  environment:
+    - QUIRON_DB_NAME=QUIRON_DESENVOLVIMENTO
+    - QUIRON_DB_SCHEMA=quiron
+    - QUIRON_DB_USER=DESENVOLVEDOR
+    - QUIRON_DB_PASS=desenvolvedor
+  volumes:
+    - ./dockers/docker-pgdoc/data:/data
 
 
