@@ -53,7 +53,9 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	private final String BUSCA_POR_NOME = "Nome";
 
 	private DataModel listaDeMediasDeEspecialistasdeIndicacoes;
+	private int paginaMediaEspecialistas = 1;
 	private List<Parametro> listaDeParametros; 
+	private int numParametros;
 	
 	/**
 	 * 
@@ -426,6 +428,21 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 
 	public void setListaDeParametros(List<Parametro> listaDeParametros) {
 		this.listaDeParametros = listaDeParametros;
+	}
+
+	public int getPaginaMediaEspecialistas() {
+		return paginaMediaEspecialistas;
+	}
+
+	public void setPaginaMediaEspecialistas(int paginaMediaEspecialistas) {
+		this.paginaMediaEspecialistas = paginaMediaEspecialistas;
+	}
+	public int getNumParametros() {
+		return this.listaDeParametros.size();
+	}
+
+	public void setNumParametros(int numParametros) {
+		this.numParametros = numParametros;
 	}
 	
 }

@@ -1,12 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jstl/core"  
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 
 <ui:composition
-	template="/WEB-INF/template/indicacao_list_template.xhtml">
+	template="/WEB-INF/template/indicacao_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.indicacao}</ui:define>
 	<ui:define name="descricao">#{prompt.indicacao_MediaEspecialistas}</ui:define>
@@ -24,9 +25,9 @@
 			<rich:datascroller id="scrTabelaIndicacoes"
 				for="tabelaMediaEspecialistas" maxPages="5" align="center"
 				renderIfSinglePage="false"
-				page="#{indicacaoActions.paginaIndicacao}"
+				page="#{indicacaoActions.paginaMediaEspecialistas}"
 				pageIndexVar="paginaAtual" />
-			<rich:dataTable id="tabelaMediaEspecialistas" var="mediaIndicacao"
+			<rich:dataTable id="tabelaMediaEspecialistas" var="conjuntoAvaliacao"
 				align="center" value="#{indicacaoActions.listaDeMediasDeEspecialistasdeIndicacoes}"
 				rows="10" width="700px">
 
@@ -34,37 +35,51 @@
 
 					<rich:columnGroup>
 
-						<rich:column>
-							<h:outputText title="#{tooltip.indicacao_Codigo}"
-								value="#{prompt.indicacao_Codigo}" />
+						<rich:column colspan="#{indicacaoActions.numParametros + 1}">
+							<h:outputText value="#{prompt.indicacao_MediaEspecialistas}" />
 						</rich:column>
 
-						<rich:column>
-							<h:outputText title="#{tooltip.indicacao_Nome}"
-								value="#{prompt.indicacao_Nome}" />
+						
+						<rich:column breakBefore="true">
+							<h:outputText title="#{tooltip.indicacao}"
+								value="#{prompt.indicacao}" />
 						</rich:column>
-
-						<rich:column>
-							<h:outputText title="#{tooltip.indicacao_dosagem}"
-								value="#{prompt.indicacao_Dosagem}" />
+						
+						<rich:column colspan="#{indicacaoActions.numParametros}" breakAfter="true">
+							<h:outputText title="#{tooltip.parametro}"
+								value="#{prompt.parametro}" />
 						</rich:column>
+						
+						
+						<rich:column  breakBefore="true">
+							<h:outputText value=" " />
+						</rich:column>						
 
+					   <c:forEach items="#{indicacaoActions.listaDeParametros}" var="parametro">
+					      <rich:column>
+					         <h:outputText value="#{parametro.nome}" />
+					      </rich:column>
+					   </c:forEach>
+					   
 					</rich:columnGroup>
 
 				</f:facet>
 
-				<rich:column styleClass="colunaCampoNumericoCentralizado">
-					<h:outputText value="#{mediaIndicacao.indicacao.codIndicacao}" />
-				</rich:column>
-
-				<rich:column>
-					<h:outputText value="#{mediaIndicacao.indicacao.nome}" />
-				</rich:column>
-
-				<rich:column>
-					<h:outputText value="#{mediaIndicacao.indicacao.dosagem}" />
-				</rich:column>
-
+				<rich:columnGroup>
+					<rich:column >
+						<h:outputText value="#{conjuntoAvaliacao.indicacao.nome}" />
+					</rich:column>
+					
+					  
+					<c:forEach var="i" begin="0" end="#{indicacaoActions.numParametros - 	1}">
+				      <rich:column styleClass="colunaCampoNumerico">
+				         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].intersecao}">
+						 	<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="default" />
+						</h:outputText>
+				      </rich:column>
+					</c:forEach>
+				
+				</rich:columnGroup>
 
 				<f:facet name="footer">
 
