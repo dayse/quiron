@@ -10,15 +10,8 @@
         	<class name="carga.TesteCargaAtendimento"/>
         	<class name="carga.TesteCargaAvalIndicacaoEspec"/>
         	<class name="AvalIndicacaoEspec.TesteAvalIndicacaoEspec"/>
+        	<class name="Atendimento.TesteAtendimento"/>
         	<!--  
-        	<class name="tecido.TesteTecido"/>
-        	<class name="avaliacao.TesteAvaliacao"/>
-        	<class name="cadplan.TesteCadPlan"/>
-        	<class name="excecaoMens.TesteExcecaoMens"/>
-        	<class name="JPA.TesteJPA"/>
-        	<class name="HP.TesteHP"/>
-        	<class name="recurso.TesteRecurso"/>
-        	<class name="periopm.TestePerioPM"/>
         	-->
         </classes>
     </test>
