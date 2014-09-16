@@ -82,6 +82,10 @@ public class AtendimentoAppService {
 	public List<Atendimento> recuperaListaDeAtendimentosPaginada(){
 		return atendimentoDAO.recuperaListaDeAtendimentosPaginada();
 	}
+
+	public List<Atendimento> recuperaListaDeAtendimentosComPacientePaginada(){
+		return atendimentoDAO.recuperaListaDeAtendimentosComPacientePaginada();
+	}
 	
 	public List<Atendimento> recuperaListaPaginadaDeAtendimentosPorPacientePorCodigoLike(String codPaciente){
 		return atendimentoDAO.recuperaListaPaginadaDeAtendimentosPorPacientePorCodigoLike(codPaciente);
