@@ -51,7 +51,7 @@ public interface AtendimentoDAO extends DaoGenerico<Atendimento, Long> {
 	public Atendimento recuperaAtendimentoPorCodigoComPaciente(String codAtendimento)
 			throws ObjetoNaoEncontradoException;
 
-	
+
 	/**
 	 * 
 	 * Consulta que recupera a lista paginada de todos os atendimentos
@@ -60,6 +60,19 @@ public interface AtendimentoDAO extends DaoGenerico<Atendimento, Long> {
 	 * @return List de atendimento - Retorna uma lista paginada de atendimentos.
 	 * 
 	 * @author bruno.oliveira
+	 * 
+	 */
+	@RecuperaListaPaginada(tamanhoPagina = 10)
+	public List<Atendimento> recuperaListaDeAtendimentosComPacientePaginada();
+
+	/**
+	 * 
+	 * Consulta que recupera a lista paginada de todos os atendimentos
+	 * registrados no banco e traz junto os pacientes.
+	 * 
+	 * @return List de atendimento - Retorna uma lista paginada de atendimentos com pacientes.
+	 * 
+	 * @author felipe.arruda
 	 * 
 	 */
 	@RecuperaListaPaginada(tamanhoPagina = 10)
