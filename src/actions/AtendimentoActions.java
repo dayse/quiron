@@ -464,6 +464,22 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		return PAGINA_NEW;
 	}
 
+	
+	/**
+	 * 
+	 * Método que zera as variáveis
+	 * relacionadas a lista de 
+	 * atendimentos. De forma que
+	 * quando for chamado, a lista
+	 * será atualizada.
+	 * 
+	 * 
+	 */
+	public String preparaListagem(){
+		listaDeAtendimentos = null;
+		return PAGINA_LIST;
+	}
+
 	/*      ************* Get & Set ************ */
 
 	public Atendimento getAtendimentoCorrente() {
