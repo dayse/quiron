@@ -43,6 +43,14 @@ import javax.persistence.TemporalType;
 			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosPaginadaCount",
 						query = "select count(a) from Atendimento a "
 			),
+			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosComPacientePaginada",
+						query = "select a from Atendimento a " +
+								"inner join fetch a.paciente pa " +
+								"order by a.dataAtendimento"
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosComPacientePaginadaCount",
+						query = "select count(a) from Atendimento a "
+			),
 			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentosPorPacientePorCodigoLike",
 						query = "select a from Atendimento a " +
 								"where a.codAtendimento like '%' || upper(?) || '%' " +
