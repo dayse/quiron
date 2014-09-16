@@ -8,4 +8,4 @@ bin/*
 /test-output
 /dockers/tomcat6/logs
 /dockers/tomcat6/deploy/*
-/dockers/docker-pgdoc/data/*
+/dockers/docker-pgdoc/data/*.dot
