@@ -514,16 +514,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public DataModel getListaDeAtendimentos() {
 		if (listaDeAtendimentos == null) {
 
-			List<Atendimento> atendimentos = new ArrayList(atendimentoService
-					.recuperaListaDeAtendimentosPaginada());
-			for (Atendimento atendimento : atendimentos) {
-				try {
-					atendimento.setPaciente(pacienteService
-							.recuperaUmPacienteComAtendimento(atendimento
-									.getPaciente()));
-				} catch (AplicacaoException e) {
-				}
-			}
+			List<Atendimento> atendimentos = new ArrayList<Atendimento>(atendimentoService
+					.recuperaListaDeAtendimentosComPacientePaginada());
 
 			listaDeAtendimentos = new ListDataModel(atendimentos);
 		}
