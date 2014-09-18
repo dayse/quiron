@@ -98,9 +98,9 @@ public class TesteAtendimento {
 	}
 	
 	@Test
-	public void testeRecuperaListaDeAtendimentosPaginada() throws AplicacaoException {
+	public void testeRecuperaListaDeAtendimentosComPacientePaginada() throws AplicacaoException {
 		cargaAtendimento.executar();
-		List<Atendimento> listaDeAtendimentos = atendimentoService.recuperaListaDeAtendimentosPaginada();
+		List<Atendimento> listaDeAtendimentos = atendimentoService.recuperaListaDeAtendimentosComPacientePaginada();
 		
 		int num_atendimentos = 2;
 		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());;
@@ -112,13 +112,23 @@ public class TesteAtendimento {
 		Usuario tecnico = usuarioService.recuperaPorLogin("tecnico");
 
 		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
+		Atendimento atendimentoPaciente2 = listaDeAtendimentos.get(1);
+
 		AssertJUnit.assertEquals(
 				atendimentoPaciente1.getPaciente(), 
 				paciente1);
-
+		
 		AssertJUnit.assertEquals(
 				atendimentoPaciente1.getMedico(), 
 				clinico);
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente2.getPaciente(), 
+				paciente2);
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente2.getTecnico(), 
+				tecnico);
 		
 	}
 }
