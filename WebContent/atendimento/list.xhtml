@@ -5,7 +5,7 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 
-<ui:composition template="/WEB-INF/template/atendimento_template.xhtml">
+<ui:composition template="/WEB-INF/template/atendimento_list_template.xhtml">
 	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
 	<ui:define name="descricao">#{prompt.atendimento_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
@@ -28,21 +28,33 @@
 				page="#{atendimentoActions.pagina}">
 			</rich:datascroller>
 
-			<rich:dataTable id="lista" rows="1" align="center"
+			<rich:dataTable id="lista" rows="10" align="center"
 				value="#{atendimentoActions.listaDeAtendimentos}" var="atendimento"
-				width="470px">
+				width="700px">
 				<f:facet name="header">
 					<rich:columnGroup>
-						<rich:column colspan="10">
+						<rich:column colspan="18">
 							<h:outputText value="#{prompt.atendimento}" />
 						</rich:column>
+						
 						<rich:column breakBefore="true">
 							<h:outputText title="#{tooltip.atendimento_Codigo}"
 								value="#{prompt.atendimento_Codigo}" />
 						</rich:column>
+						
 						<rich:column colspan="2">
 							<h:outputText title="#{tooltip.atendimento_Data}"
 								value="#{prompt.atendimento_Data}" />
+						</rich:column>
+						
+						<rich:column colspan="4">
+							<h:outputText title="#{tooltip.paciente_Nome}"
+								value="#{prompt.paciente_Nome}" />
+						</rich:column>
+
+						<rich:column colspan="2">
+							<h:outputText title="#{tooltip.paciente_Sexo}"
+								value="#{prompt.paciente_Sexo}" />
 						</rich:column>
 						
 						<rich:column colspan="2">
@@ -55,47 +67,45 @@
 								value="#{prompt.atendimento_Tecnico}" />
 						</rich:column>
 						
-						<rich:column colspan="2">
-							<h:outputText title="#{tooltip.paciente_Nome}"
-								value="#{prompt.paciente_Nome}" />
-						</rich:column>
 
-						<rich:column colspan="2">
-							<h:outputText title="#{tooltip.paciente_Sexo}"
-								value="#{prompt.paciente_Sexo}" />
-						</rich:column>
-
-						<rich:column colspan="2">
+						<rich:column >
 						<h:outputText title="#{tooltip.atendimento_Status}"
 							value="#{prompt.atendimento_Status}" />
 						</rich:column>
 
-						<rich:column colspan="3">
-							<h:outputText title="#{tooltip.atendimento_Incluir}"
-							 value="#{prompt.atendimento_Incluir}" />
+						<rich:column colspan="2">
+							<h:outputText title="#{tooltip.atendimento_Avaliacao}"		
+									value="#{prompt.avaliacao}" />
 						</rich:column>
+						
+						<rich:column >
+							<h:outputText title="#{tooltip.atendimento_Editar}" value="#{prompt.editar}" />
+						</rich:column>
+								
+						<rich:column >
+							<h:outputText title="#{tooltip.atendimento_Excluir}" value="#{prompt.excluir}" />
+						</rich:column>
+													
+						
 					</rich:columnGroup>
 				</f:facet>
 
-				<h:column>
-					<h:outputText value="#{atendimento.codAtendimento}" />
-				</h:column>
+				<rich:column colspan="1">
+					<h:commandLink value="#{atendimento.codAtendimento}"		
+						action="#{atendimentoActions.mostrar}">		
+					<f:setPropertyActionListener value="#{atendimento}"		
+						target="#{atendimentoActions.atendimentoCorrente}" />		
+					</h:commandLink>
+				</rich:column>
+				
 				
 				<rich:column colspan="2">
-					<h:outputText value="#{atendimento.DataAtendimento.time}">
+					<h:outputText value="#{atendimento.dataAtendimento.time}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</rich:column>
 
-				<rich:column colspan="2">
-					<h:outputText value="#{atendimento.medico.nome}" />
-				</rich:column>
-				
-				<rich:column colspan="2">
-						<h:outputText value="#{atendimento.tecnico == null ? prompt.atendimento_SemTecnico : atendimento.tecnico.nome}" />
-				</rich:column>
-				
-				<rich:column colspan="2">
+				<rich:column colspan="4">
 					<h:outputText value="#{atendimento.paciente.nome}" />
 				</rich:column>
 
@@ -105,16 +115,41 @@
 				</rich:column>
 
 
+				<rich:column colspan="2">
+					<h:outputText value="#{atendimento.medico.nome}" />
+				</rich:column>
+				
+				<rich:column colspan="2">
+						<h:outputText value="#{atendimento.tecnico == null ? prompt.atendimento_SemTecnico : atendimento.tecnico.nome}" />
+				</rich:column>
+				
 				<rich:column>
 					<h:outputText value="#{atendimento.status}" />
 				</rich:column>
 
 
-				<rich:column colspan="3">
-					<h:commandButton action="#{atendimentoActions.preparaInclusao}"
-						value="#{prompt.atendimento_Incluir}" />
+				<rich:column colspan="2">
+					<h:commandButton value="#{prompt.avaliacao}"		
+						action="#{atendimentoActions.calculaAvaliacao}">		
+						<f:setPropertyActionListener value="#{atendimento}"		
+							target="#{atendimentoActions.atendimentoCorrente}" />		
+					</h:commandButton>
 				</rich:column>
-
+				<rich:column >
+					<h:commandButton value="#{prompt.editar}"		
+						action="#{atendimentoActions.preparaAlteracao}">		
+						<f:setPropertyActionListener value="#{atendimento}"		
+							target="#{atendimentoActions.atendimentoCorrente}" />		
+					</h:commandButton>
+				</rich:column>
+				<rich:column >
+					<a4j:commandButton value="#{prompt.excluir}"		
+						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})">		
+						<f:setPropertyActionListener value="#{atendimento}"		
+							target="#{atendimentoActions.atendimentoCorrente}" />		
+					</a4j:commandButton>
+				</rich:column>
+									
 
 			</rich:dataTable>
 

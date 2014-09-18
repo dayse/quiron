@@ -480,6 +480,24 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		return PAGINA_LIST;
 	}
 
+	/**
+	 *  Action usada na hora de sair da tela de inclusão/edição e show
+	 *  de atendimento, que faz voltar para a list.
+	 * @return
+	 */
+	public String voltar(){
+		comboMedicos = null;
+		comboTecnicos = null;
+		comboStatus = null;
+		dataAtendimento = null;
+		atendimentoCorrente = null;
+		anamnesesCorrente = null;
+		listaDeAnamneses = null;
+		pacienteCorrente = null;
+		listaDeAtendimentos = null;
+		return PAGINA_LIST;
+	}
+	
 	/*      ************* Get & Set ************ */
 
 	public Atendimento getAtendimentoCorrente() {
