@@ -5,9 +5,8 @@ import java.util.List;
 
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
-
 import modelo.Atendimento;
-
+import modelo.Paciente;
 import DAO.AtendimentoDAO;
 import DAO.Impl.AtendimentoDAOImpl;
 import DAO.controle.FabricaDeDao;
@@ -98,5 +97,9 @@ public class AtendimentoAppService {
 	public Atendimento recuperaUltimoAtendimento(){
 		return atendimentoDAO.recuperaUltimoAtendimento();
 	}
+	public List<Atendimento> recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(String codigoPaciente){
+		return atendimentoDAO.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(codigoPaciente);
+	}
+	
 	
 }

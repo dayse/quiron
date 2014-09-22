@@ -91,6 +91,7 @@ public class TesteAtendimento {
 			for (CargaBase cargaDependente : cargaAtendimento.getCargasDependentes()) {
 					cargaDependente.executar();
 			}
+			cargaAtendimento.executar();
 		} catch (AplicacaoException e) {
 			AssertJUnit.fail("Erro na carga:" + e.getMessage());
 		}
@@ -99,7 +100,6 @@ public class TesteAtendimento {
 	
 	@Test
 	public void testeRecuperaListaDeAtendimentosComPacientePaginada() throws AplicacaoException {
-		cargaAtendimento.executar();
 		List<Atendimento> listaDeAtendimentos = atendimentoService.recuperaListaDeAtendimentosComPacientePaginada();
 		
 		int num_atendimentos = 2;
@@ -129,6 +129,45 @@ public class TesteAtendimento {
 		AssertJUnit.assertEquals(
 				atendimentoPaciente2.getTecnico(), 
 				tecnico);
+		
+	}
+
+	@Test
+	public void testeRecuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike() throws AplicacaoException {
+
+		Usuario clinico = usuarioService.recuperaPorLogin("clinico");
+
+		List<Atendimento> listaDeAtendimentos = atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(clinico.getNome());
+		
+		int num_atendimentos = 2;
+		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());
+
+		listaDeAtendimentos = atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(clinico.getNome().toUpperCase());
+		num_atendimentos = 2;
+		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());
+		
+		listaDeAtendimentos = atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(clinico.getNome().toLowerCase());
+		num_atendimentos = 2;
+		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());
+		
+
+		Paciente paciente1 = pacienteService.recuperaPacientePorCodigo("paciente1");
+		Paciente paciente2 = pacienteService.recuperaPacientePorCodigo("paciente2");
+		
+		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
+		Atendimento atendimentoPaciente2 = listaDeAtendimentos.get(1);
+//
+//		AssertJUnit.assertEquals(
+//				atendimentoPaciente1.getPaciente(), 
+//				paciente1);
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getMedico(), 
+				clinico);
+//
+//		AssertJUnit.assertEquals(
+//				atendimentoPaciente2.getPaciente(), 
+//				paciente2);
 		
 	}
 }
