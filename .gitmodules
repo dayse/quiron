@@ -1,3 +1,6 @@
 [submodule "dockers/docker-postgresql"]
 	path = dockers/docker-postgresql
 	url = git@git.int.gov.br:quiron/docker-postgresql.git
+[submodule "dockers/docker-java6"]
+	path = dockers/docker-java6
+	url = git@git.int.gov.br:quiron/docker-java6.git
