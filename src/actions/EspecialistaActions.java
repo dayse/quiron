@@ -206,6 +206,16 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		return PAGINA_LIST;
 	}
 
+	public void imprimir(){
+		try {
+			List<AvalIndicacaoEspec> listaDeAvaliacao = 
+					avalIndicacaoEspecService.recuperaListaDeAvaliacaoEspecComIndicacaoDeUmEspec(especialistaCorrente);
+			especialistaService.gerarRelatorio(listaDeAvaliacao);
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}
+	}	
+	
 	/**
 	 * 
 	 * Método usado para mostrar as informações detalhadas do especialista.

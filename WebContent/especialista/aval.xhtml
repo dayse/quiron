@@ -18,7 +18,7 @@
 		<a4j:keepAlive beanName="especialistaActions" />
 
 		<h:form id="formEspecialistaNew">
-
+		
 			<rich:simpleTogglePanel id="caixaEspecialista">
 				<f:facet name="header">Especialista selecionado</f:facet>
 
@@ -44,10 +44,12 @@
 			</rich:simpleTogglePanel>
 			<br />
 
+			<rich:datascroller id="scrtabelaAvalIndicacaoEspec" for="tabelaAvalIndicacaoEspec"
+				align="center" renderIfSinglePage="false" />
 			<rich:dataTable id="tabelaAvalIndicacaoEspec"
-				var="conjuntos" align="center"
+				var="conjuntos" align="center" columnClasses="col"
 				value="#{especialistaActions.listaDeAvaliacao}"
-				width="700px">
+				height="400px" width="700px" rows="40">
 				<f:facet name="header">
 					<rich:columnGroup>
 						<rich:column colspan="1" styleClass="space-table">

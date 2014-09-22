@@ -2,6 +2,7 @@ package relatorio;
 
 import java.util.HashMap;
 
+import relatorio.avaliacaoEspecialista.RelatorioListagemAvaliacaoEspecialista;
 import relatorio.usuario.RelatorioListagemUsuarios;
 
 /**
@@ -24,7 +25,8 @@ public class RelatorioFactory {
     
     //No construtor, o Map de Relatórios é preenchido com todos os relatórios existentes na aplicação.
     private RelatorioFactory() {
-        relatorios.put(Relatorio.RELATORIO_LISTAGEM_DE_USUARIOS, new RelatorioListagemUsuarios());
+    	relatorios.put(Relatorio.RELATORIO_AVALIACAO_DO_ESPECIALISTA, new RelatorioListagemAvaliacaoEspecialista());
+    	relatorios.put(Relatorio.RELATORIO_LISTAGEM_DE_USUARIOS, new RelatorioListagemUsuarios());
     }
     
     public static RelatorioFactory getInstance() {

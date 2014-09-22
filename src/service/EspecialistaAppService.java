@@ -1,8 +1,10 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import exception.RelatorioException;
 import modelo.AvalIndicacaoEspec;
 import modelo.ConjuntoIndicacaoParaAvaliacao;
 import modelo.Especialista;
@@ -10,6 +12,8 @@ import modelo.Indicacao;
 import modelo.Parametro;
 import modelo.TipoUsuario;
 import modelo.Usuario;
+import relatorio.Relatorio;
+import relatorio.RelatorioFactory;
 import service.anotacao.Transacional;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -170,4 +174,28 @@ public class EspecialistaAppService {
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 * @param listaDeAvaliacao
+	 * @throws AplicacaoException
+	 */
+	public void gerarRelatorio(List<AvalIndicacaoEspec> listaDeAvaliacao) 
+			throws AplicacaoException {
+		System.out.println("Antes do metodo getRelatorio dentro de gerarRelatorio de EspecialistaAppService");
+		
+		Relatorio relatorio = RelatorioFactory.getRelatorio(Relatorio.RELATORIO_AVALIACAO_DO_ESPECIALISTA);
+		
+		if(relatorio != null)
+			System.out.println("A variavel do tipo Relatorio e difente de null em EspecialsitaAppService");
+		
+		System.out.println("Depois do metodo getRelatorio dentro de gerarRelatorio de EspecialsitaAppService");
+		
+		try{
+			relatorio.gerarRelatorio(listaDeAvaliacao, new HashMap());
+		}catch(RelatorioException re){
+			throw new AplicacaoException("especialista.RELATORIO_NAO_GERADO");
+		}
+	}
+	
 }

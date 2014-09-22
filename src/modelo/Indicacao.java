@@ -139,5 +139,9 @@ public class Indicacao implements Serializable, Comparable<Indicacao>{
 	public int compareTo(Indicacao arg0) {
 		return 0;
 	}
+	
+	public String toString(){
+		return this.nome;
+	}	
 
 }

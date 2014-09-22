@@ -34,6 +34,7 @@ import javax.persistence.Table;
 						query = "select a from AvalIndicacaoEspec a " +
 								"left outer join fetch a.indicacao i " +
 								"left outer join fetch a.parametro p " +
+								"left outer join fetch a.especialista e " +
 								"where a.especialista = ? " +
 								"order by i.id, p.id"
 			),

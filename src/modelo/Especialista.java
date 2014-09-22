@@ -133,4 +133,8 @@ public class Especialista implements Serializable, Comparable<Especialista>{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public String toString(){
+		return this.nome;
+	}	
 }

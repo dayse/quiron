@@ -13,17 +13,7 @@ public interface Relatorio {
 	    //Tipos de Relatorios do sistema GESPLAN:
 		//Cada relatorio deve receber um número diferente, 
 		//isto é colocado no hashmap da fabrica de relatorios (RelatorioFactory).
-	    public final static int RELATORIO_LISTAGEM_DE_PACIENTES = 0;
-	    public final static int RELATORIO_LISTAGEM_DE_TECIDOS = 1;
-	    public final static int RELATORIO_LISTAGEM_DE_RECURSOS = 2;
-	    public final static int RELATORIO_LISTAGEM_DE_RECMODELS = 3;
-	    public final static int RELATORIO_LISTAGEM_DE_FAMILIAS = 4;
-	    public final static int RELATORIO_LISTAGEM_DE_FAMILIAS_COM_MODELOS = 5;
-	    public final static int RELATORIO_ANALISE_MAQUINA = 6;
-	    public final static int RELATORIO_ANALISE_TECIDO = 7;
-	    public final static int RELATORIO_ANALISE_RECURSO = 8;
-	    public final static int RELATORIO_LISTAGEM_DE_TECMODELS = 9;
-	    public final static int RELATORIO_LISTAGEM_DE_PLANO_MESTRE_DE_PRODUCAO_POR_MODELO = 10;
+		public final static int RELATORIO_AVALIACAO_DO_ESPECIALISTA = 0;
 	    public final static int RELATORIO_LISTAGEM_DE_USUARIOS = 11;
 	    //Define os nomes dos arquivos  relativos as Imagens do Relatorio,
 	    // concatenando com os caminhos definidos em constantes.java
@@ -33,17 +23,7 @@ public interface Relatorio {
 	    //Nome dos Arquivos de Relatorio (compilados Jaspers) que serão criados
 	    // no momento da compilação (quando der preview no arquivo 
 	    //*.jrxml que corresponde ao projeto) 
-	    public static final String JASPER_LISTAGEM_DE_PACIENTES = Constantes.CAMINHO_JASPERS + "relatorioListagemPacientes.jasper";
-	    public static final String JASPER_LISTAGEM_DE_TECIDOS = Constantes.CAMINHO_JASPERS + "relatorioListagemTecidos.jasper";
-	    public static final String JASPER_LISTAGEM_DE_RECURSOS = Constantes.CAMINHO_JASPERS + "relatorioListagemRecursos.jasper";
-	    public static final String JASPER_LISTAGEM_DE_RECMODELS = Constantes.CAMINHO_JASPERS + "relatorioListagemRecModels.jasper";
-	    public static final String JASPER_LISTAGEM_DE_TECMODELS = Constantes.CAMINHO_JASPERS + "relatorioListagemTecModels.jasper";
-	    public static final String JASPER_LISTAGEM_DE_FAMILIAS = Constantes.CAMINHO_JASPERS + "relatorioListagemFamilias.jasper";
-	    public static final String JASPER_LISTAGEM_DE_FAMILIAS_COM_MODELOS = Constantes.CAMINHO_JASPERS + "relatorioListagemFamiliasComModelos.jasper";
-	    public static final String JASPER_LISTAGEM_ANALISE_MAQUINA = Constantes.CAMINHO_JASPERS + "relatorioListagemAnaliseMaquina.jasper";
-	    public static final String JASPER_LISTAGEM_ANALISE_TECIDO = Constantes.CAMINHO_JASPERS + "relatorioListagemAnaliseTecido.jasper";
-	    public static final String JASPER_LISTAGEM_ANALISE_RECURSO = Constantes.CAMINHO_JASPERS + "relatorioListagemAnaliseRecurso.jasper";
-	    public static final String JASPER_LISTAGEM_DE_PLANO_MESTRE_DE_PRODUCAO_POR_MODELO = Constantes.CAMINHO_JASPERS + "relatorioListagemPlanoMestreDeProducaoPorModelo.jasper";
+	    public static final String JASPER_RELATORIO_AVALIACAO_DO_ESPECIALISTA = Constantes.CAMINHO_JASPERS + "relatorioListagemAvaliacaoDoEspecialista.jasper";
 	    public static final String JASPER_LISTAGEM_DE_USUARIOS = Constantes.CAMINHO_JASPERS + "relatorioListagemUsuarios.jasper";
 	   
 	    //Método que esta interface OBRIGA as subclasses a implementar, de acordo com seus requisitos.

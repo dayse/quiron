@@ -135,4 +135,8 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public String toString(){
+		return this.nome;
+	}
 }
