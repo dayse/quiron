@@ -22,15 +22,30 @@
 		<a4j:keepAlive beanName="atendimentoActions" />
 
 		<h:form>
+			<h:panelGrid columns="5">
 
-			<rich:datascroller id="scroller" for="lista" maxPages="5"
+				<h:outputText value="#{prompt.areaDeBusca}" />
+				<h:inputText value="#{atendimentoActions.campoDeBusca}" />
+				<h:selectOneMenu id="comboBusca"
+					value="#{atendimentoActions.comboTiposDeBusca.selecao}">
+					<f:selectItems
+						value="#{atendimentoActions.comboTiposDeBusca.listaSelecao}" />
+				</h:selectOneMenu>
+				<h:commandButton value="#{prompt.buscar}"
+					action="#{atendimentoActions.buscaAtendimento}" />
+				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
+					action="#{atendimentoActions.cancelar}"
+					rendered="#{atendimentoActions.buscaEfetuada}" />
+			</h:panelGrid>
+
+			<rich:datascroller id="scroller" for="tabelaAtendimento" maxPages="5"
 				align="center" renderIfSinglePage="false"
 				page="#{atendimentoActions.pagina}">
 			</rich:datascroller>
 
-			<rich:dataTable id="lista" rows="10" align="center"
+			<rich:dataTable id="tabelaAtendimento" rows="10" align="center"
 				value="#{atendimentoActions.listaDeAtendimentos}" var="atendimento"
-				width="700px">
+				width="700px" reRender="#{atendimentoActions.buscaEfetuada}">
 				<f:facet name="header">
 					<rich:columnGroup>
 						<rich:column colspan="18">
