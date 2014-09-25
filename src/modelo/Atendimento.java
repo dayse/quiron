@@ -88,6 +88,20 @@ import javax.persistence.TemporalType;
 							"inner join a.medico md " +
 							"where upper(md.nome) like '%' || upper(?) || '%' " 
 			),
+
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike",
+						query = "select a from Atendimento a " +
+								"inner join fetch a.paciente p " +
+								"where upper(p.nome) like '%' || upper(?) || '%' " 
+								+
+								"order by a.dataAtendimento"
+			),
+
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikeCount",
+					query = "select count(a) from Atendimento a " +
+							"left outer join a.paciente p " +
+							"where upper(p.nome) like '%' || upper(?) || '%' " 
+			),
 			
 		}
 )

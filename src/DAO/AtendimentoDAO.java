@@ -118,12 +118,23 @@ public interface AtendimentoDAO extends DaoGenerico<Atendimento, Long> {
 	/**
 	 * Retorna a lista paginada de atendimentos com pacientes pelo 
 	 * nome do médico (em upercase ou lowercase).
-	 * @param nome
+	 * @param nomeMedico
 	 * @return
 	 */
 	@RecuperaListaPaginada(tamanhoPagina = 10)
 	public List<Atendimento> recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(
-			String nome);
+			String nomeMedico);
+	
+	/**
+	 * Retorna a lista paginada de atendimentos com pacientes pelo 
+	 * nome do médico (em upercase ou lowercase).
+	 * @param nomePaciente
+	 * @return
+	 */
+	@RecuperaListaPaginada(tamanhoPagina = 10)
+	public List<Atendimento> recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike(
+			String nomePaciente);
+	
 	
 	/**
 	 * 

@@ -97,8 +97,12 @@ public class AtendimentoAppService {
 	public Atendimento recuperaUltimoAtendimento(){
 		return atendimentoDAO.recuperaUltimoAtendimento();
 	}
-	public List<Atendimento> recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(String codigoPaciente){
-		return atendimentoDAO.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(codigoPaciente);
+	public List<Atendimento> recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(String nomeMedico){
+		return atendimentoDAO.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(nomeMedico);
+	}
+
+	public List<Atendimento> recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike(String nomePaciente){
+		return atendimentoDAO.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike(nomePaciente);
 	}
 	
 	

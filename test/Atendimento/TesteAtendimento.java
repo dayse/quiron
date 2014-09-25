@@ -170,4 +170,48 @@ public class TesteAtendimento {
 				paciente2);
 		
 	}
+	@Test
+	public void testeRecuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike() throws AplicacaoException {
+
+		Usuario clinico = usuarioService.recuperaPorLogin("clinico");
+		Paciente paciente1 = pacienteService.recuperaPacientePorCodigo("paciente1");
+
+		List<Atendimento> listaDeAtendimentos = atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike(paciente1.getNome());
+		
+		int num_atendimentos = 1;
+		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());
+
+		listaDeAtendimentos = atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike(paciente1.getNome().toUpperCase());
+		num_atendimentos = 1;
+		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());
+		
+		listaDeAtendimentos = atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike(paciente1.getNome().toLowerCase());
+		num_atendimentos = 1;
+		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());
+		
+		
+		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getPaciente(), 
+				paciente1);
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getMedico(), 
+				clinico);
+		
+		Paciente paciente2 = pacienteService.recuperaPacientePorCodigo("paciente2");
+		listaDeAtendimentos = atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike(paciente2.getNome());
+
+		Atendimento atendimentoPaciente2 = listaDeAtendimentos.get(0);
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente2.getPaciente(), 
+				paciente2);
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente2.getMedico(), 
+				clinico);
+		
+	}
 }
