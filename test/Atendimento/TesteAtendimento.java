@@ -156,18 +156,18 @@ public class TesteAtendimento {
 		
 		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
 		Atendimento atendimentoPaciente2 = listaDeAtendimentos.get(1);
-//
-//		AssertJUnit.assertEquals(
-//				atendimentoPaciente1.getPaciente(), 
-//				paciente1);
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getPaciente(), 
+				paciente1);
 		
 		AssertJUnit.assertEquals(
 				atendimentoPaciente1.getMedico(), 
 				clinico);
-//
-//		AssertJUnit.assertEquals(
-//				atendimentoPaciente2.getPaciente(), 
-//				paciente2);
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente2.getPaciente(), 
+				paciente2);
 		
 	}
 }
