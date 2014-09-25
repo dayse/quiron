@@ -43,7 +43,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private SelectOneDataModel<Usuario> comboMedicos;
 	private SelectOneDataModel<Usuario> comboTecnicos;
 	private SelectOneDataModel<String> comboStatus;
-	private SelectOneDataModel<String> comboTiposDeBusca;
 	private DataModel listaDePacientes;
 	private DataModel listaDeAtendimentos;
 	private DataModel listaAvaliacao;
@@ -60,8 +59,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_STATUS = "listStatusAtendimento";
 	public final String PAGINA_AVALIACAO = "listAvaliacao";
 	public final String PAGINA_AVALIACAO_DETALHADA = "listAvaliacaoDetail";
-	public final String BUSCA_POR_COD_PACIENTE = "Cód. do Paciente";
-	public final String BUSCA_POR_NOME = "Nome";
 
 	// Services
 	private static AtendimentoAppService atendimentoService;
@@ -81,8 +78,17 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private int numParametros;
 	private boolean tecnicoEditavel;
 	private boolean clinicoEditavel;
-	private String campoDeBusca;
 
+	
+	//infos de busca
+
+	public final String BUSCA_POR_NOME_PACIENTE = "Nome do Paciente";
+	public final String BUSCA_POR_NOME_MEDICO = "Nome do Médico";
+	private String campoDeBusca;
+	private SelectOneDataModel<String> comboTiposDeBusca;
+	private boolean buscaEfetuada = false;
+	
+	
 	/**
 	 * 
 	 * Construtor responsável por instanciar os services que serão usados no
@@ -479,6 +485,46 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaDeAtendimentos = null;
 		return PAGINA_LIST;
 	}
+	
+	/**
+	 * 
+	 * Método utilizado para fazer a busca
+	 * de um determinado atendimento no
+	 * banco através de dados passados via
+	 * formulário pelo usuário.
+	 * 
+	 * @return A lista de atendimentos atualizada
+	 * com os resultados da pesquisa no banco ou
+	 * uma mensagem de erro, caso algum ocorra.
+	 * 
+	 * @author felipe.pontes
+	 * 
+	 */
+	public String buscaAtendimento(){
+		List<Atendimento> atendimentosEncontrados = null;
+		if(campoDeBusca.trim().isEmpty()){
+			error("atendimento.FORNECER_CAMPO_DE_BUSCA");
+			return PAGINA_LIST;
+		}else{
+			listaDeAtendimentos = null;
+			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_NOME_MEDICO)){
+				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(campoDeBusca));
+//			}else{
+//				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaPacientePorNome(campoDeBusca));
+			}
+			if(atendimentosEncontrados.isEmpty()){
+				error("atendimento.NAO_ENCONTRADO");
+				listaDeAtendimentos = null;
+				return PAGINA_LIST;
+			}else{
+				info("atendimento.ENCONTRADOS");
+			}
+		}
+		listaDeAtendimentos = new ListDataModel(atendimentosEncontrados);
+		buscaEfetuada = true;
+		return PAGINA_LIST;
+	}
+
 
 	/**
 	 *  Action usada na hora de sair da tela de inclusão/edição e show
@@ -676,11 +722,11 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public SelectOneDataModel<String> getComboTiposDeBusca() {
 		if (comboTiposDeBusca == null) {
 			List<String> tiposDeBusca = new ArrayList<String>(2);
-			tiposDeBusca.add(BUSCA_POR_COD_PACIENTE);
-			tiposDeBusca.add(BUSCA_POR_NOME);
+			tiposDeBusca.add(BUSCA_POR_NOME_PACIENTE);
+			tiposDeBusca.add(BUSCA_POR_NOME_MEDICO);
 			comboTiposDeBusca = SelectOneDataModel
 					.criaComObjetoSelecionadoSemTextoInicial(tiposDeBusca,
-							BUSCA_POR_COD_PACIENTE);
+							BUSCA_POR_NOME_PACIENTE);
 		}
 		return comboTiposDeBusca;
 	}
@@ -729,5 +775,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 
 	public void setNumParametros(int numParametros) {
 		this.numParametros = numParametros;
+	}
+	public boolean isBuscaEfetuada() {
+		return buscaEfetuada;
+	}
+
+	public void setBuscaEfetuada(boolean buscaEfetuada) {
+		this.buscaEfetuada = buscaEfetuada;
 	}
 }
