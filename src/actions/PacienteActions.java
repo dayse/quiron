@@ -43,7 +43,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 	public final String PAGINA_LIST = "listPaciente";
 	public final String PAGINA_NEW = "newPaciente";
 	public final String PAGINA_SHOW = "showPaciente";
-	public final String PAGINA_LIST_ATENDIMENTO = "listAtendimento";
+	public final String PAGINA_LIST_ATENDIMENTO_PACIENTE = "listAtendimentoPaciente";
 	
 	// Componentes de Controle
 	private static final long serialVersionUID = 1L;
@@ -279,13 +279,9 @@ public class PacienteActions extends BaseActions implements Serializable {
 	 * @author bruno.oliveira
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
 	public String mostraAtendimentos(){
 		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
-		int pag = ((List<Paciente>) listaDePacientes.getWrappedData()).indexOf(pacienteCorrente);
-		pagina = pag + 1;
-		listaDePacientes = new ListDataModel(pacienteService.recuperaListaDePacientesPaginada());
-		return PAGINA_LIST_ATENDIMENTO;
+		return PAGINA_LIST_ATENDIMENTO_PACIENTE;
 	}
 
 	/**
@@ -383,6 +379,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 	 * @return
 	 */
 	public String voltar(){
+		pacienteCorrente = null;
 		listaDePacientes = null;
 		buscaEfetuada = false;
 		comboTiposDeBusca = null;

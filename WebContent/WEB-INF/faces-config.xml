@@ -213,6 +213,14 @@
 			<from-outcome>showPaciente</from-outcome>
 			<to-view-id>/paciente/show.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>listAtendimentoPaciente</from-outcome>
+			<to-view-id>/paciente/list_atendimento_paciente.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>newAtendimento</from-outcome>
+			<to-view-id>/atendimento/new.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	<!-- FIM-Regras de navegacao (Paciente) -->	
 

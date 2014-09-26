@@ -124,9 +124,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		pagina = ((PacienteActions) getManagedBean("pacienteActions"))
 				.getPagina();
 
+		pacienteCorrente = ((PacienteActions) getManagedBean("pacienteActions")).getPacienteCorrente();
+
 		status.add("Aberto");
 		status.add("Em atendimento");
 		status.add("Encerrado");
+		listaDeAtendimentos = null;
 	}
 
 	/**
@@ -465,7 +468,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		atendimentoCorrente = new Atendimento();
 		anamnesesCorrente = new Anamnese();
 		listaDeAnamneses = null;
-		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
+		pacienteCorrente = ((PacienteActions) getManagedBean("pacienteActions")).getPacienteCorrente();
 		atendimentoCorrente.setPaciente(pacienteCorrente);
 		return PAGINA_NEW;
 	}
@@ -483,6 +486,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 */
 	public String preparaListagem(){
 		listaDeAtendimentos = null;
+		pacienteCorrente = null;
 		return PAGINA_LIST;
 	}
 	
@@ -573,13 +577,20 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public void setListaDePacientes(DataModel listaDePacientes) {
 		this.listaDePacientes = listaDePacientes;
 	}
+	
 
-	@SuppressWarnings("unchecked")
 	public DataModel getListaDeAtendimentos() {
 		if (listaDeAtendimentos == null) {
+			List<Atendimento> atendimentos;
+			if(pacienteCorrente == null){
+				atendimentos = new ArrayList<Atendimento>(atendimentoService
+						.recuperaListaDeAtendimentosComPacientePaginada());
+			}else{
+				atendimentos = new ArrayList<Atendimento>(atendimentoService
+						.recuperaListaPaginadaDeAtendimentosComPacientePorCodigoPaciente(pacienteCorrente.getCodPaciente()));
+				
+			}
 
-			List<Atendimento> atendimentos = new ArrayList<Atendimento>(atendimentoService
-					.recuperaListaDeAtendimentosComPacientePaginada());
 
 			listaDeAtendimentos = new ListDataModel(atendimentos);
 		}
