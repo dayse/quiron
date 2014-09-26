@@ -102,6 +102,18 @@ import javax.persistence.TemporalType;
 							"left outer join a.paciente p " +
 							"where upper(p.nome) like '%' || upper(?) || '%' " 
 			),
+
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentosComPacientePorCodigoPaciente",
+						query = "select a from Atendimento a " +
+								"inner join fetch a.paciente pa " +
+								"where pa.codPaciente = ? " +
+								"order by a.dataAtendimento"
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentosComPacientePorCodigoPacienteCount",
+						query = "select count(a) from Atendimento a " +
+								"inner join a.paciente pa " +
+								"where pa.codPaciente = ? "
+			),
 			
 		}
 )
