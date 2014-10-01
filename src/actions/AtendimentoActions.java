@@ -543,7 +543,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		anamnesesCorrente = null;
 		listaDeAnamneses = null;
 		pacienteCorrente = null;
-		listaDeAtendimentos = null;
+		if(!buscaEfetuada){
+			listaDeAtendimentos = null;
+		}
 		return PAGINA_LIST;
 	}
 	
