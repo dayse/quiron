@@ -465,7 +465,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		atendimentoCorrente = new Atendimento();
 		anamnesesCorrente = new Anamnese();
 		listaDeAnamneses = null;
-		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
+		pacienteCorrente = 	(Paciente)
+							((PacienteActions) getManagedBean("pacienteActions"))
+							.getListaDePacientes().getRowData();
+		
 		atendimentoCorrente.setPaciente(pacienteCorrente);
 		return PAGINA_NEW;
 	}
