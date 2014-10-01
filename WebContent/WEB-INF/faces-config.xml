@@ -127,10 +127,6 @@
 			<from-outcome>showAtendimento</from-outcome>
 			<to-view-id>/atendimento/show.xhtml</to-view-id>
 		</navigation-case>
-		<navigation-case>
-			<from-outcome>listAtendimentoPaciente</from-outcome>
-			<to-view-id>/paciente/list_atendimento_paciente.xhtml</to-view-id>
-		</navigation-case>
 	</navigation-rule>
 	<!-- FIM-Regras de navegacao (Atendimento) -->	
 	
@@ -141,10 +137,6 @@
 			<from-outcome>listAvaliacaoDetail</from-outcome>
 			<to-view-id>/avaliacao/list_detail.xhtml</to-view-id>
 		</navigation-case>		
-		<navigation-case>
-			<from-outcome>listAtendimentoPaciente</from-outcome>
-			<to-view-id>/paciente/list_atendimento_paciente.xhtml</to-view-id>
-		</navigation-case>
 	</navigation-rule>
 	<!-- FIM-Regras de navegacao (Atendimento) -->	
 	
@@ -228,14 +220,6 @@
 		<navigation-case>
 			<from-outcome>newAtendimento</from-outcome>
 			<to-view-id>/atendimento/new.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>editAtendimento</from-outcome>
-			<to-view-id>/atendimento/edit.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>showAtendimento</from-outcome>
-			<to-view-id>/atendimento/show.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<!-- FIM-Regras de navegacao (Paciente) -->	

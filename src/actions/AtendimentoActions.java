@@ -59,7 +59,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_STATUS = "listStatusAtendimento";
 	public final String PAGINA_AVALIACAO = "listAvaliacao";
 	public final String PAGINA_AVALIACAO_DETALHADA = "listAvaliacaoDetail";
-	public final String PAGINA_LIST_ATENDIMENTO_PACIENTE = "listAtendimentoPaciente";
 
 	// Services
 	private static AtendimentoAppService atendimentoService;
@@ -169,9 +168,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		
 		logUsuarioAutenticadoMsg("Atendimento - Altera atendimento:" + atendimentoCorrente.getCodAtendimento());
 		info("atendimento.SUCESSO_ALTERACAO");
-		if(pacienteCorrente != null){
-			return PAGINA_LIST_ATENDIMENTO_PACIENTE;
-		}
 		return PAGINA_LIST;
 	}
 
@@ -237,7 +233,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	/**
 	 * 
 	 * Método disponível na tela de avaliação que redireciona o usuário para a
-	 * tela de listagem de antedimentos ou para a tela de atendimentos de paciente se for o caso.
+	 * tela de listagem de antedimentos por paciente.
 	 * 
 	 * @return Retorna uma String que corresponde ao no mapeamento da tela de
 	 *         listagem de atendimento por paciente.
@@ -248,9 +244,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public String cancelaAvaliacao() {
 		listaDeAtendimentos = null;
 		listaDePacientes = null;
-		if(pacienteCorrente != null){
-			return PAGINA_LIST_ATENDIMENTO_PACIENTE;
-		}
 		return PAGINA_LIST;
 	}
 
@@ -310,10 +303,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		info("atendimento.SUCESSO_EXCLUSAO");
 		listaDeAtendimentos = null;
 		listaDePacientes = null;
-
-		if(pacienteCorrente != null){
-			return PAGINA_LIST_ATENDIMENTO_PACIENTE;
-		}
 		return PAGINA_LIST;
 	}
 
@@ -357,7 +346,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaDeAtendimentos = null;
 		listaDePacientes = null;
 		listaDeAnamneses = null;
-		return PAGINA_LIST_ATENDIMENTO_PACIENTE;
+		return PAGINA_LIST;
 	}
 
 	/**
@@ -404,7 +393,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}
 		listaDeAnamneses = null;
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-		
 		return PAGINA_SHOW;
 	}
 
@@ -422,6 +410,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String preparaAlteracao() {
+		pacienteCorrente = atendimentoCorrente.getPaciente();
 //		try {
 //			anamnesesCorrente = anamneseService
 //					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
@@ -554,11 +543,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		atendimentoCorrente = null;
 		anamnesesCorrente = null;
 		listaDeAnamneses = null;
+		pacienteCorrente = null;
 		listaDeAtendimentos = null;
-		
-		if(pacienteCorrente != null){
-			return PAGINA_LIST_ATENDIMENTO_PACIENTE;
-		}
 		return PAGINA_LIST;
 	}
 	
