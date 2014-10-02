@@ -39,7 +39,6 @@ public class UsuarioActions extends BaseActions {
 	// Variaveis de Tela
 	private Usuario usuarioCorrente;
 	private String confirmacaoSenha;
-	private String opcaoRelatorioEscolhido;
 	@SuppressWarnings("unused")
 	private boolean exclusaoUsuarioLogado;
 	private boolean permitirAlterarStatus;
@@ -160,40 +159,6 @@ public class UsuarioActions extends BaseActions {
 			usuarioService.gerarRelatorio(listaDeUsuarios);
 		} catch (AplicacaoException re) {
 			error("usuario.USUARIOS_INEXISTENTES");
-		}
-	}
-
-	/**
-	 * 
-	 * Método usado para gerar um relatório de usuários, tendo como opções os
-	 * formatos PDF ou HTML.
-	 * 
-	 * @author bruno.oliveira (Atualização)
-	 * 
-	 */
-	public void imprimirEmPdfOuHthml() {
-		String url = "/GeraRelatorioDeUsuarios";
-		FacesContext context = FacesContext.getCurrentInstance();
-		List<Usuario> listaDeUsuarios = null;
-		try {
-			listaDeUsuarios = usuarioService.recuperaListaDeUsuarios();
-			if (listaDeUsuarios.isEmpty()) {
-				throw new AplicacaoException();
-			}
-			ServletContext sc = (ServletContext) context.getExternalContext()
-					.getContext();
-			RequestDispatcher rd = sc.getRequestDispatcher(url);
-			HttpServletRequest request = (HttpServletRequest) context
-					.getExternalContext().getRequest();
-			HttpServletResponse response = (HttpServletResponse) context
-					.getExternalContext().getResponse();
-			request.setAttribute("opcaoRelatorioEscolhido",
-					opcaoRelatorioEscolhido);
-			rd.forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			context.responseComplete();
 		}
 	}
 
@@ -394,14 +359,6 @@ public class UsuarioActions extends BaseActions {
 
 	public void setPermitirAlterarStatus(boolean permitirAlterarStatus) {
 		this.permitirAlterarStatus = permitirAlterarStatus;
-	}
-
-	public String getOpcaoRelatorioEscolhido() {
-		return opcaoRelatorioEscolhido;
-	}
-
-	public void setOpcaoRelatorioEscolhido(String opcaoRelatorioEscolhido) {
-		this.opcaoRelatorioEscolhido = opcaoRelatorioEscolhido;
 	}
 
 }

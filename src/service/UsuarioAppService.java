@@ -173,7 +173,7 @@ public class UsuarioAppService {
 	
 	/**
 	 * Este método é responsável por gerar relatório simples. 
-	 * @param List<Tecido> 
+	 * @param List<Usuario> 
 	 * @return void
 	 * @throws AplicacaoException
 	 */

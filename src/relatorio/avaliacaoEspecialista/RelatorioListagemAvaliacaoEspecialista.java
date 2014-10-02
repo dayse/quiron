@@ -15,7 +15,7 @@ public class RelatorioListagemAvaliacaoEspecialista extends DeclaracaoAbstrata {
 	@Override
 	public void gerarRelatorio(List dados, Map<String, Object> parametros) throws RelatorioException {
 
-		String nomeArquivo = "RelatorioListagemPacientes.pdf";
+		String nomeArquivo = "RelatorioListagemAvaliacaoDoEspecialista.pdf";
 
 		InputStream jasper = super.recuperaJasper(Relatorio.JASPER_RELATORIO_AVALIACAO_DO_ESPECIALISTA);
 

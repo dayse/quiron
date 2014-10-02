@@ -17,7 +17,6 @@ public interface Relatorio {
 	    public final static int RELATORIO_LISTAGEM_DE_USUARIOS = 11;
 	    //Define os nomes dos arquivos  relativos as Imagens do Relatorio,
 	    // concatenando com os caminhos definidos em constantes.java
-	    public static final String LOGO_COPPE = Constantes.CAMINHO_LOGOTIPOS + "logoCoppe.png";
 	    public static final String LOGO_INT = Constantes.CAMINHO_LOGOTIPOS + "logoINT2.jpg";
 	    
 	    //Nome dos Arquivos de Relatorio (compilados Jaspers) que serão criados
