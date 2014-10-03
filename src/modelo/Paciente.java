@@ -60,9 +60,6 @@ import javax.persistence.TemporalType;
 								"left outer join fetch p.atendimentos pa " +
 								"order by p.codPaciente"
 			),
-			/*
-			 * CORRIGIR ESTA ABERRAÇÃO!
-			 */
 			@NamedQuery(name = "Paciente.recuperaListaDePacientesPaginadaComListaDeAtendimentosCount",
 						query = "select count(p) from Paciente p "
 			)
@@ -129,6 +126,12 @@ public class Paciente implements Serializable, Comparable<Paciente> {
 	 */
 	private List<Atendimento> atendimentos = new ArrayList<Atendimento>();
 	
+	/**
+	 * Este atributo contém informações que ajudam a definir o perfil do paciente e
+	 *  consta de observações normalmente são feitas num primeiro atendimento, 
+	 *  tais como "doenças infantis", cirurgias realizadas, etc.
+	 */
+	private String informacoesGerais;
 
 	// ********* Construtor *********
 	
@@ -194,6 +197,38 @@ public class Paciente implements Serializable, Comparable<Paciente> {
 		this.nomeResponsavel = nomeResponsavel;
 	}
 	
+	public String getInformacoesGerais(){
+		return informacoesGerais;
+	}
+	
+	public void setInformacoesGerais(String informacoesGerais){
+		this.informacoesGerais = informacoesGerais;
+	}
+	
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	@Temporal(value = TemporalType.DATE)
+	public Calendar getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}	
 	
 	// *********  Métodos para associação ********* 
 	
@@ -272,29 +307,4 @@ public class Paciente implements Serializable, Comparable<Paciente> {
 		return 	(valor != 0 ? valor : 1);
 	}
 
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	@Temporal(value = TemporalType.DATE)
-	public Calendar getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(Calendar dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	public String getDocumento() {
-		return documento;
-	}
-
-	public void setDocumento(String documento) {
-		this.documento = documento;
-	}
-	
 }

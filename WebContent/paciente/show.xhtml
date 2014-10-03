@@ -59,9 +59,21 @@
 					<h:outputText value="#{prompt.paciente_Documento}" />:
 						<h:outputText id="documento"
 						value="#{pacienteActions.pacienteCorrente.documento}" />
-					<br />
-
+						
 				</h:panelGrid>
+				
+				<br /><br />
+					
+				<rich:simpleTogglePanel >
+					<f:facet name="header">
+						#{prompt.paciente_InformacoesGerais}
+					</f:facet>						
+						
+					<h:inputTextarea id="informacoesGerais" rows="12" cols="100"
+						value="#{pacienteActions.pacienteCorrente.informacoesGerais}" disabled="true" />
+				</rich:simpleTogglePanel>
+				<br />
+
 
 				<h:commandButton id="botaoVoltar" value="#{prompt.voltar}"
 					action="#{pacienteActions.cancelar}" immediate="true" />

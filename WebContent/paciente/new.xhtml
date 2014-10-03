@@ -82,16 +82,30 @@
 						maxlength="#{constantes.lPacienteNomeResponsavel}"
 						size="20" required="true" />
 					<h:message for="nomeResponsavel" styleClass="error" />
-				</h:panelGrid>
 
-				<h:panelGroup>
-					<h:outputText value="#{prompt.paciente_Documento}" />:
-					</h:panelGroup>
-				<h:inputText id="documento"
-					value="#{pacienteActions.pacienteCorrente.documento}"
-					maxlength="#{constantes.lPacienteDocumento}" size="20"
-					required="true" />
-				<h:message for="documento" styleClass="error" />
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Documento}" />:
+						</h:panelGroup>
+					<h:inputText id="documento"
+						value="#{pacienteActions.pacienteCorrente.documento}"
+						maxlength="#{constantes.lPacienteDocumento}" size="20"
+						required="true" />
+					<h:message for="documento" styleClass="error" />
+				</h:panelGrid>
+				
+				<br /><br />
+				
+				<rich:simpleTogglePanel >
+					<f:facet name="header">
+						#{prompt.paciente_InformacoesGerais}
+					</f:facet>
+				
+					<h:panelGrid id="AreaTexto">
+						<h:inputTextarea id="informacoesGerais"
+							rows="12" cols="100"
+							value="#{pacienteActions.pacienteCorrente.informacoesGerais}" />
+					</h:panelGrid>
+				</rich:simpleTogglePanel>
 			</rich:panel>
 			<br />
 			<br />

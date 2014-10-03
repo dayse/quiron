@@ -29,6 +29,7 @@ public class Constantes {
 	public static final int L_PACIENTE_CODIGO = 15;
 	public static final int L_PACIENTE_DOCUMENTO = 15;
 	public static final int L_PACIENTE_ENDERECO = 100;
+	public static final int L_PACIENTE_INFORMACOES_GERAIS = 1000;
 	public static final int L_PACIENTE_NOME = 30;
 	public static final int L_PACIENTE_NOME_RESPONSAVEL = 30;
 	
@@ -135,6 +136,10 @@ public class Constantes {
 	
 	public int getlPacienteNomeResponsavel(){
 		return L_PACIENTE_NOME_RESPONSAVEL;
+	}
+	
+	public int getlPacienteInformacoesGerais(){
+		return L_PACIENTE_INFORMACOES_GERAIS;
 	}
 	
 	/* ------- PARAMETRO ------- */
