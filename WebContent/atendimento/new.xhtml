@@ -198,9 +198,21 @@
 						    	</h:panelGroup>
 						    	
 								<h:panelGroup>
-									<h:outputText value="#{prompt.atendimento_Prescricao}" />:									
-									<h:inputTextarea disabled="true" rows="12" cols="100" value="#{atendimento_anterior.prescricao}" />
+									<h:outputText value="#{prompt.parametro}" />:									
+									<h:inputTextarea disabled="true" rows="10" cols="40" value="" />
 						    	</h:panelGroup>
+						    	
+								<h:panelGroup>
+									<h:outputText value="#{prompt.atendimento_Prescricao}" />:									
+									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.prescricao}" />
+						    	</h:panelGroup>
+						    	<br/>
+						    	<br/>
+								<h:panelGroup>
+									<h:outputText value="#{prompt.atendimento_Diagnostico}" />:									
+									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.diagnostico}" />
+						    	</h:panelGroup>
+						    	<br/>
 						</h:panelGrid>
 							
 					</rich:simpleTogglePanel>
