@@ -95,38 +95,43 @@ public class CargaParametros extends CargaBase {
 		Parametro escherichia = new Parametro();
 		Parametro candida = new Parametro();
 		Parametro efeitosColaterais = new Parametro();
+		Parametro alergia = new Parametro();
 
-		febre.setCodParametro("P1");
+		febre.setCodParametro("P001");
 		febre.setNome("Febre");
 		febre.setDescricao("Temperatura do paciente.");
 
-		disuria.setCodParametro("P2");
+		disuria.setCodParametro("P002");
 		disuria.setNome("Disúria");
 		disuria
 				.setDescricao("Intensidade da dor, desconforto ou sensação de queimação no paciente ao urinar.");
 
-		diabetes.setCodParametro("P3");
+		diabetes.setCodParametro("P003");
 		diabetes.setNome("Diabetes");
 		diabetes.setDescricao("Tipo de diabetes do paciente, caso tenha.");
 
-		enterococos.setCodParametro("P4");
+		enterococos.setCodParametro("P004");
 		enterococos.setNome("Etiologia Enterococos");
 		enterococos
 				.setDescricao("Ocorrência de etiologia do tipo Enterococos.");
 
-		escherichia.setCodParametro("P5");
+		escherichia.setCodParametro("P005");
 		escherichia.setNome("Etiologia Escherichia");
 		escherichia
 				.setDescricao("Ocorrência de etiologia do tipo Escherichia.");
 
-		candida.setCodParametro("P6");
+		candida.setCodParametro("P006");
 		candida.setNome("Etiologia Cândida");
 		candida.setDescricao("Ocorrência de etiologia do tipo Cândida.");
 
-		efeitosColaterais.setCodParametro("P7");
+		efeitosColaterais.setCodParametro("P007");
 		efeitosColaterais.setNome("Não causar Efeitos Colaterais");
 		efeitosColaterais
 				.setDescricao("Sobre o grau de ocorrência de efeitos colaterais.");
+		
+		alergia.setCodParametro("P008");
+		alergia.setNome("Alergia Genérica");
+		alergia.setDescricao("Ocorrência de uma alergia genérica.");		
 
 		parametroService.inclui(febre);
 		parametroService.inclui(disuria);
@@ -135,6 +140,7 @@ public class CargaParametros extends CargaBase {
 		parametroService.inclui(escherichia);
 		parametroService.inclui(candida);
 		parametroService.inclui(efeitosColaterais);
+		parametroService.inclui(alergia);
 	}
 
 }

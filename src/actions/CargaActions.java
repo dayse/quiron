@@ -100,7 +100,7 @@ public class CargaActions extends BaseActions {
 			descCarga = "Realiza carga Basica e depois insere os do primeiro exemplo.";
 		}
 		else if(opcao.equals(OPCAO_EXEMPLO2)){
-			descCarga = "Realiza as cargas anteriores e insere 117 antibióticos e 20 parametros.";
+			descCarga = "Realiza as cargas anteriores e insere novos dados, totalizando 122 antibióticos e 21 parametros.";
 		}
 	}
 
