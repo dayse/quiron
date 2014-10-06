@@ -45,7 +45,16 @@
  					<h:outputText value="#{prompt.atendimento_Status}" />:
  						<h:outputText value="#{atendimentoActions.comboStatus.selecao}" />																	
 						
-					<br />
+
+					<h:outputText value="#{prompt.atendimento_prescricao}" />:
+						<h:outputText id="prescricao" value="#{atendimentoActions.atendimentoCorrente.prescricao}" />
+						
+					<h:outputText value="#{prompt.atendimento_diagnostico}" />:
+						<h:outputText id="diagnostico" value="#{atendimentoActions.atendimentoCorrente.diagnostico}" />
+						
+					<h:outputText value="#{prompt.atendimento_observacoes}" />:
+						<h:outputText id="observacoes" value="#{atendimentoActions.atendimentoCorrente.observacoes}" />
+					
 
 				</h:panelGrid>
 				

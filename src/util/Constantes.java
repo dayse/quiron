@@ -16,11 +16,14 @@ public class Constantes {
 	
 	// --------------------- Atendimento ---------------------
 	public static final int L_ATENDIMENTO_CODIGO = 15;
+	public static final int L_ATENDIMENTO_OBSERVACOES = 100;
+	public static final int L_ATENDIMENTO_PRESCRICAO = 100;
+	public static final int L_ATENDIMENTO_DIAGNOSTICO = 100;
 	
 	// --------------------- Avaliacao ---------------------
 	public static final int L_AVALIACAO_RESULTADO = 3;
 
-	// --------------------- Avaliacao ---------------------
+	// --------------------- Especialista ---------------------
 	public static final int L_ESPECIALISTA_CODIGO = 15;
 	public static final int L_ESPECIALISTA_NOME = 30;
 	public static final int L_ESPECIALISTA_PESO_AVALIADOR = 3;
@@ -76,9 +79,18 @@ public class Constantes {
 	public static String SENHA_CARGABD;
 	
   	 /* ------- ATENDIMENTO ------- */
-  	
+
   	public int getlAtendimentoCodigo(){
   		return L_ATENDIMENTO_CODIGO;
+  	}
+  	public int getlAtendimentoObservacoes(){
+  		return L_ATENDIMENTO_OBSERVACOES;
+  	}
+  	public int getlAtendimentoPrescricao(){
+  		return L_ATENDIMENTO_PRESCRICAO;
+  	}
+  	public int getlAtendimentoDiagnostico(){
+  		return L_ATENDIMENTO_DIAGNOSTICO;
   	}
   	
  	 /* ------- AVALIACAO ------- */
