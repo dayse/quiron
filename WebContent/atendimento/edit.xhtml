@@ -61,7 +61,38 @@
 							<f:selectItems value="#{atendimentoActions.comboStatus.listaSelecao}" />
 						</h:selectOneMenu>
 					<h:message for="comboStatus" styleClass="error" /><br />
-						
+					
+					
+					
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_prescricao}" />:
+					</h:panelGroup>
+					
+					<h:inputText id="prescricao"
+						value="#{atendimentoActions.atendimentoCorrente.prescricao}"
+						maxlength="#{constantes.lAtendimentoPrescricao}" size="100"
+						required="false" />
+					<h:message for="prescricao" styleClass="error" /><br />
+					
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_diagnostico}" />:
+					</h:panelGroup>
+					
+					<h:inputText id="diagnostico"
+						value="#{atendimentoActions.atendimentoCorrente.diagnostico}"
+						maxlength="#{constantes.lAtendimentoDiagnostico}" size="100"
+						required="false" />
+					<h:message for="diagnostico" styleClass="error" /><br />
+					
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_observacoes}" />:
+					</h:panelGroup>
+
+					<h:inputText id="observacoes"
+						value="#{atendimentoActions.atendimentoCorrente.observacoes}"
+						maxlength="#{constantes.lAtendimentoObservacoes}" size="100"
+						required="false" />
+					<h:message for="observacoes" styleClass="error" />
 				</h:panelGrid>
 			</rich:simpleTogglePanel>
 			

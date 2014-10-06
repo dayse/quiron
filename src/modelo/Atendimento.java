@@ -148,6 +148,21 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	 * Prognóstico
 	 */
 	private String prognostico;
+
+	/**
+	 * Diagnóstico
+	 */
+	private String diagnostico;
+
+	/**
+	 * Prescrição
+	 */
+	private String prescricao;
+	
+	/**
+	 * Observações que o médico queira colocar, mas que não se enquadrem nos outros campos.
+	 */
+	private String observacoes;
 	
 	/**
 	 * Nome do responsável caso o paciente seja menor de idade.
@@ -289,6 +304,30 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getDiagnostico() {
+		return diagnostico;
+	}
+
+	public void setDiagnostico(String diagnostico) {
+		this.diagnostico = diagnostico;
+	}
+
+	public String getPrescricao() {
+		return prescricao;
+	}
+
+	public void setPrescricao(String prescricao) {
+		this.prescricao = prescricao;
+	}
+
+	public String getObservacoes() {
+		return observacoes;
+	}
+
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
 	}
 
 }
