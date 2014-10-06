@@ -470,6 +470,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 							.getListaDePacientes().getRowData();
 		
 		atendimentoCorrente.setPaciente(pacienteCorrente);
+		
+		
+		listaDeAtendimentos = new ListDataModel(
+								atendimentoService.
+									recuperaListaPaginadaDeAtendimentosComPacientePorCodigoPaciente(
+											pacienteCorrente.getCodPaciente())
+											);
 		return PAGINA_NEW;
 	}
 
