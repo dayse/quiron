@@ -137,6 +137,94 @@
 			<h:commandButton id="botaoCancelar" value="#{prompt.cancelar}"
 				action="#{atendimentoActions.cancelar}" immediate="true" />
 
+			<rich:simpleTogglePanel opened="false">
+					<f:facet name="header">
+						<h:outputText value="#{prompt.atendimento_Historico}"/>
+					</f:facet>
+	
+				<ui:repeat value="#{atendimentoActions.listaDeAtendimentos}" var="atendimento_anterior">
+					<rich:panel>
+						<f:facet name="header">
+							<h:outputText value="#{atendimento_anterior.dataAtendimento.time}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</f:facet>
+		
+						<h:panelGrid columns="1">
+							<f:facet name="header">
+								<h:messages globalOnly="true" style="color: red" />
+							</f:facet>
+						</h:panelGrid>
+		
+						<h:panelGrid columns="2">
+								<h:panelGroup>
+									<h:outputText value="#{prompt.atendimento_Codigo}" />:
+									<h:inputText value="#{atendimento_anterior.codAtendimento}" disabled="true" />
+						    	</h:panelGroup>
+						    	
+								<h:panelGroup>
+									<h:outputText value="#{prompt.atendimento_Data}" />:
+									<h:inputText disabled="true" value="#{atendimento_anterior.dataAtendimento.time}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:inputText>
+						    	</h:panelGroup>
+						    	
+								<h:panelGroup>
+								
+									<rich:dataTable id="lista_anamneses_anteriores_#{atendimento_anterior.codAtendimento}" 
+										value="#{atendimento_anterior.anamneses}" var="anamnese_anterior"
+										width="470px">
+										<f:facet name="header">
+											<rich:columnGroup>
+												<rich:column colspan="3">
+													<h:outputText title="#{tooltip.parametro}"
+														value="#{prompt.parametro}" />
+												</rich:column>
+												<rich:column  breakBefore="true">
+													<h:outputText title="#{tooltip.parametro}"
+														value="#{prompt.parametro_Nome}" />
+												</rich:column>
+												<rich:column >
+													<h:outputText title="#{tooltip.parametro_valor}"
+														value="#{prompt.parametro_Valor}" />
+												</rich:column>
+											</rich:columnGroup>
+										</f:facet>
+						
+										<h:column>
+											<h:outputText value="#{anamnese_anterior.parametro.nome}" />
+										</h:column>
+						
+										<rich:column>
+										
+											<h:outputText id="#{anamnese_anterior.parametro.nome}_valor"
+												value="#{anamnese_anterior.valor}"/>
+										</rich:column>
+												
+									</rich:dataTable>
+									
+						    	</h:panelGroup>
+						    	
+								<h:panelGroup>
+									<h:outputText value="#{prompt.atendimento_Observacoes}" />:									
+									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.observacoes}" />
+						    	</h:panelGroup>
+						    	
+								<h:panelGroup>
+									<h:outputText value="#{prompt.atendimento_Prescricao}" />:									
+									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.prescricao}" />
+						    	</h:panelGroup>
+								<h:panelGroup>
+									<h:outputText value="#{prompt.atendimento_Diagnostico}" />:									
+									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.diagnostico}" />
+						    	</h:panelGroup>
+						    	<br/>
+						    	
+						</h:panelGrid>
+					</rich:panel>
+				</ui:repeat>
+				
+			</rich:simpleTogglePanel>
 		</h:form>
 
 	</ui:define>

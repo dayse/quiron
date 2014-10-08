@@ -440,6 +440,11 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 
 		listaDeAnamneses = null;
+		listaDeAtendimentos = new ListDataModel(
+				atendimentoService.
+				recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
+							pacienteCorrente.getCodPaciente())
+							);
 		return PAGINA_EDIT;
 	}
 
