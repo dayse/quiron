@@ -65,32 +65,29 @@
 					
 					
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_prescricao}" />:
+						<h:outputText value="#{prompt.atendimento_Prescricao}" />:
 					</h:panelGroup>
 					
-					<h:inputText id="prescricao"
-						value="#{atendimentoActions.atendimentoCorrente.prescricao}"
-						maxlength="#{constantes.lAtendimentoPrescricao}" size="100"
-						required="false" />
+					<h:inputTextarea rows="10" cols="40" id="prescricao"
+						value="#{atendimentoActions.atendimentoCorrente.prescricao}" required="false" />
 					<h:message for="prescricao" styleClass="error" /><br />
 					
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_diagnostico}" />:
+						<h:outputText value="#{prompt.atendimento_Diagnostico}" />:
 					</h:panelGroup>
 					
-					<h:inputText id="diagnostico"
+					<h:inputTextarea rows="10" cols="40" id="diagnostico"
 						value="#{atendimentoActions.atendimentoCorrente.diagnostico}"
-						maxlength="#{constantes.lAtendimentoDiagnostico}" size="100"
 						required="false" />
 					<h:message for="diagnostico" styleClass="error" /><br />
 					
 					<h:panelGroup>
-						<h:outputText value="#{prompt.atendimento_observacoes}" />:
+						<h:outputText value="#{prompt.atendimento_Observacoes}" />:
 					</h:panelGroup>
 
-					<h:inputText id="observacoes"
+					
+					<h:inputTextarea rows="10" cols="40" id="observacoes"
 						value="#{atendimentoActions.atendimentoCorrente.observacoes}"
-						maxlength="#{constantes.lAtendimentoObservacoes}" size="100"
 						required="false" />
 					<h:message for="observacoes" styleClass="error" />
 				</h:panelGrid>
