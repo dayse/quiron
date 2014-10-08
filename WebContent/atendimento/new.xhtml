@@ -148,10 +148,10 @@
 
 				<rich:column colspan="2">
 				
-					<h:inputText id="#{anamnese.parametro.nome}_valor"
+					<h:inputText id="#{anamnese.parametro.codParametro}_valor"
 						value="#{anamnese.valor}"
 						required="false" />
-					<h:message for="#{anamnese.parametro.nome}_valor" styleClass="error" />
+					<h:message for="#{anamnese.parametro.codParametro}_valor" styleClass="error" />
 				</rich:column>
 						
 			</rich:dataTable>
@@ -171,7 +171,7 @@
 					</f:facet>
 	
 				<ui:repeat value="#{atendimentoActions.listaDeAtendimentos}" var="atendimento_anterior">
-					<rich:simpleTogglePanel opened="false">
+					<rich:simpleTogglePanel opened="false" id="historico_atendimento_#{atendimento_anterior.codAtendimento}">
 						<f:facet name="header">
 							<h:outputText value="#{atendimento_anterior.dataAtendimento.time}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -187,41 +187,65 @@
 						<h:panelGrid columns="3">
 								<h:panelGroup>
 									<h:outputText value="#{prompt.atendimento_Codigo}" />:
-									<h:outputText value="#{atendimento_anterior.codAtendimento}" />
+									<h:inputText value="#{atendimento_anterior.codAtendimento}" disabled="true" />
 						    	</h:panelGroup>
 						    	
 								<h:panelGroup>
 									<h:outputText value="#{prompt.atendimento_Data}" />:
-									<h:outputText value="#{atendimento_anterior.dataAtendimento.time}">
+									<h:inputText disabled="true" value="#{atendimento_anterior.dataAtendimento.time}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
-									</h:outputText>
+									</h:inputText>
 						    	</h:panelGroup>
 						    	
 								<h:panelGroup>
 								
-									<ui:repeat value="#{atendimentoActions.listaDeParametros}" var="parametro">
+									<rich:dataTable id="lista_anamneses_anteriores_#{atendimento_anterior.codAtendimento}" 
+										value="#{atendimento_anterior.anamneses}" var="anamnese_anterior"
+										width="470px">
+										<f:facet name="header">
+											<rich:columnGroup>
+												<rich:column colspan="3">
+													<h:outputText title="#{tooltip.parametro}"
+														value="#{prompt.parametro}" />
+												</rich:column>
+												<rich:column  breakBefore="true">
+													<h:outputText title="#{tooltip.parametro}"
+														value="#{prompt.parametro_Nome}" />
+												</rich:column>
+												<rich:column >
+													<h:outputText title="#{tooltip.parametro_valor}"
+														value="#{prompt.parametro_Valor}" />
+												</rich:column>
+											</rich:columnGroup>
+										</f:facet>
+						
+										<h:column>
+											<h:outputText value="#{anamnese_anterior.parametro.nome}" />
+										</h:column>
+						
+										<rich:column>
+										
+											<h:outputText id="#{anamnese_anterior.parametro.nome}_valor"
+												value="#{anamnese_anterior.valor}"/>
+										</rich:column>
+												
+									</rich:dataTable>
 									
-										<h:outputText value="#{parametro.codParametro}" />	
-										<h:outputText value="#{atendimento_anterior.anamneses[0].id}" />	
-									</ui:repeat>	
 						    	</h:panelGroup>
 						    	
 								<h:panelGroup>
 									<h:outputText value="#{prompt.atendimento_Prescricao}" />:									
-									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.prescricao}" />
+									<h:inputTextarea disabled="true" rows="10" cols="40" value=" #{atendimento_anterior.prescricao}" />
 						    	</h:panelGroup>
 						    	<br/>
 						    	<br/>
 								<h:panelGroup>
 									<h:outputText value="#{prompt.atendimento_Diagnostico}" />:									
-									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.diagnostico}" />
+									<h:inputTextarea disabled="true" rows="10" cols="40" value=" #{atendimento_anterior.diagnostico}" />
 						    	</h:panelGroup>
 						    	<br/>
 						    	
 						</h:panelGrid>
-							
-						
-						<h:outputText value="#{prompt.atendimento_Prescricao}" />	
 					</rich:simpleTogglePanel>
 				</ui:repeat>
 				
