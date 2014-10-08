@@ -117,7 +117,7 @@ public class TesteAvalIndicacaoEspec {
 		Parametro febre = new Parametro();
 		AvalIndicacaoEspec avaliacaoRecuperada = new AvalIndicacaoEspec();
 				
-		febre = parametroService.recuperaParametroPorCodigo("P1");
+		febre = parametroService.recuperaParametroPorCodigo("P001");
 		
 		try {
 			espec1 = especialistaService.recuperaEspecialistaPorCodigo("espec1");
@@ -140,7 +140,7 @@ public class TesteAvalIndicacaoEspec {
 		
 		AssertJUnit.assertEquals("amox500", avaliacaoRecuperada.getIndicacao().getCodIndicacao());
 		AssertJUnit.assertEquals("espec1", avaliacaoRecuperada.getEspecialista().getCodEspecialista());
-		AssertJUnit.assertEquals("P1", avaliacaoRecuperada.getParametro().getCodParametro());
+		AssertJUnit.assertEquals("P001", avaliacaoRecuperada.getParametro().getCodParametro());
 	}
 
 	@Test
@@ -162,7 +162,7 @@ public class TesteAvalIndicacaoEspec {
 
 		//testa se essa realmente é a avaliação "Amoxilina1 x Febre"
 		AssertJUnit.assertEquals("amox1", avaliacaoAmoxFebre.getIndicacao().getCodIndicacao());
-		AssertJUnit.assertEquals("P1", avaliacaoAmoxFebre.getParametro().getCodParametro());
+		AssertJUnit.assertEquals("P001", avaliacaoAmoxFebre.getParametro().getCodParametro());
 		//testa se a media dos especialistas para essa cominação "Amox1 x Febre" é correta
 		AssertJUnit.assertEquals(df.format(0.6), df.format(avaliacaoAmoxFebre.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.6), df.format(avaliacaoAmoxFebre.getUniao()));
@@ -176,7 +176,7 @@ public class TesteAvalIndicacaoEspec {
 
 		//testa se essa realmente é a avaliação "Bactrim x Diabetes"
 		AssertJUnit.assertEquals("bactrim", avaliacaoBactrimDiabetes.getIndicacao().getCodIndicacao());
-		AssertJUnit.assertEquals("P3", avaliacaoBactrimDiabetes.getParametro().getCodParametro());
+		AssertJUnit.assertEquals("P003", avaliacaoBactrimDiabetes.getParametro().getCodParametro());
 		//testa se a media dos especialistas para essa cominação "Bactrim x Diabetes" é correta
 		AssertJUnit.assertEquals(df.format(0.7), df.format(avaliacaoBactrimDiabetes.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.7), df.format(avaliacaoBactrimDiabetes.getUniao()));
@@ -189,7 +189,7 @@ public class TesteAvalIndicacaoEspec {
 
 		//testa se essa realmente é a avaliação "Amox500 x Candida"
 		AssertJUnit.assertEquals("amox500", avaliacaoAmox500Candida.getIndicacao().getCodIndicacao());
-		AssertJUnit.assertEquals("P6", avaliacaoAmox500Candida.getParametro().getCodParametro());
+		AssertJUnit.assertEquals("P006", avaliacaoAmox500Candida.getParametro().getCodParametro());
 		//testa se a media dos especialistas para essa cominação "Amox500 x Candida" é correta
 		AssertJUnit.assertEquals(df.format(0.2), df.format(avaliacaoAmox500Candida.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.2), df.format(avaliacaoAmox500Candida.getUniao()));
@@ -204,7 +204,7 @@ public class TesteAvalIndicacaoEspec {
 		Avaliacao avaliacaoRecuperada = new Avaliacao();
 
 		DecimalFormat df = new DecimalFormat("0.00"); 
-		febre = parametroService.recuperaParametroPorCodigo("P1");
+		febre = parametroService.recuperaParametroPorCodigo("P001");
 		
 		try {
 			amox500 = indicacaoService.recuperaIndicacaoPorCodigo("amox500");
@@ -217,7 +217,7 @@ public class TesteAvalIndicacaoEspec {
 				calculaAvaliacaoPorIndicacaoPorParametro(amox500, febre);
 		
 		AssertJUnit.assertEquals("amox500", avaliacaoRecuperada.getIndicacao().getCodIndicacao());
-		AssertJUnit.assertEquals("P1", avaliacaoRecuperada.getParametro().getCodParametro());
+		AssertJUnit.assertEquals("P001", avaliacaoRecuperada.getParametro().getCodParametro());
 
 		AssertJUnit.assertEquals(df.format(0.8), df.format(avaliacaoRecuperada.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.8), df.format(avaliacaoRecuperada.getUniao()));
@@ -230,7 +230,7 @@ public class TesteAvalIndicacaoEspec {
 		DecimalFormat df = new DecimalFormat("0.00"); 
 		Double mediaFebreAmox500 = 0.8;
 
-		febre = parametroService.recuperaParametroPorCodigo("P1");
+		febre = parametroService.recuperaParametroPorCodigo("P001");
 		
 		try {
 			amox500 = indicacaoService.recuperaIndicacaoPorCodigo("amox500");
@@ -252,7 +252,7 @@ public class TesteAvalIndicacaoEspec {
 		DecimalFormat df = new DecimalFormat("0.00"); 
 		Double valorFebreAmox500 = 0.6;
 
-		febre = parametroService.recuperaParametroPorCodigo("P1");
+		febre = parametroService.recuperaParametroPorCodigo("P001");
 		
 		try {
 			amox500 = indicacaoService.recuperaIndicacaoPorCodigo("amox500");

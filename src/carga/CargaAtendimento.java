@@ -169,7 +169,7 @@ public class CargaAtendimento extends CargaBase{
 		Anamnese atendimentoPc1_escherichia = new Anamnese(atendimentoPaciente1, escherichia, 0.0);
 		Anamnese atendimentoPc1_candida = new Anamnese(atendimentoPaciente1, candida, 1.0);
 		Anamnese atendimentoPc1_efeitosColaterais = new Anamnese(atendimentoPaciente1, efeitosColaterais, 1.0);
-		Anamnese atendimentoPc1_alergia = new Anamnese(atendimentoPaciente1, alergia, 2.0);
+		Anamnese atendimentoPc1_alergia = new Anamnese(atendimentoPaciente1, alergia, 0.0);
 		
 		anamneseService.inclui(atendimentoPc1_febre);
 		anamneseService.inclui(atendimentoPc1_disuria);
@@ -188,7 +188,7 @@ public class CargaAtendimento extends CargaBase{
 		Anamnese atendimentoPc2_escherichia = new Anamnese(atendimentoPaciente2, escherichia, 0.0);
 		Anamnese atendimentoPc2_candida = new Anamnese(atendimentoPaciente2, candida, 0.0);
 		Anamnese atendimentoPc2_efeitosColaterais = new Anamnese(atendimentoPaciente2, efeitosColaterais, 1.0);
-		Anamnese atendimentoPc2_alergia = new Anamnese(atendimentoPaciente2, alergia, 2.0);
+		Anamnese atendimentoPc2_alergia = new Anamnese(atendimentoPaciente2, alergia, 0.0);
 
 		anamneseService.inclui(atendimentoPc2_febre);
 		anamneseService.inclui(atendimentoPc2_disuria);

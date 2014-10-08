@@ -93,13 +93,14 @@ public class TesteAnamnese {
 
 		DecimalFormat df = new DecimalFormat("0.00"); 
 		
-		Parametro febre = parametroService.recuperaParametroPorCodigo("P1");
-		Parametro disuria = parametroService.recuperaParametroPorCodigo("P2");
-		Parametro diabetes = parametroService.recuperaParametroPorCodigo("P3");
-		Parametro enterococos = parametroService.recuperaParametroPorCodigo("P4");
-		Parametro escherichia = parametroService.recuperaParametroPorCodigo("P5");
-		Parametro candida = parametroService.recuperaParametroPorCodigo("P6");
-		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigo("P7");
+		Parametro febre = parametroService.recuperaParametroPorCodigo("P001");
+		Parametro disuria = parametroService.recuperaParametroPorCodigo("P002");
+		Parametro diabetes = parametroService.recuperaParametroPorCodigo("P003");
+		Parametro enterococos = parametroService.recuperaParametroPorCodigo("P004");
+		Parametro escherichia = parametroService.recuperaParametroPorCodigo("P005");
+		Parametro candida = parametroService.recuperaParametroPorCodigo("P006");
+		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigo("P007");
+		Parametro alergia = parametroService.recuperaParametroPorCodigo("P008");
 		
 		Atendimento atendimentoPaciente1 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp1");
 		
@@ -161,25 +162,6 @@ public class TesteAnamnese {
 		}
 		
 	}
-
-//	@Test
-//	public void testeCalculaAvaliacaoPorAtendimentoPorIndicacaoPorParametro() throws AplicacaoException {
-//		Atendimento atendimentoPaciente1 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp1");
-//		
-//		List<ConjuntoAvaliacao> conjuntoDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoPaciente1);
-//
-//		int num_conjuntos = 5;
-//		
-//		
-//		AssertJUnit.assertEquals(num_conjuntos, conjuntoDeAvaliacoes.size());
-//		
-//		//teste avaliação amoxilina 500:
-////		ConjuntoAvaliacao conjuntoAvaliacaoAmox500 = conjuntoDeAvaliacoes.get(0);
-////		
-////		AssertJUnit.assertEquals(conjuntoDeAvaliacoes., actual);
-//		
-//	}
-	
 
 	public void cargaDependencias() {
 		List<CargaBase> cargas;

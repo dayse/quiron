@@ -98,7 +98,7 @@ public class TesteCargaAvalIndicacaoEspec {
 		} catch (ObjetoNaoEncontradoException e) {
 			e.printStackTrace();
 		}
-		int num_avaliacao = 35;
+		int num_avaliacao = 40;
 		
 		List<AvalIndicacaoEspec> listaDeAvaliacaoDoEspec1 =
 				avalIndicacaoEspecService.recuperaListaDeAvaliacaoEspecPorEspecialistaPaginada(especialista1);

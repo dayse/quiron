@@ -142,13 +142,14 @@ public class TesteCargaAtendimento {
 	@Test(dependsOnMethods="testeCargaIncluirAtendimentos")
 	public void testeCargaIncluirAnamneses() throws AplicacaoException {
 
-		Parametro febre = parametroService.recuperaParametroPorCodigo("P1");
-		Parametro disuria = parametroService.recuperaParametroPorCodigo("P2");
-		Parametro diabetes = parametroService.recuperaParametroPorCodigo("P3");
-		Parametro enterococos = parametroService.recuperaParametroPorCodigo("P4");
-		Parametro escherichia = parametroService.recuperaParametroPorCodigo("P5");
-		Parametro candida = parametroService.recuperaParametroPorCodigo("P6");
-		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigo("P7");
+		Parametro febre = parametroService.recuperaParametroPorCodigo("P001");
+		Parametro disuria = parametroService.recuperaParametroPorCodigo("P002");
+		Parametro diabetes = parametroService.recuperaParametroPorCodigo("P003");
+		Parametro enterococos = parametroService.recuperaParametroPorCodigo("P004");
+		Parametro escherichia = parametroService.recuperaParametroPorCodigo("P005");
+		Parametro candida = parametroService.recuperaParametroPorCodigo("P006");
+		Parametro efeitosColaterais = parametroService.recuperaParametroPorCodigo("P007");
+		Parametro alergia = parametroService.recuperaParametroPorCodigo("P008");
 		
 		Atendimento atendimentoPaciente1 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp1");
 		Atendimento atendimentoPaciente2 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp2");
@@ -156,7 +157,7 @@ public class TesteCargaAtendimento {
 		List<Anamnese> anamnesesAtp1 = anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoPaciente1);
 		
 
-		int num_anamnesesAtp1 = 7;
+		int num_anamnesesAtp1 = 8;
 		AssertJUnit.assertEquals(num_anamnesesAtp1, anamnesesAtp1.size());
 
 		Anamnese atendimentoPc1_febre = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,febre);
@@ -180,11 +181,12 @@ public class TesteCargaAtendimento {
 		Anamnese atendimentoPc1_efeitosColaterais = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,efeitosColaterais);
 		AssertJUnit.assertEquals(1.0, atendimentoPc1_efeitosColaterais.getValor());
 
-		
+		Anamnese atendimentoPc1_alergia = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,alergia);
+		AssertJUnit.assertEquals(0.0, atendimentoPc1_alergia.getValor());		
 
 		List<Anamnese> anamnesesAtp2 = anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoPaciente2);
 		
-		int num_anamnesesAtp2 = 7;
+		int num_anamnesesAtp2 = 8;
 		AssertJUnit.assertEquals(num_anamnesesAtp2, anamnesesAtp2.size());
 
 		Anamnese atendimentoPc2_febre = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,febre);
@@ -208,7 +210,8 @@ public class TesteCargaAtendimento {
 		Anamnese atendimentoPc2_efeitosColaterais = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,efeitosColaterais);
 		AssertJUnit.assertEquals(1.0, atendimentoPc2_efeitosColaterais.getValor());
 
-		
+		Anamnese atendimentoPc2_alergia = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente2,alergia);
+		AssertJUnit.assertEquals(0.0, atendimentoPc2_alergia.getValor());		
 	}
 	
 	
