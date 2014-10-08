@@ -90,19 +90,16 @@
 						<h:outputText value="#{prompt.atendimento_Prescricao}" />:
 					</h:panelGroup>
 					
-					<h:inputText id="prescricao"
-						value="#{atendimentoActions.atendimentoCorrente.prescricao}"
-						maxlength="#{constantes.lAtendimentoPrescricao}" size="100"
-						required="false" />
+					<h:inputTextarea rows="10" cols="40" id="prescricao"
+						value="#{atendimentoActions.atendimentoCorrente.prescricao}" required="false" />
 					<h:message for="prescricao" styleClass="error" />
 					
 					<h:panelGroup>
 						<h:outputText value="#{prompt.atendimento_Diagnostico}" />:
 					</h:panelGroup>
 					
-					<h:inputText id="diagnostico"
+					<h:inputTextarea rows="10" cols="40"  id="diagnostico"
 						value="#{atendimentoActions.atendimentoCorrente.diagnostico}"
-						maxlength="#{constantes.lAtendimentoDiagnostico}" size="100"
 						required="false" />
 					<h:message for="diagnostico" styleClass="error" />
 					
@@ -110,9 +107,8 @@
 						<h:outputText value="#{prompt.atendimento_Observacoes}" />:
 					</h:panelGroup>
 
-					<h:inputText id="observacoes"
+					<h:inputTextarea rows="10" cols="40" id="observacoes"
 						value="#{atendimentoActions.atendimentoCorrente.observacoes}"
-						maxlength="#{constantes.lAtendimentoObservacoes}" size="100"
 						required="false" />
 					<h:message for="observacoes" styleClass="error" />
 					
@@ -184,7 +180,7 @@
 							</f:facet>
 						</h:panelGrid>
 		
-						<h:panelGrid columns="3">
+						<h:panelGrid columns="2">
 								<h:panelGroup>
 									<h:outputText value="#{prompt.atendimento_Codigo}" />:
 									<h:inputText value="#{atendimento_anterior.codAtendimento}" disabled="true" />
@@ -234,14 +230,17 @@
 						    	</h:panelGroup>
 						    	
 								<h:panelGroup>
-									<h:outputText value="#{prompt.atendimento_Prescricao}" />:									
-									<h:inputTextarea disabled="true" rows="10" cols="40" value=" #{atendimento_anterior.prescricao}" />
+									<h:outputText value="#{prompt.atendimento_Observacoes}" />:									
+									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.observacoes}" />
 						    	</h:panelGroup>
-						    	<br/>
-						    	<br/>
+						    	
+								<h:panelGroup>
+									<h:outputText value="#{prompt.atendimento_Prescricao}" />:									
+									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.prescricao}" />
+						    	</h:panelGroup>
 								<h:panelGroup>
 									<h:outputText value="#{prompt.atendimento_Diagnostico}" />:									
-									<h:inputTextarea disabled="true" rows="10" cols="40" value=" #{atendimento_anterior.diagnostico}" />
+									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.diagnostico}" />
 						    	</h:panelGroup>
 						    	<br/>
 						    	
