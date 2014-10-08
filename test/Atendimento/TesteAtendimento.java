@@ -48,6 +48,7 @@ public class TesteAtendimento {
 
 			pacienteService = FabricaDeAppService.getAppService(PacienteAppService.class);
 			atendimentoService = FabricaDeAppService.getAppService(AtendimentoAppService.class);
+			parametroService = FabricaDeAppService.getAppService(ParametroAppService.class);
 			usuarioService = FabricaDeAppService
 					.getAppService(UsuarioAppService.class);
 
@@ -249,6 +250,48 @@ public class TesteAtendimento {
 		AssertJUnit.assertEquals(
 				atendimentoPaciente2.getMedico(), 
 				clinico);
+		
+	}
+
+	@Test
+	public void testeRecuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente() throws AplicacaoException {
+
+		Usuario clinico = usuarioService.recuperaPorLogin("clinico");
+		Paciente paciente1 = pacienteService.recuperaPacientePorCodigo("paciente1");
+
+		List<Atendimento> listaDeAtendimentos = atendimentoService.
+													recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
+															paciente1.getCodPaciente());
+		
+		int num_atendimentos = 1;
+		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());
+		
+		
+		
+		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getPaciente(), 
+				paciente1);
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getMedico(), 
+				clinico);
+
+		List<Parametro> listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
+		
+		int num_anamneses = listaDeParametros.size();
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getAnamneses().size(), 
+				num_anamneses);
+		
+		Parametro febre = listaDeParametros.get(0);
+		Anamnese anamneseFebreAtendimentoPaciente1 = atendimentoPaciente1.getAnamneses().get(0);
+		
+		AssertJUnit.assertEquals(anamneseFebreAtendimentoPaciente1.getParametro().getCodParametro(), 
+				febre.getCodParametro());
+		
+		
 		
 	}
 	

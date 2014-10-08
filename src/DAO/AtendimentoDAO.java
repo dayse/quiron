@@ -145,6 +145,16 @@ public interface AtendimentoDAO extends DaoGenerico<Atendimento, Long> {
 	@RecuperaListaPaginada(tamanhoPagina = 10)
 	public List<Atendimento> recuperaListaPaginadaDeAtendimentosComPacientePorCodigoPaciente(
 			String codPaciente);
+
+	/**
+	 * Retorna a lista paginada de atendimentos com pacientes e com anamnese pelo 
+	 * codigo do paciente
+	 * @param codPaciente
+	 * @return
+	 */
+	@RecuperaListaPaginada(tamanhoPagina = 10)
+	public List<Atendimento> recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
+			String codPaciente);
 	
 	
 	/**

@@ -107,6 +107,10 @@ public class AtendimentoAppService {
 	public List<Atendimento> recuperaListaPaginadaDeAtendimentosComPacientePorCodigoPaciente(String codPaciente){
 		return atendimentoDAO.recuperaListaPaginadaDeAtendimentosComPacientePorCodigoPaciente(codPaciente);
 	}
+
+	public List<Atendimento> recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(String codPaciente){
+		return atendimentoDAO.recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(codPaciente);
+	}
 	
 	
 	
