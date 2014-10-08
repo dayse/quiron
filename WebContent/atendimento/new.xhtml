@@ -48,7 +48,7 @@
 					</h:panelGroup>
 
 					<rich:calendar id="dataAtendimento" datePattern="dd/MM/yyyy HH:mm"
-						value="#{atendimentoActions.dataAtendimento}" required="false"
+						value="#{atendimentoActions.dataAtendimento}" required="true"
 						enableManualInput="false" />
 					<h:message for="dataAtendimento" styleClass="error" />
 
@@ -171,7 +171,7 @@
 					</f:facet>
 	
 				<ui:repeat value="#{atendimentoActions.listaDeAtendimentos}" var="atendimento_anterior">
-					<rich:simpleTogglePanel opened="false" id="historico_atendimento_#{atendimento_anterior.codAtendimento}">
+					<rich:simpleTogglePanel opened="false" >
 						<f:facet name="header">
 							<h:outputText value="#{atendimento_anterior.dataAtendimento.time}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
