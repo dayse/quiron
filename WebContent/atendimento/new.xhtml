@@ -198,8 +198,12 @@
 						    	</h:panelGroup>
 						    	
 								<h:panelGroup>
-									<h:outputText value="#{prompt.parametro}" />:									
-									<h:inputTextarea disabled="true" rows="10" cols="40" value="" />
+								
+									<ui:repeat value="#{atendimentoActions.listaDeParametros}" var="parametro">
+									
+										<h:outputText value="#{parametro.codParametro}" />	
+										<h:outputText value="#{atendimento_anterior.anamneses[0].id}" />	
+									</ui:repeat>	
 						    	</h:panelGroup>
 						    	
 								<h:panelGroup>
@@ -213,8 +217,11 @@
 									<h:inputTextarea disabled="true" rows="10" cols="40" value="#{atendimento_anterior.diagnostico}" />
 						    	</h:panelGroup>
 						    	<br/>
+						    	
 						</h:panelGrid>
 							
+						
+						<h:outputText value="#{prompt.atendimento_Prescricao}" />	
 					</rich:simpleTogglePanel>
 				</ui:repeat>
 				
