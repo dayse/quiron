@@ -466,7 +466,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		anamnesesCorrente = new Anamnese();
 		listaDeAnamneses = null;
 
-		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
 		pacienteCorrente = 	(Paciente)
 							((PacienteActions) getManagedBean("pacienteActions"))
 							.getListaDePacientes().getRowData();
