@@ -83,6 +83,11 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	private String descricao;
 	
 	/**
+	 * peso que define a importância do parâmetro no algoritmo de sugestão de medicação
+	 */
+	private Double peso;
+	
+	/**
 	 * Lista de avaliações dadas as indicações pelos especialistas.
 	 */
 	private List<AvalIndicacaoEspec> listAvalIndicacaoEspec = new ArrayList<AvalIndicacaoEspec>();
@@ -228,4 +233,11 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 		return true;
 	}
 	
+	public Double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(Double peso) {
+		this.peso = peso;
+	}
 }
