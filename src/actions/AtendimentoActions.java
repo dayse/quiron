@@ -274,22 +274,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String exclui() {
-		/**
-		 * Implementar exclusão em cascata. Economia de código!
-		 */
-//		try {
-//			anamnesesCorrente = anamneseService
-//					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
-//		} catch (ObjetoNaoEncontradoException ex) {
-//			error(ex.getMessage());
-//			return PAGINA_LIST;
-//		}
-//		try {
-//			anamneseService.exclui(anamnesesCorrente);
-//		} catch (AplicacaoException ex) {
-//			error(ex.getMessage());
-//			return PAGINA_LIST;
-//		}
 		try {
 			atendimentoService.exclui(atendimentoCorrente);
 		} catch (AplicacaoException ex) {
@@ -330,7 +314,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		List<Anamnese> anamneses = (List<Anamnese>) listaDeAnamneses.getWrappedData();
 		for (Anamnese anamnese : anamneses) {
 
-//			anamnesesCorrente.setAtendimento(atendimentoCorrente);
 			try {
 				anamneseService.inclui(anamnese);
 			} catch (AplicacaoException ex) {
@@ -359,13 +342,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String mostrar() {
-//		try {
-//			anamnesesCorrente = anamneseService
-//					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
-//		} catch (ObjetoNaoEncontradoException ex) {
-//			error(ex.getMessage());
-//			return PAGINA_LIST;
-//		}
 		try {
 			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
 					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
@@ -390,6 +366,11 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}
 		listaDeAnamneses = null;
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+		listaDeAtendimentos = new ListDataModel(
+				atendimentoService.
+				recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
+							atendimentoCorrente.getPaciente().getCodPaciente())
+							);
 		return PAGINA_SHOW;
 	}
 
@@ -408,13 +389,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 */
 	public String preparaAlteracao() {
 		pacienteCorrente = atendimentoCorrente.getPaciente();
-//		try {
-//			anamnesesCorrente = anamneseService
-//					.recuperaAnamnesePorAtendimento(atendimentoCorrente);
-//		} catch (ObjetoNaoEncontradoException ex) {
-//			error(ex.getMessage());
-//			return PAGINA_LIST;
-//		}
 		try {
 			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
 					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
