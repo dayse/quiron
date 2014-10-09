@@ -48,6 +48,7 @@ public class Constantes {
 	public static final int L_PARAMETRO_CODIGO = 15;
 	public static final int L_PARAMETRO_NOME = 30;
 	public static final int L_PARAMETRO_DESCRICAO = 30;
+	public static final int L_PARAMETRO_PESO = 3;
 	
 	
 	// --------------------- Indicacao ---------------------
@@ -166,6 +167,10 @@ public class Constantes {
 
 	public int getlParametroDescricao() {
 		return L_PARAMETRO_DESCRICAO;
+	}
+	
+	public int getlParametroPeso() {
+		return L_PARAMETRO_PESO;
 	}
 	
 	public int getlParametroCandida(){
