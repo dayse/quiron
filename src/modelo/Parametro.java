@@ -95,6 +95,7 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	// ********* Construtor *********
 	
 	public Parametro(){
+		this.peso = 1.0;
 		
 	}
 	
