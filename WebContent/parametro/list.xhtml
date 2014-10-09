@@ -64,6 +64,11 @@
 							<h:outputText title="#{tooltip.indicacao_Dosagem}"
 								value="#{prompt.parametro_Descricao}" />
 						</rich:column>
+						
+						<rich:column>
+							<h:outputText title="#{tooltip.parametro_Peso}"
+								value="#{prompt.parametro_Peso}" />
+						</rich:column>
 
 						<rich:column>
 							<h:outputText value="#{prompt.editar}" />
@@ -86,6 +91,10 @@
 
 				<rich:column>
 					<h:outputText value="#{parametro.descricao}" />
+				</rich:column>
+				
+				<rich:column>
+					<h:outputText value="#{parametro.peso}" />
 				</rich:column>
 				
 				<rich:column>

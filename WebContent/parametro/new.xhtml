@@ -52,6 +52,15 @@
 					<h:message for="descricao" styleClass="error" />
 					<h:outputText value="" />
 
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_Peso}" />:
+					</h:panelGroup>
+					<h:inputText id="peso"
+						value="#{parametroActions.parametroCorrente.peso}"
+						maxlength="#{constantes.lParametroPeso}" size="20" required="true" />
+					<h:message for="peso" styleClass="error" />
+					<h:outputText value="" />
+
 				</h:panelGrid>
 			</rich:panel>
 
