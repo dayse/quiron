@@ -23,40 +23,40 @@
 					<h:outputText value="#{prompt.atendimento}" />
 				</f:facet>
 
-				<h:panelGrid columns="1">
-					<f:facet name="header">
-						<h:messages globalOnly="true" style="color: red" />
-					</f:facet>
-				</h:panelGrid>
-
-				<h:panelGrid columns="3">
-
-					<h:outputText value="#{prompt.atendimento_Codigo}" />:
+				<h:panelGrid columns="2">
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_Codigo}" />:
+					</h:panelGroup>
 						<h:outputText id="codigo" value="#{atendimentoActions.atendimentoCorrente.codAtendimento}" />
 						
-					<h:outputText value="#{prompt.atendimento_Data}" />:
+					<h:panelGroup>	
+						<h:outputText value="#{prompt.atendimento_Data}" />:
+					</h:panelGroup>	
 						<h:outputText value="#{atendimentoActions.atendimentoCorrente.dataAtendimento.time}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
-						
- 					<h:outputText value="#{prompt.medico}" />:
+					
+					<h:panelGroup>	
+ 						<h:outputText value="#{prompt.medico}" />:
+ 					</h:panelGroup>	
  						<h:outputText value="#{atendimentoActions.comboMedicos.selecao}" />
-						
- 					<h:outputText value="#{prompt.tecnico}" />:
- 						<h:outputText value="#{atendimentoActions.comboTecnicos.selecao}" /> 				
-						
- 					<h:outputText value="#{prompt.atendimento_Status}" />:
- 						<h:outputText value="#{atendimentoActions.comboStatus.selecao}" />	
-				</h:panelGrid>
-
-
-				<h:panelGrid>
+					
+					<h:panelGroup>	
+ 						<h:outputText value="#{prompt.tecnico}" />:
+ 					</h:panelGroup>
+ 						<h:outputText value="#{atendimentoActions.comboTecnicos.selecao == 'Selecione aqui' ? prompt.atendimento_SemTecnico : atendimentoActions.comboTecnicos.selecao}" /> 				
+					
+					<h:panelGroup>	
+ 						<h:outputText value="#{prompt.atendimento_Status}" />:
+ 					</h:panelGroup>
+ 						<h:outputText value="#{atendimentoActions.comboStatus.selecao}" />
+					
 					<h:panelGroup>
 						<h:outputText value="#{prompt.atendimento_Prescricao}" />:			
 					</h:panelGroup>
 					<h:inputTextarea rows="10" cols="40" id="prescricao"
 						value="#{atendimentoActions.atendimentoCorrente.prescricao}" disabled="true" />	
-						<h:message for="diagnostico" styleClass="error" />
+						
 					<h:panelGroup>
 						<h:outputText value="#{prompt.atendimento_Diagnostico}" />:			
 					</h:panelGroup>
