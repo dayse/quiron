@@ -73,7 +73,7 @@ public class AvalIndicacaoEspecAppService {
 	
 
 	/**
-	 * Metodo usado para calcular a media da avaliação do especialista para uma
+	 * Metodo usado para calcular a media da avaliação dos especialistas para uma
 	 * determinada combinação de indicação e parametro.
 	 * 
 	 * @param indicacao
