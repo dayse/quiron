@@ -88,6 +88,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private SelectOneDataModel<String> comboTiposDeBusca;
 	private boolean buscaEfetuada = false;
 	
+	//infos do filtro
+	private SelectOneDataModel<String> comboFiltroStatus;
+	
 	
 	/**
 	 * 
@@ -751,8 +754,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		this.listaConjuntoAvaliacao = listaConjuntoAvaliacao;
 	}
 
-
-
 	public List<Parametro> getListaDeParametros() {
 		return this.listaDeParametros;
 	}
@@ -774,5 +775,16 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 
 	public void setBuscaEfetuada(boolean buscaEfetuada) {
 		this.buscaEfetuada = buscaEfetuada;
+	}
+
+	public SelectOneDataModel<String> getComboFiltroStatus() {
+		if (comboFiltroStatus == null) {
+			comboFiltroStatus = SelectOneDataModel.criaComTextoInicialDefault(status);
+		}
+		return comboFiltroStatus;
+	}
+
+	public void setComboFiltroStatus(SelectOneDataModel<String> comboFiltroStatus) {
+		this.comboFiltroStatus = comboFiltroStatus;
 	}
 }

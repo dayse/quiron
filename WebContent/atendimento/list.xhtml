@@ -22,7 +22,7 @@
 		<a4j:keepAlive beanName="atendimentoActions" />
 
 		<h:form>
-			<h:panelGrid columns="5">
+			<h:panelGrid columns="6">
 
 				<h:outputText value="#{prompt.areaDeBusca}" />
 				<h:inputText value="#{atendimentoActions.campoDeBusca}" />
@@ -31,6 +31,14 @@
 					<f:selectItems
 						value="#{atendimentoActions.comboTiposDeBusca.listaSelecao}" />
 				</h:selectOneMenu>
+				
+				<h:outputText value="#{prompt.filtrarPorStatus}" />
+				<h:selectOneMenu id="comboFiltroStatus"
+					value="#{atendimentoActions.comboFiltroStatus.selecao}">
+					<f:selectItems
+						value="#{atendimentoActions.comboFiltroStatus.listaSelecao}" />
+				</h:selectOneMenu>
+				
 				<h:commandButton value="#{prompt.buscar}"
 					action="#{atendimentoActions.buscaAtendimento}" />
 				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
