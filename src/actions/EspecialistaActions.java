@@ -205,12 +205,35 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		avaliacaoAlterada = null;
 		return PAGINA_LIST;
 	}
-
+	
+	/**
+	 * Imprimi um relatório contendo a lista dos especialistas
+	 * cadastrados no sistema e o seu nível de peso avaliador.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
 	public void imprimir(){
+		try{
+			List<Especialista> listaDeEspecialistas = especialistaService.recuperaListaEspecialista();
+			especialistaService.gerarRelatorio(listaDeEspecialistas);
+		} catch (AplicacaoException e){
+			e.printStackTrace();
+		} 
+	}
+
+	/**
+	 * Imprimi o relatório de avaliações de um especialista
+	 * para todas as indicações cadastradas no sistema.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	public void imprimirAvaliacaoDeUmEspecialistaParaIndicacoes(){
 		try {
 			List<AvalIndicacaoEspec> listaDeAvaliacao = 
 					avalIndicacaoEspecService.recuperaListaDeAvaliacaoEspecComIndicacaoDeUmEspec(especialistaCorrente);
-			especialistaService.gerarRelatorio(listaDeAvaliacao);
+			especialistaService.gerarRelatorioDeAvaliacaoDeUmEspecialistaParaIndicacoes(listaDeAvaliacao);
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
 		}

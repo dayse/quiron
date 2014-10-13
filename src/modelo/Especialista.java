@@ -128,13 +128,84 @@ public class Especialista implements Serializable, Comparable<Especialista>{
 		this.listAvalIndicacaoEspec = listAvalIndicacaoEspec;
 	}
 	
+	/**
+	 * Este método poder ser gerado AUTOMATICAMENTE pelo Java, juntamente com o método  "equals(Object obj)".
+	 * Eles São necessários para determinarmos um criterio de igualdade entre 2 objetos.
+	 * 
+	 * Obs.: É primoridal dar atenção para este detalhe, principalmente quando trabalhamos com Estruturas
+	 * 		 de Dados como Set.
+	 * 
+	 * @return int
+	 */
 	@Override
-	public int compareTo(Especialista arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((codEspecialista == null) ? 0 : codEspecialista.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime
+				* result
+				+ ((listAvalIndicacaoEspec == null) ? 0
+						: listAvalIndicacaoEspec.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(pesoAvaliador);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
 	}
-	
+
+	/**
+	 * Este método poder ser gerado AUTOMATICAMENTE pelo Java, juntamente com o método  "hashCode()".
+	 * Eles São necessários para determinarmos um criterio de igualdade entre 2 objetos.
+	 * 
+	 * Obs.: É primoridal dar atenção para este detalhe, principalmente quando trabalhamos com Estruturas
+	 * 		 de Dados como Set.
+	 * 
+	 * @param Object  
+	 * @return boolean
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Especialista other = (Especialista) obj;
+		if (codEspecialista == null) {
+			if (other.codEspecialista != null)
+				return false;
+		} else if (!codEspecialista.equals(other.codEspecialista))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (listAvalIndicacaoEspec == null) {
+			if (other.listAvalIndicacaoEspec != null)
+				return false;
+		} else if (!listAvalIndicacaoEspec.equals(other.listAvalIndicacaoEspec))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (Double.doubleToLongBits(pesoAvaliador) != Double
+				.doubleToLongBits(other.pesoAvaliador))
+			return false;
+		return true;
+	}
+
 	public String toString(){
 		return this.nome;
+	}
+
+	@Override
+	public int compareTo(Especialista arg0) {
+		return 0;
 	}	
 }

@@ -116,6 +116,10 @@ public class EspecialistaAppService {
 		}
 	}
 
+	public List<Especialista> recuperaListaEspecialista() {
+		return especialistaDAO.recuperaListaEspecialista();
+	}
+	
 	public List<Especialista> recuperaListaDeEspecialistasPaginada() {
 		return especialistaDAO.recuperaListaDeEspecialistasPaginada();
 	}
@@ -177,17 +181,53 @@ public class EspecialistaAppService {
 	
 	/**
 	 * 
-	 * @param listaDeAvaliacao
-	 * @throws AplicacaoException
+	 * Método utilizado para gerar o relatório para chamar
+	 * a fábrica de relatórios responsável por criar o
+	 * relatório de especialistas.
+	 * 
+	 * @param listaDeEspecialistas - Uma lista com os especialistas
+	 * cadastrados no banco.
+	 * @throws AplicacaoException - Retornar uma exception de aplicacao
+	 * quando algo impedir que o relatório for gerado.
+	 * 
 	 */
-	public void gerarRelatorio(List<AvalIndicacaoEspec> listaDeAvaliacao) 
+	public void gerarRelatorio(List<Especialista> listaDeEspecialistas)
+			throws AplicacaoException{
+		System.out.println("Antes do metodo getRelatorio dentro de gerarRelatorio de EspecialistaAppService");
+		
+		Relatorio relatorio = RelatorioFactory.getRelatorio(Relatorio.RELATORIO_LISTAGEM_DE_ESPECIALISTAS);
+		
+		if(relatorio != null)
+			System.out.println("A variavel do tipo Relatorio é diferente de null em EspecialistaAppService");
+		
+		System.out.println("Depois do metodo getRelatorio dentro de gerarRelatorio de EspecialistaAppService");
+		
+		try{
+			relatorio.gerarRelatorio(listaDeEspecialistas, new HashMap());
+		} catch (RelatorioException re){
+			throw new AplicacaoException("especialista.Relatorio_NAO_GERADO");
+		}
+	}	
+	
+	/**
+	 * 
+	 * Método utilizado para gerar o relatório para chamar
+	 * a fábrica de relatórios responsável por criar o
+	 * relatório de avaliacao de um especialista para as indicacoes cadastradas.
+	 * 
+	 * @param listaDeAvaliacao - Uma lista com os especialistas
+	 * cadastrados no banco.
+	 * @throws AplicacaoException - Retornar uma exception de aplicacao
+	 * quando algo impedir que o relatório for gerado.
+	 */
+	public void gerarRelatorioDeAvaliacaoDeUmEspecialistaParaIndicacoes(List<AvalIndicacaoEspec> listaDeAvaliacao) 
 			throws AplicacaoException {
 		System.out.println("Antes do metodo getRelatorio dentro de gerarRelatorio de EspecialistaAppService");
 		
 		Relatorio relatorio = RelatorioFactory.getRelatorio(Relatorio.RELATORIO_AVALIACAO_DO_ESPECIALISTA);
 		
 		if(relatorio != null)
-			System.out.println("A variavel do tipo Relatorio e difente de null em EspecialsitaAppService");
+			System.out.println("A variavel do tipo Relatorio é diferente de null em EspecialsitaAppService");
 		
 		System.out.println("Depois do metodo getRelatorio dentro de gerarRelatorio de EspecialsitaAppService");
 		
