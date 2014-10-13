@@ -234,7 +234,7 @@ public class EspecialistaAppService {
 		try{
 			relatorio.gerarRelatorio(listaDeAvaliacao, new HashMap());
 		}catch(RelatorioException re){
-			throw new AplicacaoException("especialista.RELATORIO_NAO_GERADO");
+			throw new AplicacaoException("especialista.RELATORIO_AVALIACAO_NAO_GERADO");
 		}
 	}
 	
