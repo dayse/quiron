@@ -196,6 +196,22 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	}
 	
 	/**
+	 * Imprime um relatório contendo a lista dos especialistas
+	 * cadastrados no sistema e o seu nível de peso avaliador.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */	
+	public void imprimir(){
+		try{
+			List<Indicacao> listaDeIndicacao = indicacaoService.recuperaListaIndicacao();
+			indicacaoService.gerarRelatorio(listaDeIndicacao);
+		} catch (AplicacaoException e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * 
 	 * Método usado para fazer a
 	 * inclusão de um novo

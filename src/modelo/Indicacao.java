@@ -142,6 +142,84 @@ public class Indicacao implements Serializable, Comparable<Indicacao>{
 	
 	public String toString(){
 		return this.nome;
+	}
+
+	/**
+	 * Este método poder ser gerado AUTOMATICAMENTE pelo Java, juntamente com o método  "equals(Object obj)".
+	 * Eles São necessários para determinarmos um criterio de igualdade entre 2 objetos.
+	 * 
+	 * Obs.: É primoridal dar atenção para este detalhe, principalmente quando trabalhamos com Estruturas
+	 * 		 de Dados como Set.
+	 * 
+	 * @return int
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((codIndicacao == null) ? 0 : codIndicacao.hashCode());
+		result = prime * result + ((dosagem == null) ? 0 : dosagem.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime
+				* result
+				+ ((listAvalIndicacaoEspec == null) ? 0
+						: listAvalIndicacaoEspec.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	/**
+	 * Este método poder ser gerado AUTOMATICAMENTE pelo Java, juntamente com o método  "hashCode()".
+	 * Eles São necessários para determinarmos um criterio de igualdade entre 2 objetos.
+	 * 
+	 * Obs.: É primoridal dar atenção para este detalhe, principalmente quando trabalhamos com Estruturas
+	 * 		 de Dados como Set.
+	 * 
+	 * @param Object  
+	 * @return boolean
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Indicacao other = (Indicacao) obj;
+		if (codIndicacao == null) {
+			if (other.codIndicacao != null)
+				return false;
+		} else if (!codIndicacao.equals(other.codIndicacao))
+			return false;
+		if (dosagem == null) {
+			if (other.dosagem != null)
+				return false;
+		} else if (!dosagem.equals(other.dosagem))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (listAvalIndicacaoEspec == null) {
+			if (other.listAvalIndicacaoEspec != null)
+				return false;
+		} else if (!listAvalIndicacaoEspec.equals(other.listAvalIndicacaoEspec))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}	
 
 }

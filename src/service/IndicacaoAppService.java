@@ -1,7 +1,11 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
+import exception.RelatorioException;
+import relatorio.Relatorio;
+import relatorio.RelatorioFactory;
 import service.anotacao.Transacional;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -92,6 +96,10 @@ public class IndicacaoAppService {
 			}
 		} 
 	}
+	
+	public List<Indicacao> recuperaListaIndicacao(){
+		return indicacaoDAO.recuperaListaIndicacao();
+	}
 
 	public List<Indicacao> recuperaListaDeIndicacoesPaginada() {
 		return indicacaoDAO.recuperaListaDeIndicacoesPaginada();
@@ -108,6 +116,36 @@ public class IndicacaoAppService {
 
 	public Indicacao recuperaIndicacaoPorCodigo(String codIndicacao) throws ObjetoNaoEncontradoException {
 		return indicacaoDAO.recuperaIndicacaoPorCodigo(codIndicacao);
+	}
+	
+	 /**
+	 *  
+	 * Método utilizado para gerar o relatório para chamar
+	 * a fábrica de relatórios responsável por criar o
+	 * relatório de indicações.
+	 * 
+	 * @param listaDeIndicacao - Uma lista com as indicações
+	 * cadastrados no banco.
+	 * @throws AplicacaoException - Retornar uma exception de aplicacao
+	 * quando algo impedir que o relatório for gerado.
+	 * 
+	 */	
+	public void gerarRelatorio(List<Indicacao> listaDeIndicacao)
+		throws AplicacaoException{
+		System.out.println("Antes do metodo getRelatorio dentro de gerarRelatorio de EspecialistaAppService");
+		
+		Relatorio relatorio = RelatorioFactory.getRelatorio(Relatorio.RELATORIO_LISTAGEM_DE_INDICACAO);
+		
+		if(relatorio != null)
+			System.out.println("A variavel do tipo Relatorio é diferente de null em EspecialistaAppService");
+		
+		System.out.println("Depois do metodo getRelatorio dentro de gerarRelatorio de EspecialistaAppService");
+		
+		try{
+			relatorio.gerarRelatorio(listaDeIndicacao, new HashMap());
+		} catch (RelatorioException re){
+			throw new AplicacaoException("indicacao.Relatorio_NAO_GERADO");
+		}
 	}
 
 }
