@@ -46,11 +46,11 @@
 				<rich:dropDownMenu>
 					<f:facet name="label">
 						<h:panelGroup>
-							<h:outputText value="#{prompt.paciente}" />
+							<h:outputText value="#{prompt.pacientes}" />
 						</h:panelGroup>
 					</f:facet>
 	
-					<rich:menuItem submitMode="server" value="#{prompt.paciente}"
+					<rich:menuItem submitMode="server" value="#{prompt.pacientes}"
 						action="#{pacienteActions.preparaListagem}"		icon="/recursos/imagens/open.gif">
 					</rich:menuItem>
 				</rich:dropDownMenu>

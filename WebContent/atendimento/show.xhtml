@@ -18,6 +18,65 @@
 		<h:form id="formatendimentoShow">
 		
 			<rich:simpleTogglePanel>
+				<f:facet name="header">
+					<h:outputText value="#{prompt.paciente}" />
+				</f:facet>
+				
+				<h:panelGrid columns="2">
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Codigo}" />:
+					</h:panelGroup>
+						<h:outputText id="codPaciente" value="#{atendimentoActions.atendimentoCorrente.paciente.codPaciente}" />				
+				
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Nome}" />:
+					</h:panelGroup>
+						<h:outputText id="nome" value="#{atendimentoActions.atendimentoCorrente.paciente.nome}" />						
+				
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_DataNascimento}" />:
+					</h:panelGroup>
+						<h:outputText id="dataNascimento" value="#{atendimentoActions.atendimentoCorrente.paciente.dataNascimento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+				
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Sexo}" />:
+					</h:panelGroup>
+						<h:outputText id="sexo" value="#{atendimentoActions.atendimentoCorrente.paciente.sexo ? prompt.masculino : prompt.feminino}" />				
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Endereco}" />:
+					</h:panelGroup>
+						<h:outputText id="endereco" value="#{atendimentoActions.atendimentoCorrente.paciente.endereco}" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_NomeResponsavel}" />:
+					</h:panelGroup>
+						<h:outputText id="nomeResponsavel" value="#{atendimentoActions.atendimentoCorrente.paciente.nomeResponsavel}" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Documento}" />:
+					</h:panelGroup>
+						<h:outputText id="documento" value="#{atendimentoActions.atendimentoCorrente.paciente.documento}" />
+			
+				</h:panelGrid>
+				<br /><br />
+			</rich:simpleTogglePanel>
+		
+			<rich:simpleTogglePanel >
+				<f:facet name="header">
+					#{prompt.paciente_InformacoesGerais}
+				</f:facet>
+				
+				<h:panelGrid id="AreaTexto">
+					<h:inputTextarea id="informacoesGerais"
+						rows="12" cols="100" disabled="true"
+						value="#{pacienteActions.pacienteCorrente.informacoesGerais}" />
+				</h:panelGrid>
+			</rich:simpleTogglePanel>			
+		
+			<rich:simpleTogglePanel>
 
 				<f:facet name="header">
 					<h:outputText value="#{prompt.atendimento}" />
@@ -68,10 +127,10 @@
 					</h:panelGroup>
 					<h:inputTextarea rows="10" cols="40" id="observacoes"
 						value="#{atendimentoActions.atendimentoCorrente.observacoes}" disabled="true" />																
-				</h:panelGrid>							
+				</h:panelGrid>								
 				
-			</rich:simpleTogglePanel>		
-			
+			</rich:simpleTogglePanel>	
+					
 			<rich:simpleTogglePanel>
 				<f:facet name="header">
 					<h:outputText value="#{prompt.parametro}" />
