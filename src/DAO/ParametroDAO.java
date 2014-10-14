@@ -22,4 +22,10 @@ public interface ParametroDAO extends DaoGenerico<Parametro, Long> {
 	
 	@RecuperaObjeto
 	public Parametro recuperaParametroPorNome(String nome) throws ObjetoNaoEncontradoException;
+	
+	@RecuperaLista
+	public List<Parametro> recuperaParametroPorCodigoLike(String codParametro);
+	
+	@RecuperaLista
+	public List<Parametro> recuperaParametroPorNomeLike(String nomeParametro);
 }

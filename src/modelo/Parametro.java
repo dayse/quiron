@@ -38,6 +38,16 @@ import javax.persistence.Table;
 			@NamedQuery(name = "Parametro.recuperaParametroPorNome",
 						query = "select p from Parametro p " +
 								"where p.nome = ? "
+			),
+			@NamedQuery(name = "Parametro.recuperaParametroPorCodigoLike",
+						query = "select p from Parametro p " +
+								"where upper(p.codParametro) like '%' || upper(?) || '%' " +
+								"order by p.codParametro"
+			),
+			@NamedQuery(name = "Parametro.recuperaParametroPorNomeLike",
+						query = "select p from Parametro p " +
+								"where upper(p.nome) like '%' || upper(?) || '%' " +
+								"order by p.codParametro"
 			)
 		}
 )

@@ -1,6 +1,8 @@
 package actions;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -10,6 +12,7 @@ import modelo.Parametro;
 import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
+import util.SelectOneDataModel;
 
 /**
  * 
@@ -32,7 +35,12 @@ public class ParametroActions extends BaseActions implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private DataModel listaParametros;
 	private Parametro parametroCorrente;
-	
+	private String campoDeBusca;
+	private SelectOneDataModel<String> comboTiposDeBusca;
+	private boolean buscaEfetuada = false;
+	private final String BUSCA_POR_CODIGO = "Código";
+	private final String BUSCA_POR_NOME = "Nome";
+	private int paginaParametro = 1;
 
 	// Páginas
 	public final String PAGINA_LIST = "listParametro";
@@ -58,6 +66,45 @@ public class ParametroActions extends BaseActions implements Serializable {
 			throw e;
 		}
 	}
+
+	/**
+	 * 
+	 * Método utilizado para fazer a busca
+	 * de um determinado parametro no
+	 * banco através de dados passados via
+	 * formulário pelo usuário.
+	 * 
+	 * @return A lista de parametros atualizada
+	 * com os resultados da pesquisa no banco ou
+	 * uma mensagem de erro, caso algum ocorra.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	public String buscaParametro(){
+		List<Parametro> parametrosEncontrados = null;
+		if(campoDeBusca.trim().isEmpty()){
+			error("parametro.FORNECER_CAMPO_DE_BUSCA");
+			return PAGINA_LIST;
+		} else {
+			listaParametros = null;
+			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_CODIGO)){
+				parametrosEncontrados = new ArrayList<Parametro>(parametroService.recuperaParametroPorCodigoLike(campoDeBusca));
+			} else {
+				parametrosEncontrados = new ArrayList<Parametro>(parametroService.recuperaParametroPorNomeLike(campoDeBusca));
+			}
+			if(parametrosEncontrados.isEmpty()){
+				error("parametro.NAO_ENCONTRADO");
+				listaParametros = null;
+				return PAGINA_LIST;
+			} else {
+				info("parametro.ENCONTRADOS");
+			}
+		}
+		listaParametros = new ListDataModel(parametrosEncontrados);
+		buscaEfetuada = true;
+		return PAGINA_LIST;
+	}
 	
 	/**
 	 * 
@@ -73,6 +120,8 @@ public class ParametroActions extends BaseActions implements Serializable {
 	public String cancelar() {
 		listaParametros = null;
 		parametroCorrente = new Parametro();
+		comboTiposDeBusca = null;
+		buscaEfetuada = false;
 		return PAGINA_LIST;
 	}
 
@@ -88,6 +137,9 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 */
 	public String preparaInclusao() {
 		parametroCorrente = new Parametro();
+		comboTiposDeBusca = null;
+		buscaEfetuada = false;
+		listaParametros =  null;
 		return PAGINA_NEW;
 	}
 	/**
@@ -106,6 +158,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 		}
 		info("parametro.SUCESSO_INCLUSAO");
 		listaParametros = null;
+		buscaEfetuada = false;
 		return PAGINA_LIST;
 	}
 
@@ -135,6 +188,8 @@ public class ParametroActions extends BaseActions implements Serializable {
 		}
 		info("parametro.SUCESSO_ALTERACAO");
 		listaParametros = null;
+		comboTiposDeBusca = null;
+		buscaEfetuada = false;
 		return PAGINA_LIST;
 		
 	}
@@ -175,9 +230,41 @@ public class ParametroActions extends BaseActions implements Serializable {
 		logUsuarioAutenticadoMsg("Parametro - Exclui parametro:" + parametroCorrente.getCodParametro());
 		info("parametro.SUCESSO_EXCLUSAO");
 		listaParametros = null;
+		comboTiposDeBusca = null;
+		buscaEfetuada = false;
 		return PAGINA_LIST;
 	}
 	/* ************* Get & Set ************ */
+	
+	public boolean isBuscaEfetuada(){
+		return buscaEfetuada;
+	}
+	
+	public void setBuscaEfetuada(boolean buscaEfetuada){
+		this.buscaEfetuada = buscaEfetuada;
+	}
+	
+	public String getCampoDeBusca(){
+		return campoDeBusca;
+	}
+	
+	public void setCampoDeBusca(String campoDeBusca){
+		this.campoDeBusca = campoDeBusca;
+	}
+	
+	public SelectOneDataModel<String> getComboTiposDeBusca(){
+		if(comboTiposDeBusca == null){
+			List<String> tiposDeBusca = new ArrayList<String>(2);
+			tiposDeBusca.add(BUSCA_POR_CODIGO);
+			tiposDeBusca.add(BUSCA_POR_NOME);
+			comboTiposDeBusca =  SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(tiposDeBusca, BUSCA_POR_CODIGO);
+		}
+		return comboTiposDeBusca;
+	}
+	
+	public void setComboTiposDeBusca(SelectOneDataModel<String> comboTiposDeBusca){
+		this.comboTiposDeBusca = comboTiposDeBusca;
+	}
 	
 	public DataModel getListaParametros(){
 		if(listaParametros == null){
@@ -196,5 +283,13 @@ public class ParametroActions extends BaseActions implements Serializable {
 
 	public void setParametroCorrente(Parametro parametroCorrente) {
 		this.parametroCorrente = parametroCorrente;
+	}
+	
+	public int getPaginaParametro(){
+		return paginaParametro;
+	}
+	
+	public void setPaginaParametro(int paginaParametro){
+		this.paginaParametro = paginaParametro;
 	}
 }

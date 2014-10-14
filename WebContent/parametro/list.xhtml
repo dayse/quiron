@@ -21,8 +21,30 @@
 
 			<br />
 
+			<h:panelGrid columns="5">
+				<h:outputText value="#{prompt.areaDeBusca}" />
+				<h:inputText value="#{parametroActions.campoDeBusca}" />
+				<h:selectOneMenu id="comboBusca"
+					value="#{parametroActions.comboTiposDeBusca.selecao}">
+					<f:selectItems
+						value="#{parametroActions.comboTiposDeBusca.listaSelecao}" />
+				</h:selectOneMenu>
+				<h:commandButton value="#{prompt.buscar}"
+					action="#{parametroActions.buscaParametro}" />
+				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
+					action="#{parametroActions.cancelar}"
+					rendered="#{parametroActions.buscaEfetuada}" />
+			</h:panelGrid>
+
+			<rich:datascroller id="scrTabelaParametros"
+				for="tabelaParametros" maxPages="5" align="center"
+				renderIfSinglePage="false"
+				page="#{parametroActions.paginaParametro}"
+				pageIndexVar="paginaAtual" />
+
 			<rich:dataTable id="tabelaParametros" var="parametro" align="center"
-				value="#{parametroActions.listaParametros}" rows="10" width="700px">
+				value="#{parametroActions.listaParametros}" rows="10" width="700px"
+				reRender="#{parametroActions.buscaEfetuada}">
 
 				<f:facet name="header">
 

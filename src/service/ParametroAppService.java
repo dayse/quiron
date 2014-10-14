@@ -188,4 +188,12 @@ public class ParametroAppService {
 	public List<Parametro> recuperaListaDeParametros(){
 		return parametroDAO.recuperaListaDeParametros();
 	}
+	
+	public List<Parametro> recuperaParametroPorCodigoLike(String codParametro){
+		return parametroDAO.recuperaParametroPorCodigoLike(codParametro);
+	}
+	
+	public List<Parametro> recuperaParametroPorNomeLike(String nomeParametro){
+		return parametroDAO.recuperaParametroPorNomeLike(nomeParametro);
+	}
 }
