@@ -124,7 +124,7 @@
 
 					   <c:forEach items="#{atendimentoActions.listaDeParametros}" var="parametro">
 					      <rich:column>
-					         <h:outputText value="#{parametro.nome}" />
+					         <h:outputText value="#{parametro.nome} (x#{parametro.peso})" />
 					      </rich:column>
 					   </c:forEach>
 						<rich:column colspan="2" >

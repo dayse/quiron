@@ -28,14 +28,14 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 	public double somaParametrosIntersecao(){
 		double total = 0.0;
 		for (Avaliacao avaliacao : this.avaliacoes) {
-			total += avaliacao.getIntersecao();
+			total += avaliacao.getIntersecao() * avaliacao.getParametro().getPeso();
 		}
 		return total;		
 	}
 	public double somaParametrosUniao(){
 		double total = 0.0;
 		for (Avaliacao avaliacao : this.avaliacoes) {
-			total += avaliacao.getUniao();
+			total += avaliacao.getUniao() * avaliacao.getParametro().getPeso();
 		}
 		return total;		
 	}
