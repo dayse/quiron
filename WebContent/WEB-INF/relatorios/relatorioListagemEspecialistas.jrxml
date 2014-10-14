@@ -117,8 +117,8 @@
 	</columnHeader>
 	<detail>
 		<band height="22">
-			<textField>
-				<reportElement style="Zebra" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" mode="Opaque" x="402" y="0" width="135" height="22"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Zebra" stretchType="RelativeToBandHeight" mode="Opaque" x="402" y="0" width="135" height="22" isPrintWhenDetailOverflows="true"/>
 				<box leftPadding="5" rightPadding="5">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -128,8 +128,8 @@
 				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{pesoAvaliador}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement style="Zebra" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" mode="Opaque" x="197" y="0" width="205" height="22"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Zebra" stretchType="RelativeToBandHeight" mode="Opaque" x="197" y="0" width="205" height="22" isPrintWhenDetailOverflows="true"/>
 				<box leftPadding="5" rightPadding="5">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -139,8 +139,8 @@
 				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement style="Zebra" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" mode="Opaque" x="16" y="0" width="181" height="22"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Zebra" stretchType="RelativeToBandHeight" mode="Opaque" x="16" y="0" width="181" height="22" isPrintWhenDetailOverflows="true"/>
 				<box leftPadding="5" rightPadding="5">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
