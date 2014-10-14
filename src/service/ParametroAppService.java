@@ -1,7 +1,9 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
+import exception.RelatorioException;
 import modelo.Anamnese;
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
@@ -10,6 +12,8 @@ import modelo.Paciente;
 import modelo.Parametro;
 import modelo.TipoUsuario;
 import modelo.Usuario;
+import relatorio.Relatorio;
+import relatorio.RelatorioFactory;
 import service.anotacao.Transacional;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -195,5 +199,23 @@ public class ParametroAppService {
 	
 	public List<Parametro> recuperaParametroPorNomeLike(String nomeParametro){
 		return parametroDAO.recuperaParametroPorNomeLike(nomeParametro);
+	}
+	
+	public void gerarRelatorio(List<Parametro> listaDeParametros)
+		throws AplicacaoException{
+		System.out.println("Antes do metodo getRelatorio dentro de gerarRelatorio de ParametroAppService");
+		
+		Relatorio relatorio = RelatorioFactory.getRelatorio(Relatorio.RELATORIO_LISTAGEM_DE_PARAMETROS);
+		
+		if(relatorio != null)
+			System.out.println("A variavel do tipo Relatorio é diferente de null em ParametroAppService");
+		
+		System.out.println("Depois do metodo getRelatorio dentro de gerarRelatorio de ParametroAppService");
+		
+		try{
+			relatorio.gerarRelatorio(listaDeParametros, new HashMap());
+		} catch (RelatorioException re){
+			throw new AplicacaoException("parametro.Relatorio_NAO_GERADO");
+		}		
 	}
 }

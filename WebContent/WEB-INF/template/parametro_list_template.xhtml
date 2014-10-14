@@ -13,7 +13,13 @@
 					<f:facet name="label">
 						<h:commandLink value="#{prompt.incluir}" action="#{parametroActions.preparaInclusao}" styleClass="linkMenu"/>
 					</f:facet>
-				</rich:dropDownMenu>	
+				</rich:dropDownMenu>
+				
+				<rich:dropDownMenu>
+					<f:facet name="label">
+						<h:commandLink value="#{prompt.imprimir}" action="#{parametroActions.imprimir}" styleClass="linkMenu" />
+					</f:facet>
+				</rich:dropDownMenu>					
 			
 	            <rich:dropDownMenu>
 					<f:facet name="label">

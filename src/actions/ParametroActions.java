@@ -234,6 +234,23 @@ public class ParametroActions extends BaseActions implements Serializable {
 		buscaEfetuada = false;
 		return PAGINA_LIST;
 	}
+	
+	/**
+	 * Imprime um relatório contendo a lista dos parametros
+	 * cadastrados no sistema.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */		
+	public void imprimir(){
+		try{
+			List<Parametro> listaDeParametros = parametroService.recuperaListaDeParametros();
+			parametroService.gerarRelatorio(listaDeParametros);
+		} catch (AplicacaoException e){
+			e.printStackTrace();
+		}
+	}
+	
 	/* ************* Get & Set ************ */
 	
 	public boolean isBuscaEfetuada(){
