@@ -61,10 +61,15 @@
 							<h:outputText title="#{tooltip.indicacao_Nome}"
 								value="#{prompt.indicacao_Nome}" />
 						</rich:column>
+						
+						<rich:column>
+							<h:outputText title="#{tooltip.indicacao_Apresentacao}"
+								value="#{prompt.indicacao_Apresentacao}" />
+						</rich:column>						
 
 						<rich:column>
-							<h:outputText title="#{tooltip.indicacao_dosagem}"
-								value="#{prompt.indicacao_Dosagem}" />
+							<h:outputText title="#{tooltip.indicacao_Posologia}"
+								value="#{prompt.indicacao_Posologia}" />
 						</rich:column>
 
 						<rich:column>
@@ -86,6 +91,10 @@
 
 				<rich:column>
 					<h:outputText value="#{indicacao.nome}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{indicacao.apresentacao}" />
 				</rich:column>
 
 				<rich:column>

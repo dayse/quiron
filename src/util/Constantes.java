@@ -52,6 +52,7 @@ public class Constantes {
 	
 	
 	// --------------------- Indicacao ---------------------
+	public static final int L_INDICACAO_APRESENTACAO = 15;
 	public static final int L_INDICACAO_CODIGO = 15;
 	public static final int L_INDICACAO_DOSAGEM = 100;
 	public static final int L_INDICACAO_NOME = 30;
@@ -116,6 +117,10 @@ public class Constantes {
  	}
  	
 	/* ------- INDICACAO ------- */
+ 	
+ 	public int getlIndicacaoApresentacao(){
+ 		return L_INDICACAO_APRESENTACAO;
+ 	}
 	
   	public int getlIndicacaoCodigo(){
   		return L_INDICACAO_CODIGO;

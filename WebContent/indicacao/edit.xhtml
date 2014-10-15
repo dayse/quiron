@@ -42,7 +42,16 @@
 					<h:outputText value="" />
 
 					<h:panelGroup>
-						<h:outputText value="#{prompt.indicacao_Dosagem}" />:
+						<h:outputText value="#{prompt.indicacao_Apresentacao}" />:
+					</h:panelGroup>
+					<h:inputText id="apresentacao"
+						value="#{indicacaoActions.indicacaoCorrente.apresentacao}" size="20"
+						maxlength="#{constantes.lIndicacaoApresentacao}" required="true" />
+					<h:message for="apresentacao" styleClass="error" />
+					<h:outputText value="" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.indicacao_Posologia}" />:
 					</h:panelGroup>
 					<h:inputText id="dosagem"
 						value="#{indicacaoActions.indicacaoCorrente.dosagem}"

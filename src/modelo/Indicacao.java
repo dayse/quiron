@@ -73,8 +73,15 @@ public class Indicacao implements Serializable, Comparable<Indicacao>{
 	
 	/**
 	 * Posologia recomendada para o uso.
+	 * Esse atributo deve o seu nome alterado no frontend para o termo "Posologia",
+	 * mas ambos significam a mesma coisa.
 	 */
 	private String dosagem;
+	
+	/**
+	 * Apresentação da indicação.
+	 */
+	private String apresentacao;
 	
 	/**
 	 * Lista de avaliações dadas as indicações pelos especiliastas.
@@ -133,6 +140,14 @@ public class Indicacao implements Serializable, Comparable<Indicacao>{
 	
 	public void setListAvalIndicacaoEspec(List<AvalIndicacaoEspec> listAvalIndicacaoEspec) {
 		this.listAvalIndicacaoEspec = listAvalIndicacaoEspec;
+	}
+
+	public String getApresentacao() {
+		return apresentacao;
+	}
+
+	public void setApresentacao(String apresentacao) {
+		this.apresentacao = apresentacao;
 	}
 
 	@Override

@@ -93,29 +93,34 @@ public class CargaIndicacao extends CargaBase{
 	 */
 	public void incluirIndicacoes() throws AplicacaoException {
 		Indicacao amox500 = new Indicacao();
-		amox500.setNome("Amoxilina 500mg");
+		amox500.setNome("Amoxilina");
 		amox500.setCodIndicacao("amox500");
 		amox500.setDosagem("12hrs x 3 dias");
+		amox500.setApresentacao("500 mg");
 
 		Indicacao bactrim = new Indicacao();
-		bactrim.setNome("Bactrim 500mg");
+		bactrim.setNome("Bactrim");
 		bactrim.setCodIndicacao("bactrim");
 		bactrim.setDosagem("12hrs x 3 dias");
+		bactrim.setApresentacao("500 mg");
 
 		Indicacao amox1 = new Indicacao();
-		amox1.setNome("Amoxilina 1mg");
+		amox1.setNome("Amoxilina");
 		amox1.setCodIndicacao("amox1");
 		amox1.setDosagem("Única");
+		amox1.setApresentacao("1000 mg");
 
 		Indicacao levoflox = new Indicacao();
-		levoflox.setNome("Levofloxacina 500mg");
+		levoflox.setNome("Levofloxacina");
 		levoflox.setCodIndicacao("levoflox");
 		levoflox.setDosagem("24h x 3 dias");
+		levoflox.setApresentacao("500 mg");
 		
 		Indicacao fluco = new Indicacao();
-		fluco.setNome("Flucozanol 200mg");
+		fluco.setNome("Flucozanol");
 		fluco.setCodIndicacao("fluco");
 		fluco.setDosagem("Única");
+		fluco.setApresentacao("200 mg");
 
 		indicacaoService.inclui(amox500);
 		indicacaoService.inclui(bactrim);
