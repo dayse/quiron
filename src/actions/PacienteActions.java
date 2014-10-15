@@ -4,7 +4,6 @@
 package actions;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,12 +11,11 @@ import java.util.List;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import modelo.Indicacao;
 import modelo.Paciente;
-
 import service.PacienteAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
-
 import util.DataUtil;
 import util.SelectOneDataModel;
 
@@ -207,6 +205,22 @@ public class PacienteActions extends BaseActions implements Serializable {
 		comboTiposDeBusca = null;
 		return PAGINA_LIST;
 	}
+	
+	/**
+	 * Imprime um relatório contendo a lista dos pacientes
+	 * cadastrados no sistema.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */	
+	public void imprimir(){
+		try{
+			List<Paciente> listaDePacientes = pacienteService.recuperaListaDePacientes();
+			pacienteService.gerarRelatorio(listaDePacientes);
+		} catch (AplicacaoException e){
+			e.printStackTrace();
+		}
+	}	
 	
 	/**
 	 * 

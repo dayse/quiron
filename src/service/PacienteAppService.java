@@ -5,20 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 
 import exception.RelatorioException;
-
 import relatorio.Relatorio;
 import relatorio.RelatorioFactory;
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
 import util.SelectOneDataModel;
-
 import DAO.PacienteDAO;
 import DAO.controle.FabricaDeDao;
 import DAO.exception.ObjetoNaoEncontradoException;
-
 import DAO.Impl.PacienteDAOImpl;
-
+import modelo.Indicacao;
 import modelo.Paciente;
+import modelo.PacienteRelatorio;
 
 public class PacienteAppService {
 	
@@ -102,5 +100,56 @@ public class PacienteAppService {
 		}catch(ObjetoNaoEncontradoException e){
 			throw new AplicacaoException("paciente.NAO_ENCONTRADO");
 		}
-	}	
+	}
+
+	 /**
+	 *  
+	 * Método utilizado para chamar
+	 * a fábrica de relatórios responsável por criar o
+	 * relatório de pacientes.
+	 * 
+	 * @param listaDePacientes - Uma lista com as pacientes
+	 * cadastrados no banco.
+	 * @throws AplicacaoException - Retornar uma exception de aplicacao
+	 * quando algo impedir que o relatório for gerado.
+	 * 
+	 */	
+	public void gerarRelatorio(List<Paciente> listaDePacientes)
+		throws AplicacaoException{
+		System.out.println("Antes do metodo getRelatorio dentro de gerarRelatorio de PacienteAppService");
+		
+		Relatorio relatorio = RelatorioFactory.getRelatorio(Relatorio.RELATORIO_LISTAGEM_DE_PACIENTES);
+		
+		if(relatorio != null)
+			System.out.println("A variavel do tipo Relatorio é diferente de null em PacienteAppService");
+		
+		System.out.println("Depois do metodo getRelatorio dentro de gerarRelatorio de PacienteAppService");
+		
+		try{
+			relatorio.gerarRelatorio(this.converterParaPacienteRelatorio(listaDePacientes), new HashMap());
+		} catch (RelatorioException re){
+			throw new AplicacaoException("paciente.Relatorio_NAO_GERADO");
+		}
+	}
+	
+	/**
+	 * 
+	 * Método utilizado para fazer a conversão de uma
+	 * lista de pacientes para uma lista de pacientes formatada
+	 * especialmente para o relatório.
+	 * 
+	 * @param listaDePacientes - Uma lista de objetos do tipo Paciente
+	 * @return listaPacientesRelatorio - Uma lista de objetos do tipo PacienteRelatorio
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	public List<PacienteRelatorio> converterParaPacienteRelatorio(List<Paciente> listaDePacientes){
+		List<PacienteRelatorio> listaPacientesRelatorio = new ArrayList<PacienteRelatorio>();
+		for(Paciente paciente : listaDePacientes){
+			PacienteRelatorio pacienteRelatorio = new PacienteRelatorio(paciente);
+			listaPacientesRelatorio.add(pacienteRelatorio);
+		}		
+		return listaPacientesRelatorio;
+	}
 }

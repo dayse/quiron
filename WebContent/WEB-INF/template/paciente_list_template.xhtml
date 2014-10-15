@@ -11,9 +11,21 @@
 		
 		<rich:toolBar>
 
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:commandLink value="#{prompt.incluir}" action="#{pacienteActions.preparaInclusao}" styleClass="linkMenu"/>
+				</f:facet>
+			</rich:dropDownMenu>
+			
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:commandLink value="#{prompt.imprimir}" action="#{pacienteActions.imprimir}" styleClass="linkMenu" />
+				</f:facet>
+			</rich:dropDownMenu>			
+			
             <rich:dropDownMenu>
 				<f:facet name="label">
-					<h:commandLink value="#{prompt.voltar}" action="listPaciente" styleClass="linkMenu"/>
+					<h:commandLink value="#{prompt.voltar}" action="home" styleClass="linkMenu"/>
 				</f:facet>
             </rich:dropDownMenu>
 			

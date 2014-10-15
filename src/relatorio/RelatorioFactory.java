@@ -5,6 +5,7 @@ import java.util.HashMap;
 import relatorio.avaliacaoEspecialista.RelatorioListagemAvaliacaoEspecialista;
 import relatorio.especialista.RelatorioListagemEspecialistas;
 import relatorio.indicacao.RelatorioListagemIndicacao;
+import relatorio.paciente.RelatorioListagemPacientes;
 import relatorio.parametro.RelatorioListagemParametros;
 import relatorio.usuario.RelatorioListagemUsuarios;
 
@@ -32,6 +33,7 @@ public class RelatorioFactory {
     	relatorios.put(Relatorio.RELATORIO_LISTAGEM_DE_ESPECIALISTAS, new RelatorioListagemEspecialistas());
     	relatorios.put(Relatorio.RELATORIO_LISTAGEM_DE_INDICACAO, new RelatorioListagemIndicacao());
     	relatorios.put(Relatorio.RELATORIO_LISTAGEM_DE_PARAMETROS, new RelatorioListagemParametros());
+    	relatorios.put(Relatorio.RELATORIO_LISTAGEM_DE_PACIENTES, new RelatorioListagemPacientes());
     	relatorios.put(Relatorio.RELATORIO_LISTAGEM_DE_USUARIOS, new RelatorioListagemUsuarios());
     }
     
