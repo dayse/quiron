@@ -120,7 +120,7 @@ public class CargaAtendimento extends CargaBase{
 		Atendimento atendimentoPaciente1 = new Atendimento(); 
 		atendimentoPaciente1.setCodAtendimento("atp1");
 		atendimentoPaciente1.setPaciente(paciente1);
-		atendimentoPaciente1.setDataAtendimento(dataAtual_anterior);
+		atendimentoPaciente1.setDataAtendimento(dataAtual);
 		atendimentoPaciente1.setMedico(clinico);
 		atendimentoPaciente1.setStatus("Encerrado");
 		String prognostico = "Bactéria ou candidúria em pacientes compromentidos podem";
@@ -131,7 +131,7 @@ public class CargaAtendimento extends CargaBase{
 		Atendimento atendimentoPaciente2 = new Atendimento(); 
 		atendimentoPaciente2.setCodAtendimento("atp2");
 		atendimentoPaciente2.setPaciente(paciente2);
-		atendimentoPaciente2.setDataAtendimento(dataAtual);
+		atendimentoPaciente2.setDataAtendimento(dataAtual_anterior);
 		atendimentoPaciente2.setMedico(clinico);
 		atendimentoPaciente2.setTecnico(tecnico);
 		atendimentoPaciente2.setStatus("Encerrado");

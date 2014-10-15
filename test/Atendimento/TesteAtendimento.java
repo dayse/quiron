@@ -116,6 +116,13 @@ public class TesteAtendimento {
 		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
 		Atendimento atendimentoPaciente2 = listaDeAtendimentos.get(1);
 
+       	Calendar dataAtual_anterior = Calendar.getInstance();
+
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getDataAtendimento().get(Calendar.DAY_OF_YEAR), 
+				dataAtual_anterior.get(Calendar.DAY_OF_YEAR));
+		
 		AssertJUnit.assertEquals(
 				atendimentoPaciente1.getPaciente(), 
 				paciente1);
@@ -159,6 +166,13 @@ public class TesteAtendimento {
 		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
 		Atendimento atendimentoPaciente2 = listaDeAtendimentos.get(1);
 
+       	Calendar dataAtual_anterior = Calendar.getInstance();
+
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getDataAtendimento().get(Calendar.DAY_OF_YEAR), 
+				dataAtual_anterior.get(Calendar.DAY_OF_YEAR));
+		
 		AssertJUnit.assertEquals(
 				atendimentoPaciente1.getPaciente(), 
 				paciente1);
@@ -233,7 +247,6 @@ public class TesteAtendimento {
 		
 
        	Calendar dataAtual_anterior = Calendar.getInstance();
-       	dataAtual_anterior.add(Calendar.DAY_OF_YEAR, -1);
 
 		
 		AssertJUnit.assertEquals(

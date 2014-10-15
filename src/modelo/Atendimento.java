@@ -46,7 +46,7 @@ import javax.persistence.TemporalType;
 			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosComPacientePaginada",
 						query = "select a from Atendimento a " +
 								"inner join fetch a.paciente pa " +
-								"order by a.dataAtendimento"
+								"order by a.dataAtendimento desc"
 			),
 			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosComPacientePaginadaCount",
 						query = "select count(a) from Atendimento a "
@@ -80,7 +80,7 @@ import javax.persistence.TemporalType;
 								"left outer join fetch a.paciente p " +
 								"where upper(md.nome) like '%' || upper(?) || '%' " 
 								+
-								"order by a.dataAtendimento"
+								"order by a.dataAtendimento desc"
 			),
 
 			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikeCount",
