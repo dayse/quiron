@@ -21,7 +21,7 @@ public class RelatorioListagemPacientes extends DeclaracaoAbstrata {
 		// Recupera do stream o arquivo jasper compilado usando o caminho completo como parametro.
 		InputStream jasper = super.recuperaJasper(Relatorio.JASPER_RELATORIO_LISTAGEM_DE_PACIENTES);
 		
-		parametros.put(LOGO_INT, Relatorio.LOGO_INT);
+		parametros.put("LOGO_INT", Relatorio.LOGO_INT);
 		
 		RelatorioPdf pdf = new RelatorioPdf(Constantes.CAMINHO_RELATORIOS_GERADOS);
 		

@@ -14,7 +14,7 @@
 			<style mode="Opaque" forecolor="#000000" backcolor="#CCCCCC"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="LOGO_INT" class="java.lang.String">
+	<parameter name="LOGO_INT" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[$P{LOGO_INT}]]></defaultValueExpression>
 	</parameter>
 	<field name="codPaciente" class="java.lang.String"/>
@@ -43,7 +43,7 @@
 					<text><![CDATA[Relatório de Pacientes]]></text>
 				</staticText>
 				<image>
-					<reportElement x="10" y="10" width="100" height="50"/>
+					<reportElement x="13" y="10" width="100" height="50"/>
 					<imageExpression class="java.lang.String"><![CDATA[$P{LOGO_INT}]]></imageExpression>
 				</image>
 			</frame>
