@@ -120,7 +120,7 @@ import javax.persistence.TemporalType;
 								"inner join fetch a.anamneses an " +
 								"left outer join fetch a.paciente pa " +
 								"where pa.codPaciente = ? " +
-								"order by a.dataAtendimento"
+								"order by a.dataAtendimento desc"
 			),
 			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPacienteCount",
 						query = "select count(a) from Atendimento a " +

@@ -311,6 +311,7 @@ public class TesteAtendimento {
 		Usuario clinico = usuarioService.recuperaPorLogin("clinico");
 		Paciente paciente1 = pacienteService.recuperaPacientePorCodigo("paciente1");
 
+
 		List<Atendimento> listaDeAtendimentos = atendimentoService.
 													recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
 															paciente1.getCodPaciente());
@@ -322,6 +323,12 @@ public class TesteAtendimento {
 		
 		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
 
+       	Calendar dataAtual = Calendar.getInstance();
+
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getDataAtendimento().get(Calendar.DAY_OF_YEAR), 
+				dataAtual.get(Calendar.DAY_OF_YEAR));
+		
 		AssertJUnit.assertEquals(
 				atendimentoPaciente1.getPaciente(), 
 				paciente1);
