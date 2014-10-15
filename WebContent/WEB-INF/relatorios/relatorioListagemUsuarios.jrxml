@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioListagemUsuarios.jrxml" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="115"/>
+	<property name="ireport.x" value="188"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Zebra">
 		<conditionalStyle>
@@ -98,14 +98,14 @@
 				</box>
 			</frame>
 			<staticText>
-				<reportElement x="365" y="0" width="174" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="388" y="0" width="151" height="20" forecolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Usuário]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="18" y="0" width="181" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="18" y="0" width="235" height="20" forecolor="#FFFFFF"/>
 				<box rightPadding="0">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -119,7 +119,7 @@
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="199" y="0" width="166" height="20" forecolor="#FFFFFF"/>
+				<reportElement mode="Transparent" x="253" y="0" width="135" height="20" forecolor="#FFFFFF"/>
 				<box>
 					<rightPen lineWidth="0.5"/>
 				</box>
@@ -133,7 +133,7 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Zebra" stretchType="RelativeToBandHeight" mode="Opaque" x="18" y="0" width="181" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement style="Zebra" stretchType="RelativeToBandHeight" mode="Opaque" x="18" y="0" width="235" height="20" isPrintWhenDetailOverflows="true"/>
 				<box leftPadding="5" rightPadding="5">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.25" lineStyle="Solid"/>
@@ -145,7 +145,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Zebra" stretchType="RelativeToBandHeight" mode="Opaque" x="365" y="0" width="174" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement style="Zebra" stretchType="RelativeToBandHeight" mode="Opaque" x="388" y="0" width="151" height="20" isPrintWhenDetailOverflows="true"/>
 				<box leftPadding="5" rightPadding="5">
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -157,7 +157,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoUsuario}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Zebra" stretchType="RelativeToBandHeight" mode="Opaque" x="199" y="0" width="166" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement style="Zebra" stretchType="RelativeToBandHeight" mode="Opaque" x="253" y="0" width="135" height="20" isPrintWhenDetailOverflows="true"/>
 				<box leftPadding="5" rightPadding="5">
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
