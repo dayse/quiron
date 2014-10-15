@@ -207,6 +207,7 @@ public class TesteAtendimento {
 		
 		
 		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
+		
 
 		AssertJUnit.assertEquals(
 				atendimentoPaciente1.getPaciente(), 
@@ -228,6 +229,18 @@ public class TesteAtendimento {
 		AssertJUnit.assertEquals(
 				atendimentoPaciente2.getMedico(), 
 				clinico);
+		
+
+		listaDeAtendimentos = atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike("p");
+
+		atendimentoPaciente1 = listaDeAtendimentos.get(0);
+		
+       	Calendar dataAtual_anterior = Calendar.getInstance();
+
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getDataAtendimento().get(Calendar.DAY_OF_YEAR), 
+				dataAtual_anterior.get(Calendar.DAY_OF_YEAR));
 		
 	}
 

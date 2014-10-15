@@ -94,7 +94,7 @@ import javax.persistence.TemporalType;
 								"inner join fetch a.paciente p " +
 								"where upper(p.nome) like '%' || upper(?) || '%' " 
 								+
-								"order by a.dataAtendimento"
+								"order by a.dataAtendimento desc"
 			),
 
 			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikeCount",
