@@ -108,6 +108,8 @@ public class CargaAtendimento extends CargaBase{
 	public void incluirAtendimentos() throws AplicacaoException {
 
        	Calendar dataAtual = Calendar.getInstance();
+       	Calendar dataAtual_anterior = Calendar.getInstance();
+       	dataAtual_anterior.add(Calendar.DAY_OF_YEAR, -1);
 
 		Paciente paciente1 = pacienteService.recuperaPacientePorCodigo("paciente1");
 		Paciente paciente2 = pacienteService.recuperaPacientePorCodigo("paciente2");
@@ -118,7 +120,7 @@ public class CargaAtendimento extends CargaBase{
 		Atendimento atendimentoPaciente1 = new Atendimento(); 
 		atendimentoPaciente1.setCodAtendimento("atp1");
 		atendimentoPaciente1.setPaciente(paciente1);
-		atendimentoPaciente1.setDataAtendimento(dataAtual);
+		atendimentoPaciente1.setDataAtendimento(dataAtual_anterior);
 		atendimentoPaciente1.setMedico(clinico);
 		atendimentoPaciente1.setStatus("Encerrado");
 		String prognostico = "Bactéria ou candidúria em pacientes compromentidos podem";

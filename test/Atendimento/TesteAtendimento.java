@@ -1,5 +1,6 @@
 package Atendimento;
 
+import java.util.Calendar;
 import java.util.List;
 
 import modelo.Anamnese;
@@ -229,7 +230,17 @@ public class TesteAtendimento {
 		
 		
 		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
+		
 
+       	Calendar dataAtual_anterior = Calendar.getInstance();
+       	dataAtual_anterior.add(Calendar.DAY_OF_YEAR, -1);
+
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getDataAtendimento().get(Calendar.DAY_OF_YEAR), 
+				dataAtual_anterior.get(Calendar.DAY_OF_YEAR));
+		
+		
 		AssertJUnit.assertEquals(
 				atendimentoPaciente1.getPaciente(), 
 				paciente1);
