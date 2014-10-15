@@ -187,6 +187,21 @@ public class TesteAtendimento {
 		
 	}
 	@Test
+	public void testeRecuperaListaDeAtendimentosPaginada() throws AplicacaoException {
+
+		List<Atendimento> listaDeAtendimentos = atendimentoService.recuperaListaDeAtendimentosPaginada();
+		
+		int num_atendimentos = 2;
+		AssertJUnit.assertEquals(num_atendimentos, listaDeAtendimentos.size());
+
+		Atendimento atendimentoPaciente1 = listaDeAtendimentos.get(0);
+       	Calendar dataAtual_anterior = Calendar.getInstance();
+		
+		AssertJUnit.assertEquals(
+				atendimentoPaciente1.getDataAtendimento().get(Calendar.DAY_OF_YEAR), 
+				dataAtual_anterior.get(Calendar.DAY_OF_YEAR));
+	}
+	@Test
 	public void testeRecuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike() throws AplicacaoException {
 
 		Usuario clinico = usuarioService.recuperaPorLogin("clinico");

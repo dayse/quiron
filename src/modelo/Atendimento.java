@@ -38,7 +38,7 @@ import javax.persistence.TemporalType;
 			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosPaginada",
 						query = "select a from Atendimento a " +
 								"inner join a.paciente pa " +
-								"order by a.dataAtendimento"
+								"order by a.dataAtendimento desc"
 			),
 			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosPaginadaCount",
 						query = "select count(a) from Atendimento a "
