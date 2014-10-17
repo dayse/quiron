@@ -43,6 +43,11 @@
 					
 
 				</h:panelGrid>
+				
+				<h:commandButton id="botaoAlterar" value="#{prompt.ok}"
+					action="#{atendimentoActions.calculaAvaliacao}" />
+				<h:commandButton id="botaoCancelar" value="#{prompt.cancelar}"
+					action="#{atendimentoActions.cancelar}" immediate="true" />
 			</rich:simpleTogglePanel>
 				
 		</h:form>
