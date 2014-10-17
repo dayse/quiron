@@ -57,6 +57,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_NEW = "newAtendimento";
 	public final String PAGINA_SHOW = "showAtendimento";
 	public final String PAGINA_STATUS = "listStatusAtendimento";
+	public final String PAGINA_ALGORITMOS_AVALIACAO = "algoritmosAvaliacao";
 	public final String PAGINA_AVALIACAO = "listAvaliacao";
 	public final String PAGINA_AVALIACAO_DETALHADA = "listAvaliacaoDetail";
 
@@ -90,6 +91,11 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	
 	//infos do filtro
 	private SelectOneDataModel<String> comboFiltroStatus;
+	
+	//infos de opcao de algoritimo de avaliação
+
+	private SelectOneDataModel<String> comboAlgoritmoAvaliacao;
+	private List<String> listaDeNomesAltoritmos = new ArrayList<String>();
 	
 	
 	/**
@@ -130,6 +136,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		status.add("Aberto");
 		status.add("Em atendimento");
 		status.add("Encerrado");
+		listaDeNomesAltoritmos.add("Graú de Semelhança");
+		listaDeNomesAltoritmos.add("Outra opção nova");
 	}
 
 	/**
@@ -171,6 +179,16 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		return PAGINA_LIST;
 	}
 
+	/**
+	 * Tela que exibe a lista de algoritmos de avaliações disponíveis, a partir
+	 * de onde o usuário será levado a tela de calculo da Avaliação.
+	 * @return
+	 */
+	public String mostraAlgoritmosDeAvaliacao(){
+		comboAlgoritmoAvaliacao = SelectOneDataModel.criaSemTextoInicial(listaDeNomesAltoritmos);
+		return PAGINA_ALGORITMOS_AVALIACAO;
+	}
+	
 	/**
 	 * 
 	 * Método que calcula a avaliação para um determinado atendimento.
@@ -786,5 +804,17 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 
 	public void setComboFiltroStatus(SelectOneDataModel<String> comboFiltroStatus) {
 		this.comboFiltroStatus = comboFiltroStatus;
+	}
+
+	public SelectOneDataModel<String> getComboAlgoritmoAvaliacao() {
+		if(comboAlgoritmoAvaliacao == null){
+			comboAlgoritmoAvaliacao = SelectOneDataModel.criaSemTextoInicial(listaDeNomesAltoritmos);
+		}
+		return comboAlgoritmoAvaliacao;
+	}
+
+	public void setComboAlgoritmoAvaliacao(
+			SelectOneDataModel<String> comboAlgoritmoAvaliacao) {
+		this.comboAlgoritmoAvaliacao = comboAlgoritmoAvaliacao;
 	}
 }
