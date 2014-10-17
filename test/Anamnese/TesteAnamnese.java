@@ -122,8 +122,8 @@ public class TesteAnamnese {
 		AssertJUnit.assertEquals(df.format(0.7), df.format(amox1Febre.getUniao()));
 		
 		AssertJUnit.assertEquals(df.format(2.4), df.format(conjuntoAvaliacaoAmox1.getSomatorioIntersecao()));
-		AssertJUnit.assertEquals(df.format(5.5), df.format(conjuntoAvaliacaoAmox1.getSomatorioUniao()));
-		AssertJUnit.assertEquals(df.format(0.436), df.format(conjuntoAvaliacaoAmox1.getGrauSemelhanca()));
+		AssertJUnit.assertEquals(df.format(15.5), df.format(conjuntoAvaliacaoAmox1.getSomatorioUniao()));
+		AssertJUnit.assertEquals(df.format(0.15), df.format(conjuntoAvaliacaoAmox1.getGrauSemelhanca()));
 
 //		teste avaliação amoxilina 500:
 		ConjuntoAvaliacao conjuntoAvaliacaoAmox500 = conjuntoDeAvaliacoes.get(3);
@@ -136,8 +136,8 @@ public class TesteAnamnese {
 		AssertJUnit.assertEquals(df.format(1.0), df.format(amox500Disuria.getUniao()));
 		
 		AssertJUnit.assertEquals(df.format(3.3), df.format(conjuntoAvaliacaoAmox500.getSomatorioIntersecao()));
-		AssertJUnit.assertEquals(df.format(6.4), df.format(conjuntoAvaliacaoAmox500.getSomatorioUniao()));
-		AssertJUnit.assertEquals(df.format(0.516), df.format(conjuntoAvaliacaoAmox500.getGrauSemelhanca()));
+		AssertJUnit.assertEquals(df.format(16.4), df.format(conjuntoAvaliacaoAmox500.getSomatorioUniao()));
+		AssertJUnit.assertEquals(df.format(0.201), df.format(conjuntoAvaliacaoAmox500.getGrauSemelhanca()));
 
 //		teste avaliação bactrim:
 		ConjuntoAvaliacao conjuntoAvaliacaoBactrim = conjuntoDeAvaliacoes.get(2);
@@ -149,9 +149,9 @@ public class TesteAnamnese {
 		AssertJUnit.assertEquals(df.format(0.7), df.format(bactrimDiabetes.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.7), df.format(bactrimDiabetes.getUniao()));
 		
-		AssertJUnit.assertEquals(df.format(3.1), df.format(conjuntoAvaliacaoBactrim.getSomatorioIntersecao()));
-		AssertJUnit.assertEquals(df.format(5.8), df.format(conjuntoAvaliacaoBactrim.getSomatorioUniao()));
-		AssertJUnit.assertEquals(df.format(0.534), df.format(conjuntoAvaliacaoBactrim.getGrauSemelhanca()));
+		AssertJUnit.assertEquals(df.format(13.1), df.format(conjuntoAvaliacaoBactrim.getSomatorioIntersecao()));
+		AssertJUnit.assertEquals(df.format(15.8), df.format(conjuntoAvaliacaoBactrim.getSomatorioUniao()));
+		AssertJUnit.assertEquals(df.format(0.829), df.format(conjuntoAvaliacaoBactrim.getGrauSemelhanca()));
 		
 		double max_grau_semalhanca = 0.0;
 		for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntoDeAvaliacoes) {

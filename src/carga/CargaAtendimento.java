@@ -171,7 +171,7 @@ public class CargaAtendimento extends CargaBase{
 		Anamnese atendimentoPc1_escherichia = new Anamnese(atendimentoPaciente1, escherichia, 0.0);
 		Anamnese atendimentoPc1_candida = new Anamnese(atendimentoPaciente1, candida, 1.0);
 		Anamnese atendimentoPc1_efeitosColaterais = new Anamnese(atendimentoPaciente1, efeitosColaterais, 1.0);
-		Anamnese atendimentoPc1_alergia = new Anamnese(atendimentoPaciente1, alergia, 0.0);
+		Anamnese atendimentoPc1_alergia = new Anamnese(atendimentoPaciente1, alergia, 1.0);
 		
 		anamneseService.inclui(atendimentoPc1_febre);
 		anamneseService.inclui(atendimentoPc1_disuria);

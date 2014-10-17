@@ -182,7 +182,7 @@ public class TesteCargaAtendimento {
 		AssertJUnit.assertEquals(1.0, atendimentoPc1_efeitosColaterais.getValor());
 
 		Anamnese atendimentoPc1_alergia = anamneseService.recuperaAnamnesePorAtendimentoPorParametro(atendimentoPaciente1,alergia);
-		AssertJUnit.assertEquals(0.0, atendimentoPc1_alergia.getValor());		
+		AssertJUnit.assertEquals(1.0, atendimentoPc1_alergia.getValor());		
 
 		List<Anamnese> anamnesesAtp2 = anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoPaciente2);
 		
