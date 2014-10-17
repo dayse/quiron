@@ -115,9 +115,12 @@ public class TesteAvalIndicacaoEspec {
 		Especialista espec1 = new Especialista();
 		Indicacao amox500 = new Indicacao();
 		Parametro febre = new Parametro();
-		AvalIndicacaoEspec avaliacaoRecuperada = new AvalIndicacaoEspec();
+		Parametro alergia = new Parametro();
+		AvalIndicacaoEspec avaliacaoRecuperada1 = new AvalIndicacaoEspec();
+		AvalIndicacaoEspec avaliacaoRecuperada2 = new AvalIndicacaoEspec();
 				
 		febre = parametroService.recuperaParametroPorCodigo("P001");
+		alergia = parametroService.recuperaParametroPorCodigo("P008");
 		
 		try {
 			espec1 = especialistaService.recuperaEspecialistaPorCodigo("espec1");
@@ -131,16 +134,20 @@ public class TesteAvalIndicacaoEspec {
 		}
 
 		try {
-			avaliacaoRecuperada =
+			avaliacaoRecuperada1 =
 					avalIndicacaoEspecService.
 					recuperaAvaliacaoPorEspecialistaIndicacaoParametro(espec1, amox500, febre);
+			avaliacaoRecuperada2 =
+					avalIndicacaoEspecService.
+					recuperaAvaliacaoPorEspecialistaIndicacaoParametro(espec1, amox500, alergia);
 		} catch (ObjetoNaoEncontradoException e) {
 			e.printStackTrace();
 		}
 		
-		AssertJUnit.assertEquals("amox500", avaliacaoRecuperada.getIndicacao().getCodIndicacao());
-		AssertJUnit.assertEquals("espec1", avaliacaoRecuperada.getEspecialista().getCodEspecialista());
-		AssertJUnit.assertEquals("P001", avaliacaoRecuperada.getParametro().getCodParametro());
+		AssertJUnit.assertEquals("amox500", avaliacaoRecuperada1.getIndicacao().getCodIndicacao());
+		AssertJUnit.assertEquals("espec1", avaliacaoRecuperada1.getEspecialista().getCodEspecialista());
+		AssertJUnit.assertEquals("P001", avaliacaoRecuperada1.getParametro().getCodParametro());
+		AssertJUnit.assertEquals("P008", avaliacaoRecuperada2.getParametro().getCodParametro());
 	}
 
 	@Test
@@ -163,7 +170,7 @@ public class TesteAvalIndicacaoEspec {
 		//testa se essa realmente é a avaliação "Amoxilina1 x Febre"
 		AssertJUnit.assertEquals("amox1", avaliacaoAmoxFebre.getIndicacao().getCodIndicacao());
 		AssertJUnit.assertEquals("P001", avaliacaoAmoxFebre.getParametro().getCodParametro());
-		//testa se a media dos especialistas para essa cominação "Amox1 x Febre" é correta
+		//testa se a media dos especialistas para essa combinação "Amox1 x Febre" é correta
 		AssertJUnit.assertEquals(df.format(0.6), df.format(avaliacaoAmoxFebre.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.6), df.format(avaliacaoAmoxFebre.getUniao()));
 		
@@ -177,7 +184,7 @@ public class TesteAvalIndicacaoEspec {
 		//testa se essa realmente é a avaliação "Bactrim x Diabetes"
 		AssertJUnit.assertEquals("bactrim", avaliacaoBactrimDiabetes.getIndicacao().getCodIndicacao());
 		AssertJUnit.assertEquals("P003", avaliacaoBactrimDiabetes.getParametro().getCodParametro());
-		//testa se a media dos especialistas para essa cominação "Bactrim x Diabetes" é correta
+		//testa se a media dos especialistas para essa combinação "Bactrim x Diabetes" é correta
 		AssertJUnit.assertEquals(df.format(0.7), df.format(avaliacaoBactrimDiabetes.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.7), df.format(avaliacaoBactrimDiabetes.getUniao()));
 
@@ -190,11 +197,32 @@ public class TesteAvalIndicacaoEspec {
 		//testa se essa realmente é a avaliação "Amox500 x Candida"
 		AssertJUnit.assertEquals("amox500", avaliacaoAmox500Candida.getIndicacao().getCodIndicacao());
 		AssertJUnit.assertEquals("P006", avaliacaoAmox500Candida.getParametro().getCodParametro());
-		//testa se a media dos especialistas para essa cominação "Amox500 x Candida" é correta
+		//testa se a media dos especialistas para essa combinação "Amox500 x Candida" é correta
 		AssertJUnit.assertEquals(df.format(0.2), df.format(avaliacaoAmox500Candida.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.2), df.format(avaliacaoAmox500Candida.getUniao()));
 		
+		//-------------------------------------------------------------------------------//
+		//pega a avaliação da Amoxilina X Alergia
+		Avaliacao avaliacaoAmoxAlergia = avaliacoesAmox.getAvaliacoes().get(7);
 		
+		//testa se essa realmente é a avaliação "Amoxilina1 X Alergia"
+		AssertJUnit.assertEquals("amox1", avaliacaoAmoxAlergia.getIndicacao().getCodIndicacao());
+		AssertJUnit.assertEquals("P008", avaliacaoAmoxAlergia.getParametro().getCodParametro());
+		
+		//testa se a media dos especialistas para essa combinação "Amoxilina1 X Alergia" é correta
+		AssertJUnit.assertEquals(df.format(0.0), df.format(avaliacaoAmoxAlergia.getIntersecao()));
+		AssertJUnit.assertEquals(df.format(0.0), df.format(avaliacaoAmoxAlergia.getUniao()));
+		
+		//pega a avaliação da Bactrim X Alergia
+		Avaliacao avaliacaoBactrimAlergia = avaliacoesBactrim.getAvaliacoes().get(7);
+		
+		//testa se essa realmente é a avaliação "Bactrim X Alergia"
+		AssertJUnit.assertEquals("bactrim", avaliacaoBactrimAlergia.getIndicacao().getCodIndicacao());
+		AssertJUnit.assertEquals("P008", avaliacaoBactrimAlergia.getParametro().getCodParametro());
+		
+		//testa se a média dos especialistas para essa combinação "Bactrim X Alergia" é correta
+		AssertJUnit.assertEquals(df.format(1.0), df.format(avaliacaoBactrimAlergia.getIntersecao()));
+		AssertJUnit.assertEquals(df.format(1.0), df.format(avaliacaoBactrimAlergia.getUniao()));
 	}
 	
 	@Test
