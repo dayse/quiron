@@ -131,7 +131,8 @@ public class CargaParametros extends CargaBase {
 		
 		alergia.setCodParametro("P008");
 		alergia.setNome("Alergia Genérica");
-		alergia.setDescricao("Ocorrência de uma alergia genérica.");		
+		alergia.setDescricao("Ocorrência de uma alergia genérica.");
+		alergia.setPeso(10.0);
 
 		parametroService.inclui(febre);
 		parametroService.inclui(disuria);

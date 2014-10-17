@@ -107,7 +107,20 @@ public class TesteParametro {
 		
 	}
 
-	
+	@Test
+	public void testeVerificaPesoDeParametro() throws AplicacaoException {
+		
+		Parametro febre = new Parametro();
+		Parametro alergia = new Parametro();
+		DecimalFormat df = new DecimalFormat("0.00");
+		
+		febre = parametroService.recuperaParametroPorCodigo("P001");
+		alergia = parametroService.recuperaParametroPorCodigo("P008");
+		
+		AssertJUnit.assertEquals(df.format(1.0), df.format(febre.getPeso()));
+		AssertJUnit.assertEquals(df.format(10.0), df.format(alergia.getPeso()));
+		
+	}
 
 	public void cargaDependencias() {
 		List<CargaBase> cargas;
