@@ -137,7 +137,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		status.add("Em atendimento");
 		status.add("Encerrado");
 		listaDeNomesAltoritmos.add("Graú de Semelhança");
-		listaDeNomesAltoritmos.add("Outra opção nova");
+		listaDeNomesAltoritmos.add("Algoritmo 2");
 	}
 
 	/**
@@ -206,37 +206,53 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String calculaAvaliacao() {
-		listaConjuntoAvaliacao = new ListDataModel(
-								anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente)
-								);
-		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
-		try {
-			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-		} catch (AplicacaoException e) {
-			e.printStackTrace();
-		}
-		listaDeAnamneses = new ListDataModel(
-					anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
-				);
 		
-		if(atendimentoCorrente.getTecnico() == null){
-			comboTecnicos = null;
-		}else{
+		//Verifica qual o algoritmo utilizado:
+		//se for o primeiro (grau de semelhança) então chama o metodo do action que vai fazer o resto
+		//no que diz respeito a tela desse algoritmo
+		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAltoritmos.get(0))){
+			listaConjuntoAvaliacao = new ListDataModel(
+									anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente)
+									);
+			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
 			try {
-				comboTecnicos = SelectOneDataModel
-						.criaComObjetoSelecionadoSemTextoInicial(
-								usuarioService
-										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-												.recuperaTipoUsuarioTecnico()),
-								atendimentoCorrente.getTecnico());
+				comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
 			} catch (AplicacaoException e) {
 				e.printStackTrace();
 			}
+			listaDeAnamneses = new ListDataModel(
+						anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
+					);
+			
+			if(atendimentoCorrente.getTecnico() == null){
+				comboTecnicos = null;
+			}else{
+				try {
+					comboTecnicos = SelectOneDataModel
+							.criaComObjetoSelecionadoSemTextoInicial(
+									usuarioService
+											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+													.recuperaTipoUsuarioTecnico()),
+									atendimentoCorrente.getTecnico());
+				} catch (AplicacaoException e) {
+					e.printStackTrace();
+				}
+			}
+			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+			return PAGINA_AVALIACAO;
 		}
-		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-		return PAGINA_AVALIACAO;
+		//se for o segundo algoritmo (Algoritmo 2) então chama o metodo do action que vai fazer o resto
+		//no que diz respeito a tela desse algoritmo
+		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAltoritmos.get(1))){
+			return PAGINA_AVALIACAO;
+		}
+		
+		
+		//so chega nesse ponto se por alguma razão muito estranha ele não for nenhum
+		//dos algoritmos possíveis, assim carrega a página de seleção do algoritmo.
+		return PAGINA_ALGORITMOS_AVALIACAO;
 	}
 	
 	/**
