@@ -146,7 +146,7 @@
 						
 						<c:forEach var="i" begin="0" end="#{atendimentoActions.numParametros - 	1}">
 					      <rich:column styleClass="colunaCampoNumerico">
-					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].intersecao}">
+					         <h:outputText value="#{conjuntoAvaliacao.avaliacoes[i].mediaEspecialistas}">
 							 	<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="default" />
 							</h:outputText>
 					      </rich:column>
