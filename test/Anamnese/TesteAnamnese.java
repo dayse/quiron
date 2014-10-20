@@ -120,10 +120,12 @@ public class TesteAnamnese {
 		AssertJUnit.assertEquals(febre.getCodParametro(), amox1Febre.getParametro().getCodParametro());
 		AssertJUnit.assertEquals(df.format(0.6), df.format(amox1Febre.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.7), df.format(amox1Febre.getUniao()));
+		AssertJUnit.assertEquals(df.format(0.6), df.format(amox1Febre.getMediaEspecialistas()));
 		
 		AssertJUnit.assertEquals(df.format(2.4), df.format(conjuntoAvaliacaoAmox1.getSomatorioIntersecao()));
 		AssertJUnit.assertEquals(df.format(15.5), df.format(conjuntoAvaliacaoAmox1.getSomatorioUniao()));
 		AssertJUnit.assertEquals(df.format(0.15), df.format(conjuntoAvaliacaoAmox1.getGrauSemelhanca()));
+
 
 //		teste avaliação amoxilina 500:
 		ConjuntoAvaliacao conjuntoAvaliacaoAmox500 = conjuntoDeAvaliacoes.get(3);
@@ -134,6 +136,7 @@ public class TesteAnamnese {
 		AssertJUnit.assertEquals(disuria.getCodParametro(), amox500Disuria.getParametro().getCodParametro());
 		AssertJUnit.assertEquals(df.format(0.8), df.format(amox500Disuria.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(1.0), df.format(amox500Disuria.getUniao()));
+		AssertJUnit.assertEquals(df.format(1.0), df.format(amox500Disuria.getMediaEspecialistas()));
 		
 		AssertJUnit.assertEquals(df.format(3.3), df.format(conjuntoAvaliacaoAmox500.getSomatorioIntersecao()));
 		AssertJUnit.assertEquals(df.format(16.4), df.format(conjuntoAvaliacaoAmox500.getSomatorioUniao()));
@@ -148,6 +151,7 @@ public class TesteAnamnese {
 		AssertJUnit.assertEquals(diabetes.getCodParametro(), bactrimDiabetes.getParametro().getCodParametro());
 		AssertJUnit.assertEquals(df.format(0.7), df.format(bactrimDiabetes.getIntersecao()));
 		AssertJUnit.assertEquals(df.format(0.7), df.format(bactrimDiabetes.getUniao()));
+		AssertJUnit.assertEquals(df.format(0.7), df.format(bactrimDiabetes.getMediaEspecialistas()));
 		
 		AssertJUnit.assertEquals(df.format(13.1), df.format(conjuntoAvaliacaoBactrim.getSomatorioIntersecao()));
 		AssertJUnit.assertEquals(df.format(15.8), df.format(conjuntoAvaliacaoBactrim.getSomatorioUniao()));

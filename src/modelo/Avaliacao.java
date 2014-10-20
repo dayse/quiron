@@ -13,6 +13,8 @@ public class Avaliacao {
 
 	private double grauSemelhanca;
 	
+	private double mediaEspecialistas;
+	
 	private String nomeIndicacaoNaTabela;
 	
 	public Avaliacao() {
@@ -20,13 +22,15 @@ public class Avaliacao {
 		this.intersecao = 0;
 		this.somatorio = 0;
 		this.grauSemelhanca = 0;
+		this.mediaEspecialistas = 0;
 	}
 
 	public Avaliacao(Indicacao indicacao, Parametro parametro,
 			double uniao,
 			double intersecao, 
 			double somatorio,
-			double grauSemelhanca) {
+			double grauSemelhanca,
+			double mediaEspecialistas) {
 
 		this.indicacao = indicacao;
 		this.parametro = parametro;
@@ -34,6 +38,7 @@ public class Avaliacao {
 		this.intersecao = intersecao;
 		this.somatorio = somatorio;
 		this.grauSemelhanca = grauSemelhanca;		
+		this.mediaEspecialistas = mediaEspecialistas;
 	}
 
 	public double somaParametros(){
@@ -98,5 +103,13 @@ public class Avaliacao {
 
 	public void setParametro(Parametro parametro) {
 		this.parametro = parametro;
+	}
+
+	public double getMediaEspecialistas() {
+		return mediaEspecialistas;
+	}
+
+	public void setMediaEspecialistas(double mediaEspecialistas) {
+		this.mediaEspecialistas = mediaEspecialistas;
 	}
 }
