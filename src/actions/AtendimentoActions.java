@@ -156,6 +156,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		atendimentoCorrente.setMedico(comboMedicos.getObjetoSelecionado());
 		atendimentoCorrente.setTecnico(comboTecnicos.getObjetoSelecionado());
 		atendimentoCorrente.setStatus(comboStatus.getObjetoSelecionado());
+		try{
+			pacienteService.altera(pacienteCorrente);
+		} catch (AplicacaoException ex){
+			error(ex.getMessage());
+			return PAGINA_NEW;
+		}		
 		try {
 			atendimentoService.altera(atendimentoCorrente);
 		} catch (AplicacaoException e) {
@@ -325,6 +331,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		atendimentoCorrente.setMedico(comboMedicos.getObjetoSelecionado());
 		atendimentoCorrente.setTecnico(comboTecnicos.getObjetoSelecionado());
 		atendimentoCorrente.setStatus(comboStatus.getObjetoSelecionado());
+		try{
+			pacienteService.altera(pacienteCorrente);
+		} catch (AplicacaoException ex){
+			error(ex.getMessage());
+			return PAGINA_NEW;
+		}
 		try {
 			atendimentoService.inclui(atendimentoCorrente);
 		} catch (AplicacaoException ex) {

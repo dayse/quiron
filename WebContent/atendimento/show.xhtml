@@ -8,7 +8,7 @@
 <ui:composition template="/WEB-INF/template/atendimento_list_template.xhtml">
 
 	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
-	<ui:define name="descricao">#{prompt.atendimento_Cadastro}</ui:define>
+	<ui:define name="descricao">#{prompt.atendimento_Mostrar}</ui:define>
 	<ui:define name="descricao_ajuda">#{help.atendimento_Mostrar}</ui:define>
 	<ui:define name="corpo">
 	
@@ -66,7 +66,7 @@
 		
 			<rich:simpleTogglePanel >
 				<f:facet name="header">
-					#{prompt.paciente_InformacoesGerais}
+					#{prompt.paciente_InformacoesGeraisDoPaciente}
 				</f:facet>
 				
 				<h:panelGrid id="AreaTexto">

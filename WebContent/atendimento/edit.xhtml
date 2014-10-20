@@ -65,12 +65,12 @@
 		
 			<rich:simpleTogglePanel >
 				<f:facet name="header">
-					#{prompt.paciente_InformacoesGerais}
+					#{prompt.paciente_InformacoesGeraisDoPaciente}
 				</f:facet>
 				
 				<h:panelGrid id="AreaTexto">
 					<h:inputTextarea id="informacoesGerais"
-						rows="12" cols="100" disabled="true"
+						rows="12" cols="100"
 						value="#{atendimentoActions.atendimentoCorrente.paciente.informacoesGerais}" />
 				</h:panelGrid>
 			</rich:simpleTogglePanel>	
