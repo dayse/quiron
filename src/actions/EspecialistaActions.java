@@ -121,7 +121,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 				return PAGINA_EDIT_AVAL;
 			}
 		}
-		info("parametro.SUCESSO_EDICAO");
+		info("parametro.SUCESSO_ALTERACAO");
 		avaliacaoAlterada = null;
 		indicacaoCorrente = null;
 		listaDeParametros = parametroService.recuperaListaDeParametros();

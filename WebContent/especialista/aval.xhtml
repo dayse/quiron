@@ -53,11 +53,11 @@
 				<f:facet name="header">
 					<rich:columnGroup>
 						<rich:column colspan="1" styleClass="space-table">
-							<h:outputText value="Indicacao" />
+							<h:outputText value="#{prompt.indicacao}" />
 						</rich:column>
 					
-						<rich:column colspan="8">
-							<h:outputText value="Parametro" />
+						<rich:column colspan="#{especialistaActions.numParametros + 1}">
+							<h:outputText value="#{prompt.parametro}" />
 						</rich:column>
 						
 						<rich:column breakBefore="true" styleClass="space-table" />
