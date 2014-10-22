@@ -9,3 +9,4 @@ bin/*
 /dockers/tomcat6/logs
 /dockers/tomcat6/deploy/*
 /dockers/docker-pgdoc/data/*.dot
+/casper_js/*.jpg
