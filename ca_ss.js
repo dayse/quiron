@@ -68,12 +68,20 @@ casper.thenClick(x('//*[@name="j_id6:j_id16"]'), function(){
    console.log("clicked button");
 });
 
-casper.then(function(){
+casper.waitFor(function() {
+    return this.evaluate(function() {    
+       console.log("images:");
+        var images = document.getElementsByTagName('img');
+       console.log(images);
+        return Array.prototype.every.call(images, function(i) { return i.complete; });
+    });
+}, function(){
 
     this.capture('quiron2.jpg', undefined, {
         format: 'jpg',
         quality: 75
     });
 });
+
 
 casper.run();
