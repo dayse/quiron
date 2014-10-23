@@ -7,27 +7,127 @@
     <!--[if IE]><script language="javascript" type="text/javascript" src="../excanvas.min.js"></script><![endif]-->
     <script language="javascript" type="text/javascript" src="../jquery.js"></script>
     <script language="javascript" type="text/javascript" src="../jquery.flot.js"></script>
+    <script language="javascript" text="text/javascript" src="../../JUMFlot/jquery.flot.JUMlib.js"></script>
+    <script language="javascript" text="text/javascript" src="../../JUMFlot/jquery.flot.mouse.js"></script>
+    <script language="javascript" text="text/javascript" src="../../JUMFlot/jquery.flot.spider.js"></script>
+
  </head>
     <body>
     <h1>Flot Examples</h1>
 
-    <div id="placeholder" style="width:600px;height:300px;"></div>
+    <div id="placeholder" style="width:800px;height:600px;border: 1px dashed gainsboro;"></div>
 
-    <p>Simple example. You don't need to specify much to get an
-       attractive look. Put in a placeholder, make sure you set its
-       dimensions (otherwise the plot library will barf) and call the
-       plot function with the data. The axes are automatically
-       scaled.</p>
 
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
 
-    var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+var d1 = [ [0,10], [1,20], [2,80], [3,70], [4,60] ];
+var d2 = [ [0,30], [1,25], [2,50], [3,60], [4,95] ];
+var d3 = [ [0,50], [1,40], [2,60], [3,95], [4,30] ];
 
-    // a null signifies separate line segments
-    var d3 = [[0, 12], [7, 12], [7, 2.5], [12, 2.5]];
-    
-    $.plot($("#placeholder"), [ d2, d3 ], {spider: {show: true, lineWidth: 5} });
+    var sin = [],
+      cos = [];
+      cos2 = [];
+
+    for (var i = 0; i < 8; i += 1) {
+      sin.push([i, Math.sqrt(i)]);
+      cos.push([i, Math.sqrt(i+1)]);
+      // cos2.push([i, Math.cos(i)+1]);
+      cos2.push([i, Math.sqrt(i+(2*i))]);
+    }
+
+var d1 = sin;
+var d2 = cos;
+var d3 = cos2;
+console.log(d1);
+console.log(d2);
+console.log(d3);
+
+
+var data = [
+    { label: "Pies", color:"green",data: d1,
+         spider: {show: true, fill: true} },
+    { label: "Apples",color:"orange",data: d2,
+     spider: {show: true} },
+    { label: "Cherries",color:"red",data: d3,
+     spider: {show: true} }   
+];
+
+
+var options = {
+  series:{ 
+    spider:{
+      pointSize: 5,
+      connection: {width:1},
+      active: true, 
+      highlight: {
+        mode: "area"
+      },
+      legs: { 
+          data: [
+            {label: "Efeitos Colaterais"},
+            {label: "Febre"},
+            {label: "Disuria"},
+            {label: "Diabetes"},
+            {label: "P005"},
+            {label: "P006"},
+            {label: "P007"},
+            {label: "P008"}
+            ],
+          legScaleMax: 1,legScaleMin:0.8
+      },
+      spiderSize: 0.5        
+    }
+  },
+    grid:{ 
+        hoverable: true, 
+        clickable: true,
+        ticks:10,
+        tickColor: "rgba(0,0,0,0.2)",mode: "radar"
+    }
+};
+var p = $.plot($("#placeholder"),data,options);
+
+$("<div id='tooltip'></div>").css({
+  position: "absolute",
+  display: "none",
+  border: "1px solid #fdd",
+  padding: "2px",
+  "background-color": "#fee",
+  opacity: 0.80
+}).appendTo("body");
+
+$("#placeholder").bind("plothover", function (event, pos, item) {
+    if (item) {
+      var x = item.datapoint[0].toFixed(2),
+        y = item.datapoint[1].toFixed(2);
+      var label_x = p.getOptions().series.spider.legs.data[parseInt(x)].label;
+
+      $("#tooltip").html(item.series.label + " of " + x + " = " + y)
+        .css({top: item.pageY/1.5, left: item.pageX/1.5})
+        .fadeIn(200);
+
+
+      $("#tooltip").html(item.series.label + " of " + label_x + " = " + y)
+      // $("#tooltip").offset({left:0,top:0})
+        .fadeIn(200);
+    } else {
+      $("#tooltip").hide();
+    }
+});
+
+
+    // $.plot($("#placeholder"), [
+    //     {
+    //         data: d2,
+    //         spider: {show: true, lineWidth: 5}
+    //     },
+    //     {
+    //         data: d3,
+    //         spider: {show: true, lineWidth: 5}
+    //     }
+    // ]);
+
 });
 </script>
 
