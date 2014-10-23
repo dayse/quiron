@@ -48,9 +48,9 @@ var data = [
     { label: "Pies", color:"green",data: d1,
          spider: {show: true, fill: true} },
     { label: "Apples",color:"orange",data: d2,
-     spider: {show: true} },
+     spider: {show: true, fill: true} },
     { label: "Cherries",color:"red",data: d3,
-     spider: {show: true}, points:{show:true}}   
+     spider: {show: true}}   
 ];
 
 
@@ -74,7 +74,6 @@ var options = {
             {label: "P007"},
             {label: "P008"}
             ],
-          // ticks: 10,
           legScaleMax: 1,legScaleMin:0.8
       },
       spiderSize: 0.5        
@@ -83,7 +82,6 @@ var options = {
     grid:{ 
         hoverable: true, 
         clickable: true,
-        // ticks:10,
         tickColor: "rgba(0,0,0,0.2)",mode: "radar"
     }
 };
@@ -115,24 +113,11 @@ $("#placeholder").bind("plothover", function (event, pos, item) {
     if (item) {
       var x = item.datapoint[0].toFixed(2),
         y = item.datapoint[1].toFixed(2);
-      var cnt = p.getOptions().series.spider.legs.data.length;
       var label_x = p.getOptions().series.spider.legs.data[parseInt(x)].label;
-
-      // console.log(p);
-      var new_pos = calculateXY(p, cnt, x, y);
-      console.log("pos");
-      console.log({top: item.pageY, left: item.pageX});
-      console.log("new_pos");
-      console.log(new_pos);
-
-      $("#tooltip").html(item.series.label + " of " + x + " = " + y)
-        // .css({top: item.pageY/1.5, left: item.pageX/1.5})      
-        .css({top: new_pos.y, left: new_pos.x})
-        .fadeIn(200);
 
 
       $("#tooltip").html(item.series.label + " of " + label_x + " = " + y)
-      // $("#tooltip").offset({left:0,top:0})
+      $("#tooltip").offset({left:0,top:0})
         .fadeIn(200);
     } else {
       $("#tooltip").hide();
