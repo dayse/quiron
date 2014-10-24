@@ -1,3 +1,8 @@
+/**
+Exemplo de uso do casper JS para tirar print da tela de paramentro.
+**/
+
+
 var x = require('casper').selectXPath;
 var casper = require('casper').create({   
     verbose: true, 
@@ -72,7 +77,7 @@ casper.then(function(){
 });
 
 
-// FOI FEITO O LOGIN, FAZER REGRA A PARTIR DAQUI ///
+// FOI FEITO O LOGIN, FAZER REGRA DE NAVEGAÇÂO ESPECIFICA A PARTIR DAQUI //
 casper.thenOpen('http://localhost:8080/quiron/parametro/list.faces', function() {
     this.wait(1000);
     this.capture('casper_js/quiron3.jpg', 
