@@ -101,11 +101,14 @@ public class Anamnese implements Serializable, Comparable<Anamnese> {
 		this.atendimento = atendimento;
 	}
 
-
 	@Override
 	public int compareTo(Anamnese arg0) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public String toString() {
+		return "Anamnese [parametro=" + parametro + ", valor=" + valor + "]";
+	}	
 
 }

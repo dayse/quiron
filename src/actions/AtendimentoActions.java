@@ -329,6 +329,16 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaDePacientes = null;
 		return PAGINA_LIST;
 	}
+	
+	public void imprimir(){
+		List<Atendimento> atendimentos = atendimentoService
+				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(atendimentoCorrente.getPaciente().getCodPaciente());
+		try {
+			atendimentoService.gerarRelatorio(atendimentos);
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 

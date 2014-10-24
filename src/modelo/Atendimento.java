@@ -127,7 +127,13 @@ import javax.persistence.TemporalType;
 								"inner join a.paciente pa " +
 								"where pa.codPaciente = ? "
 			),
-			
+			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente",
+			query = "select a from Atendimento a " +
+					"inner join fetch a.anamneses an " +
+					"left outer join fetch a.paciente pa " +
+					"where pa.codPaciente = ? " +
+					"order by a.dataAtendimento desc"
+			),			
 		}
 )
 

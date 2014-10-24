@@ -3,6 +3,7 @@ package DAO;
 import java.util.List;
 
 import modelo.Atendimento;
+import DAO.anotacao.RecuperaLista;
 import DAO.anotacao.RecuperaListaPaginada;
 import DAO.anotacao.RecuperaObjeto;
 import DAO.exception.ObjetoNaoEncontradoException;
@@ -155,7 +156,10 @@ public interface AtendimentoDAO extends DaoGenerico<Atendimento, Long> {
 	@RecuperaListaPaginada(tamanhoPagina = 10)
 	public List<Atendimento> recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
 			String codPaciente);
-	
+
+	@RecuperaLista
+	public List<Atendimento> recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
+			String codPaciente);
 	
 	/**
 	 * 
