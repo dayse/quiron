@@ -14,6 +14,7 @@
  </head>
     <body>
     <h1>Flot Examples</h1>
+    <p id="choices">Show:</p>
 
     <div id="placeholder" style="width:800px;height:600px;border: 1px dashed gainsboro;"></div>
 
@@ -21,37 +22,44 @@
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
 
-var d1 = [ [0,10], [1,20], [2,80], [3,70], [4,60] ];
-var d2 = [ [0,30], [1,25], [2,50], [3,60], [4,95] ];
-var d3 = [ [0,50], [1,40], [2,60], [3,95], [4,30] ];
+var plot;
 
-    var sin = [],
-      cos = [];
-      cos2 = [];
+var datasets = {
+    "amox500": {
+        label: "Amoxilina 500",
+        data: [ [0,10], [1,20], [2,80], [3,70], [4,60], [5, 40], [6, 90], [7, 10], [8, 60] ],
+        spider: {show: true, fill: true}
+    },     
+    "bactrim": {
+        label: "Bactrim",
+        data: [ [0,30], [1,20], [2,80], [3,70], [4,60], [5, 60], [6, 40], [7, 10], [8, 60] ],
+        spider: {show: true, fill: true}
+    },        
+    "amox1": {
+        label: "Amoxilina 1",
+        data: [ [0,20], [1,50], [2,80], [3,50], [4,70], [5, 40], [6, 90], [7, 20], [8, 90] ],
+        spider: {show: true}
+    },        
+};
 
-    for (var i = 0; i < 8; i += 1) {
-      sin.push([i, Math.sqrt(i)]);
-      cos.push([i, Math.sqrt(i+1)]);
-      // cos2.push([i, Math.cos(i)+1]);
-      cos2.push([i, Math.sqrt(i+(2*i))]);
-    }
+// var d1 = [ [0,10], [1,20], [2,80], [3,70], [4,60], [5, 40], [6, 90], [7, 10], [8, 60] ];
+// var d2= [ [0,30], [1,20], [2,80], [3,70], [4,60], [5, 60], [6, 40], [7, 10], [8, 60] ];
+// var d3 = [ [0,20], [1,50], [2,80], [3,50], [4,70], [5, 40], [6, 90], [7, 20], [8, 90] ];
 
-var d1 = sin;
-var d2 = cos;
-var d3 = cos2;
-console.log(d1);
-console.log(d2);
-console.log(d3);
+console.log(datasets);
+// console.log(d1);
+// console.log(d2);
+// console.log(d3);
 
 
-var data = [
-    { label: "Pies", color:"green",data: d1,
-         spider: {show: true, fill: true} },
-    { label: "Apples",color:"orange",data: d2,
-     spider: {show: true, fill: true} },
-    { label: "Cherries",color:"red",data: d3,
-     spider: {show: true}}   
-];
+// var data = [
+//     { label: "Pies", color:"green",data: d1,
+//          spider: {show: true, fill: true} },
+//     { label: "Apples",color:"orange",data: d2,
+//      spider: {show: true, fill: true} },
+//     { label: "Cherries",color:"red",data: d3,
+//      spider: {show: true}}   
+// ];
 
 
 var options = {
@@ -85,7 +93,47 @@ var options = {
         tickColor: "rgba(0,0,0,0.2)",mode: "radar"
     }
 };
-var p = $.plot($("#placeholder"),data,options);
+
+console.log(datasets);
+// hard-code color indices to prevent them from shifting as
+var i = 0;
+$.each(datasets, function(key, val) {
+    val.color = i;
+    ++i;
+});
+console.log(datasets);
+
+// insert checkboxes 
+var choiceContainer = $("#choices");
+$.each(datasets, function(key, val) {
+
+    choiceContainer.append('<br/><input type="checkbox" name="' + key +
+                           '" checked="checked" id="id' + key + '">' +
+                           '<label for="id' + key + '">'
+                            + val.label + '</label>');
+});
+
+console.log(datasets);
+choiceContainer.find("input").click(plotAccordingToChoices);
+
+console.log(datasets);
+
+function plotAccordingToChoices() {
+    var data = [];
+
+    choiceContainer.find("input:checked").each(function () {
+        var key = $(this).attr("name");
+        if (key && datasets[key])
+            data.push(datasets[key]);
+    });
+    console.log(data);
+    if (data.length > 0)
+      plot = $.plot($("#placeholder"), data, options);
+}
+
+plotAccordingToChoices();
+
+
 
 $("<div id='tooltip'></div>").css({
   position: "absolute",
@@ -96,45 +144,22 @@ $("<div id='tooltip'></div>").css({
   opacity: 0.80
 }).appendTo("body");
 
-function calculateXY(plot, cnt,j,d){
-    var x,y,s;
-    var ctx = p.getCanvas().getContext("2d");
-    var maxRadius =  Math.min(ctx.canvas.width,ctx.canvas.height)/2 * p.getData()[0].spider.spiderSize;
-    var centerTop = (ctx.canvas.height/2);
-    var centerLeft = centerTop;
-
-    s = 2 * Math.PI * plot.getOptions().series.spider.legs.legStartAngle / 360;
-    x = centerLeft + Math.round(Math.cos(2 * Math.PI / cnt * j + s) * maxRadius * d / 100);
-    y = centerTop + Math.round(Math.sin(2 * Math.PI / cnt * j + s) * maxRadius * d / 100);
-    return {x: x, y: y};
-}
 
 $("#placeholder").bind("plothover", function (event, pos, item) {
     if (item) {
       var x = item.datapoint[0].toFixed(2),
         y = item.datapoint[1].toFixed(2);
-      var label_x = p.getOptions().series.spider.legs.data[parseInt(x)].label;
+      var label_x = plot.getOptions().series.spider.legs.data[parseInt(x)].label;
 
 
       $("#tooltip").html(item.series.label + " of " + label_x + " = " + y)
-      $("#tooltip").offset({left:0,top:0})
+      // $("#tooltip").offset({left:0,top:0})
         .fadeIn(200);
     } else {
       $("#tooltip").hide();
     }
 });
 
-
-    // $.plot($("#placeholder"), [
-    //     {
-    //         data: d2,
-    //         spider: {show: true, lineWidth: 5}
-    //     },
-    //     {
-    //         data: d3,
-    //         spider: {show: true, lineWidth: 5}
-    //     }
-    // ]);
 
 });
 </script>
