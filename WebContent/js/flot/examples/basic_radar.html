@@ -25,19 +25,19 @@ $(function () {
 var plot;
 
 var datasets = {
-    "amox500": {
-        label: "Amoxilina 500",
-        data: [ [0,10], [1,20], [2,80], [3,70], [4,60], [5, 40], [6, 90], [7, 10], [8, 60] ],
+    "necpac": {
+        label: "Necessidade do Paciente",
+        data: [ [0,10], [1,20], [2,80], [3,70], [4,60], [5, 40], [6, 90], [7, 10]],
         spider: {show: true, fill: true}
     },     
     "bactrim": {
         label: "Bactrim",
-        data: [ [0,30], [1,20], [2,80], [3,70], [4,60], [5, 60], [6, 40], [7, 10], [8, 60] ],
-        spider: {show: true, fill: true}
+        data: [ [0,30], [1,20], [2,80], [3,70], [4,60], [5, 60], [6, 40], [7, 10] ],
+        spider: {show: true}
     },        
     "amox1": {
         label: "Amoxilina 1",
-        data: [ [0,20], [1,50], [2,80], [3,50], [4,70], [5, 40], [6, 90], [7, 20], [8, 90] ],
+        data: [ [0,20], [1,50], [2,80], [3,50], [4,70], [5, 40], [6, 90], [7, 20] ],
         spider: {show: true}
     },        
 };
@@ -82,9 +82,13 @@ var options = {
             {label: "P007"},
             {label: "P008"}
             ],
-          legScaleMax: 1,legScaleMin:0.8
+          // legScaleMax: 1,legScaleMin:0.8
       },
-      spiderSize: 0.5        
+      scaleMode: "static" ,
+      legMin: 0,
+      legMax: 100,
+      spiderSize: 0.5   
+
     }
   },
     grid:{ 
@@ -94,32 +98,31 @@ var options = {
     }
 };
 
-console.log(datasets);
 // hard-code color indices to prevent them from shifting as
 var i = 0;
 $.each(datasets, function(key, val) {
     val.color = i;
     ++i;
 });
-console.log(datasets);
-
 // insert checkboxes 
 var choiceContainer = $("#choices");
 $.each(datasets, function(key, val) {
-
+  //adciona todas menos a da necessidade do paciente
+  if(key != "necpac"){
     choiceContainer.append('<br/><input type="checkbox" name="' + key +
-                           '" checked="checked" id="id' + key + '">' +
+                           '" id="id' + key + '">' +
                            '<label for="id' + key + '">'
                             + val.label + '</label>');
+  }
 });
 
-console.log(datasets);
 choiceContainer.find("input").click(plotAccordingToChoices);
 
-console.log(datasets);
 
 function plotAccordingToChoices() {
     var data = [];
+    //add necessidade do paciente sempre
+    data.push(datasets['necpac']);
 
     choiceContainer.find("input:checked").each(function () {
         var key = $(this).attr("name");
