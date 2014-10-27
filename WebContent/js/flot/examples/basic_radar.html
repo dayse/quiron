@@ -14,10 +14,17 @@
  </head>
     <body>
     <h1>Flot Examples</h1>
-    <p id="choices">Show:</p>
 
-    <div id="placeholder" style="width:800px;height:600px;border: 1px dashed gainsboro;"></div>
+    <div id="conjunto_infos_grafico">
+      <p id="choices">Show:</p>
 
+      <div id='tooltip' style="float:left; border: 1px solid #fdd;  padding: 2px;  background-color: #fee;  opacity: 0.80;">
+        <p>Detalhes:</p>
+        <span id="plot_hover_y"></span>: <span id="plot_hover_x"></span>
+      </div>
+      <div id="placeholder" style="width:700px;height:500px;border: 1px dashed gainsboro;"></div>
+
+    </div>
 
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
@@ -138,28 +145,32 @@ plotAccordingToChoices();
 
 
 
-$("<div id='tooltip'></div>").css({
-  position: "absolute",
-  display: "none",
-  border: "1px solid #fdd",
-  padding: "2px",
-  "background-color": "#fee",
-  opacity: 0.80
-}).appendTo("body");
+// $("<div id='tooltip'></div>").css({
+//   position: "absolute",
+//   border: "1px solid #fdd",
+//   padding: "2px",
+//   "background-color": "#fee",
+//   opacity: 0.80
+// }).appendTo("body");
 
 
 $("#placeholder").bind("plothover", function (event, pos, item) {
+
+    // $("#plot_hover_x").text(pos.x.toFixed(2));
+    // $("#plot_hover_x").text(pos.y.toFixed(2));
     if (item) {
       var x = item.datapoint[0].toFixed(2),
         y = item.datapoint[1].toFixed(2);
       var label_x = plot.getOptions().series.spider.legs.data[parseInt(x)].label;
 
 
-      $("#tooltip").html(item.series.label + " of " + label_x + " = " + y)
+      $("#plot_hover_x").text(y);
+      $("#plot_hover_y").text(label_x);
+      // $("#tooltip").html(item.series.label + " of " + label_x + " = " + y)
       // $("#tooltip").offset({left:0,top:0})
-        .fadeIn(200);
-    } else {
-      $("#tooltip").hide();
+        // .fadeIn(200);
+    // } else {
+    //   $("#tooltip").hide();
     }
 });
 
