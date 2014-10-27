@@ -1,4 +1,4 @@
-package util.jayflot.spider;
+package util.jayflot.spider.opt;
 import br.blog.arruda.plot.opt.PlotGrid;
 
 /**
