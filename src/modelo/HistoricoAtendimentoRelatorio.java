@@ -40,10 +40,14 @@ public class HistoricoAtendimentoRelatorio implements
 	private String diagnostico;
 
 	private String observacoes;
+	
+	private String nomeParametro;
+	
+	private Double valorParametro;
 
 	private List<Anamnese> anamneses;
-
-	public HistoricoAtendimentoRelatorio(Atendimento atendimento) {
+	
+	public HistoricoAtendimentoRelatorio(Atendimento atendimento, Anamnese anamnese) {
 		this.codPaciente = atendimento.getPaciente().getCodPaciente();
 		this.nome = atendimento.getPaciente().getNome();
 		this.endereco = atendimento.getPaciente().getEndereco();
@@ -65,12 +69,20 @@ public class HistoricoAtendimentoRelatorio implements
 		this.codAtendimento = atendimento.getCodAtendimento();
 		this.dataAtendimento = atendimento.getDataAtendimento().getTime();
 		this.medico = atendimento.getMedico().getNome();
-		this.tecnico = atendimento.getTecnico().getNome();
+		if(atendimento.getTecnico() == null){
+			this.tecnico = "Sem Técnico";
+		} else {
+			this.tecnico = atendimento.getTecnico().getNome();
+		}
 		this.status = atendimento.getStatus();
 		this.prescricao = atendimento.getPrescricao();
 		this.diagnostico = atendimento.getDiagnostico();
+		System.out.println("Diagnostico: " + this.diagnostico);
 		this.observacoes = atendimento.getObservacoes();
-		this.anamneses = atendimento.getAnamneses();
+		this.setNomeParametro(anamnese.getParametro().getNome());
+			System.out.println("Nome do parametro: " + this.nomeParametro);
+		this.setValorParametro(anamnese.getValor());
+	//	this.anamneses = atendimento.getAnamneses();
 	/*	this.anamneses = new ArrayList<String>();
 		for(Anamnese anamnese : atendimento.getAnamneses()){
 			this.anamneses.add("teste");			
@@ -361,6 +373,22 @@ public class HistoricoAtendimentoRelatorio implements
 		} else if (!tecnico.equals(other.tecnico))
 			return false;
 		return true;
+	}
+
+	public String getNomeParametro() {
+		return nomeParametro;
+	}
+
+	public void setNomeParametro(String nomeParametro) {
+		this.nomeParametro = nomeParametro;
+	}
+
+	public Double getValorParametro() {
+		return valorParametro;
+	}
+
+	public void setValorParametro(Double valorParametro) {
+		this.valorParametro = valorParametro;
 	}
 
 }

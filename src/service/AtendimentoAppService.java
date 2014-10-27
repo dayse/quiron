@@ -12,6 +12,7 @@ import relatorio.Relatorio;
 import relatorio.RelatorioFactory;
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
+import modelo.Anamnese;
 import modelo.Atendimento;
 import modelo.HistoricoAtendimentoRelatorio;
 import modelo.Paciente;
@@ -48,8 +49,12 @@ public class AtendimentoAppService {
 		List<HistoricoAtendimentoRelatorio> historicoAtendimentos = new LinkedList<HistoricoAtendimentoRelatorio>();
 		Collections.sort(listaAtendimentos);
 		for(Atendimento atendimento : listaAtendimentos){
-			HistoricoAtendimentoRelatorio historico =  new HistoricoAtendimentoRelatorio(atendimento);
-			historicoAtendimentos.add(historico);
+			List<Anamnese> anamneses = atendimento.getAnamneses();
+			System.out.println("Atendimento: " + atendimento.getCodAtendimento());
+			for(Anamnese anamnese : anamneses){
+				HistoricoAtendimentoRelatorio historico =  new HistoricoAtendimentoRelatorio(atendimento, anamnese);
+				historicoAtendimentos.add(historico);
+			}
 		}
 		return historicoAtendimentos;
 	}
