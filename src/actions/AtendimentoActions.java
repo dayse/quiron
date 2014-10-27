@@ -206,7 +206,11 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String calculaAvaliacao() {
-		
+		try {
+			atendimentoCorrente = atendimentoService.recuperaAtendimentoPorCodigoComPaciente(atendimentoCorrente.getCodAtendimento());
+		} catch (AplicacaoException e1) {
+			e1.printStackTrace();
+		}
 		//Verifica qual o algoritmo utilizado:
 		//se for o primeiro (grau de semelhança) então chama o metodo do action que vai fazer o resto
 		//no que diz respeito a tela desse algoritmo
