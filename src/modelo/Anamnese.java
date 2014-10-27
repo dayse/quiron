@@ -34,6 +34,15 @@ import javax.persistence.Table;
 		}
 )
 
+/**
+ * 
+ * A entidade Anamnese na verdade está representando
+ * os diversos itens de uma anamnese. Onde cada item
+ * representa o valor do parâmetro para um dado atendimento.
+ * 
+ * @author bruno.oliveira
+ *
+ */
 @Entity
 @Table(name = "ANAMNESE")
 @SequenceGenerator(name = "SEQUENCIA", sequenceName = "SEQ_ANAMNESE", allocationSize = 1)
@@ -54,14 +63,28 @@ public class Anamnese implements Serializable, Comparable<Anamnese> {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Identificador do registro.
+	 */
 	private Long id;
 
+	/**
+	 * Atendimento ao qual este item de anamnese pertence.
+	 */
 	private Atendimento atendimento;
+	
+	/**
+	 * Parâmetro que foi avaliado neste registro.
+	 */
 	private Parametro parametro;
 
+	/**
+	 * Valor dado para este item da anamnese.
+	 */
 	private double valor;
 
 
+	/* Getters and Setters */
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA")
 	@Column(name = "ID")
