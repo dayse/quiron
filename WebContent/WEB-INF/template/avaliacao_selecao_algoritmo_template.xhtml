@@ -8,15 +8,9 @@
 	<ui:composition template="/WEB-INF/template/template_ajuda.xhtml">
 		<ui:define name="submenu">
 			<rich:toolBar>
-	            
 	            <rich:dropDownMenu>
 					<f:facet name="label">
-						<h:commandLink value="#{prompt.detalhar}" action="#{atendimentoActions.calculaAvaliacaoDetalhado}" styleClass="linkMenu"/>
-					</f:facet>
-	            </rich:dropDownMenu>
-	            <rich:dropDownMenu>
-					<f:facet name="label">
-						<h:commandLink value="#{prompt.voltar}" action="#{atendimentoActions.voltarSelcaoAlgoritimos}" styleClass="linkMenu"/>
+						<h:commandLink value="#{prompt.voltar}" action="#{atendimentoActions.voltar}" styleClass="linkMenu"/>
 					</f:facet>
 	            </rich:dropDownMenu>
 				

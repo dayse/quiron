@@ -594,6 +594,17 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}
 		return PAGINA_LIST;
 	}
+
+	/**
+	 *  Action usada na hora de sair da tela de avaliação, voltando
+	 *  para a tela de seleção dos algoritmos de avaliação.
+	 * @return
+	 */
+	public String voltarSelcaoAlgoritimos(){
+		anamnesesCorrente = null;
+		listaDeAnamneses = null;
+		return PAGINA_ALGORITMOS_AVALIACAO;
+	}
 	
 	/*      ************* Get & Set ************ */
 
