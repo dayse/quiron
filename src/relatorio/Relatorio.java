@@ -19,6 +19,7 @@ public interface Relatorio {
 		public final static int RELATORIO_LISTAGEM_DE_INDICACAO = 3;
 		public final static int RELATORIO_LISTAGEM_DE_PARAMETROS = 4;
 		public final static int RELATORIO_HISTORICO_ATENDIMENTOS_PACIENTE = 5;
+		public final static int RELATORIO_ATENDIMENTO_ESPECIFICO_PACIENTE = 6;
 	    public final static int RELATORIO_LISTAGEM_DE_USUARIOS = 11;
 	    //Define os nomes dos arquivos  relativos as Imagens do Relatorio,
 	    // concatenando com os caminhos definidos em constantes.java
@@ -33,6 +34,7 @@ public interface Relatorio {
 	    public static final String JASPER_RELATORIO_LISTAGEM_DE_PACIENTES = Constantes.CAMINHO_JASPERS + "relatorioListagemPacientes.jasper";
 	    public static final String JASPER_RELATORIO_LISTAGEM_DE_PARAMETROS = Constantes.CAMINHO_JASPERS + "relatorioListagemParametro.jasper";
 	    public static final String JASPER_RELATORIO_HISTORICO_ATENDIMENTOS_PACIENTE = Constantes.CAMINHO_JASPERS + "relatorioHistoricoAtendimentoPaciente.jasper";
+	    public static final String JASPER_RELATORIO_ATENDIMENTO_ESPECIFICO_PACIENTE = Constantes.CAMINHO_JASPERS + "relatorioAtendimentoEspecificoDoPaciente.jasper";
 	    public static final String JASPER_LISTAGEM_DE_USUARIOS = Constantes.CAMINHO_JASPERS + "relatorioListagemUsuarios.jasper";
 	   
 	    //Método que esta interface OBRIGA as subclasses a implementar, de acordo com seus requisitos.

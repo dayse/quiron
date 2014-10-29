@@ -50,7 +50,6 @@ public class AtendimentoAppService {
 		Collections.sort(listaAtendimentos);
 		for(Atendimento atendimento : listaAtendimentos){
 			List<Anamnese> anamneses = atendimento.getAnamneses();
-			System.out.println("Atendimento: " + atendimento.getCodAtendimento());
 			for(Anamnese anamnese : anamneses){
 				HistoricoAtendimentoRelatorio historico =  new HistoricoAtendimentoRelatorio(atendimento, anamnese);
 				historicoAtendimentos.add(historico);
@@ -70,10 +69,36 @@ public class AtendimentoAppService {
 		atendimentoDAO.exclui(atendimentoBD);
 	}
 
-	public void gerarRelatorio(List<Atendimento> listaAtendimentos)
+	public void gerarRelatorio(Atendimento atendimento)
 			throws AplicacaoException {
 		System.out
 				.println("Antes do metodo getRelatorio dentro de gerarRelatorio de ParametroAppService");
+
+		Relatorio relatorio = RelatorioFactory
+				.getRelatorio(Relatorio.RELATORIO_ATENDIMENTO_ESPECIFICO_PACIENTE);
+
+		if (relatorio != null)
+
+			System.out
+					.println("A variavel do tipo Relatorio é diferente de null em AtendimentoAppService");
+
+		System.out
+				.println("Depois do metodo getRelatorio dentro de gerarRelatorio de AtendimentoAppService");
+
+		List<Atendimento> atendimentoRelatorio = new ArrayList<Atendimento>();
+		atendimentoRelatorio.add(atendimento);
+
+		try {
+			relatorio.gerarRelatorio(this.converterParaHistoricoAtendimentoRelatorio(atendimentoRelatorio), new HashMap());
+		} catch (RelatorioException re) {
+			throw new AplicacaoException("atendimento.Relatorio_NAO_GERADO");
+		}
+	}
+	
+	public void gerarRelatorioHistorico(List<Atendimento> listaAtendimentos)
+			throws AplicacaoException {
+	/*	System.out
+				.println("Antes do metodo getRelatorio dentro de gerarRelatorio de AtendimentoAppService");
 
 		Relatorio relatorio = RelatorioFactory
 				.getRelatorio(Relatorio.RELATORIO_HISTORICO_ATENDIMENTOS_PACIENTE);
@@ -81,17 +106,17 @@ public class AtendimentoAppService {
 		if (relatorio != null)
 
 			System.out
-					.println("A variavel do tipo Relatorio é diferente de null em ParametroAppService");
+					.println("A variavel do tipo Relatorio é diferente de null em AtendimentoAppService");
 
 		System.out
-				.println("Depois do metodo getRelatorio dentro de gerarRelatorio de ParametroAppService");
+				.println("Depois do metodo getRelatorio dentro de gerarRelatorio de AtendimentoAppService");
 
 		try {
 			relatorio.gerarRelatorio(this.converterParaHistoricoAtendimentoRelatorio(listaAtendimentos), new HashMap());
 		} catch (RelatorioException re) {
 			throw new AplicacaoException("atendimento.Relatorio_NAO_GERADO");
-		}
-	}
+		} */
+	}	
 
 	@Transacional
 	public void inclui(Atendimento atendimento) throws AplicacaoException {

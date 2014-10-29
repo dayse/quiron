@@ -334,14 +334,39 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		return PAGINA_LIST;
 	}
 	
+	/**
+	 * Imprime um atendimento em específico.
+	 * Este método é chamado pela opção imprimir
+	 * dentro da tela de Mostrar Atendimento,
+	 * garantindo que apenas aquele atendimento será impresso.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
 	public void imprimir(){
-		List<Atendimento> atendimentos = atendimentoService
-				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(atendimentoCorrente.getPaciente().getCodPaciente());
 		try {
-			atendimentoService.gerarRelatorio(atendimentos);
+			atendimentoService.gerarRelatorio(atendimentoCorrente);
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Imprime o histórico contendo todos
+	 * os atendimentos de um determinado
+	 * paciente.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	public void imprimirHistorico(){
+	/*	List<Atendimento> atendimentos = atendimentoService
+				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(atendimentoCorrente.getPaciente().getCodPaciente());
+		try {
+			atendimentoService.gerarRelatorioHistorico(atendimentos);
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		} */
 	}
 
 	/**

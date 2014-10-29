@@ -77,16 +77,9 @@ public class HistoricoAtendimentoRelatorio implements
 		this.status = atendimento.getStatus();
 		this.prescricao = atendimento.getPrescricao();
 		this.diagnostico = atendimento.getDiagnostico();
-		System.out.println("Diagnostico: " + this.diagnostico);
 		this.observacoes = atendimento.getObservacoes();
 		this.setNomeParametro(anamnese.getParametro().getNome());
-			System.out.println("Nome do parametro: " + this.nomeParametro);
 		this.setValorParametro(anamnese.getValor());
-	//	this.anamneses = atendimento.getAnamneses();
-	/*	this.anamneses = new ArrayList<String>();
-		for(Anamnese anamnese : atendimento.getAnamneses()){
-			this.anamneses.add("teste");			
-		}*/
 	}
 
 	// ************************************ GETTERS e SETTERS

@@ -128,12 +128,12 @@ import javax.persistence.TemporalType;
 								"where pa.codPaciente = ? "
 			),
 			@NamedQuery(name = "Atendimento.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente",
-			query = "select distinct a from Atendimento a " +
-					"inner join fetch a.anamneses an " +
-					"left outer join fetch a.paciente pa " +
-					"where pa.codPaciente = ? " +
-					"order by a.dataAtendimento desc"
-			),			
+						query = "select distinct a from Atendimento a " +
+								"inner join fetch a.anamneses an " +
+								"left outer join fetch a.paciente pa " +
+								"where pa.codPaciente = ? " +
+								"order by a.dataAtendimento desc"
+			),
 		}
 )
 
@@ -292,7 +292,7 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 		this.tecnico = tecnico;
 	}
 
-	@OneToMany(mappedBy = "atendimento", cascade=CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "atendimento", cascade=CascadeType.REMOVE)
 	public List<Anamnese> getAnamneses() {
 		return anamneses;
 	}
