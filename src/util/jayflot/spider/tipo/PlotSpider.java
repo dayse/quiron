@@ -38,6 +38,11 @@ public class PlotSpider extends PlotType{
 	private Double spiderSize;
 	
 
+	public PlotSpider(Boolean show, Boolean fill){
+		this.show = show;
+		this.fill = fill;
+	}
+	
 	public PlotSpider() {
 		super();
 		this.pointSize = null;
@@ -123,39 +128,6 @@ public class PlotSpider extends PlotType{
 		this.spiderSize = spiderSize;
 	}
 
-	//Classes utilizadas para montar as opções mais complexas de SpiderPlot //
-	public class SpiderConnection{
-		private Double width;
-	};
-	
-	public class SpiderHighlight{
-		/** ex: mode: "area" **/
-		private String mode;
-	};
-
-	public class SpiderLeg{
-		private ArrayList<SpiderLegData> data;
-		
-		/**
-		 * Cria um conjunto de dados das 'pernas' do grafico,
-		 * dado os nomes das labels de cada uma 
-		 * @param labels
-		 */
-		public void setData(ArrayList<String> labels){
-			for (String label : labels) {
-				this.data.add(new SpiderLegData(label));
-			}
-		}
-	};
-
-	public class SpiderLegData {
-		/** ex: label: "Efeitos Colaterais" **/
-		private String label;
-		public SpiderLegData(String label){
-			this.label = label;
-		}
-	};
-	
 
 	
 }
