@@ -97,7 +97,7 @@ public class AtendimentoAppService {
 	
 	public void gerarRelatorioHistorico(List<Atendimento> listaAtendimentos)
 			throws AplicacaoException {
-	/*	System.out
+		System.out
 				.println("Antes do metodo getRelatorio dentro de gerarRelatorio de AtendimentoAppService");
 
 		Relatorio relatorio = RelatorioFactory
@@ -115,7 +115,7 @@ public class AtendimentoAppService {
 			relatorio.gerarRelatorio(this.converterParaHistoricoAtendimentoRelatorio(listaAtendimentos), new HashMap());
 		} catch (RelatorioException re) {
 			throw new AplicacaoException("atendimento.Relatorio_NAO_GERADO");
-		} */
+		} 
 	}	
 
 	@Transacional

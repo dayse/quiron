@@ -360,13 +360,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public void imprimirHistorico(){
-	/*	List<Atendimento> atendimentos = atendimentoService
+		List<Atendimento> atendimentos = atendimentoService
 				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(atendimentoCorrente.getPaciente().getCodPaciente());
 		try {
 			atendimentoService.gerarRelatorioHistorico(atendimentos);
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
-		} */
+		} 
 	}
 
 	/**
