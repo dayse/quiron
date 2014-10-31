@@ -12,8 +12,11 @@ import relatorio.Relatorio;
 import relatorio.RelatorioFactory;
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
+import util.jayflot.spider.SpiderMainPlot;
+import util.jayflot.spider.data.SpiderPlotData;
 import modelo.Anamnese;
 import modelo.Atendimento;
+import modelo.ConjuntoAvaliacao;
 import modelo.HistoricoAtendimentoRelatorio;
 import modelo.Paciente;
 import DAO.AtendimentoDAO;
@@ -43,6 +46,27 @@ public class AtendimentoAppService {
 	@Transacional
 	public void altera(Atendimento atendimento) throws AplicacaoException {
 		atendimentoDAO.altera(atendimento);
+	}
+	
+	/**
+	 * Método que vai gerar o grafico (SpiderMainPlot) para o algoritmo
+	 * de Grau de Semelhança de uma determinada Avaliação de Indicação de um Atendimento.
+	 */
+	public SpiderMainPlot geraGraficoGrauDeSemelhancaParaAvaliacaoDeIndicacaoDeAtendimento
+							(List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
+		
+		//Necessidade do Paciente
+		SpiderPlotData necessidadeDoPacienteData = new SpiderPlotData();
+		ArrayList<Double> valoresAnamnese = new ArrayList<Double>();
+		for(Anamnese anamnese : atendimento.getAnamneses()){
+			Double valor = anamnese.getValor();
+		}
+		
+		for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntosDeAvaliacoes) {
+			
+		}
+		SpiderMainPlot spiderPlot = new SpiderMainPlot();
+		return spiderPlot;
 	}
 	
 	public List<HistoricoAtendimentoRelatorio> converterParaHistoricoAtendimentoRelatorio(List<Atendimento> listaAtendimentos){
