@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import br.blog.arruda.plot.opt.PlotOptions;
 import exception.RelatorioException;
 import relatorio.Relatorio;
 import relatorio.RelatorioFactory;
@@ -14,7 +15,12 @@ import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
 import util.jayflot.spider.SpiderMainPlot;
 import util.jayflot.spider.data.SpiderPlotData;
+import util.jayflot.spider.opt.SpiderPlotGrid;
+import util.jayflot.spider.opt.SpiderPlotSeries;
 import util.jayflot.spider.tipo.PlotSpider;
+import util.jayflot.spider.tipo.SpiderConnection;
+import util.jayflot.spider.tipo.SpiderHighlight;
+import util.jayflot.spider.tipo.SpiderLeg;
 import modelo.Anamnese;
 import modelo.Atendimento;
 import modelo.Avaliacao;
@@ -94,7 +100,40 @@ public class AtendimentoAppService {
 		return valoresData;
 	}
 	
+
+	/**
+	 * Gera a classe de Spider Series para o grafico de grau de semelhança.
+	 * @return
+	 */
+	public PlotSpider gerarSpiderSeriesGraficoGrauSemelhanca(ArrayList<String> legsLabels){
+
+		PlotSpider spiderSeries = new PlotSpider();
+		spiderSeries.setPointSize(5.0);
+		spiderSeries.setConnection(new SpiderConnection(5.0));
+		spiderSeries.setActive(true);
+		spiderSeries.setHighlight(new SpiderHighlight("area"));
+		spiderSeries.setScaleMode("static");
+		spiderSeries.setLegs(new SpiderLeg(legsLabels));
+		spiderSeries.setLegMin(0.0);
+		spiderSeries.setLegMax(100.0);
+		spiderSeries.setSpiderSize(0.5);
+		
+		return spiderSeries;
+		
+	}
 	
+	/**
+	 * Gera as labels para as Legs (os nomes dos parametros) do grafico de Radar do Grau de semelhança
+	 * @param atendimento
+	 * @return
+	 */
+	public ArrayList<String> gerarLegsLabelsGraficoGrauSemelhanca(Atendimento atendimento){
+		ArrayList<String> legsLabels = new ArrayList<String>();
+		for (Anamnese anamnese : atendimento.getAnamneses()) {
+			legsLabels.add(anamnese.getParametro().getNome());
+		}
+		return legsLabels;
+	}
 	/**
 	 * Método que vai gerar o grafico (SpiderMainPlot) para o algoritmo
 	 * de Grau de Semelhança de uma determinada Avaliação de Indicação de um Atendimento.
@@ -128,6 +167,29 @@ public class AtendimentoAppService {
 			mediaIndicacaoData.setSpider(new PlotSpider(true, null));	
 			plotDatas.add(mediaIndicacaoData);		
 		}
+		
+
+		// SERIES
+		
+		SpiderPlotSeries plotSeries = new SpiderPlotSeries();
+		ArrayList<String> legsLabels = gerarLegsLabelsGraficoGrauSemelhanca(atendimento);
+		plotSeries.setSpider(gerarSpiderSeriesGraficoGrauSemelhanca(legsLabels));
+		
+		// GRID
+		
+		SpiderPlotGrid plotGrid = new SpiderPlotGrid();
+		plotGrid.setHoverable(true);
+		plotGrid.setClickable(true);
+		plotGrid.setMode("radar");
+		
+		// OPTIONS
+		PlotOptions plotOptions = new PlotOptions();
+		plotOptions.setSeries(plotSeries);
+		plotOptions.setGrid(plotGrid);
+		plotOptions.setX2axis(null);
+		plotOptions.setXaxis(null);
+		plotOptions.setY2axis(null);
+		plotOptions.setYaxis(null);
 		
 		SpiderMainPlot spiderPlot = new SpiderMainPlot();
 		return spiderPlot;
