@@ -14,8 +14,10 @@ import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
 import util.jayflot.spider.SpiderMainPlot;
 import util.jayflot.spider.data.SpiderPlotData;
+import util.jayflot.spider.tipo.PlotSpider;
 import modelo.Anamnese;
 import modelo.Atendimento;
+import modelo.Avaliacao;
 import modelo.ConjuntoAvaliacao;
 import modelo.HistoricoAtendimentoRelatorio;
 import modelo.Paciente;
@@ -49,22 +51,84 @@ public class AtendimentoAppService {
 	}
 	
 	/**
+	 * Gera Valores de PlotData para o grafico de Grau de 
+	 * Semelhança, no caso esse metodo é para gerar a Necessidade do Paciente.
+	 * @param atendimento
+	 * @return
+	 */
+	public ArrayList<Double[]> gerarValoresDeDataDeNecessidadeDoPacienteParaGraficoGrauDeSemelhanca(Atendimento atendimento){
+
+		int num_parametros = atendimento.getAnamneses().size();
+		
+		ArrayList<Double[]> valoresData = new ArrayList<Double[]>();
+		for (int i = 0; i < num_parametros; i++) {
+			Anamnese anamnese = atendimento.getAnamneses().get(i);
+			ArrayList<Double> valor_temp = new ArrayList<Double>();
+			valor_temp.add((double)(i));
+			valor_temp.add(anamnese.getValor());
+			valoresData.add((Double[])valor_temp.toArray());
+		}
+		return valoresData;
+	}
+
+	/**
+	 * Gera Valores de PlotData para o grafico de Grau de 
+	 * Semelhança, no caso esse metodo é para alguma media de avaliação de indicação que será
+	 * comparada com a necessidade do paciente.
+	 * @param atendimento
+	 * @return
+	 */
+	public ArrayList<Double[]> gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGraficoGrauDeSemelhanca(ConjuntoAvaliacao conjuntoAvaliacao){
+
+		int num_parametros = conjuntoAvaliacao.getAvaliacoes().size();
+		
+		ArrayList<Double[]> valoresData = new ArrayList<Double[]>();
+		for (int i = 0; i < num_parametros; i++) {
+			
+			Avaliacao avaliacao = conjuntoAvaliacao.getAvaliacoes().get(i);
+			ArrayList<Double> valor_temp = new ArrayList<Double>();
+			valor_temp.add((double)(i));
+			valor_temp.add(avaliacao.getMediaEspecialistas());
+			valoresData.add((Double[])valor_temp.toArray());
+		}
+		return valoresData;
+	}
+	
+	
+	/**
 	 * Método que vai gerar o grafico (SpiderMainPlot) para o algoritmo
 	 * de Grau de Semelhança de uma determinada Avaliação de Indicação de um Atendimento.
 	 */
 	public SpiderMainPlot geraGraficoGrauDeSemelhancaParaAvaliacaoDeIndicacaoDeAtendimento
 							(List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
 		
+		int num_parametros = atendimento.getAnamneses().size();
+		
+		
+		// PLOT DATA //
+		//inicializa o conjunto de datas
+		ArrayList<SpiderPlotData> plotDatas = new ArrayList<SpiderPlotData>();
+		
 		//Necessidade do Paciente
 		SpiderPlotData necessidadeDoPacienteData = new SpiderPlotData();
-		ArrayList<Double> valoresAnamnese = new ArrayList<Double>();
-		for(Anamnese anamnese : atendimento.getAnamneses()){
-			Double valor = anamnese.getValor();
-		}
+		
+		necessidadeDoPacienteData.setData(
+						gerarValoresDeDataDeNecessidadeDoPacienteParaGraficoGrauDeSemelhanca(atendimento)
+						);
+		necessidadeDoPacienteData.setLabel("Necessidade do Paciente");
+		necessidadeDoPacienteData.setSpider(new PlotSpider(true, true));
+		plotDatas.add(necessidadeDoPacienteData);
 		
 		for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntosDeAvaliacoes) {
-			
+			SpiderPlotData mediaIndicacaoData = new SpiderPlotData();
+			mediaIndicacaoData.setData(
+							gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGraficoGrauDeSemelhanca(conjuntoAvaliacao)
+							);
+			mediaIndicacaoData.setLabel(conjuntoAvaliacao.getIndicacao().toString());
+			mediaIndicacaoData.setSpider(new PlotSpider(true, null));	
+			plotDatas.add(mediaIndicacaoData);		
 		}
+		
 		SpiderMainPlot spiderPlot = new SpiderMainPlot();
 		return spiderPlot;
 	}
