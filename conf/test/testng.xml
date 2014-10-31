@@ -11,6 +11,7 @@
         	<class name="carga.TesteCargaAvalIndicacaoEspec"/>
         	<class name="AvalIndicacaoEspec.TesteAvalIndicacaoEspec"/>
         	<class name="Atendimento.TesteAtendimento"/>
+        	<class name="spiderPlot.TesteSpiderPlot"/>
         	<!--  
         	-->
         </classes>
