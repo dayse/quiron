@@ -74,7 +74,11 @@ public class CargaAtendimento extends CargaBase{
 		List<CargaBase> dependencias = new ArrayList<CargaBase>();
 		dependencias.add(new CargaUsuario());
 		dependencias.add(new CargaParametros());
+		dependencias.add(new CargaIndicacao());
+		dependencias.add(new CargaEspecialista());
+		dependencias.add(new CargaAvalIndicacaoEspec());
 		dependencias.add(new CargaPaciente());
+		
 		return dependencias;
 	}
 	
