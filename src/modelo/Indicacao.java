@@ -156,7 +156,7 @@ public class Indicacao implements Serializable, Comparable<Indicacao>{
 	}
 	
 	public String toString(){
-		return this.nome;
+		return this.nome + " " + this.apresentacao;
 	}
 
 	/**
