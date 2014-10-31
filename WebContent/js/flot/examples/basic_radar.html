@@ -22,7 +22,7 @@
         <p>Detalhes:</p>
         <span id="plot_hover_y"></span>: <span id="plot_hover_x"></span>
       </div>
-      <div id="placeholder" style="width:700px;height:500px;border: 1px dashed gainsboro;"></div>
+      <div id="placeholder" style="width:1000px;height:600px;border: 1px dashed gainsboro;"></div>
 
     </div>
 
@@ -31,23 +31,24 @@ $(function () {
 
 var plot;
 
-var datasets = {
-    "necpac": {
-        label: "Necessidade do Paciente",
-        data: [ [0,10], [1,20], [2,80], [3,70], [4,60], [5, 40], [6, 90], [7, 10]],
-        spider: {show: true, fill: true}
-    },     
-    "bactrim": {
-        label: "Bactrim",
-        data: [ [0,30], [1,20], [2,80], [3,70], [4,60], [5, 60], [6, 40], [7, 10] ],
-        spider: {show: true}
-    },        
-    "amox1": {
-        label: "Amoxilina 1",
-        data: [ [0,20], [1,50], [2,80], [3,50], [4,70], [5, 40], [6, 90], [7, 20] ],
-        spider: {show: true}
-    },        
-};
+var datasets = [{"spider":{"show":true,"fill":true},"label":"Necessidade do Paciente","data":[[0.0,0.7],[1.0,0.8],[2.0,0.7],[3.0,0.0],[4.0,0.0],[5.0,1.0],[6.0,1.0],[7.0,1.0]]},{"spider":{"show":true,"fill":false},"label":"Levofloxacina 500 mg","data":[[0.0,1.0],[1.0,0.7000000000000001],[2.0,1.0],[3.0,0.10000000000000002],[4.0,0.7999999999999999],[5.0,1.0],[6.0,0.6],[7.0,1.0]]},{"spider":{"show":true,"fill":false},"label":"Flucozanol 200 mg","data":[[0.0,0.9],[1.0,0.6],[2.0,0.9],[3.0,0.10000000000000002],[4.0,0.7000000000000001],[5.0,0.7999999999999999],[6.0,0.5],[7.0,1.0]]},{"spider":{"show":true,"fill":false},"label":"Bactrim 500 mg","data":[[0.0,0.7000000000000001],[1.0,0.9],[2.0,0.7000000000000001],[3.0,0.7999999999999999],[4.0,0.7000000000000001],[5.0,0.10000000000000002],[6.0,0.7999999999999999],[7.0,1.0]]},{"spider":{"show":true,"fill":false},"label":"Amoxilina 500 mg","data":[[0.0,0.7999999999999999],[1.0,1.0],[2.0,0.7999999999999999],[3.0,1.0],[4.0,0.7999999999999999],[5.0,0.20000000000000004],[6.0,0.9],[7.0,0.0]]},{"spider":{"show":true,"fill":false},"label":"Amoxilina 1000 mg","data":[[0.0,0.6],[1.0,0.4000000000000001],[2.0,0.6],[3.0,0.7000000000000001],[4.0,0.6],[5.0,0.10000000000000002],[6.0,0.7000000000000001],[7.0,0.0]]},];
+// {
+//     "necpac": {
+//         label: "Necessidade do Paciente",
+//         data: [ [0,10], [1,20], [2,80], [3,70], [4,60], [5, 40], [6, 90], [7, 10]],
+//         spider: {show: true, fill: true}
+//     },     
+//     "bactrim": {
+//         label: "Bactrim",
+//         data: [ [0,30], [1,20], [2,80], [3,70], [4,60], [5, 60], [6, 40], [7, 10] ],
+//         spider: {show: true}
+//     },        
+//     "amox1": {
+//         label: "Amoxilina 1",
+//         data: [ [0,20], [1,50], [2,80], [3,50], [4,70], [5, 40], [6, 90], [7, 20] ],
+//         spider: {show: true}
+//     },        
+// };
 
 // var d1 = [ [0,10], [1,20], [2,80], [3,70], [4,60], [5, 40], [6, 90], [7, 10], [8, 60] ];
 // var d2= [ [0,30], [1,20], [2,80], [3,70], [4,60], [5, 60], [6, 40], [7, 10], [8, 60] ];
@@ -69,42 +70,45 @@ console.log(datasets);
 // ];
 
 
-var options = { 
-  series:{ 
-    spider:{
-      pointSize: 5,
-      connection: {width:5},
-      active: true, 
-      highlight: {
-        mode: "area"
-      },
-      legs: { 
-          data: [
-            {label: "Efeitos Colaterais"},
-            {label: "Febre"},
-            {label: "Disuria"},
-            {label: "Diabetes"},
-            {label: "P005"},
-            {label: "P006"},
-            {label: "P007"},
-            {label: "P008"}
-            ],
-          // legScaleMax: 1,legScaleMin:0.8
-      },
-      scaleMode: "static" ,
-      legMin: 0,
-      legMax: 100,
-      spiderSize: 0.5   
+var options = {"series":{"spider":{"pointSize":5.0,"connection":{"width":5.0},"active":true,"highlight":{"mode":"area"},"legs":{"data":[{"label":"Febre"},{"label":"Dis?ria"},{"label":"Diabetes"},{"label":"Etiologia Enterococos"},{"label":"Etiologia Escherichia"},{"label":"Etiologia C?ndida"},{"label":"N?o causar Efeitos Colaterais"},{"label":"Alergia Gen?rica"}]},"scaleMode":"static","legMin":0.0,"legMax":1.0,"spiderSize":0.5,"show":true,"fill":true}},"grid":{"mode":"radar","clickable":true,"hoverable":true}};
 
-    }
-  },
-    grid:{ 
-        hoverable: true, 
-        clickable: true,
-        tickColor: "rgba(0,0,0,0.2)",
-        mode: "radar"
-    }
-};
+
+// { 
+//   series:{ 
+//     spider:{
+//       pointSize: 5,
+//       connection: {width:5},
+//       active: true, 
+//       highlight: {
+//         mode: "area"
+//       },
+//       legs: { 
+//           data: [
+//             {label: "Efeitos Colaterais"},
+//             {label: "Febre"},
+//             {label: "Disuria"},
+//             {label: "Diabetes"},
+//             {label: "P005"},
+//             {label: "P006"},
+//             {label: "P007"},
+//             {label: "P008"}
+//             ],
+//           // legScaleMax: 1,legScaleMin:0.8
+//       },
+//       scaleMode: "static" ,
+//       legMin: 0,
+//       legMax: 100,
+//       spiderSize: 0.5   
+
+//     }
+//   },
+//     grid:{ 
+//         hoverable: true, 
+//         clickable: true,
+//         tickColor: "rgba(0,0,0,0.2)",
+//         mode: "radar"
+//     }
+// };
 
 // hard-code color indices to prevent them from shifting as
 var i = 0;
@@ -116,10 +120,10 @@ $.each(datasets, function(key, val) {
 var choiceContainer = $("#choices");
 $.each(datasets, function(key, val) {
   //adciona todas menos a da necessidade do paciente
-  if(key != "necpac"){
+  if(key != 0){
     choiceContainer.append('<br/><input type="checkbox" name="' + key +
-                           '" id="id' + key + '">' +
-                           '<label for="id' + key + '">'
+                           '" id="' + key + '">' +
+                           '<label for="' + key + '">'
                             + val.label + '</label>');
   }
 });
@@ -130,7 +134,7 @@ choiceContainer.find("input").click(plotAccordingToChoices);
 function plotAccordingToChoices() {
     var data = [];
     //add necessidade do paciente sempre
-    data.push(datasets['necpac']);
+    data.push(datasets[0]);
 
     choiceContainer.find("input:checked").each(function () {
         var key = $(this).attr("name");
