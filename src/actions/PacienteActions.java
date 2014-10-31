@@ -11,8 +11,10 @@ import java.util.List;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import modelo.Atendimento;
 import modelo.Indicacao;
 import modelo.Paciente;
+import service.AtendimentoAppService;
 import service.PacienteAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -35,6 +37,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 
 	// Services
 	private static PacienteAppService pacienteService;
+	private static AtendimentoAppService atendimentoService;
 	
 	// Paginas
 	public final String PAGINA_EDIT = "editPaciente";
@@ -76,6 +79,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 	public PacienteActions() throws Exception{
 		try{
 			pacienteService = FabricaDeAppService.getAppService(PacienteAppService.class);
+			atendimentoService = FabricaDeAppService.getAppService(AtendimentoAppService.class);
 		} catch (Exception e){
 			throw e;
 		}
@@ -221,6 +225,24 @@ public class PacienteActions extends BaseActions implements Serializable {
 			e.printStackTrace();
 		}
 	}	
+	
+	/**
+	 * Imprime o histórico contendo todos
+	 * os atendimentos de um determinado
+	 * paciente.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	public void imprimirHistoricoAtendimento(){
+		List<Atendimento> atendimentos = atendimentoService
+				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(pacienteCorrente.getCodPaciente());
+		try {
+			atendimentoService.gerarRelatorioHistorico(atendimentos);
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		} 		
+	}
 	
 	/**
 	 * 
