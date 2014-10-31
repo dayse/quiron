@@ -72,7 +72,9 @@ public class AtendimentoAppService {
 			ArrayList<Double> valor_temp = new ArrayList<Double>();
 			valor_temp.add((double)(i));
 			valor_temp.add(anamnese.getValor());
-			valoresData.add((Double[])valor_temp.toArray());
+			Double [] doubleValorTempo = new Double[2];
+			doubleValorTempo = valor_temp.toArray(doubleValorTempo);
+			valoresData.add(doubleValorTempo);
 		}
 		return valoresData;
 	}
@@ -95,7 +97,10 @@ public class AtendimentoAppService {
 			ArrayList<Double> valor_temp = new ArrayList<Double>();
 			valor_temp.add((double)(i));
 			valor_temp.add(avaliacao.getMediaEspecialistas());
-			valoresData.add((Double[])valor_temp.toArray());
+
+			Double [] doubleValorTempo = new Double[2];
+			doubleValorTempo = valor_temp.toArray(doubleValorTempo);
+			valoresData.add(doubleValorTempo);
 		}
 		return valoresData;
 	}
@@ -115,7 +120,7 @@ public class AtendimentoAppService {
 		spiderSeries.setScaleMode("static");
 		spiderSeries.setLegs(new SpiderLeg(legsLabels));
 		spiderSeries.setLegMin(0.0);
-		spiderSeries.setLegMax(100.0);
+		spiderSeries.setLegMax(1.0);
 		spiderSeries.setSpiderSize(0.5);
 		
 		return spiderSeries;
@@ -164,7 +169,7 @@ public class AtendimentoAppService {
 							gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGraficoGrauDeSemelhanca(conjuntoAvaliacao)
 							);
 			mediaIndicacaoData.setLabel(conjuntoAvaliacao.getIndicacao().toString());
-			mediaIndicacaoData.setSpider(new PlotSpider(true, null));	
+			mediaIndicacaoData.setSpider(new PlotSpider(true, false));	
 			plotDatas.add(mediaIndicacaoData);		
 		}
 		
@@ -190,8 +195,11 @@ public class AtendimentoAppService {
 		plotOptions.setXaxis(null);
 		plotOptions.setY2axis(null);
 		plotOptions.setYaxis(null);
-		
+
+		// PLOT
 		SpiderMainPlot spiderPlot = new SpiderMainPlot();
+		spiderPlot.setSpiderDatas(plotDatas);
+		spiderPlot.setOptions(plotOptions);
 		return spiderPlot;
 	}
 	

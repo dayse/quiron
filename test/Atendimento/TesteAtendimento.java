@@ -1,10 +1,12 @@
 package Atendimento;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import modelo.Anamnese;
 import modelo.Atendimento;
+import modelo.ConjuntoAvaliacao;
 import modelo.Paciente;
 import modelo.Parametro;
 import modelo.Usuario;
@@ -15,7 +17,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import carga.CargaAtendimento;
+import carga.CargaAvalIndicacaoEspec;
 import carga.CargaBase;
+import carga.CargaEspecialista;
+import carga.CargaIndicacao;
+import carga.CargaPaciente;
+import carga.CargaParametros;
+import carga.CargaUsuario;
 import service.AnamneseAppService;
 import service.AtendimentoAppService;
 import service.PacienteAppService;
@@ -25,6 +33,7 @@ import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
 import util.Constantes;
 import util.JPAUtil;
+import util.jayflot.spider.SpiderMainPlot;
 
 /**
  * Testes relativos a atendimento
@@ -53,6 +62,7 @@ public class TesteAtendimento {
 			usuarioService = FabricaDeAppService
 					.getAppService(UsuarioAppService.class);
 
+			anamneseService = FabricaDeAppService.getAppService(AnamneseAppService.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -354,5 +364,23 @@ public class TesteAtendimento {
 		
 	}
 	
-	
+
+	@Test
+	public void testGeraGraficoGrauDeSemelhancaParaAvaliacaoDeIndicacaoDeAtendimento() throws AplicacaoException{
+
+		Atendimento atendimentoPaciente1 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp1");
+		
+		List<ConjuntoAvaliacao> conjuntoDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoPaciente1);
+		
+		SpiderMainPlot graficoGrauSemelhanca
+					= atendimentoService.geraGraficoGrauDeSemelhancaParaAvaliacaoDeIndicacaoDeAtendimento(
+													conjuntoDeAvaliacoes, 
+													atendimentoPaciente1
+													);
+		System.out.println("data:");
+		System.out.println(graficoGrauSemelhanca.getPrintData());
+		System.out.println("opt:");
+		System.out.println(graficoGrauSemelhanca.getPrintOptions());
+		
+	}
 }
