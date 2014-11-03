@@ -128,14 +128,14 @@ public class AtendimentoAppService {
 	}
 	
 	/**
-	 * Gera as labels para as Legs (os nomes dos parametros) do grafico de Radar do Grau de semelhança
+	 * Gera as labels para as Legs (os codigos dos parametros) do grafico de Radar do Grau de semelhança
 	 * @param atendimento
 	 * @return
 	 */
 	public ArrayList<String> gerarLegsLabelsGraficoGrauSemelhanca(Atendimento atendimento){
 		ArrayList<String> legsLabels = new ArrayList<String>();
 		for (Anamnese anamnese : atendimento.getAnamneses()) {
-			legsLabels.add(anamnese.getParametro().getNome());
+			legsLabels.add(anamnese.getParametro().getCodParametro());
 		}
 		return legsLabels;
 	}
