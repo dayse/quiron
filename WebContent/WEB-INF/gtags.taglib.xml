@@ -20,4 +20,8 @@
 	<tag-name>grafico3d</tag-name>
 	<source>tags_gesplan/grafico3d.xhtml</source>
     </tag>
+    <tag>
+	<tag-name>grafico_radar_checkbox</tag-name>
+	<source>tags_gesplan/grafico_radar_checkbox.xhtml</source>
+    </tag>
 </facelet-taglib>

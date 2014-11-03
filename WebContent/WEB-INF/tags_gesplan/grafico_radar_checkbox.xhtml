@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jstl/core"  
+      >
+       <ui:composition>
+    
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/jquery-1.5.1.js"></script>
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/flot/jquery.flot.js"></script>
+    
+    
+    
+    <script language="javascript" text="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.JUMlib.js"></script>
+    <script language="javascript" text="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.mouse.js"></script>
+    <script language="javascript" text="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.spider.js"></script>
+    <!-- Importando script de hack do JS para usar funcoes que utilizam simbolos que nao podem ser
+    		postos em um xhtml. 
+     -->
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/js_hacks.js"></script>
+    
+		    <div id="conjunto_infos_grafico">
+		      <p id="choices">Show:</p>
+		
+		      <div id='tooltip' style="float:left; border: 1px solid #fdd;  padding: 2px;  background-color: #fee;  opacity: 0.80;">
+		        <p>Detalhes:</p>
+		        <span id="plot_hover_y"></span>: <span id="plot_hover_x"></span>
+		      </div>
+		      <div id="#{placeholder}" style="width:#{width}px;height:#{height}px;border: 1px dashed gainsboro;"></div>
+		
+		    </div>
+    		
+	 		
+			 <script language="javascript" type="text/javascript">
+
+		 var $j = jQuery.noConflict();
+				
+		 $j(function () {
+				 	
+			 	var plot;
+
+				var datasets = {};
+				<c:if test="${grafico != null}">
+					datasets = #{grafico.printData};
+				</c:if>  
+
+				var options = {};
+				<c:if test="${grafico != null}">
+					options = #{grafico.printOptions};
+				</c:if>  
+
+
+				// hard-code color indices to prevent them from shifting as
+				var i = 0;
+				$.each(datasets, function(key, val) {
+				    val.color = i;
+				    ++i;
+				});
+				// insert checkboxes 
+				var choiceContainer = $("#choices");
+				$.each(datasets, function(key, val) {
+				  //adciona todas menos a da necessidade do paciente
+				  if(key != 0){
+				    choiceContainer.append('<br/><input type="checkbox" name="' + key +
+				                           '" id="' + key + '">' +
+				                           '<label for="' + key + '">'
+				                            + val.label + '</label>');
+				  }
+				});
+
+				choiceContainer.find("input").click(plotAccordingToChoices);
+
+
+
+				function plotAccordingToChoices() {
+				    var data = [];
+				    //add necessidade do paciente sempre
+				    data.push(datasets[0]);
+
+				    choiceContainer.find("input:checked").each(function () {
+				        var key = $(this).attr("name");
+				        if (ifAndAnd(key, datasets[key]))
+				            data.push(datasets[key]);
+				    });
+				    console.log(data);
+			        if (maiorQue(data.length, 0))
+				      plot = $.plot($("##{placeholder}"), data, options);
+				}
+
+				plotAccordingToChoices();
+
+				$("##{placeholder}").bind("plothover", function (event, pos, item) {
+
+				    if (item) {
+				      var x = item.datapoint[0].toFixed(2),
+				        y = item.datapoint[1].toFixed(2);
+				      var label_x = plot.getOptions().series.spider.legs.data[parseInt(x)].label;
+
+				      $("#plot_hover_x").text(y);
+				      $("#plot_hover_y").text(label_x);
+				    }
+				});
+
+
+
+		});
+			</script>
+       </ui:composition>
+</html>
