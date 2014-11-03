@@ -66,12 +66,12 @@
 			 	console.log('3');
 
 			    $j.each(datasets, function(key, val) {
-				    	if(iterator % 2==0){
-					        choiceContainer.append('<td style="padding-right: 10px"><input type="checkbox" name="' + key +
-		                               '" checked="checked" id="id' + key + '"/>' +
-		                               '<label for="id' + key + '">'
-		                                + val.label + '</label></td>');						    	
-				    	}
+					  if(key != 0){
+				        choiceContainer.append('<td style="padding-right: 10px"><input type="checkbox" name="' + key +
+	                               '" id="id' + key + '"/>' +
+	                               '<label for="id' + key + '">'
+	                                + val.label + '</label></td>');		
+					  }	
 			    });
 
 				choiceContainer.find("input").click(plotAccordingToChoices);

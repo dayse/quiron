@@ -10,6 +10,7 @@ import javax.faces.model.ListDataModel;
 
 import DAO.exception.ObjetoNaoEncontradoException;
 import modelo.Atendimento;
+import modelo.ConjuntoAvaliacao;
 import modelo.Paciente;
 import modelo.Anamnese;
 import modelo.Parametro;
@@ -24,6 +25,7 @@ import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
 import util.DataUtil;
 import util.SelectOneDataModel;
+import util.jayflot.spider.SpiderMainPlot;
 
 /**
  * 
@@ -79,9 +81,11 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private int numParametros;
 	private boolean tecnicoEditavel;
 	private boolean clinicoEditavel;
+	private SpiderMainPlot plotGrauSemelhanca;
 
 	
 	//infos de busca
+
 
 	public final String BUSCA_POR_NOME_PACIENTE = "Nome do Paciente";
 	public final String BUSCA_POR_NOME_MEDICO = "Nome do Médico";
@@ -215,9 +219,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		//se for o primeiro (grau de semelhança) então chama o metodo do action que vai fazer o resto
 		//no que diz respeito a tela desse algoritmo
 		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAltoritmos.get(0))){
-			listaConjuntoAvaliacao = new ListDataModel(
-									anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente)
-									);
+			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = 
+								anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente);
+			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
 			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
 			try {
 				comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
@@ -245,6 +249,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				}
 			}
 			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+			
+			plotGrauSemelhanca = 
+					atendimentoService.geraGraficoGrauDeSemelhancaParaAvaliacaoDeIndicacaoDeAtendimento(
+								conjuntosDeAvaliacoes, 
+								atendimentoCorrente
+							);
 			return PAGINA_AVALIACAO;
 		}
 		//se for o segundo algoritmo (Algoritmo 2) então chama o metodo do action que vai fazer o resto
@@ -895,4 +905,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			SelectOneDataModel<String> comboAlgoritmoAvaliacao) {
 		this.comboAlgoritmoAvaliacao = comboAlgoritmoAvaliacao;
 	}
+
+	public SpiderMainPlot getPlotGrauSemelhanca() {
+		return plotGrauSemelhanca;
+	}
+
+	public void setPlotGrauSemelhanca(SpiderMainPlot plotGrauSemelhanca) {
+		this.plotGrauSemelhanca = plotGrauSemelhanca;
+	}
+
 }

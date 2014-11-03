@@ -4,6 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
     xmlns:c="http://java.sun.com/jstl/core"  
 	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:gt="gtags"
 	xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="/WEB-INF/template/avaliacao_detail_template.xhtml">
@@ -64,6 +65,8 @@
 				</h:panelGrid>
 			</rich:simpleTogglePanel>
 			<br />
+			
+					
 			<rich:simpleTogglePanel>
 
 				<f:facet name="header">
@@ -218,6 +221,13 @@
 				
 			<br />
 
+			<rich:simpleTogglePanel>
+				<gt:grafico_radar_checkbox 
+				grafico="#{atendimentoActions.plotGrauSemelhanca}" 
+				placeholder="placeholder" 
+				width="1000" height="600"
+				/>
+			</rich:simpleTogglePanel>
 
 			<br />
 
