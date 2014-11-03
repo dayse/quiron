@@ -11,18 +11,17 @@
     <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/jquery-1.5.1.js"></script>
     <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/flot/jquery.flot.js"></script>
     
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.JUMlib.js"></script>
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.mouse.js"></script>
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.spider.js"></script>
     
-    
-    <script language="javascript" text="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.JUMlib.js"></script>
-    <script language="javascript" text="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.mouse.js"></script>
-    <script language="javascript" text="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.spider.js"></script>
     <!-- Importando script de hack do JS para usar funcoes que utilizam simbolos que nao podem ser
     		postos em um xhtml. 
      -->
     <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/js_hacks.js"></script>
     
 		    <div id="conjunto_infos_grafico">
-		      <p id="choices">Show:</p>
+				<table id="choices" style="font-weight: bold"><tr ><td>Mostrar:</td></tr></table>
 		
 		      <div id='tooltip' style="float:left; border: 1px solid #fdd;  padding: 2px;  background-color: #fee;  opacity: 0.80;">
 		        <p>Detalhes:</p>
@@ -38,6 +37,7 @@
 		 var $j = jQuery.noConflict();
 				
 		 $j(function () {
+			 	console.log('1');
 				 	
 			 	var plot;
 
@@ -51,28 +51,33 @@
 					options = #{grafico.printOptions};
 				</c:if>  
 
+			 	console.log('2');
 
 				// hard-code color indices to prevent them from shifting as
 				var i = 0;
-				$.each(datasets, function(key, val) {
+				$j.each(datasets, function(key, val) {
 				    val.color = i;
 				    ++i;
 				});
+
+			 	console.log('2.1');
 				// insert checkboxes 
-				var choiceContainer = $("#choices");
-				$.each(datasets, function(key, val) {
-				  //adciona todas menos a da necessidade do paciente
-				  if(key != 0){
-				    choiceContainer.append('<br/><input type="checkbox" name="' + key +
-				                           '" id="' + key + '">' +
-				                           '<label for="' + key + '">'
-				                            + val.label + '</label>');
-				  }
-				});
+				var choiceContainer = $j("#choices");
+			 	console.log('3');
+
+			    $j.each(datasets, function(key, val) {
+				    	if(iterator % 2==0){
+					        choiceContainer.append('<td style="padding-right: 10px"><input type="checkbox" name="' + key +
+		                               '" checked="checked" id="id' + key + '"/>' +
+		                               '<label for="id' + key + '">'
+		                                + val.label + '</label></td>');						    	
+				    	}
+			    });
 
 				choiceContainer.find("input").click(plotAccordingToChoices);
 
 
+			 	console.log('4');
 
 				function plotAccordingToChoices() {
 				    var data = [];
@@ -80,29 +85,33 @@
 				    data.push(datasets[0]);
 
 				    choiceContainer.find("input:checked").each(function () {
-				        var key = $(this).attr("name");
+				        var key = $j(this).attr("name");
 				        if (ifAndAnd(key, datasets[key]))
 				            data.push(datasets[key]);
 				    });
 				    console.log(data);
 			        if (maiorQue(data.length, 0))
-				      plot = $.plot($("##{placeholder}"), data, options);
+				      plot = $j.plot($j("##{placeholder}"), data, options);
 				}
 
+			 	console.log('5');
 				plotAccordingToChoices();
 
-				$("##{placeholder}").bind("plothover", function (event, pos, item) {
+			 	console.log('6');
+
+			 	$j("##{placeholder}").bind("plothover", function (event, pos, item) {
 
 				    if (item) {
 				      var x = item.datapoint[0].toFixed(2),
 				        y = item.datapoint[1].toFixed(2);
 				      var label_x = plot.getOptions().series.spider.legs.data[parseInt(x)].label;
 
-				      $("#plot_hover_x").text(y);
-				      $("#plot_hover_y").text(label_x);
+				      $j("#plot_hover_x").text(y);
+				      $j("#plot_hover_y").text(label_x);
 				    }
 				});
 
+			 	console.log('7');
 
 
 		});
