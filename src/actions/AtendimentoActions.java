@@ -62,6 +62,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_ALGORITMOS_AVALIACAO = "algoritmosAvaliacao";
 	public final String PAGINA_AVALIACAO = "listAvaliacao";
 	public final String PAGINA_AVALIACAO_DETALHADA = "listAvaliacaoDetail";
+	public final String PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES = "listAvaliacaoDetailDistanciaDescartes";
+	
 
 	// Services
 	private static AtendimentoAppService atendimentoService;
@@ -260,6 +262,38 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		//se for o segundo algoritmo (Algoritmo 2) então chama o metodo do action que vai fazer o resto
 		//no que diz respeito a tela desse algoritmo
 		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAltoritmos.get(1))){
+			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = 
+								anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPelaDistanciaDescartes(atendimentoCorrente);
+			
+			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
+			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
+			try {
+				comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+			} catch (AplicacaoException e) {
+				e.printStackTrace();
+			}
+			listaDeAnamneses = new ListDataModel(
+						anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
+					);
+			
+			if(atendimentoCorrente.getTecnico() == null){
+				comboTecnicos = null;
+			}else{
+				try {
+					comboTecnicos = SelectOneDataModel
+							.criaComObjetoSelecionadoSemTextoInicial(
+									usuarioService
+											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+													.recuperaTipoUsuarioTecnico()),
+									atendimentoCorrente.getTecnico());
+				} catch (AplicacaoException e) {
+					e.printStackTrace();
+				}
+			}
+			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+			
 			return PAGINA_AVALIACAO;
 		}
 		
@@ -281,7 +315,15 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String calculaAvaliacaoDetalhado() {
-		return PAGINA_AVALIACAO_DETALHADA;
+		//Verifica qual o algoritmo utilizado:
+		//se for o primeiro (grau de semelhança) então chama o metodo do action que vai fazer o resto
+		//no que diz respeito a tela desse algoritmo
+		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAltoritmos.get(0))){
+			return PAGINA_AVALIACAO_DETALHADA;
+		}
+		else{
+			return PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES;
+		}
 	}
 
 	/**
