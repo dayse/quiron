@@ -191,9 +191,8 @@ public class AnamneseAppService {
 			}
 			
 			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
-//			conjuntoAvaliacao.setSomatorioIntersecao(conjuntoAvaliacao.somaParametrosIntersecao());
-//			conjuntoAvaliacao.setSomatorioUniao(conjuntoAvaliacao.somaParametrosUniao());
-//			conjuntoAvaliacao.setGrauSemelhanca(conjuntoAvaliacao.getSomatorioIntersecao() / conjuntoAvaliacao.getSomatorioUniao());
+			conjuntoAvaliacao.setSomatorioDistancia(conjuntoAvaliacao.somaParametrosDistancia());
+			conjuntoAvaliacao.setDistanciaDescartes(conjuntoAvaliacao.getSomatorioDistancia() / listParametro.size());
 			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
 		}
 		
