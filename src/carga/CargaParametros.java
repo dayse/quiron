@@ -128,6 +128,7 @@ public class CargaParametros extends CargaBase {
 		efeitosColaterais.setNome("Não causar Efeitos Colaterais");
 		efeitosColaterais
 				.setDescricao("Sobre o grau de ocorrência de efeitos colaterais.");
+		efeitosColaterais.setTipo(Parametro.TIPO_PODE_EXCEDER);
 		
 		alergia.setCodParametro("P008");
 		alergia.setNome("Alergia Genérica");
