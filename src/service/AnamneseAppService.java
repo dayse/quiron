@@ -59,6 +59,15 @@ public class AnamneseAppService {
 	}
 
 
+	/**
+	 * Calculo da avaliação por atendimento, por indicação e por parametro, utilizando
+	 * um algoritmo de Grau de Semelhança.
+	 *  
+	 * @param atendimento
+	 * @param indicacao
+	 * @param parametro
+	 * @return
+	 */
 	public Avaliacao calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametroPeloGrauSemelhanca(
 			Atendimento atendimento, Indicacao indicacao, Parametro parametro) {
 		
@@ -83,7 +92,12 @@ public class AnamneseAppService {
 	}
 	
 	
-	
+	/**
+	 * Recupera avaliação calcula por uma indicação utilizando o algoritmo de grau de 
+	 * semelhança.
+	 * @param atendimento
+	 * @return
+	 */
 	public List<ConjuntoAvaliacao> recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(
 			Atendimento atendimento) {
 
@@ -120,6 +134,10 @@ public class AnamneseAppService {
 		return conjuntosDeAvaliacoes;
 	}
 
+	/**
+	 * Recupera a media de avaliação de indicação dos especialistas.
+	 * @return
+	 */
 	public List<ConjuntoAvaliacao> recuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas() {
 
 
