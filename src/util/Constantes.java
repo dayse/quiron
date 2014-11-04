@@ -49,6 +49,7 @@ public class Constantes {
 	public static final int L_PARAMETRO_NOME = 30;
 	public static final int L_PARAMETRO_DESCRICAO = 30;
 	public static final int L_PARAMETRO_PESO = 3;
+	public static final int L_PARAMETRO_TIPO = 30;
 	
 	
 	// --------------------- Indicacao ---------------------
@@ -151,7 +152,6 @@ public class Constantes {
 	public int getlPacienteNome() {
 		return L_PACIENTE_NOME;
 	}
-	
 	public int getlPacienteNomeResponsavel(){
 		return L_PACIENTE_NOME_RESPONSAVEL;
 	}
@@ -176,6 +176,10 @@ public class Constantes {
 	
 	public int getlParametroPeso() {
 		return L_PARAMETRO_PESO;
+	}
+
+	public int getlParametroTipo() {
+		return L_PARAMETRO_TIPO;
 	}
 	
 	public int getlParametroCandida(){
