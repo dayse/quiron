@@ -165,6 +165,82 @@ public class AnamneseAppService {
 		}
 		return conjuntosDeAvaliacoes;
 	}
+	
+	/**
+	 * Recupera a avaliação calculada por indicação dos especialistas para um determinado
+	 * atendimento, utilizando o algoritmo da Distancia de Descartes
+	 * @param atendimento
+	 * @return
+	 */
+	public List<ConjuntoAvaliacao> recuperaAvaliacaoCalculadaPorIndicacaoPelaDistanciaDescartes(Atendimento atendimento){
+
+		List<Indicacao> listIndicacao = indicacaoDAO.recuperaListaIndicacao();
+		List<Parametro> listParametro = parametroDAO.recuperaListaDeParametros();
+
+		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
+		
+		for (Indicacao indicacao : listIndicacao) {
+			ConjuntoAvaliacao conjuntoAvaliacao = new ConjuntoAvaliacao();
+			conjuntoAvaliacao.setIndicacao(indicacao);
+			
+
+			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
+			for (Parametro parametro : listParametro) {
+				Avaliacao avaliacaoCorrente = calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametroPelaDistanciaDescartes(atendimento, indicacao, parametro);
+				listAvaliacao.add(avaliacaoCorrente);
+			}
+			
+			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
+//			conjuntoAvaliacao.setSomatorioIntersecao(conjuntoAvaliacao.somaParametrosIntersecao());
+//			conjuntoAvaliacao.setSomatorioUniao(conjuntoAvaliacao.somaParametrosUniao());
+//			conjuntoAvaliacao.setGrauSemelhanca(conjuntoAvaliacao.getSomatorioIntersecao() / conjuntoAvaliacao.getSomatorioUniao());
+			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
+		}
+		
+		return conjuntosDeAvaliacoes;
+	}
+	
+	/**
+	 * Calcula uma avaliação dado o atendimento, indicacao e o parametro, 
+	 * utilizando o algoritimo da distancia de descartes
+	 * @param atendimento
+	 * @param indicacao
+	 * @param parametro
+	 * @return
+	 */
+	public Avaliacao calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametroPelaDistanciaDescartes
+									(Atendimento atendimento, Indicacao indicacao, Parametro parametro){
+
+		Anamnese anamneseCorrente = null;
+		try {
+			anamneseCorrente = anamneseDAO.recuperaAnamnesePorAtendimentoPorParametro(atendimento, parametro);
+		} catch (ObjetoNaoEncontradoException e) {
+			e.printStackTrace();
+		}
+		
+		Double mediaValorEspecialistas = 
+				avalIndicacaoEspecService.calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(indicacao, parametro);
+		
+
+		Avaliacao avaliacaoCorrente = new Avaliacao();
+		avaliacaoCorrente.setParametro(parametro);
+		avaliacaoCorrente.setIndicacao(indicacao);
+		avaliacaoCorrente.setMediaEspecialistas(mediaValorEspecialistas);
+		
+		Double valorDistancia = 0.0;
+		valorDistancia = mediaValorEspecialistas - anamneseCorrente.getValor();
+		valorDistancia = Math.abs(valorDistancia);
+		//o parametro não penaliza se ultrapassar a necessidade do paciente
+//		Descomentar aqui quando o atributo de parametro estiver pronto
+//		if(!parametro.getPenalizarPorUltrapassarNecessidade()){
+//			valorDistancia = Math.min(0, valorDistancia);		
+//		}
+		avaliacaoCorrente.setDistancia(valorDistancia);
+
+		return avaliacaoCorrente;
+		
+		
+	}
 
 	@Transacional
 	public void exclui(Anamnese anamnese) throws AplicacaoException {

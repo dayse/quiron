@@ -13,6 +13,7 @@ public class Avaliacao {
 	
 	private String nomeIndicacaoNaTabela;
 	
+	private double distancia;
 	
 	public Avaliacao() {
 		this.uniao = 0;
@@ -89,4 +90,13 @@ public class Avaliacao {
 	public void setMediaEspecialistas(double mediaEspecialistas) {
 		this.mediaEspecialistas = mediaEspecialistas;
 	}
+
+	public double getDistancia() {
+		return distancia;
+	}
+
+	public void setDistancia(double distancia) {
+		this.distancia = distancia;
+	}
+	
 }
