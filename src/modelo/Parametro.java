@@ -108,6 +108,7 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	
 	public Parametro(){
 		this.peso = 1.0;
+		this.tipo = TIPO_NAO_PODE_EXCEDER;
 		
 	}
 	
