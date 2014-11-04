@@ -28,8 +28,26 @@
 			
 			<br/>
 
+			<h:panelGrid columns="5">
+			<h:outputText value="#{prompt.areaDeBusca}" />
+				<h:inputText value="#{usuarioActions.campoDeBusca}" />
+				<h:selectOneMenu id="comboBusca"
+					value="#{usuarioActions.comboTiposDeBusca.selecao}">
+					<f:selectItems
+						value="#{usuarioActions.comboTiposDeBusca.listaSelecao}" />
+				</h:selectOneMenu>
+				<h:commandButton value="#{prompt.buscar}"
+					action="#{usuarioActions.buscaUsuario}" />
+				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
+					action="#{usuarioActions.cancelar}"
+					rendered="#{usuarioActions.buscaEfetuada}" />				
+			</h:panelGrid>
+
+			<rich:datascroller id="scrTabelaUsuarios" for="tabelaUsuarios"
+				align="center" renderIfSinglePage="false" />
 			<rich:dataTable id="tabelaUsuarios" var="usuario"	align="center" 
-				value="#{usuarioActions.listaUsuarios}" rows="10" width="550px">
+				value="#{usuarioActions.listaUsuarios}" rows="10" width="550px"
+				reRender="#{usuarioActions.buscaEfetuada}">
 
 				<f:facet name="header">
 				

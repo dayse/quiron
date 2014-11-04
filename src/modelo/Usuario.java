@@ -61,6 +61,18 @@ import javax.persistence.Table;
 					"left outer join fetch u.tipoUsuario tu " +
 					"where tu = ? " +
 					"order by u.nome"
+			),
+			@NamedQuery
+			(	name = "Usuario.recuperaUsuarioPorLoginLike",
+				query = "select u from Usuario u " + 
+				"where upper(u.login) like '%' || upper(?) || '%' " +
+				"order by u.nome"
+			),
+			@NamedQuery
+			(	name = "Usuario.recuperaUsuarioPorNomeLike",
+				query = "select u from Usuario u " +
+						"where upper(u.nome) like '%' || upper(?) || '%' " +
+						"order by u.nome"
 			)
 		})
 

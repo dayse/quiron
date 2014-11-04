@@ -171,6 +171,14 @@ public class UsuarioAppService {
 		}
 	}
 	
+	public List<Usuario> recuperaUsuarioPorNomeLike(String nome){
+		return usuarioDAO.recuperaUsuarioPorNomeLike(nome);
+	}
+	
+	public List<Usuario> recuperaUsuarioPorLoginLike(String login){
+		return usuarioDAO.recuperaUsuarioPorLoginLike(login);
+	}
+	
 	/**
 	 * Este método é responsável por gerar relatório simples. 
 	 * @param List<Usuario> 

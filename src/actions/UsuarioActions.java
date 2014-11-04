@@ -1,5 +1,6 @@
 package actions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -35,6 +36,7 @@ public class UsuarioActions extends BaseActions {
 	// Componentes de Controle
 	private DataModel listaUsuarios;
 	private SelectOneDataModel<TipoUsuario> comboTiposUsuario;
+	private SelectOneDataModel<String> comboTiposDeBusca;
 
 	// Variaveis de Tela
 	private Usuario usuarioCorrente;
@@ -42,6 +44,11 @@ public class UsuarioActions extends BaseActions {
 	@SuppressWarnings("unused")
 	private boolean exclusaoUsuarioLogado;
 	private boolean permitirAlterarStatus;
+	private String campoDeBusca;
+	private boolean buscaEfetuada = false;
+//	private int pagina;
+	public final String BUSCA_POR_LOGIN = "Login";
+	public final String BUSCA_POR_NOME = "Nome";	
 
 	// Services
 	private UsuarioAppService usuarioService;
@@ -101,6 +108,33 @@ public class UsuarioActions extends BaseActions {
 		logUsuarioAutenticadoMsg("Admin - Altera Usuario:" + usuarioCorrente.getLogin());
 		info("usuario.SUCESSO_ALTERACAO");
 		listaUsuarios = null;
+		comboTiposDeBusca = null;
+		buscaEfetuada = false;
+		return PAGINA_LIST;
+	}
+	
+	public String buscaUsuario(){
+		List<Usuario> usuariosEncontrados = null;
+		if(campoDeBusca.trim().isEmpty()){
+			error("usuario.FORNECER_CAMPO_DE_BUSCA");
+			return PAGINA_LIST;
+		}else{
+			listaUsuarios = null;
+			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_LOGIN)){
+				usuariosEncontrados = new ArrayList<Usuario>(usuarioService.recuperaUsuarioPorLoginLike(campoDeBusca));
+			}else{
+				usuariosEncontrados = new ArrayList<Usuario>(usuarioService.recuperaUsuarioPorNomeLike(campoDeBusca));
+			}
+			if(usuariosEncontrados.isEmpty()){
+				error("usuario.NAO_ENCONTRADO");
+				listaUsuarios = null;
+				return PAGINA_LIST;
+			}else{
+				info("usuarios.ENCONTRADOS");
+			}
+		}
+		listaUsuarios = new ListDataModel(usuariosEncontrados);
+		buscaEfetuada = true;
 		return PAGINA_LIST;
 	}
 
@@ -118,6 +152,8 @@ public class UsuarioActions extends BaseActions {
 	 */
 	public String cancelar() {
 		usuarioCorrente = new Usuario();
+		comboTiposDeBusca = null;
+		buscaEfetuada = false;
 		return PAGINA_LIST;
 	}
 
@@ -141,6 +177,8 @@ public class UsuarioActions extends BaseActions {
 		logUsuarioAutenticadoMsg("Admin - Exclui Usuario: " + usuarioCorrente.getLogin());
 		info("usuario.SUCESSO_EXCLUSAO");
 		listaUsuarios = null;
+		comboTiposDeBusca = null;
+		buscaEfetuada = false;
 		return PAGINA_LIST;
 	}
 
@@ -185,6 +223,7 @@ public class UsuarioActions extends BaseActions {
 		logUsuarioAutenticadoMsg("Admin - Inclui Usuario:" + usuarioCorrente.getLogin());
 		info("usuario.SUCESSO_INCLUSAO");
 		listaUsuarios = null;
+		buscaEfetuada = false;
 		return PAGINA_LIST;
 	}
 
@@ -231,6 +270,7 @@ public class UsuarioActions extends BaseActions {
 						.recuperaListaDeTipoUsuario(), usuarioCorrente
 						.getTipoUsuario());
 		permitirAlterarStatus = true;
+		comboTiposDeBusca = null;
 		return PAGINA_EDIT;
 	}
 
@@ -361,4 +401,34 @@ public class UsuarioActions extends BaseActions {
 		this.permitirAlterarStatus = permitirAlterarStatus;
 	}
 
+	public String getCampoDeBusca() {
+		return campoDeBusca;
+	}
+
+	public void setCampoDeBusca(String campoDeBusca) {
+		this.campoDeBusca = campoDeBusca;
+	}
+
+	public SelectOneDataModel<String> getComboTiposDeBusca() {
+		if(comboTiposDeBusca == null){
+			List<String> tiposDeBusca = new ArrayList<String>(2);
+			tiposDeBusca.add(BUSCA_POR_LOGIN);
+			tiposDeBusca.add(BUSCA_POR_NOME);
+			comboTiposDeBusca = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(tiposDeBusca, BUSCA_POR_LOGIN);
+		}		
+		return comboTiposDeBusca;
+	}
+
+	public void setComboTiposDeBusca(SelectOneDataModel<String> comboTiposDeBusca) {
+		this.comboTiposDeBusca = comboTiposDeBusca;
+	}
+
+	public boolean isBuscaEfetuada() {
+		return buscaEfetuada;
+	}
+
+	public void setBuscaEfetuada(boolean buscaEfetuada) {
+		this.buscaEfetuada = buscaEfetuada;
+	}
+	
 }
