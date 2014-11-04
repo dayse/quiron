@@ -130,7 +130,7 @@ public class UsuarioActions extends BaseActions {
 				listaUsuarios = null;
 				return PAGINA_LIST;
 			}else{
-				info("usuarios.ENCONTRADOS");
+				info("usuario.ENCONTRADOS");
 			}
 		}
 		listaUsuarios = new ListDataModel(usuariosEncontrados);
@@ -154,6 +154,7 @@ public class UsuarioActions extends BaseActions {
 		usuarioCorrente = new Usuario();
 		comboTiposDeBusca = null;
 		buscaEfetuada = false;
+		listaUsuarios = null;
 		return PAGINA_LIST;
 	}
 
