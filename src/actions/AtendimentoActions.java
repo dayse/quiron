@@ -220,7 +220,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		//no que diz respeito a tela desse algoritmo
 		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAltoritmos.get(0))){
 			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = 
-								anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente);
+								anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(atendimentoCorrente);
 			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
 			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
 			try {

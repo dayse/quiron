@@ -59,7 +59,7 @@ public class AnamneseAppService {
 	}
 
 
-	public Avaliacao calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametro(
+	public Avaliacao calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametroPeloGrauSemelhanca(
 			Atendimento atendimento, Indicacao indicacao, Parametro parametro) {
 		
 		Anamnese anamneseCorrente = null;
@@ -84,7 +84,7 @@ public class AnamneseAppService {
 	
 	
 	
-	public List<ConjuntoAvaliacao> recuperaAvaliacaoCalculadaPorIndicacao(
+	public List<ConjuntoAvaliacao> recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(
 			Atendimento atendimento) {
 
 
@@ -101,7 +101,7 @@ public class AnamneseAppService {
 
 			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
 			for (Parametro parametro : listParametro) {
-				Avaliacao avaliacaoCorrente = calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametro(atendimento, indicacao, parametro);
+				Avaliacao avaliacaoCorrente = calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametroPeloGrauSemelhanca(atendimento, indicacao, parametro);
 				listAvaliacao.add(avaliacaoCorrente);
 			}
 			
@@ -135,10 +135,10 @@ public class AnamneseAppService {
 			
 
 			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
-			for (Parametro parametro : listParametro) {
+//			for (Parametro parametro : listParametro) {
 //				Avaliacao avaliacaoCorrente = calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametro(atendimento, indicacao, parametro);
 //				listAvaliacao.add(avaliacaoCorrente);
-			}
+//			}
 			
 			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
 			//usando apenas a união que é a media dos especialistas para um determinado parametro para uma indicacao

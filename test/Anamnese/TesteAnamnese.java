@@ -104,7 +104,7 @@ public class TesteAnamnese {
 		
 		Atendimento atendimentoPaciente1 = atendimentoService.recuperaAtendimentoPorCodigoComPaciente("atp1");
 		
-		List<ConjuntoAvaliacao> conjuntoDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoPaciente1);
+		List<ConjuntoAvaliacao> conjuntoDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(atendimentoPaciente1);
 
 		int num_conjuntos = 5;
 		
