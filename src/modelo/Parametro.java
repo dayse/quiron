@@ -94,8 +94,9 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	 */
 	private String tipo;
 
-	public static String TIPO_NAO_PODE_PASSAR_NECESSIDADE = "Não pode ultrapassar necessidade";
-	public static String TIPO_PODE_PASSAR_NECESSIDADE = "Pode ultrapassar necessidade";
+	public static String TIPO_NAO_PODE_EXCEDER = "Não pode exceder";
+	public static String TIPO_PODE_EXCEDER = "Pode exceder";
+	public static String TIPO_MELHOR_EXCEDER = "É melhor exceder";
 	
 	
 	/**
