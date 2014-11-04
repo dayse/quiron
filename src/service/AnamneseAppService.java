@@ -227,13 +227,12 @@ public class AnamneseAppService {
 		avaliacaoCorrente.setMediaEspecialistas(mediaValorEspecialistas);
 		
 		Double valorDistancia = 0.0;
-		valorDistancia = mediaValorEspecialistas - anamneseCorrente.getValor();
+		valorDistancia = anamneseCorrente.getValor() - mediaValorEspecialistas;
 		valorDistancia = Math.abs(valorDistancia);
 		//o parametro não penaliza se ultrapassar a necessidade do paciente
-//		Descomentar aqui quando o atributo de parametro estiver pronto
-//		if(!parametro.getPenalizarPorUltrapassarNecessidade()){
-//			valorDistancia = Math.min(0, valorDistancia);		
-//		}
+		if(parametro.getTipo().equals(Parametro.TIPO_PODE_EXCEDER)){
+			valorDistancia = Math.min(0, valorDistancia);		
+		}
 		avaliacaoCorrente.setDistancia(valorDistancia);
 
 		return avaliacaoCorrente;
