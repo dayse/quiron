@@ -3,6 +3,7 @@ package DAO;
 import java.util.List;
 
 import modelo.Especialista;
+import modelo.Usuario;
 import DAO.anotacao.RecuperaLista;
 import DAO.anotacao.RecuperaListaPaginada;
 import DAO.anotacao.RecuperaObjeto;
@@ -30,4 +31,11 @@ public interface EspecialistaDAO extends DaoGenerico<Especialista, Long> {
 	
 	@RecuperaObjeto
 	public Double recuperaMediaDoPesoAvaliadorDosEspecialistas();
+	
+	@RecuperaLista
+	public List<Especialista> recuperaEspecialistaPorNomeLike(String nome);
+	
+	@RecuperaLista
+	public List<Especialista> recuperaEspecialistaPorCodigoLike(String codigo);
+	
 }

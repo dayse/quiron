@@ -36,6 +36,16 @@ import javax.persistence.Table;
 			),
 			@NamedQuery(name = "Especialista.recuperaMediaDoPesoAvaliadorDosEspecialistas",  
 						query = "select SUM(pesoAvaliador) from Especialista e"
+			),
+			@NamedQuery(name = "Especialista.recuperaEspecialistaPorCodigoLike",
+						query = "select e from Especialista e " + 
+								"where upper(e.codEspecialista) like '%' || upper(?) || '%' " +
+								"order by e.codEspecialista"
+			),
+			@NamedQuery(name = "Especialista.recuperaEspecialistaPorNomeLike",
+						query = "select e from Especialista e " +
+								"where upper(e.nome) like '%' || upper(?) || '%' " +
+								"order by e.codEspecialista"
 			)
 		}
 )

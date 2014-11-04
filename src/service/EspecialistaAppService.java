@@ -128,9 +128,16 @@ public class EspecialistaAppService {
 		return especialistaDAO.recuperaMediaDoPesoAvaliadorDosEspecialistas();
 	}
 
-
 	public Especialista recuperaEspecialistaPorCodigo(String codEspecialista) throws ObjetoNaoEncontradoException {
 		return especialistaDAO.recuperaEspecialistaPorCodigo(codEspecialista);
+	}
+	
+	public List<Especialista> recuperaEspecialistaPorCodigoLike(String codigo){
+		return especialistaDAO.recuperaEspecialistaPorCodigoLike(codigo);
+	}
+	
+	public List<Especialista> recuperaEspecialistaPorNomeLike(String nome){
+		return especialistaDAO.recuperaEspecialistaPorNomeLike(nome);
 	}
 
 	/**

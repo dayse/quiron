@@ -17,12 +17,29 @@
 	<ui:define name="corpo">
 
 		<a4j:keepAlive beanName="especialistaActions" />
-
+		<br />
 		<h:form id="formEspecialistaList">
+			<h:panelGrid columns="5">
+			<h:outputText value="#{prompt.areaDeBusca}" />
+				<h:inputText value="#{especialistaActions.campoDeBusca}" />
+				<h:selectOneMenu id="comboBusca"
+					value="#{especialistaActions.comboTiposDeBusca.selecao}">
+					<f:selectItems
+						value="#{especialistaActions.comboTiposDeBusca.listaSelecao}" />
+				</h:selectOneMenu>
+				<h:commandButton value="#{prompt.buscar}"
+					action="#{especialistaActions.buscaEspecialista}" />
+				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
+					action="#{especialistaActions.cancelar}"
+					rendered="#{especialistaActions.buscaEfetuada}" />				
+			</h:panelGrid>
+
+			<rich:datascroller id="scrTabelaEspecialistas" for="tabelaEspecialistas"
+				align="center" renderIfSinglePage="false" />
 
 			<rich:dataTable id="tabelaEspecialistas" var="especialista"
 				align="center" value="#{especialistaActions.listaDeEspecialistas}"
-				rows="10" width="700px">
+				rows="10" width="700px"	reRender="#{usuarioActions.buscaEfetuada}">
 
 				<f:facet name="header">
 

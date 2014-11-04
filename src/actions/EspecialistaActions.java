@@ -1,6 +1,7 @@
 package actions;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.model.DataModel;
@@ -11,10 +12,12 @@ import service.EspecialistaAppService;
 import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
+import util.SelectOneDataModel;
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
 import modelo.Indicacao;
 import modelo.Parametro;
+import modelo.Usuario;
 
 /**
  * 
@@ -51,6 +54,11 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	private List<AvalIndicacaoEspec> avaliacaoAlterada;
 	private Especialista especialistaCorrente;
 	private Indicacao indicacaoCorrente;
+	private boolean buscaEfetuada = false;
+	private String campoDeBusca;
+	public final String BUSCA_POR_CODIGO = "Código";
+	public final String BUSCA_POR_NOME = "Nome";
+	private SelectOneDataModel<String> comboTiposDeBusca;
 
 	/**
 	 * 
@@ -100,6 +108,31 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		avaliacaoAlterada = null;
 		return PAGINA_LIST;
 	}
+	
+	public String buscaEspecialista(){
+		List<Especialista> especialistasEncontrados = null;
+		if(campoDeBusca.trim().isEmpty()){
+			error("especialista.FORNECER_CAMPO_DE_BUSCA");
+			return PAGINA_LIST;
+		}else{
+			listaDeEspecialistas = null;
+			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_CODIGO)){
+				especialistasEncontrados = new ArrayList<Especialista>(especialistaService.recuperaEspecialistaPorCodigoLike(campoDeBusca));
+			}else{
+				especialistasEncontrados = new ArrayList<Especialista>(especialistaService.recuperaEspecialistaPorNomeLike(campoDeBusca));
+			}
+			if(especialistasEncontrados.isEmpty()){
+				error("especialista.NAO_ENCONTRADO");
+				listaDeEspecialistas = null;
+				return PAGINA_LIST;
+			}else{
+				info("especialista.ENCONTRADOS");
+			}
+		}
+		listaDeEspecialistas = new ListDataModel(especialistasEncontrados);
+		buscaEfetuada = true;
+		return PAGINA_LIST;
+	}	
 
 	/**
 	 * 
@@ -399,4 +432,40 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		this.listaDeAvaliacao = listaDeAvaliacao;
 	}
 
+	public boolean isBuscaEfetuada() {
+		return buscaEfetuada;
+	}
+
+	public void setBuscaEfetuada(boolean buscaEfetuada) {
+		this.buscaEfetuada = buscaEfetuada;
+	}
+
+	public String getCampoDeBusca() {
+		return campoDeBusca;
+	}
+
+	public void setCampoDeBusca(String campoDeBusca) {
+		if(comboTiposDeBusca == null){
+			List<String> tiposDeBusca = new ArrayList<String>(2);
+			tiposDeBusca.add(BUSCA_POR_CODIGO);
+			tiposDeBusca.add(BUSCA_POR_NOME);
+			comboTiposDeBusca = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(tiposDeBusca, BUSCA_POR_CODIGO);
+		}				
+		this.campoDeBusca = campoDeBusca;
+	}
+
+	public SelectOneDataModel<String> getComboTiposDeBusca() {
+		if(comboTiposDeBusca == null){
+			List<String> tiposDeBusca = new ArrayList<String>(2);
+			tiposDeBusca.add(BUSCA_POR_CODIGO);
+			tiposDeBusca.add(BUSCA_POR_NOME);
+			comboTiposDeBusca = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(tiposDeBusca, BUSCA_POR_CODIGO);
+		}			
+		return comboTiposDeBusca;
+	}
+
+	public void setComboTiposDeBusca(SelectOneDataModel<String> comboTiposDeBusca) {
+		this.comboTiposDeBusca = comboTiposDeBusca;
+	}
+		
 }
