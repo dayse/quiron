@@ -37,7 +37,7 @@ import javax.persistence.TemporalType;
 			),
 			@NamedQuery(name = "Paciente.recuperaPacientePorCodigoLike",
 						query = "select p from Paciente p " +
-								"where p.codPaciente like '%' || upper(?) || '%' " +
+								"where upper(p.codPaciente) like '%' || upper(?) || '%' " +
 								"order by p.codPaciente"
 			),
 			@NamedQuery(name = "Paciente.recuperaPacientePorNome",
