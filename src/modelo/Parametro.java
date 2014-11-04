@@ -87,6 +87,17 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	 */
 	private Double peso;
 	
+	
+	/**
+	 * Tipo do parametro, pode ser:
+	 * 
+	 */
+	private String tipo;
+
+	public static String TIPO_NAO_PODE_PASSAR_NECESSIDADE = "Não pode ultrapassar necessidade";
+	public static String TIPO_PODE_PASSAR_NECESSIDADE = "Pode ultrapassar necessidade";
+	
+	
 	/**
 	 * Lista de avaliações dadas as indicações pelos especialistas.
 	 */
@@ -241,4 +252,13 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 }
