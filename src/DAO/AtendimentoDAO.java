@@ -161,6 +161,9 @@ public interface AtendimentoDAO extends DaoGenerico<Atendimento, Long> {
 	public List<Atendimento> recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
 			String codPaciente);
 	
+	@RecuperaLista
+	public List<Atendimento> recuperaListaAtendimento();
+	
 	/**
 	 * 
 	 * Consulta que recupera o último atendimento cadastrado no banco. Ou seja,

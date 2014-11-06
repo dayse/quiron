@@ -1,10 +1,12 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import exception.RelatorioException;
 import modelo.Anamnese;
+import modelo.Atendimento;
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
 import modelo.Indicacao;
@@ -18,11 +20,13 @@ import service.anotacao.Transacional;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
 import DAO.AnamneseDAO;
+import DAO.AtendimentoDAO;
 import DAO.AvalIndicacaoEspecDAO;
 import DAO.EspecialistaDAO;
 import DAO.IndicacaoDAO;
 import DAO.ParametroDAO;
 import DAO.Impl.AnamneseDAOImpl;
+import DAO.Impl.AtendimentoDAOImpl;
 import DAO.Impl.AvalIndicacaoEspecDAOImpl;
 import DAO.Impl.EspecialistaDAOImpl;
 import DAO.Impl.IndicacaoDAOImpl;
@@ -33,6 +37,7 @@ import DAO.exception.ObjetoNaoEncontradoException;
 
 public class ParametroAppService {
 	
+	private static AtendimentoDAO atendimentoDAO;
 	private static ParametroDAO parametroDAO;
 	private static EspecialistaDAO especialistaDAO;
 	private static IndicacaoDAO indicacaoDAO;
@@ -48,6 +53,7 @@ public class ParametroAppService {
 			indicacaoDAO = FabricaDeDao.getDao(IndicacaoDAOImpl.class);
 			anamneseDAO = FabricaDeDao.getDao(AnamneseDAOImpl.class);
 			avalIndicacaoEspecDAO = FabricaDeDao.getDao(AvalIndicacaoEspecDAOImpl.class);
+			atendimentoDAO = FabricaDeDao.getDao(AtendimentoDAOImpl.class);
 
 			avalIndicacaoEspecService = FabricaDeAppService.getAppService(AvalIndicacaoEspecAppService.class);
 		}catch(Exception e){
@@ -58,6 +64,14 @@ public class ParametroAppService {
 	
 	@Transacional
 	public void inclui(Parametro parametro) throws AplicacaoException{
+		List<Especialista> especialistas = new ArrayList<Especialista>(especialistaDAO.recuperaListaEspecialista());
+		List<Atendimento> atendimentos = new ArrayList<Atendimento>(atendimentoDAO.recuperaListaAtendimento());
+		if(especialistas.size() > 0 || atendimentos.size() > 0){
+			throw new AplicacaoException("parametro.INCLUSAO_PROIBIDA");
+		}
+		System.out.println(especialistas.size());
+		System.out.println(atendimentos.size());
+		
 		try{
 			parametroDAO.recuperaParametroPorCodigo(parametro.getCodParametro());
 			throw new AplicacaoException("parametro.CODIGO_EXISTENTE");
@@ -108,6 +122,11 @@ public class ParametroAppService {
 	 */
 	@Transacional
 	private void exclui(Parametro parametro) throws AplicacaoException{
+		List<Especialista> especialistas = new ArrayList<Especialista>(especialistaDAO.recuperaListaEspecialista());
+		List<Atendimento> atendimentos = new ArrayList<Atendimento>(atendimentoDAO.recuperaListaAtendimento());
+		if(especialistas.size() > 0 || atendimentos.size() > 0){
+			throw new AplicacaoException("parametro.EXCLUSAO_PROIBIDA");
+		}
 		Parametro parametroBD = null;
 		try{
 			parametroBD = parametroDAO.getPorIdComLock(parametro.getId());

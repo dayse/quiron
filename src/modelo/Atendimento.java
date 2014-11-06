@@ -134,6 +134,10 @@ import javax.persistence.TemporalType;
 								"where pa.codPaciente = ? " +
 								"order by a.dataAtendimento desc"
 			),
+			@NamedQuery(name = "Atendimento.recuperaListaAtendimento", 
+			query = "select a from Atendimento a " +
+					"order by a.codAtendimento"
+			)			
 		}
 )
 
