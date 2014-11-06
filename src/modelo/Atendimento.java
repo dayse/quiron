@@ -53,12 +53,12 @@ import javax.persistence.TemporalType;
 			),
 			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentosPorPacientePorCodigoLike",
 						query = "select a from Atendimento a " +
-								"where a.codAtendimento like '%' || upper(?) || '%' " +
+								"where upper(a.codAtendimento) like '%' || upper(?) || '%' " +
 								"order by a.codAtendimento"
 			),
 			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentosPorPacientePorCodigoLikeCount",
 						query = "select count(a) from Atendimento a " +
-								"where a.codAtendimento like '%' || upper(?) || '%' "
+								"where upper(a.codAtendimento) like '%' || upper(?) || '%' "
 			),
 			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentosPorPacientePorNome",
 						query = "select a from Atendimento a " +

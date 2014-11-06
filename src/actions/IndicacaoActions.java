@@ -135,6 +135,7 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 			if(indicacoesEncontrados.isEmpty()){
 				error("indicacao.NAO_ENCONTRADO");
 				listaDeIndicacoes = null;
+				buscaEfetuada = false;
 				return PAGINA_LIST;
 			}else{
 				info("indicacao.ENCONTRADOS");

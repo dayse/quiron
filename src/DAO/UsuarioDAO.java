@@ -36,6 +36,6 @@ public interface UsuarioDAO extends DaoGenerico<Usuario, Long>
 	public List<Usuario> recuperaUsuarioPorNomeLike(String nome);
 	
 	@RecuperaLista
-	public List<Usuario> recuperaUsuarioPorLoginLike(String nome);
+	public List<Usuario> recuperaUsuarioPorLoginLike(String login);
 
 }

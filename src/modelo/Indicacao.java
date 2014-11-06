@@ -20,7 +20,8 @@ import javax.persistence.Table;
 @NamedQueries(
 		{
 			@NamedQuery(name = "Indicacao.recuperaListaDeIndicacoesPaginada",
-						query = "select m from Indicacao m "
+						query = "select m from Indicacao m " +
+								"order by m.codIndicacao"
 			),
 			@NamedQuery(name = "Indicacao.recuperaListaDeIndicacoesPaginadaCount",
 						query = "select count(m) from Indicacao m "

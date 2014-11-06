@@ -128,6 +128,7 @@ public class UsuarioActions extends BaseActions {
 			if(usuariosEncontrados.isEmpty()){
 				error("usuario.NAO_ENCONTRADO");
 				listaUsuarios = null;
+				buscaEfetuada = false;
 				return PAGINA_LIST;
 			}else{
 				info("usuario.ENCONTRADOS");

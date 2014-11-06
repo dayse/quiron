@@ -96,6 +96,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 			if(parametrosEncontrados.isEmpty()){
 				error("parametro.NAO_ENCONTRADO");
 				listaParametros = null;
+				buscaEfetuada = false;
 				return PAGINA_LIST;
 			} else {
 				info("parametro.ENCONTRADOS");

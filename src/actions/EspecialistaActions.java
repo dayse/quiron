@@ -124,6 +124,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 			if(especialistasEncontrados.isEmpty()){
 				error("especialista.NAO_ENCONTRADO");
 				listaDeEspecialistas = null;
+				buscaEfetuada = false;
 				return PAGINA_LIST;
 			}else{
 				info("especialista.ENCONTRADOS");

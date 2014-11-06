@@ -645,6 +645,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			if(atendimentosEncontrados.isEmpty()){
 				error("atendimento.NAO_ENCONTRADO");
 				listaDeAtendimentos = null;
+				buscaEfetuada = false;
 				return PAGINA_LIST;
 			}else{
 				info("atendimento.ENCONTRADOS");

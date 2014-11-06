@@ -149,6 +149,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 			if(pacientesEncontrados.isEmpty()){
 				error("paciente.NAO_ENCONTRADO");
 				listaDePacientes = null;
+				buscaEfetuada = false;
 				return PAGINA_LIST;
 			}else{
 				info("paciente.ENCONTRADOS");
