@@ -64,51 +64,45 @@ public class ParametroAppService {
 	
 	@Transacional
 	public void inclui(Parametro parametro) throws AplicacaoException{
-		List<Especialista> especialistas = new ArrayList<Especialista>(especialistaDAO.recuperaListaEspecialista());
-		List<Atendimento> atendimentos = new ArrayList<Atendimento>(atendimentoDAO.recuperaListaAtendimento());
-		if(especialistas.size() > 0 || atendimentos.size() > 0){
-			throw new AplicacaoException("parametro.INCLUSAO_PROIBIDA");
-		}
-		System.out.println(especialistas.size());
-		System.out.println(atendimentos.size());
-		
-		try{
-			parametroDAO.recuperaParametroPorCodigo(parametro.getCodParametro());
-			throw new AplicacaoException("parametro.CODIGO_EXISTENTE");
-		}catch(ObjetoNaoEncontradoException ob){
-		}
-		try{
-			parametroDAO.recuperaParametroPorNome(parametro.getNome());
-			throw new AplicacaoException("parametro.NOME_EXISTENTE");
-		}catch(ObjetoNaoEncontradoException ob){
-		}
-		parametroDAO.inclui(parametro);
-		
-		List<Especialista> especialistaBD = especialistaDAO.recuperaListaEspecialista();
-		List<Indicacao> indicacaoBD = indicacaoDAO.recuperaListaIndicacao();
-		
-		if(!especialistaBD.isEmpty() && !indicacaoBD.isEmpty()){
-			for(Especialista especialista : especialistaBD){
-				for(Indicacao indicacao : indicacaoBD){
-				
-				AvalIndicacaoEspec avalIndicacaoEspec = new AvalIndicacaoEspec();
-				
-				avalIndicacaoEspec.setValor(0);
-				
-				avalIndicacaoEspec.setEspecialista(especialista);
-				avalIndicacaoEspec.setParametro(parametro);
-				avalIndicacaoEspec.setIndicacao(indicacao);
-				
-				avalIndicacaoEspecService.inclui(avalIndicacaoEspec);
+			try{
+				parametroDAO.recuperaParametroPorCodigo(parametro.getCodParametro());
+				throw new AplicacaoException("parametro.CODIGO_EXISTENTE");
+			}catch(ObjetoNaoEncontradoException ob){
+			}
+			try{
+				parametroDAO.recuperaParametroPorNome(parametro.getNome());
+				throw new AplicacaoException("parametro.NOME_EXISTENTE");
+			}catch(ObjetoNaoEncontradoException ob){
+			}
+			parametroDAO.inclui(parametro);
+			
+			List<Especialista> especialistaBD = especialistaDAO.recuperaListaEspecialista();
+			List<Indicacao> indicacaoBD = indicacaoDAO.recuperaListaIndicacao();
+			
+			if(!especialistaBD.isEmpty() && !indicacaoBD.isEmpty()){
+				for(Especialista especialista : especialistaBD){
+					for(Indicacao indicacao : indicacaoBD){
+					
+					AvalIndicacaoEspec avalIndicacaoEspec = new AvalIndicacaoEspec();
+					
+					avalIndicacaoEspec.setValor(0);
+					
+					avalIndicacaoEspec.setEspecialista(especialista);
+					avalIndicacaoEspec.setParametro(parametro);
+					avalIndicacaoEspec.setIndicacao(indicacao);
+					
+					avalIndicacaoEspecService.inclui(avalIndicacaoEspec);
+					}
 				}
 			}
-		} 
 	}
 
 	@Transacional
 	public void incluiComVerificacaoUsuario(Parametro parametro, Usuario usuarioAutenticado) throws AplicacaoException {
 		if(verificaUsuarioAutenticadoTemPermissao(usuarioAutenticado)){
-			this.inclui(parametro);			
+			if(verificaSeParametrosEstaoEmUso()){
+				this.inclui(parametro);			
+			}
 		}
 	}
 
@@ -122,44 +116,44 @@ public class ParametroAppService {
 	 */
 	@Transacional
 	private void exclui(Parametro parametro) throws AplicacaoException{
-		List<Especialista> especialistas = new ArrayList<Especialista>(especialistaDAO.recuperaListaEspecialista());
-		List<Atendimento> atendimentos = new ArrayList<Atendimento>(atendimentoDAO.recuperaListaAtendimento());
-		if(especialistas.size() > 0 || atendimentos.size() > 0){
-			throw new AplicacaoException("parametro.EXCLUSAO_PROIBIDA");
-		}
-		Parametro parametroBD = null;
-		try{
-			parametroBD = parametroDAO.getPorIdComLock(parametro.getId());
-		}catch(ObjetoNaoEncontradoException e){
-			throw new AplicacaoException("parametro.NAO_ENCONTRADO");
-		}
-		parametroDAO.exclui(parametroBD);
+			Parametro parametroBD = null;
+			try{
+				parametroBD = parametroDAO.getPorIdComLock(parametro.getId());
+			}catch(ObjetoNaoEncontradoException e){
+				throw new AplicacaoException("parametro.NAO_ENCONTRADO");
+			}
+			parametroDAO.exclui(parametroBD);
 	}
 
-	/**
-	 * Método que pode ser utilizado para excluir um parametro
-	 * apenas exclui o mesmo se este não estiver em uso no sistema
-	 * @param parametro
-	 * @throws AplicacaoException
-	 */
-	@Transacional
-	public void excluiComSeguranca(Parametro parametro) throws AplicacaoException{
-		List<AvalIndicacaoEspec> avalIndicacaoEspecList = avalIndicacaoEspecDAO.
-															recuperaListaDeAvaliacaoEspecPorParametro(parametro);
-		List<Anamnese> anameseList = anamneseDAO.recuperaListaDeAnamnesePorParametro(parametro);
-		
-		if(anameseList.size() != 0 || avalIndicacaoEspecList.size() != 0){
-			throw new AplicacaoException("parametro.EM_USO");
-		}
-		else{
-			exclui(parametro);
-		}
-	}
-	
 	@Transacional
 	public void excluiComSegurancaComVerificacaoUsuario(Parametro parametro, Usuario usuarioAutenticado) throws AplicacaoException {
 		if(verificaUsuarioAutenticadoTemPermissao(usuarioAutenticado)){
-			this.excluiComSeguranca(parametro);			
+			if(verificaSeParametrosEstaoEmUso()){
+				this.exclui(parametro);			
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * Verifica se já existe algum
+	 * especialista ou atendimento
+	 * cadastrados no banco.
+	 * 
+	 * @return true - Retorna se o banco estiver sem nenhum cadastro de especialista/atendimento
+	 * @throws AplicacaoException - Retorna uma exception se as tabelas especialista ou atendimento tiverem registros.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	@Transacional
+	public boolean verificaSeParametrosEstaoEmUso() throws AplicacaoException{
+		List<Especialista> especialistas = new ArrayList<Especialista>(especialistaDAO.recuperaListaEspecialista());
+		List<Atendimento> atendimentos = new ArrayList<Atendimento>(atendimentoDAO.recuperaListaAtendimento());
+		if(especialistas.size() > 0 || atendimentos.size() > 0){
+			throw new AplicacaoException("parametro.EM_USO");
+		}else{
+			return true;
 		}
 	}
 
