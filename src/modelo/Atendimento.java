@@ -137,7 +137,15 @@ import javax.persistence.TemporalType;
 			@NamedQuery(name = "Atendimento.recuperaListaAtendimento", 
 			query = "select a from Atendimento a " +
 					"order by a.codAtendimento"
-			)			
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaDeAntendimentosParaUmClinico",
+						query = "select a from Atendimento a " +
+								"where a.medico = ?"
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaDeAntendimentosParaUmTecnico",
+			query = "select a from Atendimento a " +
+					"where a.tecnico = ?"
+			)
 		}
 )
 

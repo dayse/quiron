@@ -3,6 +3,7 @@ package DAO;
 import java.util.List;
 
 import modelo.Atendimento;
+import modelo.Usuario;
 import DAO.anotacao.RecuperaLista;
 import DAO.anotacao.RecuperaListaPaginada;
 import DAO.anotacao.RecuperaObjeto;
@@ -177,4 +178,10 @@ public interface AtendimentoDAO extends DaoGenerico<Atendimento, Long> {
 	 */
 	@RecuperaObjeto
 	public Atendimento recuperaUltimoAtendimento();
+	
+	@RecuperaLista
+	public List<Atendimento> recuperaListaDeAntendimentosParaUmClinico(Usuario usuario);
+	
+	@RecuperaLista
+	public List<Atendimento> recuperaListaDeAntendimentosParaUmTecnico(Usuario usuario);
 }

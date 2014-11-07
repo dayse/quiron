@@ -27,6 +27,7 @@ import modelo.Avaliacao;
 import modelo.ConjuntoAvaliacao;
 import modelo.HistoricoAtendimentoRelatorio;
 import modelo.Paciente;
+import modelo.Usuario;
 import DAO.AtendimentoDAO;
 import DAO.Impl.AtendimentoDAOImpl;
 import DAO.controle.FabricaDeDao;
@@ -363,6 +364,14 @@ public class AtendimentoAppService {
 			String codPaciente) {
 		return atendimentoDAO
 				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(codPaciente);
+	}	
+	
+	public List<Atendimento> recuperaListaDeAntendimentosParaUmClinico(Usuario usuario){
+		return atendimentoDAO.recuperaListaDeAntendimentosParaUmClinico(usuario);
+	}
+	
+	public List<Atendimento> recuperaListaDeAntendimentosParaUmTecnico(Usuario usuario){
+		return atendimentoDAO.recuperaListaDeAntendimentosParaUmTecnico(usuario);
 	}	
 	
 }

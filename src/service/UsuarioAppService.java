@@ -1,22 +1,21 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import exception.RelatorioException;
-
+import modelo.Atendimento;
 import modelo.TipoUsuario;
 import modelo.Usuario;
-
 import relatorio.Relatorio;
 import relatorio.RelatorioFactory;
-
 import service.anotacao.Transacional;
 import service.exception.AplicacaoException;
-
 import util.Digesto;
-
+import DAO.AtendimentoDAO;
 import DAO.UsuarioDAO;
+import DAO.Impl.AtendimentoDAOImpl;
 import DAO.Impl.UsuarioDAOImpl;
 import DAO.controle.FabricaDeDao;
 import DAO.exception.ObjetoNaoEncontradoException;
@@ -40,11 +39,13 @@ import DAO.exception.ObjetoNaoEncontradoException;
 public class UsuarioAppService {
 	// DAOs
 	private UsuarioDAO usuarioDAO;
+	private AtendimentoDAO atendimentoDAO;
 
 	public UsuarioAppService() {
 		try {
 			// DAOs
 			usuarioDAO = FabricaDeDao.getDao(UsuarioDAOImpl.class);
+			atendimentoDAO = FabricaDeDao.getDao(AtendimentoDAOImpl.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -131,7 +132,15 @@ public class UsuarioAppService {
 	
 	@Transacional
 	public void exclui(Usuario usuario) throws AplicacaoException {
-		
+		List<Atendimento> atendimentos = new ArrayList<Atendimento>();
+		if(usuario.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.CLINICO)){
+			atendimentos = atendimentoDAO.recuperaListaDeAntendimentosParaUmClinico(usuario);
+		}else if(usuario.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.TECNICO)){
+			atendimentos = atendimentoDAO.recuperaListaDeAntendimentosParaUmTecnico(usuario);
+		}
+		if(atendimentos.size() > 0){
+			throw new AplicacaoException("usuario.VINCULADO_EM_ATENDIMENTO");
+		}		
 		Usuario usuarioBD = null;
 		
 		try {
