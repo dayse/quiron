@@ -374,4 +374,15 @@ public class AtendimentoAppService {
 		return atendimentoDAO.recuperaListaDeAntendimentosParaUmTecnico(usuario);
 	}	
 	
+	public List<Atendimento> recuperaListaPaginadaDeAtendimentosComPacientePorStatus(String status){
+		return atendimentoDAO.recuperaListaPaginadaDeAtendimentosComPacientePorStatus(status);
+	}
+	
+	public List<Atendimento> recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus(String nomeMedico, String status){
+		return atendimentoDAO.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus(nomeMedico, status);
+	}
+	
+	public List<Atendimento> recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikePorStatus(String nomePaciente, String status){
+		return atendimentoDAO.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus(nomePaciente, status);
+	}
 }

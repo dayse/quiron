@@ -145,6 +145,41 @@ import javax.persistence.TemporalType;
 			@NamedQuery(name = "Atendimento.recuperaListaDeAntendimentosParaUmTecnico",
 			query = "select a from Atendimento a " +
 					"where a.tecnico = ?"
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentosComPacientePorStatus",
+						query = "select a from Atendimento a " +
+								"inner join fetch a.paciente p " +
+								"where a.status = ? " +
+								"order by a.dataAtendimento desc"
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentosComPacientePorStatusCount",
+						query = "select count(a) from Atendimento a " +
+								"where a.status = ?"
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus", 
+						query = "select a from Atendimento a " +
+								"inner join a.medico md " +
+								"left outer join fetch a.paciente p " +
+								"where upper(md.nome) like '%' || upper(?) || '%' " +
+								"and a.status = ? " +
+								"order by a.dataAtendimento desc"
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatusCount", 
+						query = "select count(a) from Atendimento a " +
+								"where upper(a.medico.nome) like '%' || upper(?) || '%' " +
+								"and a.status = ?"
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikePorStatus", 
+						query = "select a from Atendimento a " +
+								"inner join fetch a.paciente p " +
+								"where upper(a.paciente.nome) like '%' || upper(?) || '%' " +
+								"and a.status = ? " +
+								"order by a.dataAtendimento desc"
+			),
+			@NamedQuery(name = "Atendimento.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikePorStatusCount", 
+						query = "select count(a) from Atendimento a " +
+								"where upper(a.paciente.nome) like '%' || upper(?) || '%' " +
+								"and a.status = ?"
 			)
 		}
 )

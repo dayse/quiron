@@ -632,24 +632,42 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 */
 	public String buscaAtendimento(){
 		List<Atendimento> atendimentosEncontrados = null;
-		if(campoDeBusca.trim().isEmpty()){
+//		System.out.println(comboFiltroStatus.getObjetoSelecionado());
+		listaDeAtendimentos = null;
+		if(campoDeBusca.trim().isEmpty() && comboFiltroStatus.getObjetoSelecionado() == null) {
+			System.out.println("Nenhum dos dois");
 			error("atendimento.FORNECER_CAMPO_DE_BUSCA");
 			return PAGINA_LIST;
-		}else{
-			listaDeAtendimentos = null;
+		} else if(campoDeBusca.trim().isEmpty()){
+			System.out.println("Apenas filtro!");
+			// vou fazer a lógica do filtro sozinho
+			atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentosComPacientePorStatus(comboFiltroStatus.getObjetoSelecionado()));
+		} else if(comboFiltroStatus.getObjetoSelecionado() == null){
+			System.out.println("Apenas busca!");
+			// lógica da busca sozinha
 			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_NOME_MEDICO)){
 				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(campoDeBusca));
 			}else{
 				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike(campoDeBusca));
 			}
-			if(atendimentosEncontrados.isEmpty()){
-				error("atendimento.NAO_ENCONTRADO");
-				listaDeAtendimentos = null;
-				buscaEfetuada = false;
-				return PAGINA_LIST;
+		} else {
+			System.out.println("Busca E filtros");
+			// Busca por campo de texto E status do atendimento
+			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_NOME_MEDICO)){
+				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus(campoDeBusca, comboFiltroStatus.getObjetoSelecionado()));
 			}else{
-				info("atendimento.ENCONTRADOS");
-			}
+				System.out.println("FALA COMIGO!");
+				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikePorStatus("2","Encerrado"));
+				System.out.println(atendimentosEncontrados.size());
+			}			
+		}
+		if(atendimentosEncontrados.isEmpty()){
+			error("atendimento.NAO_ENCONTRADO");
+		//	listaDeAtendimentos = null;
+			buscaEfetuada = false;
+			return PAGINA_LIST;
+		}else{
+			info("atendimento.ENCONTRADOS");
 		}
 		listaDeAtendimentos = new ListDataModel(atendimentosEncontrados);
 		buscaEfetuada = true;
