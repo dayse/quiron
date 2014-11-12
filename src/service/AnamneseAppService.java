@@ -231,7 +231,7 @@ public class AnamneseAppService {
 		valorDistancia = Math.abs(valorDistancia);
 		//o parametro não penaliza se ultrapassar a necessidade do paciente
 		if(parametro.getTipo().equals(Parametro.TIPO_PODE_EXCEDER)){
-			valorDistancia = Math.min(0, valorDistancia);		
+			valorDistancia = Math.max(0, valorDistancia);		
 		}
 		avaliacaoCorrente.setDistancia(valorDistancia);
 
