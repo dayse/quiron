@@ -84,6 +84,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private boolean tecnicoEditavel;
 	private boolean clinicoEditavel;
 	private SpiderMainPlot plotGrauSemelhanca;
+	private SpiderMainPlot plotDistanciaDescartes;
 
 	
 	//infos de busca
@@ -142,7 +143,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		status.add("Aberto");
 		status.add("Em atendimento");
 		status.add("Encerrado");
-		listaDeNomesAltoritmos.add("Graú de Semelhança");
+		listaDeNomesAltoritmos.add("Grau de Semelhança");
 		listaDeNomesAltoritmos.add("Algoritmo 2");
 	}
 
@@ -293,7 +294,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				}
 			}
 			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-			
+			plotDistanciaDescartes = atendimentoService.geraGraficoDistanciaDescartesParaAvaliacaoDeIndicacaoDeAtendimento(
+					conjuntosDeAvaliacoes, 
+					atendimentoCorrente
+				);
 			return PAGINA_AVALIACAO;
 		}
 		
@@ -974,5 +978,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public void setPlotGrauSemelhanca(SpiderMainPlot plotGrauSemelhanca) {
 		this.plotGrauSemelhanca = plotGrauSemelhanca;
 	}
+	
+	public SpiderMainPlot getPlotDistanciaDescartes() {
+		return plotDistanciaDescartes;
+	}
 
+	public void setPlotDistanciaDescartes(SpiderMainPlot plotDistanciaDescartes) {
+		this.plotDistanciaDescartes = plotDistanciaDescartes;
+	}
 }

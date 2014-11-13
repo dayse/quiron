@@ -24,6 +24,7 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 	
 	private int ranking;
 	
+	private double resultadoDoAlgoritmo;
 	
 	public ConjuntoAvaliacao() {
 	}
@@ -50,6 +51,16 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 			total += avaliacao.getDistancia();
 		}
 		return total;		
+	}
+	
+	public double getRetornaResultadoDoAlgoritmo(){
+		if(!(this.grauSemelhanca == 0.0)){
+			return this.grauSemelhanca;
+		}else if(!(this.distanciaDescartes == 0.0)){
+			return this.distanciaDescartes;
+		}else{
+			return 0.0;
+		}
 	}
 	
 	// ================================== Métodos get() e set()

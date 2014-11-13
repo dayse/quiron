@@ -195,7 +195,12 @@ public class AnamneseAppService {
 			conjuntoAvaliacao.setDistanciaDescartes(conjuntoAvaliacao.getSomatorioDistancia() / listParametro.size());
 			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
 		}
-		
+		// Ordena e poe ranking
+		Collections.sort(conjuntosDeAvaliacoes);
+		for(int i = 0; i < conjuntosDeAvaliacoes.size(); i++){
+			ConjuntoAvaliacao conjuntoAvaliacao = conjuntosDeAvaliacoes.get(i);
+			conjuntoAvaliacao.setRanking(i+1);
+		}
 		return conjuntosDeAvaliacoes;
 	}
 	
