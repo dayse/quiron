@@ -48,7 +48,7 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 	public double somaParametrosDistancia(){
 		double total = 0.0;
 		for (Avaliacao avaliacao : this.avaliacoes) {
-			total += avaliacao.getDistancia();
+			total += avaliacao.getDistancia() * avaliacao.getParametro().getPeso();
 		}
 		return total;		
 	}
