@@ -116,15 +116,21 @@ public class CargaAppService {
 		//apenas as cargas a seguir serao executadas.
 		cargas = new ArrayList<CargaBase>();
 		
-		//Executa a carga básica, se ela nao rodar, retorna false.
-		if(!this.executarCargaBasica())
-			return false;
+		//Executa a carga basica, se ela nao rodar, retorna falso.
+		if(!this.executarCargaExemplo1())
+			return false;		
 		
 		// Inclui novas indicações que foram fornecidas pelo Pedro Peloso
 		cargas.add(new CargaIndicacaoIntermediaria());
 		
 		// Inclui novos parametros que foram fornecidos pelo Pedro Peloso
 		cargas.add(new CargaParametroIntermediario());
+		
+		// Inclui novas anamneses
+		cargas.add(new CargaAtendimentoIntermediario());
+		
+		// Inclui novas avaliações para os parametros/indicacoes previamente inseridos
+		cargas.add(new CargaAvalIndicacaoEspecIntermediaria());
 		
 		return executarCargas();
 	}
