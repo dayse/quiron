@@ -111,18 +111,18 @@ public class CargaParametros extends CargaBase {
 		diabetes.setDescricao("Tipo de diabetes do paciente, caso tenha.");
 
 		enterococos.setCodParametro("P004");
-		enterococos.setNome("Etiologia Enterococos");
+		enterococos.setNome("Enterococcus Faecalis");
 		enterococos
-				.setDescricao("Ocorrência de etiologia do tipo Enterococos.");
+				.setDescricao("Ocorrência de etiologia do tipo Enterococos Faecalis.");
 
 		escherichia.setCodParametro("P005");
-		escherichia.setNome("Etiologia Escherichia");
+		escherichia.setNome("Escherichia Coli");
 		escherichia
-				.setDescricao("Ocorrência de etiologia do tipo Escherichia.");
+				.setDescricao("Ocorrência de etiologia do tipo Escherichia Coli.");
 
 		candida.setCodParametro("P006");
-		candida.setNome("Etiologia Cândida");
-		candida.setDescricao("Ocorrência de etiologia do tipo Cândida.");
+		candida.setNome("Cândida SP");
+		candida.setDescricao("Ocorrência de etiologia do tipo Cândida SP.");
 
 		efeitosColaterais.setCodParametro("P007");
 		efeitosColaterais.setNome("Não causar Efeitos Colaterais");

@@ -32,7 +32,8 @@ public class CargaActions extends BaseActions {
 	private static String SENHA_CARGA = Constantes.SENHA_CARGABD;
 	private static String OPCAO_BASICA = "Basica";
 	private static String OPCAO_EXEMPLO1 = "Exemplo Simples";
-	private static String OPCAO_EXEMPLO2 = "Exemplo com muitos parametros";
+	private static String OPCAO_EXEMPLO2 = "Carga Intermediária 1";
+	private static String OPCAO_EXEMPLO3 = "Exemplo com muitos parametros";
 	public List<String> tiposDeCarga = new ArrayList<String>();
 	private SelectOneDataModel<String> comboTiposDeCarga;
 
@@ -61,6 +62,7 @@ public class CargaActions extends BaseActions {
 		tiposDeCarga.add(OPCAO_BASICA);
 		tiposDeCarga.add(OPCAO_EXEMPLO1);
 		tiposDeCarga.add(OPCAO_EXEMPLO2);
+		tiposDeCarga.add(OPCAO_EXEMPLO3);
 		descCarga = null;
 		comboTiposDeCarga = null;
 	}
@@ -99,7 +101,10 @@ public class CargaActions extends BaseActions {
 		else if (opcao.equals(OPCAO_EXEMPLO1)) {
 			descCarga = "Realiza carga Basica e depois insere os do primeiro exemplo.";
 		}
-		else if(opcao.equals(OPCAO_EXEMPLO2)){
+		else if (opcao.equals(OPCAO_EXEMPLO2)){
+			descCarga = "Carga intermediária com indicações e parametros do Pedro Peloso.";
+		}
+		else if (opcao.equals(OPCAO_EXEMPLO3)){
 			descCarga = "Realiza as cargas anteriores e insere novos dados, totalizando 122 antibióticos e 21 parametros.";
 		}
 	}
@@ -130,8 +135,11 @@ public class CargaActions extends BaseActions {
 			if (opcao.equals(OPCAO_EXEMPLO1)) {
 				cargaService.executarCargaExemplo1();
 			}
-			if(opcao.equals(OPCAO_EXEMPLO2)){
+			if (opcao.equals(OPCAO_EXEMPLO2)){
 				cargaService.executarCargaExemplo2();
+			}
+			if (opcao.equals(OPCAO_EXEMPLO3)){
+				cargaService.executarCargaExemplo3();
 			}
 			info("carga.SUCESSO_CARGA");
 		} catch (AplicacaoException ex) {

@@ -102,14 +102,51 @@ public class CargaAppService {
 	 * ---- CargaAvalIndicacaoEspec;<br />
 	 * ---- CargaPaciente;<br />
 	 * ---- CargaAtendimento;<br />
+	 * ---- CargaIndicacaoIntermediaria;<br />
+	 * ---- CargaParametroIntermediario;<br />
 	 * 
 	 * @return Retorna o resultado da chamada do método executarCargas().
 	 * @throws AplicacaoException
 	 * 
-	 * @author felipe.pontes
+	 * @author bruno.oliveira
 	 * 
 	 */
 	public boolean executarCargaExemplo2() throws AplicacaoException{
+		//Instancia a lista de cargas novamente, para ter certeza que
+		//apenas as cargas a seguir serao executadas.
+		cargas = new ArrayList<CargaBase>();
+		
+		//Executa a carga básica, se ela nao rodar, retorna false.
+		if(!this.executarCargaBasica())
+			return false;
+		
+		// Inclui novas indicações que foram fornecidas pelo Pedro Peloso
+		cargas.add(new CargaIndicacaoIntermediaria());
+		
+		// Inclui novos parametros que foram fornecidos pelo Pedro Peloso
+		cargas.add(new CargaParametroIntermediario());
+		
+		return executarCargas();
+	}
+
+	/**
+	 * Executa a carga com os dados de estudo:<br />
+	 * ---- executarCargaBasica;<br />
+	 * ---- CargaIndicacao;<br />
+	 * ---- CargaEspecialista;<br />
+	 * ---- CargaAvalIndicacaoEspec;<br />
+	 * ---- CargaPaciente;<br />
+	 * ---- CargaAtendimento;<br />
+	 * ---- CargaEstudoMultiplasIndicacao;<br />
+	 * ---- CargaEstudoMultiplosParametros;<br />
+	 * 
+	 * @return Retorna o resultado da chamada do método executarCargas().
+	 * @throws AplicacaoException
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
+	public boolean executarCargaExemplo3() throws AplicacaoException{
 		//Instancia a lista de cargas novamente, para ter certeza que
 		//apenas as cargas a seguir serao executadas.
 		cargas = new ArrayList<CargaBase>();

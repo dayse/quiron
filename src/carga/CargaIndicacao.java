@@ -93,7 +93,7 @@ public class CargaIndicacao extends CargaBase{
 	 */
 	public void incluirIndicacoes() throws AplicacaoException {
 		Indicacao amox500 = new Indicacao();
-		amox500.setNome("Amoxilina");
+		amox500.setNome("Amoxicilina");
 		amox500.setCodIndicacao("amox500");
 		amox500.setDosagem("12hrs x 3 dias");
 		amox500.setApresentacao("500 mg");
@@ -105,7 +105,7 @@ public class CargaIndicacao extends CargaBase{
 		bactrim.setApresentacao("500 mg");
 
 		Indicacao amox1 = new Indicacao();
-		amox1.setNome("Amoxilina");
+		amox1.setNome("Amoxicilina");
 		amox1.setCodIndicacao("amox1");
 		amox1.setDosagem("Única");
 		amox1.setApresentacao("1000 mg");
