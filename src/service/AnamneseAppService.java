@@ -179,24 +179,84 @@ public class AnamneseAppService {
 
 		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
 		
+		/* 
+		 * Para cada indicação é criado um objeto do tipo ConjuntoAvaliacao,
+		 * que é um objeto preparado para ser manipulado no contexto do algoritmo.
+		 * Sendo assim, a indicação é setada em seu respectivo objeto ConjuntoAvaliacao.
+		 */
 		for (Indicacao indicacao : listIndicacao) {
 			ConjuntoAvaliacao conjuntoAvaliacao = new ConjuntoAvaliacao();
 			conjuntoAvaliacao.setIndicacao(indicacao);
 			
-
+			/*
+			 *  Em seguida, calcula a avaliação de cada Indicacação por paremetro,
+			 *  tendo em vista os dados de anamnese no atendimento.
+			 *  
+			 *  Este loop irá gerar a avaliação de todas os parametros em comparação
+			 *  a indicação atual do loop anterior.
+			 */
 			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
 			for (Parametro parametro : listParametro) {
 				Avaliacao avaliacaoCorrente = calculaAvaliacaoPorAtendimentoPorIndicacaoPorParametroPelaDistanciaDescartes(atendimento, indicacao, parametro);
 				listAvaliacao.add(avaliacaoCorrente);
 			}
-			
+			/*
+			 * Lembrando que ainda não concluimos o loop de indicação,
+			 * o conjunAvaliacao da indicacao atual dentro do loop irá receber
+			 * a lista de avaliações de todos os parametros nessa indicação. 
+			 */
 			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
+			
+			/*
+			 * Setamos o atributo SomatorioDistancia fazendo uma chamada do método
+			 * somaParametrosDistancia do mesmo objeto.
+			 * 
+			 * O somaParamnetrosDistancia é um método que percorre a lista de avaliações
+			 * previamente setada e para cada avaliação pega a distância e multiplica
+			 * pelo peso do parametro.
+			 */
 			conjuntoAvaliacao.setSomatorioDistancia(conjuntoAvaliacao.somaParametrosDistancia());
-			conjuntoAvaliacao.setDistanciaDescartes(conjuntoAvaliacao.getSomatorioDistancia() / listParametro.size());
+			
+			/*
+			 * Setamos o atributo SometorioPesosParametos fazendo uma chama do método
+			 * somaPesosParametros do mesmo objeto.
+			 * 
+			 * O somaPesosParametros é um método que percorre a lista de avaliações 
+			 * previamente setada e para cada avaliação pega o peso do parametro e
+			 * soma ao total de pesos de parametros.
+			 */
+			conjuntoAvaliacao.setSomatorioPesosParametros(conjuntoAvaliacao.somaPesosParametros());
+			
+			/*
+			 * Setamos o atributo DistanciaDescartes com o resultado da divisão do Somatório
+			 * das distâncias previamente calculadas divido pelo somatório dos pesos dos parametros
+			 * previamente setados.
+			 */
+			conjuntoAvaliacao.setDistanciaDescartes(conjuntoAvaliacao.getSomatorioDistancia() / conjuntoAvaliacao.getSomatorioPesosParametros());
+			
+			/*
+			 * No final, o processo estará terminado para a Indicação atual no loop e
+			 * os dados estarão salvos na instância atual do objeto conjuntoAvaliacao.
+			 * 
+			 * Então, esse objeto será salvo numa lista para que as demais indicações
+			 * sejam tratadas.
+			 */
 			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
 		}
-		// Ordena e poe ranking
+		/*
+		 * Reordena a lista de forma que as indicações fiquem rankeadas corretamente.
+		 */
 		Collections.sort(conjuntosDeAvaliacoes);
+		/*
+		 * Após reordenar a lista na ordem correta do ranking, este percorre cada avaliação
+		 * de cada indicação e seta o seu Ranking.
+		 * 
+		 * Acontece que o collections.sort apenas coloca as avaliações na ordem correta, o que o
+		 * for faz é setar explicitamente um valor inteiro no atributo Ranking que representa a posição
+		 * desta avaliação no ranking.
+		 * 
+		 * O atributo é setado com i+1, já que o loop inicia em zero.
+		 */
 		for(int i = 0; i < conjuntosDeAvaliacoes.size(); i++){
 			ConjuntoAvaliacao conjuntoAvaliacao = conjuntosDeAvaliacoes.get(i);
 			conjuntoAvaliacao.setRanking(i+1);
@@ -216,12 +276,18 @@ public class AnamneseAppService {
 									(Atendimento atendimento, Indicacao indicacao, Parametro parametro){
 
 		Anamnese anamneseCorrente = null;
+		/*
+		 * Recupera a anamnese de um paramentro em um atendimento específico.
+		 */
 		try {
 			anamneseCorrente = anamneseDAO.recuperaAnamnesePorAtendimentoPorParametro(atendimento, parametro);
 		} catch (ObjetoNaoEncontradoException e) {
 			e.printStackTrace();
 		}
 		
+		/*
+		 *  
+		 */
 		Double mediaValorEspecialistas = 
 				avalIndicacaoEspecService.calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(indicacao, parametro);
 		

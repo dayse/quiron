@@ -22,6 +22,8 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 	
 	private double distanciaDescartes;
 	
+	private double somatorioPesosParametros;
+	
 	private int ranking;
 	
 	private double resultadoDoAlgoritmo;
@@ -53,7 +55,15 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		return total;		
 	}
 	
-	public double getRetornaResultadoDoAlgoritmo(){
+	public double somaPesosParametros(){
+		double total = 0.0;
+		for (Avaliacao avaliacao : this.avaliacoes) {
+			total += avaliacao.getParametro().getPeso();
+		}
+		return total;
+	}
+	
+	public double getResultadoDoAlgoritmo(){
 		if(!(this.grauSemelhanca == 0.0)){
 			return this.grauSemelhanca;
 		}else if(!(this.distanciaDescartes == 0.0)){
@@ -145,6 +155,12 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		this.somatorioDistancia = somatorioDistancia;
 	}
 
-	
+	public double getSomatorioPesosParametros() {
+		return somatorioPesosParametros;
+	}
+
+	public void setSomatorioPesosParametros(double somatorioPesosParametros) {
+		this.somatorioPesosParametros = somatorioPesosParametros;
+	}
 
 }

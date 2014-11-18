@@ -102,7 +102,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	//infos de opcao de algoritimo de avaliação
 
 	private SelectOneDataModel<String> comboAlgoritmoAvaliacao;
-	private List<String> listaDeNomesAltoritmos = new ArrayList<String>();
+	private List<String> listaDeNomesAlgoritmos = new ArrayList<String>();
 	
 	
 	/**
@@ -143,8 +143,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		status.add("Aberto");
 		status.add("Em atendimento");
 		status.add("Encerrado");
-		listaDeNomesAltoritmos.add("Grau de Semelhança");
-		listaDeNomesAltoritmos.add("Algoritmo 2");
+		listaDeNomesAlgoritmos.add("Grau de Semelhança");
+		listaDeNomesAlgoritmos.add("Índice de Descartes por Superação-Distância");
+		listaDeNomesAlgoritmos.add("Grau de Inclusão");
 	}
 
 	/**
@@ -198,7 +199,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * @return
 	 */
 	public String mostraAlgoritmosDeAvaliacao(){
-		comboAlgoritmoAvaliacao = SelectOneDataModel.criaSemTextoInicial(listaDeNomesAltoritmos);
+		comboAlgoritmoAvaliacao = SelectOneDataModel.criaSemTextoInicial(listaDeNomesAlgoritmos);
 		return PAGINA_ALGORITMOS_AVALIACAO;
 	}
 	
@@ -221,7 +222,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		//Verifica qual o algoritmo utilizado:
 		//se for o primeiro (grau de semelhança) então chama o metodo do action que vai fazer o resto
 		//no que diz respeito a tela desse algoritmo
-		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAltoritmos.get(0))){
+		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(0))){
 			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = 
 								anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(atendimentoCorrente);
 			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
@@ -260,9 +261,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 							);
 			return PAGINA_AVALIACAO;
 		}
-		//se for o segundo algoritmo (Algoritmo 2) então chama o metodo do action que vai fazer o resto
+		//se for o segundo algoritmo (Indice de Descartes por Superação-Distância) então chama o metodo do action que vai fazer o resto
 		//no que diz respeito a tela desse algoritmo
-		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAltoritmos.get(1))){
+		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(1))){
 			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = 
 								anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPelaDistanciaDescartes(atendimentoCorrente);
 			
@@ -300,6 +301,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				);
 			return PAGINA_AVALIACAO;
 		}
+		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(2))){
+			
+		}
 		
 		
 		//so chega nesse ponto se por alguma razão muito estranha ele não for nenhum
@@ -322,7 +326,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		//Verifica qual o algoritmo utilizado:
 		//se for o primeiro (grau de semelhança) então chama o metodo do action que vai fazer o resto
 		//no que diz respeito a tela desse algoritmo
-		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAltoritmos.get(0))){
+		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(0))){
 			return PAGINA_AVALIACAO_DETALHADA;
 		}
 		else{
@@ -661,7 +665,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus(campoDeBusca, comboFiltroStatus.getObjetoSelecionado()));
 			}else{
 				System.out.println("FALA COMIGO!");
-				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikePorStatus("2","Encerrado"));
+				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikePorStatus(campoDeBusca,comboFiltroStatus.getObjetoSelecionado()));
 				System.out.println(atendimentosEncontrados.size());
 			}			
 		}
@@ -961,7 +965,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 
 	public SelectOneDataModel<String> getComboAlgoritmoAvaliacao() {
 		if(comboAlgoritmoAvaliacao == null){
-			comboAlgoritmoAvaliacao = SelectOneDataModel.criaSemTextoInicial(listaDeNomesAltoritmos);
+			comboAlgoritmoAvaliacao = SelectOneDataModel.criaSemTextoInicial(listaDeNomesAlgoritmos);
 		}
 		return comboAlgoritmoAvaliacao;
 	}
