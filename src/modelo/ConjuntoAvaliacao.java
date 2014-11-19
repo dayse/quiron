@@ -24,9 +24,13 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 	
 	private double somatorioPesosParametros;
 	
+	private double somatorioNecessidadeDoPaciente;
+	
 	private int ranking;
 	
 	private double resultadoDoAlgoritmo;
+	
+	private double grauInclusao;
 	
 	public ConjuntoAvaliacao() {
 	}
@@ -55,6 +59,14 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		return total;		
 	}
 	
+	public double somaDistanciaDoGrauDeInclusaoSemPeso(){
+		double total = 0.0;
+		for(Avaliacao avaliacao : this.avaliacoes){
+			total += avaliacao.getDistancia();
+		}
+		return total;
+	}
+	
 	public double somaPesosParametros(){
 		double total = 0.0;
 		for (Avaliacao avaliacao : this.avaliacoes) {
@@ -68,6 +80,8 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 			return this.grauSemelhanca;
 		}else if(!(this.distanciaDescartes == 0.0)){
 			return this.distanciaDescartes;
+		}else if(!(this.grauInclusao == 0.0)){
+			return this.grauInclusao;
 		}else{
 			return 0.0;
 		}
@@ -162,5 +176,25 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 	public void setSomatorioPesosParametros(double somatorioPesosParametros) {
 		this.somatorioPesosParametros = somatorioPesosParametros;
 	}
+
+	public double getSomatorioNecessidadeDoPaciente() {
+		return somatorioNecessidadeDoPaciente;
+	}
+
+
+	public void setSomatorioNecessidadeDoPaciente(
+			double somatorioNecessidadeDoPaciente) {
+		this.somatorioNecessidadeDoPaciente = somatorioNecessidadeDoPaciente;
+	}
+
+	public double getGrauInclusao() {
+		return grauInclusao;
+	}
+
+
+	public void setGrauInclusao(double grauInclusao) {
+		this.grauInclusao = grauInclusao;
+	}
+	
 
 }

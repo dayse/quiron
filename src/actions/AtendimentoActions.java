@@ -63,6 +63,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_AVALIACAO = "listAvaliacao";
 	public final String PAGINA_AVALIACAO_DETALHADA = "listAvaliacaoDetail";
 	public final String PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES = "listAvaliacaoDetailDistanciaDescartes";
+	public final String PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO = "listAvaliacaoDetailGrauInclusao";
 	
 
 	// Services
@@ -302,7 +303,43 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			return PAGINA_AVALIACAO;
 		}
 		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(2))){
+			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes =
+					anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauDeInclusao(atendimentoCorrente);
 			
+			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
+			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
+			try {
+				comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+			} catch (AplicacaoException e) {
+				e.printStackTrace();
+			}
+			listaDeAnamneses = new ListDataModel(
+						anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
+					);
+			
+			if(atendimentoCorrente.getTecnico() == null){
+				comboTecnicos = null;
+			}else{
+				try {
+					comboTecnicos = SelectOneDataModel
+							.criaComObjetoSelecionadoSemTextoInicial(
+									usuarioService
+											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+													.recuperaTipoUsuarioTecnico()),
+									atendimentoCorrente.getTecnico());
+				} catch (AplicacaoException e) {
+					e.printStackTrace();
+				}
+			}
+			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+	/*		plotDistanciaDescartes = atendimentoService.geraGraficoDistanciaDescartesParaAvaliacaoDeIndicacaoDeAtendimento(
+					conjuntosDeAvaliacoes, 
+					atendimentoCorrente
+				);			*/
+			
+			return PAGINA_AVALIACAO;
 		}
 		
 		
@@ -329,8 +366,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(0))){
 			return PAGINA_AVALIACAO_DETALHADA;
 		}
-		else{
+		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(1))){
 			return PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES;
+		}else{
+			return PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO;
 		}
 	}
 

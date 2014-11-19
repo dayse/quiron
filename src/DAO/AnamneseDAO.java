@@ -52,4 +52,7 @@ public interface AnamneseDAO extends DaoGenerico<Anamnese, Long> {
 	@RecuperaObjeto
 	public Anamnese  recuperaAnamnesePorAtendimentoPorParametro(Atendimento atendimento, Parametro parametro)
 			throws ObjetoNaoEncontradoException;
+	
+	@RecuperaObjeto
+	public Double recuperaSomaAnamneseParaUmAtendimento(Atendimento atendimento);
 }

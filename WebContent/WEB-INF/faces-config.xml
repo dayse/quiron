@@ -144,7 +144,11 @@
 		<navigation-case>
 			<from-outcome>listAvaliacaoDetailDistanciaDescartes</from-outcome>
 			<to-view-id>/avaliacao/list_detail_descartes.xhtml</to-view-id>
-		</navigation-case>		
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listAvaliacaoDetailGrauInclusao</from-outcome>
+			<to-view-id>/avaliacao/list_detail_grau_inclusao.xhtml</to-view-id>
+		</navigation-case>						
 		<navigation-case>
 			<from-outcome>algoritmosAvaliacao</from-outcome>
 			<to-view-id>/avaliacao/algoritmos.xhtml</to-view-id>
