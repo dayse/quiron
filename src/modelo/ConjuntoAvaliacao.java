@@ -148,7 +148,15 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 
 	@Override
 	public int compareTo(ConjuntoAvaliacao o) {
-		return this.getGrauSemelhanca() > o.getGrauSemelhanca() ? -1 : this.getGrauSemelhanca() < o.getGrauSemelhanca() ? 1 : 0;
+		if(!(this.grauSemelhanca == 0.0)){
+			return this.getGrauSemelhanca() > o.getGrauSemelhanca() ? -1 : this.getGrauSemelhanca() < o.getGrauSemelhanca() ? 1 : 0;
+		}else if(!(this.distanciaDescartes == 0.0)){
+			return this.getDistanciaDescartes() < o.getDistanciaDescartes() ? -1 : this.getDistanciaDescartes() > o.getDistanciaDescartes() ? 1 : 0;
+		}else if(!(this.grauInclusao == 0.0)){
+			return this.getGrauInclusao() > o.getGrauInclusao() ? -1 : this.getGrauInclusao() < o.getGrauInclusao() ? 1 : 0;
+		}else{
+			return 0;
+		}
 	}
 
 
