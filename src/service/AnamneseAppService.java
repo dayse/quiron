@@ -361,7 +361,7 @@ public class AnamneseAppService {
 			 * previamente setada e para cada avaliação pega a distância e multiplica
 			 * pelo peso do parametro.
 			 */
-			conjuntoAvaliacao.setSomatorioDistancia(conjuntoAvaliacao.somaDistanciaDoGrauDeInclusaoSemPeso());
+			conjuntoAvaliacao.setSomatorioDistancia(conjuntoAvaliacao.somaDistanciaDoGrauDeInclusao());
 			
 			conjuntoAvaliacao.setSomatorioNecessidadeDoPaciente(anamneseDAO.recuperaSomaAnamneseParaUmAtendimento(atendimento));
 			

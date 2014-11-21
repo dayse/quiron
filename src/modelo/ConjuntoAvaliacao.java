@@ -59,10 +59,10 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		return total;		
 	}
 	
-	public double somaDistanciaDoGrauDeInclusaoSemPeso(){
+	public double somaDistanciaDoGrauDeInclusao(){
 		double total = 0.0;
 		for(Avaliacao avaliacao : this.avaliacoes){
-			total += avaliacao.getDistancia();
+			total += avaliacao.getDistancia() * avaliacao.getParametro().getPeso();
 		}
 		return total;
 	}
