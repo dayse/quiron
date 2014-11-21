@@ -334,10 +334,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				}
 			}
 			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-	/*		plotDistanciaDescartes = atendimentoService.geraGraficoDistanciaDescartesParaAvaliacaoDeIndicacaoDeAtendimento(
+			plotDistanciaDescartes = atendimentoService.geraGraficoGrauDeInclusaoParaAvaliacaoDeIndicacaoDeAtendimento(
 					conjuntosDeAvaliacoes, 
 					atendimentoCorrente
-				);			*/
+				);			
 			
 			return PAGINA_AVALIACAO;
 		}
