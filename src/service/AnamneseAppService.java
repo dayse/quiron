@@ -381,8 +381,6 @@ public class AnamneseAppService {
 			 * previamente setados.
 			 */
 			conjuntoAvaliacao.setGrauInclusao((conjuntoAvaliacao.getSomatorioNecessidadeDoPaciente() - conjuntoAvaliacao.getSomatorioDistancia()) / conjuntoAvaliacao.getSomatorioNecessidadeDoPaciente());
-			System.out.println(conjuntoAvaliacao.getSomatorioNecessidadeDoPaciente() + "-" + conjuntoAvaliacao.getSomatorioDistancia()
-					+ "/" + conjuntoAvaliacao.getSomatorioNecessidadeDoPaciente() + "=" + conjuntoAvaliacao.getGrauInclusao());
 			/*
 			 * No final, o processo estará terminado para a Indicação atual no loop e
 			 * os dados estarão salvos na instância atual do objeto conjuntoAvaliacao.

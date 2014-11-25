@@ -64,7 +64,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_AVALIACAO_DETALHADA = "listAvaliacaoDetail";
 	public final String PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES = "listAvaliacaoDetailDistanciaDescartes";
 	public final String PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO = "listAvaliacaoDetailGrauInclusao";
-	
+	//Hamming (penaliza) X Grau de Inclusao (não penaliza)
+	//	Descartes (não penaliza) x Grau de similaridade (penaliza)
+	public final String PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO_E_SEMELHANCA = "listAvaliacaoDetailGrauInclusaoESemelhanca";	
 
 	// Services
 	private static AtendimentoAppService atendimentoService;
@@ -147,6 +149,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaDeNomesAlgoritmos.add("Grau de Semelhança");
 		listaDeNomesAlgoritmos.add("Índice de Descartes por Superação-Distância");
 		listaDeNomesAlgoritmos.add("Grau de Inclusão");
+		listaDeNomesAlgoritmos.add("Grau de Inclusão + Grau de Semelhança");
 	}
 
 	/**
@@ -341,7 +344,45 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			
 			return PAGINA_AVALIACAO;
 		}
-		
+		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(3))){
+			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes =
+					anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauDeInclusao(atendimentoCorrente);
+			
+			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
+			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
+			try {
+				comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+			} catch (AplicacaoException e) {
+				e.printStackTrace();
+			}
+			listaDeAnamneses = new ListDataModel(
+						anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
+					);
+			
+			if(atendimentoCorrente.getTecnico() == null){
+				comboTecnicos = null;
+			}else{
+				try {
+					comboTecnicos = SelectOneDataModel
+							.criaComObjetoSelecionadoSemTextoInicial(
+									usuarioService
+											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+													.recuperaTipoUsuarioTecnico()),
+									atendimentoCorrente.getTecnico());
+				} catch (AplicacaoException e) {
+					e.printStackTrace();
+				}
+			}
+			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+			plotDistanciaDescartes = atendimentoService.geraGraficoGrauDeInclusaoParaAvaliacaoDeIndicacaoDeAtendimento(
+					conjuntosDeAvaliacoes, 
+					atendimentoCorrente
+				);			
+			
+			return PAGINA_AVALIACAO;
+		}		
 		
 		//so chega nesse ponto se por alguma razão muito estranha ele não for nenhum
 		//dos algoritmos possíveis, assim carrega a página de seleção do algoritmo.
@@ -368,8 +409,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}
 		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(1))){
 			return PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES;
-		}else{
+		}
+		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(2))){
 			return PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO;
+		}
+		else{
+			return PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO_E_SEMELHANCA;
 		}
 	}
 

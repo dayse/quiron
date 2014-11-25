@@ -148,7 +148,11 @@
 		<navigation-case>
 			<from-outcome>listAvaliacaoDetailGrauInclusao</from-outcome>
 			<to-view-id>/avaliacao/list_detail_grau_inclusao.xhtml</to-view-id>
-		</navigation-case>						
+		</navigation-case>	
+		<navigation-case>
+			<from-outcome>listAvaliacaoDetailGrauInclusaoESemelhanca</from-outcome>
+			<to-view-id>/avaliacao/list_detail_grau_inclusao_semelhanca.xhtml</to-view-id>
+		</navigation-case>									
 		<navigation-case>
 			<from-outcome>algoritmosAvaliacao</from-outcome>
 			<to-view-id>/avaliacao/algoritmos.xhtml</to-view-id>
