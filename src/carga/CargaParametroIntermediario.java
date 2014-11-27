@@ -88,6 +88,12 @@ public class CargaParametroIntermediario extends CargaBase {
 		Parametro proteus = new Parametro();
 		Parametro enterobacter = new Parametro();
 		
+		Parametro gravidez = new Parametro();
+		Parametro polaciuria = new Parametro();
+		Parametro desconfortoAbdominal = new Parametro();
+		Parametro infeccaoUrinariaAnterior = new Parametro();
+		Parametro usoDeAntibiotico = new Parametro();
+		
 		klebsiella.setCodParametro("P009");
 		klebsiella.setNome("Klebsiella pneumoniae");
 		klebsiella.setDescricao("Ocorrência de etiologia do tipo Klebsiella Pneumoniae");
@@ -103,9 +109,39 @@ public class CargaParametroIntermediario extends CargaBase {
 		enterobacter.setDescricao("Ocorrência de etiologia do tipo Enterobacter Aerogenes");
 		enterobacter.setPeso(1.0);
 		
+		gravidez.setCodParametro("P012");
+		gravidez.setNome("Gravidez");
+		gravidez.setDescricao("Paciente encontra-se grávida");
+		gravidez.setPeso(1.0);
+		
+		polaciuria.setCodParametro("P013");
+		polaciuria.setNome("Polaciúria");
+		polaciuria.setDescricao("Ocorrêna de diminuição significativa da quantidade de urina excretada");
+		polaciuria.setPeso(1.0);
+		
+		desconfortoAbdominal.setCodParametro("P014");
+		desconfortoAbdominal.setNome("Desconforto abdominal");
+		desconfortoAbdominal.setDescricao("Ocorrência de desconforto na região abdominal");
+		desconfortoAbdominal.setPeso(1.0);
+		
+		infeccaoUrinariaAnterior.setCodParametro("P015");
+		infeccaoUrinariaAnterior.setNome("Infecção Urinária Anterior");
+		infeccaoUrinariaAnterior.setDescricao("Histórico de ocorrência de infecção urinária anterior");
+		infeccaoUrinariaAnterior.setPeso(1.0);
+		
+		usoDeAntibiotico.setCodParametro("P016");
+		usoDeAntibiotico.setNome("Uso de Antibiótico");
+		usoDeAntibiotico.setDescricao("Verificação do uso atual de algum antibiotico por parte do usuário. Seja por automedicação ou precição anterior");
+		usoDeAntibiotico.setPeso(1.0);
+		
 		parametroService.inclui(klebsiella);
 		parametroService.inclui(proteus);
 		parametroService.inclui(enterobacter);
+		parametroService.inclui(gravidez);
+		parametroService.inclui(polaciuria);
+		parametroService.inclui(desconfortoAbdominal);
+		parametroService.inclui(infeccaoUrinariaAnterior);
+		parametroService.inclui(usoDeAntibiotico);
 	}
 
 }

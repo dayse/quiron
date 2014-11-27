@@ -120,6 +120,9 @@ public class CargaAppService {
 		if(!this.executarCargaExemplo1())
 			return false;		
 		
+		// Inclui novos pacientes que fora fornecidos pelo Pedro Peloso
+		cargas.add(new CargaPacienteIntermediaria());
+		
 		// Inclui novas indicações que foram fornecidas pelo Pedro Peloso
 		cargas.add(new CargaIndicacaoIntermediaria());
 		
