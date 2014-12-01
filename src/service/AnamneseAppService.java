@@ -189,11 +189,11 @@ public class AnamneseAppService {
 			conjuntoAvaliacao.setIndicacao(indicacao);
 			
 			/*
-			 *  Em seguida, calcula a avaliação de cada Indicacação por parametro,
+			 *  Em seguida, calcula a avaliação de cada Indicação por parametro,
 			 *  tendo em vista os dados de anamnese no atendimento.
 			 *  
 			 *  Este loop irá gerar a avaliação de todas os parametros em comparação
-			 *  a indicação atual do loop anterior.
+			 *  a indicação atual.
 			 */
 			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
 			for (Parametro parametro : listParametro) {
@@ -202,7 +202,7 @@ public class AnamneseAppService {
 			}
 			/*
 			 * Lembrando que ainda não concluimos o loop de indicação,
-			 * o conjunAvaliacao da indicacao atual dentro do loop irá receber
+			 * o conjunAvaliacao da indicacao atual irá receber
 			 * a lista de avaliações de todos os parametros nessa indicação. 
 			 */
 			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
@@ -340,11 +340,11 @@ public class AnamneseAppService {
 			conjuntoAvaliacao.setIndicacao(indicacao);
 			
 			/*
-			 *  Em seguida, calcula a avaliação de cada Indicacação por paremetro,
+			 *  Em seguida, calcula a avaliação de cada Indicação por parametro,
 			 *  tendo em vista os dados de anamnese no atendimento.
 			 *  
 			 *  Este loop irá gerar a avaliação de todas os parametros em comparação
-			 *  a indicação atual do loop anterior.
+			 *  a indicação atual.
 			 */
 			List<Avaliacao> listAvaliacao = new ArrayList<Avaliacao>();
 			for (Parametro parametro : listParametro) {
@@ -353,7 +353,7 @@ public class AnamneseAppService {
 			}
 			/*
 			 * Lembrando que ainda não concluimos o loop de indicação,
-			 * o conjunAvaliacao da indicacao atual dentro do loop irá receber
+			 * o conjunAvaliacao da indicacao atual irá receber
 			 * a lista de avaliações de todos os parametros nessa indicação. 
 			 */
 			conjuntoAvaliacao.setAvaliacoes(listAvaliacao);
@@ -368,24 +368,19 @@ public class AnamneseAppService {
 			 */
 			conjuntoAvaliacao.setSomatorioDistancia(conjuntoAvaliacao.somaDistanciaDoGrauDeInclusao());
 			
+			/*
+			 *
+			 * 
+			 */
 			conjuntoAvaliacao.setSomatorioNecessidadeDoPaciente(anamneseDAO.recuperaSomaAnamneseParaUmAtendimento(atendimento));
 			
 			/*
-			 * Setamos o atributo SometorioPesosParametos fazendo uma chama do método
-			 * somaPesosParametros do mesmo objeto.
-			 * 
-			 * O somaPesosParametros é um método que percorre a lista de avaliações 
-			 * previamente setada e para cada avaliação pega o peso do parametro e
-			 * soma ao total de pesos de parametros.
-			 */
-		//	conjuntoAvaliacao.setSomatorioPesosParametros(conjuntoAvaliacao.somaPesosParametros());
-			
-			/*
-			 * Setamos o atributo DistanciaDescartes com o resultado da divisão do Somatório
-			 * das distâncias previamente calculadas divido pelo somatório dos pesos dos parametros
-			 * previamente setados.
+			 * Setamos o atributo GrauInclusao com o resultado da subtração do Somatório
+			 * das Necessidades deste Paciente e Distancia total calculada.
+			 * O resultado da subtração do elementos é divido pelo somatório da necessidade do paciente
 			 */
 			conjuntoAvaliacao.setGrauInclusao((conjuntoAvaliacao.getSomatorioNecessidadeDoPaciente() - conjuntoAvaliacao.getSomatorioDistancia()) / conjuntoAvaliacao.getSomatorioNecessidadeDoPaciente());
+			
 			/*
 			 * No final, o processo estará terminado para a Indicação atual no loop e
 			 * os dados estarão salvos na instância atual do objeto conjuntoAvaliacao.
