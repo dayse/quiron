@@ -64,9 +64,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_AVALIACAO_DETALHADA = "listAvaliacaoDetail";
 	public final String PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES = "listAvaliacaoDetailDistanciaDescartes";
 	public final String PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO = "listAvaliacaoDetailGrauInclusao";
-	//Hamming (penaliza) X Grau de Inclusao (não penaliza)
-	//	Descartes (não penaliza) x Grau de similaridade (penaliza)
-	public final String PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO_E_SEMELHANCA = "listAvaliacaoDetailGrauInclusaoESemelhanca";	
 
 	// Services
 	private static AtendimentoAppService atendimentoService;
@@ -259,7 +256,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 			
 			plotGrauSemelhanca = 
-					atendimentoService.geraGraficoGrauDeSemelhancaParaAvaliacaoDeIndicacaoDeAtendimento(
+					atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
 								conjuntosDeAvaliacoes, 
 								atendimentoCorrente
 							);
@@ -299,7 +296,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				}
 			}
 			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-			plotDistanciaDescartes = atendimentoService.geraGraficoDistanciaDescartesParaAvaliacaoDeIndicacaoDeAtendimento(
+			plotDistanciaDescartes = atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
 					conjuntosDeAvaliacoes, 
 					atendimentoCorrente
 				);
@@ -337,53 +334,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				}
 			}
 			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-			plotDistanciaDescartes = atendimentoService.geraGraficoGrauDeInclusaoParaAvaliacaoDeIndicacaoDeAtendimento(
-					conjuntosDeAvaliacoes, 
-					atendimentoCorrente
-				);			
-			
-			return PAGINA_AVALIACAO;
-		}
-		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(3))){
-			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes =
-					anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauDeInclusao(atendimentoCorrente);
-			
-			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
-			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
-			try {
-				comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-			} catch (AplicacaoException e) {
-				e.printStackTrace();
-			}
-			listaDeAnamneses = new ListDataModel(
-						anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
-					);
-			
-			if(atendimentoCorrente.getTecnico() == null){
-				comboTecnicos = null;
-			}else{
-				try {
-					comboTecnicos = SelectOneDataModel
-							.criaComObjetoSelecionadoSemTextoInicial(
-									usuarioService
-											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-													.recuperaTipoUsuarioTecnico()),
-									atendimentoCorrente.getTecnico());
-				} catch (AplicacaoException e) {
-					e.printStackTrace();
-				}
-			}
-			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-			plotDistanciaDescartes = atendimentoService.geraGraficoGrauDeInclusaoParaAvaliacaoDeIndicacaoDeAtendimento(
+			plotDistanciaDescartes = atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
 					conjuntosDeAvaliacoes, 
 					atendimentoCorrente
 				);			
 			
 			return PAGINA_AVALIACAO;
 		}		
-		
 		//so chega nesse ponto se por alguma razão muito estranha ele não for nenhum
 		//dos algoritmos possíveis, assim carrega a página de seleção do algoritmo.
 		return PAGINA_ALGORITMOS_AVALIACAO;
@@ -410,11 +367,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(1))){
 			return PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES;
 		}
-		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(2))){
-			return PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO;
-		}
 		else{
-			return PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO_E_SEMELHANCA;
+			return PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO;
 		}
 	}
 
@@ -724,19 +678,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 */
 	public String buscaAtendimento(){
 		List<Atendimento> atendimentosEncontrados = null;
-//		System.out.println(comboFiltroStatus.getObjetoSelecionado());
 		listaDeAtendimentos = null;
 		if(campoDeBusca.trim().isEmpty() && comboFiltroStatus.getObjetoSelecionado() == null) {
-			System.out.println("Nenhum dos dois");
 			error("atendimento.FORNECER_CAMPO_DE_BUSCA");
 			return PAGINA_LIST;
 		} else if(campoDeBusca.trim().isEmpty()){
-			System.out.println("Apenas filtro!");
-			// vou fazer a lógica do filtro sozinho
 			atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentosComPacientePorStatus(comboFiltroStatus.getObjetoSelecionado()));
 		} else if(comboFiltroStatus.getObjetoSelecionado() == null){
-			System.out.println("Apenas busca!");
-			// lógica da busca sozinha
 			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_NOME_MEDICO)){
 				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLike(campoDeBusca));
 			}else{
@@ -744,7 +692,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			}
 		} else {
 			System.out.println("Busca E filtros");
-			// Busca por campo de texto E status do atendimento
 			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_NOME_MEDICO)){
 				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus(campoDeBusca, comboFiltroStatus.getObjetoSelecionado()));
 			}else{
@@ -755,7 +702,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}
 		if(atendimentosEncontrados.isEmpty()){
 			error("atendimento.NAO_ENCONTRADO");
-		//	listaDeAtendimentos = null;
 			buscaEfetuada = false;
 			return PAGINA_LIST;
 		}else{

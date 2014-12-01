@@ -189,7 +189,7 @@ public class AnamneseAppService {
 			conjuntoAvaliacao.setIndicacao(indicacao);
 			
 			/*
-			 *  Em seguida, calcula a avaliação de cada Indicacação por paremetro,
+			 *  Em seguida, calcula a avaliação de cada Indicacação por parametro,
 			 *  tendo em vista os dados de anamnese no atendimento.
 			 *  
 			 *  Este loop irá gerar a avaliação de todas os parametros em comparação
@@ -211,14 +211,14 @@ public class AnamneseAppService {
 			 * Setamos o atributo SomatorioDistancia fazendo uma chamada do método
 			 * somaParametrosDistancia do mesmo objeto.
 			 * 
-			 * O somaParamnetrosDistancia é um método que percorre a lista de avaliações
+			 * O somaParametrosDistancia é o método que percorre a lista de avaliações
 			 * previamente setada e para cada avaliação pega a distância e multiplica
 			 * pelo peso do parametro.
 			 */
 			conjuntoAvaliacao.setSomatorioDistancia(conjuntoAvaliacao.somaParametrosDistancia());
 			
 			/*
-			 * Setamos o atributo SometorioPesosParametos fazendo uma chama do método
+			 * Setamos o atributo SometorioPesosParametos fazendo uma chamada do método
 			 * somaPesosParametros do mesmo objeto.
 			 * 
 			 * O somaPesosParametros é um método que percorre a lista de avaliações 
@@ -277,7 +277,7 @@ public class AnamneseAppService {
 
 		Anamnese anamneseCorrente = null;
 		/*
-		 * Recupera a anamnese de um paramentro em um atendimento específico.
+		 * Recupera a anamnese de um parametro em um atendimento específico.
 		 */
 		try {
 			anamneseCorrente = anamneseDAO.recuperaAnamnesePorAtendimentoPorParametro(atendimento, parametro);
@@ -286,7 +286,7 @@ public class AnamneseAppService {
 		}
 		
 		/*
-		 *  
+		 *  Retorna a média de todos os especialistas.
 		 */
 		Double mediaValorEspecialistas = 
 				avalIndicacaoEspecService.calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(indicacao, parametro);
@@ -298,9 +298,14 @@ public class AnamneseAppService {
 		avaliacaoCorrente.setMediaEspecialistas(mediaValorEspecialistas);
 		
 		Double valorDistancia = 0.0;
+		/* Valor de distância é medido através do valor dado a anamnese atual descrecido da média dos especialistas*/
 		valorDistancia = anamneseCorrente.getValor() - mediaValorEspecialistas;
+		/* Do resultado da conta anterior gera-se o valor absoluto. */
 		valorDistancia = Math.abs(valorDistancia);
-		//o parametro não penaliza se ultrapassar a necessidade do paciente
+		/* Caso o parametro for do tipo em que exceder não seja um problema então
+			calculamos o máximo entre 0 e o resultado do valor da distancia calculada
+			nas duas linhas anteriores. Dessa forma o algoritmo não penaliza se ultrapassar
+			 a necessidade do paciente */
 		if(parametro.getTipo().equals(Parametro.TIPO_PODE_EXCEDER)){
 			valorDistancia = Math.max(0, valorDistancia);		
 		}

@@ -58,12 +58,12 @@ public class AtendimentoAppService {
 	}
 	
 	/**
-	 * Gera Valores de PlotData para o grafico de Grau de 
-	 * Semelhança, no caso esse metodo é para gerar a Necessidade do Paciente.
+	 * Gera Valores de PlotData para o grafico,
+	 *  no caso esse metodo é para gerar a Necessidade do Paciente.
 	 * @param atendimento
 	 * @return
 	 */
-	public ArrayList<Double[]> gerarValoresDeDataDeNecessidadeDoPacienteParaGraficoGrauDeSemelhanca(Atendimento atendimento){
+	public ArrayList<Double[]> gerarValoresDeDataDeNecessidadeDoPacienteParaGrafico(Atendimento atendimento){
 
 		int num_parametros = atendimento.getAnamneses().size();
 		
@@ -81,13 +81,13 @@ public class AtendimentoAppService {
 	}
 
 	/**
-	 * Gera Valores de PlotData para o grafico de Grau de 
-	 * Semelhança, no caso esse metodo é para alguma media de avaliação de indicação que será
+	 * Gera Valores de PlotData para o grafico,
+	 * no caso esse metodo é para alguma media de avaliação de indicação que será
 	 * comparada com a necessidade do paciente.
 	 * @param atendimento
 	 * @return
 	 */
-	public ArrayList<Double[]> gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGraficoGrauDeSemelhanca(ConjuntoAvaliacao conjuntoAvaliacao){
+	public ArrayList<Double[]> gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGrafico(ConjuntoAvaliacao conjuntoAvaliacao){
 
 		int num_parametros = conjuntoAvaliacao.getAvaliacoes().size();
 		
@@ -111,7 +111,7 @@ public class AtendimentoAppService {
 	 * Gera a classe de Spider Series para o grafico de grau de semelhança.
 	 * @return
 	 */
-	public PlotSpider gerarSpiderSeriesGraficoGrauSemelhanca(ArrayList<String> legsLabels){
+	public PlotSpider gerarSpiderSeriesGrafico(ArrayList<String> legsLabels){
 
 		PlotSpider spiderSeries = new PlotSpider();
 		spiderSeries.setPointSize(5.0);
@@ -129,11 +129,11 @@ public class AtendimentoAppService {
 	}
 	
 	/**
-	 * Gera as labels para as Legs (os codigos dos parametros) do grafico de Radar do Grau de semelhança
+	 * Gera as labels para as Legs (os codigos dos parametros) do grafico de Radar
 	 * @param atendimento
 	 * @return
 	 */
-	public ArrayList<String> gerarLegsLabelsGraficoGrauSemelhanca(Atendimento atendimento){
+	public ArrayList<String> gerarLegsLabelsGrafico(Atendimento atendimento){
 		ArrayList<String> legsLabels = new ArrayList<String>();
 		for (Anamnese anamnese : atendimento.getAnamneses()) {
 			legsLabels.add(anamnese.getParametro().getCodParametro());
@@ -143,9 +143,9 @@ public class AtendimentoAppService {
 	
 	/**
 	 * Método que vai gerar o grafico (SpiderMainPlot) para o algoritmo
-	 * de Grau de Semelhança de uma determinada Avaliação de Indicação de um Atendimento.
+	 * de uma determinada Avaliação de Indicação de um Atendimento.
 	 */
-	public SpiderMainPlot geraGraficoGrauDeSemelhancaParaAvaliacaoDeIndicacaoDeAtendimento
+	public SpiderMainPlot geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento
 							(List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
 		
 		int num_parametros = atendimento.getAnamneses().size();
@@ -159,7 +159,7 @@ public class AtendimentoAppService {
 		SpiderPlotData necessidadeDoPacienteData = new SpiderPlotData();
 		
 		necessidadeDoPacienteData.setData(
-						gerarValoresDeDataDeNecessidadeDoPacienteParaGraficoGrauDeSemelhanca(atendimento)
+						gerarValoresDeDataDeNecessidadeDoPacienteParaGrafico(atendimento)
 						);
 		necessidadeDoPacienteData.setLabel("Necessidade do Paciente");
 		necessidadeDoPacienteData.setSpider(new PlotSpider(true, true));
@@ -168,7 +168,7 @@ public class AtendimentoAppService {
 		for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntosDeAvaliacoes) {
 			SpiderPlotData mediaIndicacaoData = new SpiderPlotData();
 			mediaIndicacaoData.setData(
-							gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGraficoGrauDeSemelhanca(conjuntoAvaliacao)
+							gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGrafico(conjuntoAvaliacao)
 							);
 			mediaIndicacaoData.setLabel(conjuntoAvaliacao.getIndicacao().toString());
 			mediaIndicacaoData.setSpider(new PlotSpider(true, false));	
@@ -179,8 +179,8 @@ public class AtendimentoAppService {
 		// SERIES
 		
 		SpiderPlotSeries plotSeries = new SpiderPlotSeries();
-		ArrayList<String> legsLabels = gerarLegsLabelsGraficoGrauSemelhanca(atendimento);
-		plotSeries.setSpider(gerarSpiderSeriesGraficoGrauSemelhanca(legsLabels));
+		ArrayList<String> legsLabels = gerarLegsLabelsGrafico(atendimento);
+		plotSeries.setSpider(gerarSpiderSeriesGrafico(legsLabels));
 		
 		// GRID
 		
@@ -204,134 +204,6 @@ public class AtendimentoAppService {
 		spiderPlot.setOptions(plotOptions);
 		return spiderPlot;
 	}
-	
-	/**
-	 * Método que vai gerar o grafico (SpiderMainPlot) para o algoritmo
-	 * de Grau de Semelhança de uma determinada Avaliação de Indicação de um Atendimento.
-	 */
-	public SpiderMainPlot geraGraficoDistanciaDescartesParaAvaliacaoDeIndicacaoDeAtendimento
-							(List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
-		
-		int num_parametros = atendimento.getAnamneses().size();
-		
-		
-		// PLOT DATA //
-		//inicializa o conjunto de datas
-		ArrayList<SpiderPlotData> plotDatas = new ArrayList<SpiderPlotData>();
-		
-		//Necessidade do Paciente
-		SpiderPlotData necessidadeDoPacienteData = new SpiderPlotData();
-		
-		necessidadeDoPacienteData.setData(
-						gerarValoresDeDataDeNecessidadeDoPacienteParaGraficoGrauDeSemelhanca(atendimento)
-						);
-		necessidadeDoPacienteData.setLabel("Necessidade do Paciente");
-		necessidadeDoPacienteData.setSpider(new PlotSpider(true, true));
-		plotDatas.add(necessidadeDoPacienteData);
-		
-		for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntosDeAvaliacoes) {
-			SpiderPlotData mediaIndicacaoData = new SpiderPlotData();
-			mediaIndicacaoData.setData(
-							gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGraficoGrauDeSemelhanca(conjuntoAvaliacao)
-							);
-			mediaIndicacaoData.setLabel(conjuntoAvaliacao.getIndicacao().toString());
-			mediaIndicacaoData.setSpider(new PlotSpider(true, false));	
-			plotDatas.add(mediaIndicacaoData);		
-		}
-		
-
-		// SERIES
-		
-		SpiderPlotSeries plotSeries = new SpiderPlotSeries();
-		ArrayList<String> legsLabels = gerarLegsLabelsGraficoGrauSemelhanca(atendimento);
-		plotSeries.setSpider(gerarSpiderSeriesGraficoGrauSemelhanca(legsLabels));
-		
-		// GRID
-		
-		SpiderPlotGrid plotGrid = new SpiderPlotGrid();
-		plotGrid.setHoverable(true);
-		plotGrid.setClickable(true);
-		plotGrid.setMode("radar");
-		
-		// OPTIONS
-		PlotOptions plotOptions = new PlotOptions();
-		plotOptions.setSeries(plotSeries);
-		plotOptions.setGrid(plotGrid);
-		plotOptions.setX2axis(null);
-		plotOptions.setXaxis(null);
-		plotOptions.setY2axis(null);
-		plotOptions.setYaxis(null);
-
-		// PLOT
-		SpiderMainPlot spiderPlot = new SpiderMainPlot();
-		spiderPlot.setSpiderDatas(plotDatas);
-		spiderPlot.setOptions(plotOptions);
-		return spiderPlot;
-	}
-	
-	/**
-	 * Método que vai gerar o grafico (SpiderMainPlot) para o algoritmo
-	 * de Grau de Semelhança de uma determinada Avaliação de Indicação de um Atendimento.
-	 */
-	public SpiderMainPlot geraGraficoGrauDeInclusaoParaAvaliacaoDeIndicacaoDeAtendimento
-							(List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
-		
-		int num_parametros = atendimento.getAnamneses().size();
-		
-		
-		// PLOT DATA //
-		//inicializa o conjunto de datas
-		ArrayList<SpiderPlotData> plotDatas = new ArrayList<SpiderPlotData>();
-		
-		//Necessidade do Paciente
-		SpiderPlotData necessidadeDoPacienteData = new SpiderPlotData();
-		
-		necessidadeDoPacienteData.setData(
-						gerarValoresDeDataDeNecessidadeDoPacienteParaGraficoGrauDeSemelhanca(atendimento)
-						);
-		necessidadeDoPacienteData.setLabel("Necessidade do Paciente");
-		necessidadeDoPacienteData.setSpider(new PlotSpider(true, true));
-		plotDatas.add(necessidadeDoPacienteData);
-		
-		for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntosDeAvaliacoes) {
-			SpiderPlotData mediaIndicacaoData = new SpiderPlotData();
-			mediaIndicacaoData.setData(
-							gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGraficoGrauDeSemelhanca(conjuntoAvaliacao)
-							);
-			mediaIndicacaoData.setLabel(conjuntoAvaliacao.getIndicacao().toString());
-			mediaIndicacaoData.setSpider(new PlotSpider(true, false));	
-			plotDatas.add(mediaIndicacaoData);		
-		}
-		
-
-		// SERIES
-		
-		SpiderPlotSeries plotSeries = new SpiderPlotSeries();
-		ArrayList<String> legsLabels = gerarLegsLabelsGraficoGrauSemelhanca(atendimento);
-		plotSeries.setSpider(gerarSpiderSeriesGraficoGrauSemelhanca(legsLabels));
-		
-		// GRID
-		
-		SpiderPlotGrid plotGrid = new SpiderPlotGrid();
-		plotGrid.setHoverable(true);
-		plotGrid.setClickable(true);
-		plotGrid.setMode("radar");
-		
-		// OPTIONS
-		PlotOptions plotOptions = new PlotOptions();
-		plotOptions.setSeries(plotSeries);
-		plotOptions.setGrid(plotGrid);
-		plotOptions.setX2axis(null);
-		plotOptions.setXaxis(null);
-		plotOptions.setY2axis(null);
-		plotOptions.setYaxis(null);
-
-		// PLOT
-		SpiderMainPlot spiderPlot = new SpiderMainPlot();
-		spiderPlot.setSpiderDatas(plotDatas);
-		spiderPlot.setOptions(plotOptions);
-		return spiderPlot;
-	}		
 	
 	public List<HistoricoAtendimentoRelatorio> converterParaHistoricoAtendimentoRelatorio(List<Atendimento> listaAtendimentos){
 		List<HistoricoAtendimentoRelatorio> historicoAtendimentos = new LinkedList<HistoricoAtendimentoRelatorio>();

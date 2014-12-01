@@ -373,7 +373,7 @@ public class TesteAtendimento {
 		List<ConjuntoAvaliacao> conjuntoDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(atendimentoPaciente1);
 		
 		SpiderMainPlot graficoGrauSemelhanca
-					= atendimentoService.geraGraficoGrauDeSemelhancaParaAvaliacaoDeIndicacaoDeAtendimento(
+					= atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
 													conjuntoDeAvaliacoes, 
 													atendimentoPaciente1
 													);
