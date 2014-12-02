@@ -30,10 +30,10 @@ public class CargaActions extends BaseActions {
 
 	// Componentes de Controle
 	private static String SENHA_CARGA = Constantes.SENHA_CARGABD;
-	private static String OPCAO_BASICA = "Basica";
-	private static String OPCAO_EXEMPLO1 = "Exemplo Simples";
-	private static String OPCAO_EXEMPLO2 = "Carga Intermediária 1";
-	private static String OPCAO_EXEMPLO3 = "Exemplo com muitos parametros";
+	private static String OPCAO_BASICA = "Carga Basica";
+	private static String OPCAO_EXEMPLO1 = "Exemplo Inicial";
+	private static String OPCAO_EXEMPLO2 = "Exemplo 2";
+	private static String OPCAO_EXEMPLO3 = "100 Indicações";
 	public List<String> tiposDeCarga = new ArrayList<String>();
 	private SelectOneDataModel<String> comboTiposDeCarga;
 
@@ -99,13 +99,13 @@ public class CargaActions extends BaseActions {
 			descCarga = "Insere tipos de usuarios, usuario administrador e parametros.";
 		}
 		else if (opcao.equals(OPCAO_EXEMPLO1)) {
-			descCarga = "Realiza carga Basica e depois insere os do primeiro exemplo.";
+			descCarga = "Realiza a carga combatível com as nossas planilhas.";
 		}
 		else if (opcao.equals(OPCAO_EXEMPLO2)){
-			descCarga = "Carga intermediária com indicações e parametros do Pedro Peloso.";
+			descCarga = "Carga com novos estudos de casos do Pedro Peloso.";
 		}
 		else if (opcao.equals(OPCAO_EXEMPLO3)){
-			descCarga = "Realiza as cargas anteriores e insere novos dados, totalizando 122 antibióticos e 21 parametros.";
+			descCarga = "Realiza as cargas anteriores e insere novos dados, totalizando 122 antibióticos.";
 		}
 	}
 

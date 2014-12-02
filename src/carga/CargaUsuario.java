@@ -110,65 +110,63 @@ public class CargaUsuario extends CargaBase{
 	 * 
 	 */
 	public void incluirTiposDeUsuario() throws AplicacaoException {
-		
-		TipoUsuario tipoUsuarioAdmin = new TipoUsuario();
-		TipoUsuario tipoUsuarioAluno = new TipoUsuario();
-		TipoUsuario tipoUsuarioClinico = new TipoUsuario();
-		TipoUsuario tipoUsuarioTecnico = new TipoUsuario();
-		TipoUsuario tipoUsuarioEngenheiro = new TipoUsuario();
-		
-		tipoUsuarioAdmin.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
-		tipoUsuarioAdmin.setDescricao("O usuário ADMINISTRADOR pode realizar qualquer operação no Sistema.");
-		
-		tipoUsuarioAluno.setTipoUsuario(TipoUsuario.ALUNO);
-		tipoUsuarioAluno.setDescricao("O usuário ALUNO pode realizar apenas consultas e impressão de relatórios nas telas " +
-				                        "relativas ao Horizonte de Planejamento (HP,Periodo PMP, Periodo PAP) e não acessa " +
-				                        "Administração e Eng. Conhecimento");
-		
-		tipoUsuarioClinico.setTipoUsuario(TipoUsuario.CLINICO);
-		tipoUsuarioClinico.setDescricao("O usuário Clínico pode realizar qualquer operação no Sistema, porém não possui acesso" +
-				"as áreas de Administração e Engenharia de Conhecimento.");
-		
-		tipoUsuarioTecnico.setTipoUsuario(TipoUsuario.TECNICO);
-		tipoUsuarioTecnico.setDescricao("O usário Técnico pode realizar qualquer operação no Sistema, porém não possui acesso" + 
-				"as áreas de Administração e Engenharia de Conhecimento.");
-		
-		tipoUsuarioEngenheiro.setTipoUsuario(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO);
-		tipoUsuarioEngenheiro.setDescricao("O usuário ENGENHEIRO pode realizar a parte de Logica Fuzzy (Engenharia de Conhecimento)" +
-				"no Sistema. Porém, não possui acesso a área Administrativa.");
-		
-		tipoUsuarioService.inclui(tipoUsuarioAdmin);
-		tipoUsuarioService.inclui(tipoUsuarioAluno);
-		tipoUsuarioService.inclui(tipoUsuarioClinico);
-		tipoUsuarioService.inclui(tipoUsuarioTecnico);
-		tipoUsuarioService.inclui(tipoUsuarioEngenheiro);
-		
+			TipoUsuario tipoUsuarioAdmin = new TipoUsuario();
+			TipoUsuario tipoUsuarioAluno = new TipoUsuario();
+			TipoUsuario tipoUsuarioClinico = new TipoUsuario();
+			TipoUsuario tipoUsuarioTecnico = new TipoUsuario();
+			TipoUsuario tipoUsuarioEngenheiro = new TipoUsuario();
+			
+			tipoUsuarioAdmin.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+			tipoUsuarioAdmin.setDescricao("O usuário ADMINISTRADOR pode realizar qualquer operação no Sistema.");
+			
+			tipoUsuarioAluno.setTipoUsuario(TipoUsuario.ALUNO);
+			tipoUsuarioAluno.setDescricao("O usuário ALUNO pode realizar apenas consultas e impressão de relatórios nas telas " +
+					                        "relativas ao Horizonte de Planejamento (HP,Periodo PMP, Periodo PAP) e não acessa " +
+					                        "Administração e Eng. Conhecimento");
+			
+			tipoUsuarioClinico.setTipoUsuario(TipoUsuario.CLINICO);
+			tipoUsuarioClinico.setDescricao("O usuário Clínico pode realizar qualquer operação no Sistema, porém não possui acesso" +
+					"as áreas de Administração e Engenharia de Conhecimento.");
+			
+			tipoUsuarioTecnico.setTipoUsuario(TipoUsuario.TECNICO);
+			tipoUsuarioTecnico.setDescricao("O usário Técnico pode realizar qualquer operação no Sistema, porém não possui acesso" + 
+					"as áreas de Administração e Engenharia de Conhecimento.");
+			
+			tipoUsuarioEngenheiro.setTipoUsuario(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO);
+			tipoUsuarioEngenheiro.setDescricao("O usuário ENGENHEIRO pode realizar a parte de Logica Fuzzy (Engenharia de Conhecimento)" +
+					"no Sistema. Porém, não possui acesso a área Administrativa.");
+			
+			tipoUsuarioService.inclui(tipoUsuarioAdmin);
+			tipoUsuarioService.inclui(tipoUsuarioAluno);
+			tipoUsuarioService.inclui(tipoUsuarioClinico);
+			tipoUsuarioService.inclui(tipoUsuarioTecnico);
+			tipoUsuarioService.inclui(tipoUsuarioEngenheiro);
+			
+	
+			List<Usuario> usuarios = recuperaUsuariosDeArquivoConfigJson();
+			
+			Usuario usuarioAdmin = usuarios.get(0);
+			usuarioAdmin.setTipoUsuario(tipoUsuarioAdmin);
+			
+			Usuario usuarioAluno = usuarios.get(1);
+			usuarioAluno.setTipoUsuario(tipoUsuarioAluno);
+			
+			Usuario usuarioClinico = usuarios.get(2);
+			usuarioClinico.setTipoUsuario(tipoUsuarioClinico);
+	
+			Usuario usuarioEngenheiro = usuarios.get(3);
+			usuarioEngenheiro.setTipoUsuario(tipoUsuarioEngenheiro);
+			
+	
+			Usuario usuarioTecnico = usuarios.get(4);
+			usuarioTecnico.setTipoUsuario(tipoUsuarioTecnico);
+			
+				usuarioService.inclui(usuarioAdmin, usuarioAdmin.getSenha());
+				usuarioService.inclui(usuarioEngenheiro, usuarioEngenheiro.getSenha());
+				usuarioService.inclui(usuarioClinico, usuarioClinico.getSenha());
+				usuarioService.inclui(usuarioTecnico, usuarioTecnico.getSenha());
+				usuarioService.inclui(usuarioAluno, usuarioAluno.getSenha());
 
-		List<Usuario> usuarios = recuperaUsuariosDeArquivoConfigJson();
-		
-		Usuario usuarioAdmin = usuarios.get(0);
-		usuarioAdmin.setTipoUsuario(tipoUsuarioAdmin);
-		
-		Usuario usuarioAluno = usuarios.get(1);
-		usuarioAluno.setTipoUsuario(tipoUsuarioAluno);
-		
-		Usuario usuarioClinico = usuarios.get(2);
-		usuarioClinico.setTipoUsuario(tipoUsuarioClinico);
-
-		Usuario usuarioEngenheiro = usuarios.get(3);
-		usuarioEngenheiro.setTipoUsuario(tipoUsuarioEngenheiro);
-		
-
-		Usuario usuarioTecnico = usuarios.get(4);
-		usuarioTecnico.setTipoUsuario(tipoUsuarioTecnico);
-		
-		
-		
-			usuarioService.inclui(usuarioAdmin, usuarioAdmin.getSenha());
-			usuarioService.inclui(usuarioEngenheiro, usuarioEngenheiro.getSenha());
-			usuarioService.inclui(usuarioClinico, usuarioClinico.getSenha());
-			usuarioService.inclui(usuarioTecnico, usuarioTecnico.getSenha());
-			usuarioService.inclui(usuarioAluno, usuarioAluno.getSenha());
 	}
 
 }

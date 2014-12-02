@@ -48,9 +48,9 @@ public class CargaAppService {
 	public boolean executarCargaBasica() throws AplicacaoException{
 		// Instancia a lista de cargas novamente, para ter certeza que apenas as cargas a seguir serão executadas.
 		cargas = new ArrayList<CargaBase>();
-	//	cargas.add(new CargaLimparUploads());
-		cargas.add(new CargaUsuario());
+		cargas.add(new CargaImplantacao());
 		cargas.add(new CargaParametros());
+		cargas.add(new CargaParametroIntermediario());
 		return executarCargas();
 	}
 	
@@ -75,9 +75,11 @@ public class CargaAppService {
 		//apenas as cargas a seguir serao executadas.
 		cargas = new ArrayList<CargaBase>();
 
-		//Executa a carga basica, se ela nao rodar, retorna falso.
-		if(!this.executarCargaBasica())
-			return false;
+		// Inclui usuários
+		cargas.add(new CargaUsuario());
+		
+		// Inclui parametros necessarios
+		cargas.add(new CargaParametros());
 
 		//Inclui as indicações
 		cargas.add(new CargaIndicacao());

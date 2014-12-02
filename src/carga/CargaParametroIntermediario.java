@@ -84,64 +84,140 @@ public class CargaParametroIntermediario extends CargaBase {
 	 * 
 	 */
 	public void incluirParametroIntermediario() throws AplicacaoException {
-		Parametro klebsiella = new Parametro();
-		Parametro proteus = new Parametro();
-		Parametro enterobacter = new Parametro();
+		List<Parametro> parametros = new ArrayList<Parametro>();
 		
 		Parametro gravidez = new Parametro();
 		Parametro polaciuria = new Parametro();
 		Parametro desconfortoAbdominal = new Parametro();
 		Parametro infeccaoUrinariaAnterior = new Parametro();
-		Parametro usoDeAntibiotico = new Parametro();
+		Parametro usoDeAntibiotico = new Parametro();	
+		
+		Parametro klebsiella = new Parametro();
+		Parametro proteus = new Parametro();
+		Parametro enterobacter = new Parametro();
+		
+		Parametro pseudomonas = new Parametro();
+		Parametro staphylococcus = new Parametro();
+		Parametro streptoccus = new Parametro();
+		Parametro citrobacter = new Parametro();
+		Parametro staphylococcusEp = new Parametro();
+		Parametro enterobacterClo = new Parametro();
+		Parametro citrobacterFre = new Parametro();
+		Parametro morganella = new Parametro();
+		Parametro staphylococcusAur = new Parametro();
+		Parametro serratia = new Parametro();		
 		
 		klebsiella.setCodParametro("P009");
 		klebsiella.setNome("Klebsiella pneumoniae");
 		klebsiella.setDescricao("Ocorrência de etiologia do tipo Klebsiella Pneumoniae");
 		klebsiella.setPeso(1.0);
+			parametros.add(klebsiella);
 		
 		proteus.setCodParametro("P010");
 		proteus.setNome("Proteus Mirabilis");
 		proteus.setDescricao("Ocorrência de etiologia do tipo Proteus Mirabilis");
 		proteus.setPeso(1.0);
+			parametros.add(proteus);
 		
 		enterobacter.setCodParametro("P011");
 		enterobacter.setNome("Enterobacter Aerogenes");
 		enterobacter.setDescricao("Ocorrência de etiologia do tipo Enterobacter Aerogenes");
 		enterobacter.setPeso(1.0);
+			parametros.add(enterobacter);
 		
 		gravidez.setCodParametro("P012");
 		gravidez.setNome("Gravidez");
 		gravidez.setDescricao("Paciente encontra-se grávida");
 		gravidez.setPeso(1.0);
+			parametros.add(gravidez);
 		
 		polaciuria.setCodParametro("P013");
 		polaciuria.setNome("Polaciúria");
 		polaciuria.setDescricao("Ocorrêna de diminuição significativa da quantidade de urina excretada");
 		polaciuria.setPeso(1.0);
+			parametros.add(polaciuria);
 		
 		desconfortoAbdominal.setCodParametro("P014");
 		desconfortoAbdominal.setNome("Desconforto abdominal");
 		desconfortoAbdominal.setDescricao("Ocorrência de desconforto na região abdominal");
 		desconfortoAbdominal.setPeso(1.0);
+			parametros.add(desconfortoAbdominal);
 		
 		infeccaoUrinariaAnterior.setCodParametro("P015");
 		infeccaoUrinariaAnterior.setNome("Infecção Urinária Anterior");
 		infeccaoUrinariaAnterior.setDescricao("Histórico de ocorrência de infecção urinária anterior");
 		infeccaoUrinariaAnterior.setPeso(1.0);
+			parametros.add(infeccaoUrinariaAnterior);
 		
 		usoDeAntibiotico.setCodParametro("P016");
 		usoDeAntibiotico.setNome("Uso de Antibiótico");
 		usoDeAntibiotico.setDescricao("Verificação do uso atual de algum antibiotico por parte do usuário. Seja por automedicação ou precição anterior");
 		usoDeAntibiotico.setPeso(1.0);
+			parametros.add(usoDeAntibiotico);
+			
+		pseudomonas.setCodParametro("P017");
+		pseudomonas.setNome("Pseudomonas Aeruginosa");
+		pseudomonas.setDescricao("Ocorrência de etiologia do tipo Pseudomonas Aeruginosa.");
+		pseudomonas.setPeso(1.0);
+			parametros.add(pseudomonas);
+			
+		staphylococcus.setCodParametro("P018");
+		staphylococcus.setNome("Staphylococcus Saprophyticus");
+		staphylococcus.setDescricao("Ocorrência de etiologia do tipo Staphylococcus Saprophyticus.");
+		staphylococcus.setPeso(1.0);
+			parametros.add(staphylococcus);
+			
+		streptoccus.setCodParametro("P019");
+		streptoccus.setNome("Streptococcus Agalactiae");
+		streptoccus.setDescricao("Ocorrência de etiologia do tipo Streptococcus Agalactiae (Grupo B).");
+		streptoccus.setPeso(1.0);
+			parametros.add(streptoccus);
+			
+		citrobacter.setCodParametro("P020");
+		citrobacter.setNome("Citrobacter Koseri");
+		citrobacter.setDescricao("Ocorrência de etiologia do tipo Citrobacter Koseri.");
+		citrobacter.setPeso(1.0);
+			parametros.add(citrobacter);
+			
+		staphylococcusEp.setCodParametro("P021");
+		staphylococcusEp.setNome("Staphylococcus Epidermidis");
+		staphylococcusEp.setDescricao("Ocorrência de etiologia do tipo Staphylococcus Epidermidis.");
+		staphylococcusEp.setPeso(1.0);
+			parametros.add(staphylococcusEp);
+			
+		enterobacterClo.setCodParametro("P022");
+		enterobacterClo.setNome("Enterobacter Cloacae");
+		enterobacterClo.setDescricao("Ocorrência de etiologia do tipo Enterobacter Cloacae.");
+		enterobacterClo.setPeso(1.0);
+			parametros.add(enterobacterClo);
 		
-		parametroService.inclui(klebsiella);
-		parametroService.inclui(proteus);
-		parametroService.inclui(enterobacter);
-		parametroService.inclui(gravidez);
-		parametroService.inclui(polaciuria);
-		parametroService.inclui(desconfortoAbdominal);
-		parametroService.inclui(infeccaoUrinariaAnterior);
-		parametroService.inclui(usoDeAntibiotico);
+		citrobacterFre.setCodParametro("P023");
+		citrobacterFre.setNome("Citrobacter  Freundili Complex");
+		citrobacterFre.setDescricao("Ocorrência de etiologia do tipo Citrobacter Freundili Complex.");
+		citrobacterFre.setPeso(1.0);
+			parametros.add(citrobacterFre);
+
+		morganella.setCodParametro("P024");
+		morganella.setNome("Morganella Morganii");
+		morganella.setDescricao("Ocorrência de etiologia do tipo Morganella Morganii.");
+		morganella.setPeso(1.0);
+			parametros.add(morganella);
+			
+		staphylococcusAur.setCodParametro("P025");
+		staphylococcusAur.setNome("Staphylococcus Aureus");
+		staphylococcusAur.setDescricao("Ocorrência de etiologia do tipo Staphylococcus Aures.");
+		staphylococcusAur.setPeso(1.0);
+			parametros.add(staphylococcusAur);
+
+		serratia.setCodParametro("P026");
+		serratia.setNome("Serratia Marcescens");
+		serratia.setDescricao("Ocorrência de etiologia do tipo Serratia Marcescens.");
+		serratia.setPeso(1.0);
+			parametros.add(serratia);	
+			
+		for(Parametro parametro : parametros){
+			parametroService.inclui(parametro);
+		}			
 	}
 
 }
