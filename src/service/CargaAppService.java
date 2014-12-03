@@ -35,9 +35,11 @@ public class CargaAppService {
 	public CargaAppService() {}
 			
 	/**
-	 * Executa apenas a carga básica do sistema:<br />
-	 * ---- CargaUsuario;<br />
-	 * ---- CargaParametros.
+	 * Executa apenas a carga básica do sistema.
+	 * Exatamente como aconteceria na implantação do software numa empresa:<br />
+	 * ---- CargaImplantacao;<br />
+	 * ---- CargaParametros;<br />
+	 * ---- CargaParametrosInterdemediario.
 	 * 
 	 * @return Retorna o resultado da chamada do método executarCargas().
 	 * @throws AplicacaoException
@@ -56,8 +58,12 @@ public class CargaAppService {
 	
 
 	/**
-	 * Executa a carga com os dados de estudo:<br />
-	 * ---- executarCargaBasica;<br />
+	 * Executa a carga com os dados de estudo inicias.
+	 * Estes dados estão compatíveis com os slides (transparências)
+	 * passadas pelo Pedro Peloso no início do projeto e também
+	 * estão compatíveis com as planilhas de testes de algoritmos que geramos:<br />
+	 * ---- CargaUsuario;<br />
+	 * ---- CargaParametros;<br />
 	 * ---- CargaIndicacao;<br />
 	 * ---- CargaEspecialista;<br />
 	 * ---- CargaAvalIndicacaoEspec;<br />
@@ -97,7 +103,9 @@ public class CargaAppService {
 	}
 
 	/**
-	 * Executa a carga com os dados de estudo:<br />
+	 * Executa a carga com os dados de estudo passados pelo Pedro Peloso.
+	 * Esse estudo de caso ainda está em desenvolvimento e visa simular uma situação
+	 * de uso real utilizando toda nossa base de parametros e indicações.<br />
 	 * ---- executarCargaBasica;<br />
 	 * ---- CargaIndicacao;<br />
 	 * ---- CargaEspecialista;<br />
@@ -141,7 +149,9 @@ public class CargaAppService {
 	}
 
 	/**
-	 * Executa a carga com os dados de estudo:<br />
+	 * Carga de teste com exemplos de 100 indicações.
+	 * Os dados não são oficiais, e foram postados apenas para testar
+	 * o comportamento do sistema com um volume de dados maior.<br />
 	 * ---- executarCargaBasica;<br />
 	 * ---- CargaIndicacao;<br />
 	 * ---- CargaEspecialista;<br />
@@ -168,9 +178,9 @@ public class CargaAppService {
 		
 		// Inclui mais indicações
 		cargas.add(new CargaEstudoMultiplasIndicacao());
-		
-		// Inclui mais parametros
-		cargas.add(new CargaEstudoMultiplosParametros());
+
+		// Inclui novos parametros que foram fornecidos pelo Pedro Peloso
+		cargas.add(new CargaParametroIntermediario());
 		
 		// Inclui mais avaliacoes
 		
