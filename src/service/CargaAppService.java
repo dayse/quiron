@@ -106,14 +106,12 @@ public class CargaAppService {
 	 * Executa a carga com os dados de estudo passados pelo Pedro Peloso.
 	 * Esse estudo de caso ainda está em desenvolvimento e visa simular uma situação
 	 * de uso real utilizando toda nossa base de parametros e indicações.<br />
-	 * ---- executarCargaBasica;<br />
-	 * ---- CargaIndicacao;<br />
-	 * ---- CargaEspecialista;<br />
-	 * ---- CargaAvalIndicacaoEspec;<br />
-	 * ---- CargaPaciente;<br />
-	 * ---- CargaAtendimento;<br />
+	 * ---- executarCargaExemplo1;<br />
+	 * ---- CargaPacienteIntermediaria;<br />
 	 * ---- CargaIndicacaoIntermediaria;<br />
 	 * ---- CargaParametroIntermediario;<br />
+	 * ---- CargaAtendimentoIntermediario;<br />
+	 * ---- CargaAvalIndicacaoEspecIntermediaria;<br />
 	 * 
 	 * @return Retorna o resultado da chamada do método executarCargas().
 	 * @throws AplicacaoException
@@ -126,7 +124,9 @@ public class CargaAppService {
 		//apenas as cargas a seguir serao executadas.
 		cargas = new ArrayList<CargaBase>();
 		
-		//Executa a carga basica, se ela nao rodar, retorna falso.
+		//Executa a carga do exemplo1, que significa todas
+		// as informações passadas pelo Pedro Peloso no inicio do projeto
+		//, se ela nao rodar, retorna falso.
 		if(!this.executarCargaExemplo1())
 			return false;		
 		
@@ -152,14 +152,9 @@ public class CargaAppService {
 	 * Carga de teste com exemplos de 100 indicações.
 	 * Os dados não são oficiais, e foram postados apenas para testar
 	 * o comportamento do sistema com um volume de dados maior.<br />
-	 * ---- executarCargaBasica;<br />
-	 * ---- CargaIndicacao;<br />
-	 * ---- CargaEspecialista;<br />
-	 * ---- CargaAvalIndicacaoEspec;<br />
-	 * ---- CargaPaciente;<br />
-	 * ---- CargaAtendimento;<br />
+	 * ---- executarCargaExemplo1;<br />
 	 * ---- CargaEstudoMultiplasIndicacao;<br />
-	 * ---- CargaEstudoMultiplosParametros;<br />
+	 * ---- CargaParametroIntermediario;<br />
 	 * 
 	 * @return Retorna o resultado da chamada do método executarCargas().
 	 * @throws AplicacaoException
@@ -172,31 +167,17 @@ public class CargaAppService {
 		//apenas as cargas a seguir serao executadas.
 		cargas = new ArrayList<CargaBase>();
 
-		//Executa a carga basica, se ela nao rodar, retorna falso.
+		//Executa a carga do exemplo1, que significa todas
+		// as informações passadas pelo Pedro Peloso no inicio do projeto
+		//, se ela nao rodar, retorna falso.
 		if(!this.executarCargaExemplo1())
 			return false;
 		
-		// Inclui mais indicações
+		// Inclui mais de 100 indicações
 		cargas.add(new CargaEstudoMultiplasIndicacao());
 
 		// Inclui novos parametros que foram fornecidos pelo Pedro Peloso
 		cargas.add(new CargaParametroIntermediario());
-		
-		// Inclui mais avaliacoes
-		
-		// Talvez inclui mais especialistas
-		
-		// Talvez inclui as avaliacoes para novos especialistas
-		
-		/*
-		
-		//Inclui as indicações
-		cargas.add(new CargaIndicacao());
-		//Inclui os especialistas
-		cargas.add(new CargaEspecialista());
-		//Inclui as avaliações dos especialistas para as indicações cadastradas
-		cargas.add(new CargaAvalIndicacaoEspec());
-*/
 		
 		return executarCargas();
 	}

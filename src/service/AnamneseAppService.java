@@ -369,8 +369,7 @@ public class AnamneseAppService {
 			conjuntoAvaliacao.setSomatorioDistancia(conjuntoAvaliacao.somaDistanciaDoGrauDeInclusao());
 			
 			/*
-			 *
-			 * 
+			 * Seta a necessidade do paciente atual, para que mais na frente possa somar todas as necessidades.
 			 */
 			conjuntoAvaliacao.setSomatorioNecessidadeDoPaciente(anamneseDAO.recuperaSomaAnamneseParaUmAtendimento(atendimento));
 			
@@ -433,7 +432,7 @@ public class AnamneseAppService {
 		}
 		
 		/*
-		 *  
+		 *  Calcula a media de todos os especialistas
 		 */
 		Double mediaValorEspecialistas = 
 				avalIndicacaoEspecService.calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(indicacao, parametro);
@@ -447,6 +446,7 @@ public class AnamneseAppService {
 		Double valorDistancia = 0.0;
 		// Necessidade do paciente - média da avaliação dos especialistas
 		valorDistancia = anamneseCorrente.getValor() - mediaValorEspecialistas;
+		// Realiza a verificação do máximo entre Zero e o resultado da distância.
 		valorDistancia = Math.max(0, valorDistancia);
 		avaliacaoCorrente.setDistancia(valorDistancia);
 
