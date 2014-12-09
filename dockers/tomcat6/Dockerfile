@@ -20,7 +20,10 @@ VOLUME  ["/usr/share/tomcat/webapps", "/usr/share/tomcat/logs"]
 ADD ./conf/tomcat-users.xml /usr/share/tomcat/conf/tomcat-users.xml
 ADD ./lib/postgresql-8.3-607.jdbc3.jar /usr/share/tomcat/lib/postgresql-8.3-607.jdbc3.jar
 
+ADD scripts /scripts
+RUN chmod +x /scripts/start.sh
+
 EXPOSE 8080
 
-CMD /usr/share/tomcat/bin/startup.sh && tail -F /usr/share/tomcat/logs/catalina.out
+CMD /scripts/start.sh
 

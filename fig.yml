@@ -32,10 +32,16 @@ tomcat:
     - QUIRON_DB_SCHEMA=quiron
     - QUIRON_DB_USER=DESENVOLVEDOR
     - QUIRON_DB_PASS=desenvolvedor
+    - MANAGER_USERNAME=tomdog
+    - MANAGER_PASSWORD=tomdog
   volumes:
-    - ./dockers/tomcat6/deploy:/usr/share/tomcat/webapps
     - ./dockers/tomcat6/logs:/usr/share/tomcat/logs
+    - /usr/share/tomcat/webapps
   mem_limit: 512000000
+tomcataccess:
+    image: ubuntu:14.04
+    volumes_from:
+        - tomcat
 test:
   build: ./dockers/testng
   links:
