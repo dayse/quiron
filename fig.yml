@@ -4,14 +4,11 @@ db:
   build: ./dockers/docker-postgresql
   ports:
     - "5432:5432"
-  volumes:
-    - ./dockers/docker-postgresql/data:/data
-    - ./dockers/docker-postgresql/log:/var/log/postgresql
   environment:
-    - USER=DESENVOLVEDOR
-    - DB=QUIRON_DESENVOLVIMENTO
-    - PASS=desenvolvedor
-    - SCHEMA=quiron
+    - DB_NAME=QUIRON_DESENVOLVIMENTO
+    - DB_SCHEMA=quiron
+    - POSTGRES_USER=DESENVOLVEDOR
+    - POSTGRES_PASSWORD=desenvolvedor
 dbdoc:
   build: ./dockers/docker-pgdoc
   links:
