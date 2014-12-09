@@ -1,10 +1,11 @@
 FROM ubuntu:14.04
 MAINTAINER Felipe Arruda Pontes <contato@arruda.blog.br>
 
-ENV http_proxy http://felipe.pontes:qualquercoisa@proxy.corp.int.gov.br:3128
-ENV https_proxy http://felipe.pontes:qualquercoisa@proxy.corp.int.gov.br:3128
-RUN echo 'Acquire::http::Proxy "http://felipe.pontes:qualquercoisa@proxy.corp.int.gov.br:3128";' >> "/etc/apt/apt.conf.d/01proxy"
-RUN echo 'Acquire::https::Proxy "http://felipe.pontes:qualquercoisa@proxy.corp.int.gov.br:3128";' >> "/etc/apt/apt.conf.d/01proxy"
+ADD scripts /scripts
+
+# Add proxy if under INT proxy network
+RUN chmod +x /scripts/check_proxy_int.sh
+RUN /scripts/check_proxy_int.sh
 
 # UTF-8 locale
 RUN locale-gen en_US.UTF-8 && \
@@ -17,7 +18,6 @@ RUN apt-get install -y -q postgresql-autodoc
 # install graphviz to generate the png from the .dot
 RUN apt-get install -y -q graphviz
 
-ADD scripts /scripts
 RUN chmod +x /scripts/start.sh
 
 RUN mkdir /data
