@@ -74,7 +74,14 @@
 			<to-view-id>/avaliacao/list.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
+	
+<navigation-rule>
+		<navigation-case>
+			<from-outcome>listConfiguracao</from-outcome>
+			<to-view-id>/configuracao/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>listEspecialista</from-outcome>
@@ -292,6 +299,12 @@
 	<managed-bean>
 		<managed-bean-name>cargaActions</managed-bean-name>
 		<managed-bean-class>actions.CargaActions</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>configuracaoActions</managed-bean-name>
+		<managed-bean-class>actions.ConfiguracaoActions</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	

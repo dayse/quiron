@@ -62,6 +62,7 @@
     <filter-name>Filtro</filter-name>
     <url-pattern>/atendimento/*</url-pattern>
     <url-pattern>/avaliacao/*</url-pattern>
+     <url-pattern>/configuracao/*</url-pattern>
     <url-pattern>/especialista/*</url-pattern>
     <url-pattern>/indicacao/*</url-pattern>
     <url-pattern>/paciente/*</url-pattern>
