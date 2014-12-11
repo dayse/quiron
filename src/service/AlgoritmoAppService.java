@@ -80,4 +80,8 @@ public class AlgoritmoAppService {
 		return algoritmoDAO.recuperaListaDeAlgoritmo();
 	}
 	
+	public Algoritmo recuperaAlgoritmoAtivo(){
+		return algoritmoDAO.recuperaAlgoritmoAtivo();
+	}
+	
 }

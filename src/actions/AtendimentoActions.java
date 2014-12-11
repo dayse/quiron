@@ -9,12 +9,14 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 import DAO.exception.ObjetoNaoEncontradoException;
+import modelo.Algoritmo;
 import modelo.Atendimento;
 import modelo.ConjuntoAvaliacao;
 import modelo.Paciente;
 import modelo.Anamnese;
 import modelo.Parametro;
 import modelo.Usuario;
+import service.AlgoritmoAppService;
 import service.AnamneseAppService;
 import service.AtendimentoAppService;
 import service.PacienteAppService;
@@ -72,21 +74,21 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private static ParametroAppService parametroService;
 	private static TipoUsuarioAppService tipoUsuarioService;
 	private static UsuarioAppService usuarioService;
+	private static AlgoritmoAppService algoritmoService;
 
 	// Variáveis de tela
 	private Anamnese anamnesesCorrente;
 	private Atendimento atendimentoCorrente;
 	private Paciente pacienteCorrente;
+	private Algoritmo algoritmoCorrente;
 	private Date dataAtendimento;
 	private int paginaAtendimento = 1;
 	private int pagina;
 	private int numParametros;
 	private boolean tecnicoEditavel;
 	private boolean clinicoEditavel;
-	private SpiderMainPlot plotGrauSemelhanca;
-	private SpiderMainPlot plotDistanciaDescartes;
+	private SpiderMainPlot plotGrafico;
 
-	
 	//infos de busca
 
 
@@ -131,8 +133,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 					.getAppService(UsuarioAppService.class);
 			parametroService = FabricaDeAppService
 					.getAppService(ParametroAppService.class);
-			
-			
+			algoritmoService = FabricaDeAppService
+					.getAppService(AlgoritmoAppService.class);
 		} catch (Exception e) {
 			throw e;
 		}
@@ -195,16 +197,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	}
 
 	/**
-	 * Tela que exibe a lista de algoritmos de avaliações disponíveis, a partir
-	 * de onde o usuário será levado a tela de calculo da Avaliação.
-	 * @return
-	 */
-	public String mostraAlgoritmosDeAvaliacao(){
-		comboAlgoritmoAvaliacao = SelectOneDataModel.criaSemTextoInicial(listaDeNomesAlgoritmos);
-		return PAGINA_ALGORITMOS_AVALIACAO;
-	}
-	
-	/**
 	 * 
 	 * Método que calcula a avaliação para um determinado atendimento.
 	 * 
@@ -220,130 +212,57 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		} catch (AplicacaoException e1) {
 			e1.printStackTrace();
 		}
-		//Verifica qual o algoritmo utilizado:
-		//se for o primeiro (grau de semelhança) então chama o metodo do action que vai fazer o resto
-		//no que diz respeito a tela desse algoritmo
-		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(0))){
-			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = 
-								anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(atendimentoCorrente);
-			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
-			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
-			try {
-				comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-			} catch (AplicacaoException e) {
-				e.printStackTrace();
-			}
-			listaDeAnamneses = new ListDataModel(
-						anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
-					);
-			
-			if(atendimentoCorrente.getTecnico() == null){
-				comboTecnicos = null;
-			}else{
-				try {
-					comboTecnicos = SelectOneDataModel
-							.criaComObjetoSelecionadoSemTextoInicial(
-									usuarioService
-											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-													.recuperaTipoUsuarioTecnico()),
-									atendimentoCorrente.getTecnico());
-				} catch (AplicacaoException e) {
-					e.printStackTrace();
-				}
-			}
-			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-			
-			plotGrauSemelhanca = 
-					atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
-								conjuntosDeAvaliacoes, 
-								atendimentoCorrente
-							);
-			return PAGINA_AVALIACAO;
+		
+		algoritmoCorrente = algoritmoService.recuperaAlgoritmoAtivo();
+		
+		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
+		if(algoritmoCorrente.getNome().equals("Grau de Semelhança")){
+			conjuntosDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(atendimentoCorrente);
 		}
-		//se for o segundo algoritmo (Indice de Descartes por Superação-Distância) então chama o metodo do action que vai fazer o resto
-		//no que diz respeito a tela desse algoritmo
-		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(1))){
-			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = 
-								anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPelaDistanciaDescartes(atendimentoCorrente);
-			
-			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
-			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
-			try {
-				comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-			} catch (AplicacaoException e) {
-				e.printStackTrace();
-			}
-			listaDeAnamneses = new ListDataModel(
-						anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
-					);
-			
-			if(atendimentoCorrente.getTecnico() == null){
-				comboTecnicos = null;
-			}else{
-				try {
-					comboTecnicos = SelectOneDataModel
-							.criaComObjetoSelecionadoSemTextoInicial(
-									usuarioService
-											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-													.recuperaTipoUsuarioTecnico()),
-									atendimentoCorrente.getTecnico());
-				} catch (AplicacaoException e) {
-					e.printStackTrace();
-				}
-			}
-			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-			plotDistanciaDescartes = atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
-					conjuntosDeAvaliacoes, 
-					atendimentoCorrente
-				);
-			return PAGINA_AVALIACAO;
+		else if(algoritmoCorrente.getNome().equals("Índice de Descartes por Superação-Distância")){
+			conjuntosDeAvaliacoes =	anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPelaDistanciaDescartes(atendimentoCorrente);
 		}
-		else if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(2))){
-			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes =
-					anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauDeInclusao(atendimentoCorrente);
-			
-			listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
-			listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
-			try {
-				comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-			} catch (AplicacaoException e) {
-				e.printStackTrace();
-			}
-			listaDeAnamneses = new ListDataModel(
-						anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
-					);
-			
-			if(atendimentoCorrente.getTecnico() == null){
-				comboTecnicos = null;
-			}else{
-				try {
-					comboTecnicos = SelectOneDataModel
-							.criaComObjetoSelecionadoSemTextoInicial(
-									usuarioService
-											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-													.recuperaTipoUsuarioTecnico()),
-									atendimentoCorrente.getTecnico());
-				} catch (AplicacaoException e) {
-					e.printStackTrace();
-				}
-			}
-			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-			plotDistanciaDescartes = atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
-					conjuntosDeAvaliacoes, 
-					atendimentoCorrente
-				);			
-			
-			return PAGINA_AVALIACAO;
+		else if(algoritmoCorrente.getNome().equals("Grau de Inclusão")){
+			conjuntosDeAvaliacoes =	anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauDeInclusao(atendimentoCorrente);
 		}		
-		//so chega nesse ponto se por alguma razão muito estranha ele não for nenhum
-		//dos algoritmos possíveis, assim carrega a página de seleção do algoritmo.
-		return PAGINA_ALGORITMOS_AVALIACAO;
+		listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
+		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
+		
+		try {
+			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}
+		
+		listaDeAnamneses = new ListDataModel(
+					anamneseService.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente)
+				);
+		
+		if(atendimentoCorrente.getTecnico() == null){
+			comboTecnicos = null;
+		}else{
+			try {
+				comboTecnicos = SelectOneDataModel
+						.criaComObjetoSelecionadoSemTextoInicial(
+								usuarioService
+										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+												.recuperaTipoUsuarioTecnico()),
+								atendimentoCorrente.getTecnico());
+			} catch (AplicacaoException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+		
+		plotGrafico = 
+				atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
+							conjuntosDeAvaliacoes, 
+							atendimentoCorrente
+						);
+		return PAGINA_AVALIACAO;
 	}
 	
 	/**
@@ -358,13 +277,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String calculaAvaliacaoDetalhado() {
-		//Verifica qual o algoritmo utilizado:
-		//se for o primeiro (grau de semelhança) então chama o metodo do action que vai fazer o resto
-		//no que diz respeito a tela desse algoritmo
-		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(0))){
+		if(algoritmoCorrente.getNome().equals("Grau de Semelhança")){
 			return PAGINA_AVALIACAO_DETALHADA;
 		}
-		if(comboAlgoritmoAvaliacao.getObjetoSelecionado().equals(listaDeNomesAlgoritmos.get(1))){
+		else if(algoritmoCorrente.getNome().equals("Índice de Descartes por Superação-Distância")){
 			return PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES;
 		}
 		else{
@@ -1005,19 +921,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		this.comboAlgoritmoAvaliacao = comboAlgoritmoAvaliacao;
 	}
 
-	public SpiderMainPlot getPlotGrauSemelhanca() {
-		return plotGrauSemelhanca;
+	public SpiderMainPlot getPlotGrafico() {
+		return plotGrafico;
 	}
 
-	public void setPlotGrauSemelhanca(SpiderMainPlot plotGrauSemelhanca) {
-		this.plotGrauSemelhanca = plotGrauSemelhanca;
+	public void setPlotGrauSemelhanca(SpiderMainPlot plotGrafico) {
+		this.plotGrafico = plotGrafico;
 	}
 	
-	public SpiderMainPlot getPlotDistanciaDescartes() {
-		return plotDistanciaDescartes;
-	}
-
-	public void setPlotDistanciaDescartes(SpiderMainPlot plotDistanciaDescartes) {
-		this.plotDistanciaDescartes = plotDistanciaDescartes;
-	}
 }

@@ -103,12 +103,12 @@ public class CargaAlgoritmo extends CargaBase {
 		grauSemelhanca.setStatus("Ativo");
 			configuracoes.add(grauSemelhanca);
 
-		grauInclusao.setNome("Índice de Descartes por Superação-Distância");
+		grauInclusao.setNome("Grau de Inclusão");
 		grauInclusao.setDescricao("Falta inserir.");
 		grauInclusao.setStatus("Inativo");
 			configuracoes.add(grauInclusao);
 
-		grauDistancia.setNome("Grau de Distância");
+		grauDistancia.setNome("Índice de Descartes por Superação-Distância");
 		grauDistancia.setDescricao("Falta inserir.");
 		grauDistancia.setStatus("Inativo");
 			configuracoes.add(grauDistancia);

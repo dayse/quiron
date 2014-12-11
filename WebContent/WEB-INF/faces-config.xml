@@ -63,6 +63,13 @@
 	
 	<navigation-rule>
 		<navigation-case>
+			<from-outcome>listAlgoritmo</from-outcome>
+			<to-view-id>/algoritmo/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
+	
+	<navigation-rule>
+		<navigation-case>
 			<from-outcome>listAtendimento</from-outcome>
 			<to-view-id>/atendimento/list.xhtml</to-view-id>
 		</navigation-case>
@@ -72,13 +79,6 @@
 		<navigation-case>
 			<from-outcome>listAvaliacao</from-outcome>
 			<to-view-id>/avaliacao/list.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	
-<navigation-rule>
-		<navigation-case>
-			<from-outcome>listConfiguracao</from-outcome>
-			<to-view-id>/configuracao/list.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
@@ -133,11 +133,7 @@
 		<navigation-case>
 			<from-outcome>showAtendimento</from-outcome>
 			<to-view-id>/atendimento/show.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>algoritmosAvaliacao</from-outcome>
-			<to-view-id>/avaliacao/algoritmos.xhtml</to-view-id>
-		</navigation-case>		
+		</navigation-case>	
 	</navigation-rule>
 	<!-- FIM-Regras de navegacao (Atendimento) -->	
 	
@@ -303,8 +299,8 @@
 	</managed-bean>
 	
 	<managed-bean>
-		<managed-bean-name>configuracaoActions</managed-bean-name>
-		<managed-bean-class>actions.ConfiguracaoActions</managed-bean-class>
+		<managed-bean-name>algoritmoActions</managed-bean-name>
+		<managed-bean-class>actions.AlgoritmoActions</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	
