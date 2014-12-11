@@ -190,7 +190,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				return PAGINA_EDIT;
 			}
 		}
-		
+		listaDeAtendimentos = null;
 		logUsuarioAutenticadoMsg("Atendimento - Altera atendimento:" + atendimentoCorrente.getCodAtendimento());
 		info("atendimento.SUCESSO_ALTERACAO");
 		return PAGINA_LIST;
