@@ -3,9 +3,9 @@ package carga;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.Configuracao;
+import modelo.Algoritmo;
 import modelo.Parametro;
-import service.ConfiguracaoAppService;
+import service.AlgoritmoAppService;
 import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -31,10 +31,10 @@ import service.exception.AplicacaoException;
  * @author bruno.oliveira
  * 
  */
-public class CargaConfiguracao extends CargaBase {
+public class CargaAlgoritmo extends CargaBase {
 
 	// Service
-	public ConfiguracaoAppService configuracaoService;
+	public AlgoritmoAppService algoritmoService;
 
 	/**
 	 * 
@@ -43,10 +43,10 @@ public class CargaConfiguracao extends CargaBase {
 	 * @author bruno.oliveira
 	 * 
 	 */
-	public CargaConfiguracao() {
+	public CargaAlgoritmo() {
 		try {
-			configuracaoService = FabricaDeAppService
-					.getAppService(ConfiguracaoAppService.class);
+			algoritmoService = FabricaDeAppService
+					.getAppService(AlgoritmoAppService.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -73,7 +73,7 @@ public class CargaConfiguracao extends CargaBase {
 	 */
 	@Override
 	public boolean executar() throws AplicacaoException {
-		this.incluirConfiguracao();
+		this.incluirAlgoritmo();
 		return true;
 	}
 
@@ -89,13 +89,13 @@ public class CargaConfiguracao extends CargaBase {
 	 * @author bruno.oliveira
 	 * 
 	 */
-	public void incluirConfiguracao() throws AplicacaoException {
+	public void incluirAlgoritmo() throws AplicacaoException {
 		
-		List<Configuracao> configuracoes = new ArrayList<Configuracao>();
+		List<Algoritmo> configuracoes = new ArrayList<Algoritmo>();
 		
-		Configuracao grauSemelhanca = new Configuracao();
-		Configuracao grauInclusao = new Configuracao();
-		Configuracao grauDistancia = new Configuracao();
+		Algoritmo grauSemelhanca = new Algoritmo();
+		Algoritmo grauInclusao = new Algoritmo();
+		Algoritmo grauDistancia = new Algoritmo();
 		
 		
 		grauSemelhanca.setNome("Grau de Semelhança");
@@ -103,7 +103,7 @@ public class CargaConfiguracao extends CargaBase {
 		grauSemelhanca.setStatus("Ativo");
 			configuracoes.add(grauSemelhanca);
 
-		grauInclusao.setNome("Grau de Inclusão");
+		grauInclusao.setNome("Índice de Descartes por Superação-Distância");
 		grauInclusao.setDescricao("Falta inserir.");
 		grauInclusao.setStatus("Inativo");
 			configuracoes.add(grauInclusao);
@@ -114,8 +114,8 @@ public class CargaConfiguracao extends CargaBase {
 			configuracoes.add(grauDistancia);
 
 		
-		for(Configuracao configuracao : configuracoes){
-			configuracaoService.inclui(configuracao);
+		for(Algoritmo algoritmo : configuracoes){
+			algoritmoService.inclui(algoritmo);
 		}
 	}
 	

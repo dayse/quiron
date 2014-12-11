@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/algoritmo_list_template.xhtml">
+
+	<ui:define name="titulo">#{prompt.algoritmo}</ui:define>
+	<ui:define name="descricao">#{prompt.algoritmo_Cadastro}</ui:define>
+	<ui:define name="descricao_ajuda">
+	</ui:define>
+	<ui:define name="mensagemSistema" />
+
+	<ui:define name="corpo">
+
+		<a4j:keepAlive beanName="algoritmoActions" />
+
+		<h:form id="formAlgoritmoList">
+
+			<br />
+			
+			<h:panelGrid columns="5">
+				<h:outputText value="#{prompt.algoritmo_Ativar}" />
+				
+				<h:selectOneMenu id="comboAlgoritmo"
+					value="#{algoritmoActions.comboTiposDeAlgoritmos.selecao}">
+					<f:selectItems
+						value="#{algoritmoActions.comboTiposDeAlgoritmos.listaSelecao}" />
+				</h:selectOneMenu>
+				
+				<h:commandButton value="#{prompt.algoritmo_ButaoAtivar}"
+					action="#{algoritmoActions.ativar}" />
+			</h:panelGrid>
+			<br />
+
+			<rich:dataTable id="tabelaAlgoritmo" var="algoritmo" align="center"
+				value="#{algoritmoActions.listaAlgoritmo}" rows="10" width="700px">
+
+				<f:facet name="header">
+
+					<rich:columnGroup>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.algoritmo_Nome}"
+								value="#{prompt.algoritmo_Nome}" />
+						</rich:column>
+
+						<rich:column>
+							<h:outputText title="#{tooltip.algoritmo_Descricao}"
+								value="#{prompt.algoritmo_Descricao}" />
+						</rich:column>
+						
+						<rich:column>
+							<h:outputText title="#{tooltip.algoritmo_Status}"
+								value="#{prompt.algoritmo_Status}" />
+						</rich:column>
+						
+					</rich:columnGroup>
+
+				</f:facet>
+
+		
+				<rich:column>
+					<h:outputText value="#{algoritmo.nome}" />
+				</rich:column>
+
+				<rich:column>
+					<h:outputText value="#{algoritmo.descricao}" />
+				</rich:column>
+				
+				<rich:column>
+					<h:outputText value="#{algoritmo.status}" />
+				</rich:column>
+			
+
+				<f:facet name="footer">
+
+					<h:panelGrid columns="2">
+
+						<h:outputText
+							value="#{prompt.algoritmo_Total} = #{algoritmoActions.listaAlgoritmo.rowCount}" />
+
+					</h:panelGrid>
+
+				</f:facet>
+
+			</rich:dataTable>
+
+			<br />
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

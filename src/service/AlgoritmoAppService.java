@@ -8,7 +8,7 @@ import exception.RelatorioException;
 import modelo.Anamnese;
 import modelo.Atendimento;
 import modelo.AvalIndicacaoEspec;
-import modelo.Configuracao;
+import modelo.Algoritmo;
 import modelo.Especialista;
 import modelo.Indicacao;
 import modelo.Paciente;
@@ -23,14 +23,14 @@ import service.exception.AplicacaoException;
 import DAO.AnamneseDAO;
 import DAO.AtendimentoDAO;
 import DAO.AvalIndicacaoEspecDAO;
-import DAO.ConfiguracaoDAO;
+import DAO.AlgoritmoDAO;
 import DAO.EspecialistaDAO;
 import DAO.IndicacaoDAO;
 import DAO.ParametroDAO;
 import DAO.Impl.AnamneseDAOImpl;
 import DAO.Impl.AtendimentoDAOImpl;
 import DAO.Impl.AvalIndicacaoEspecDAOImpl;
-import DAO.Impl.ConfiguracaoDAOImpl;
+import DAO.Impl.AlgoritmoDAOImpl;
 import DAO.Impl.EspecialistaDAOImpl;
 import DAO.Impl.IndicacaoDAOImpl;
 import DAO.Impl.ParametroDAOImpl;
@@ -38,13 +38,13 @@ import DAO.controle.FabricaDeDao;
 import DAO.exception.InfraestruturaException;
 import DAO.exception.ObjetoNaoEncontradoException;
 
-public class ConfiguracaoAppService {
+public class AlgoritmoAppService {
 	
-	private static ConfiguracaoDAO configuracaoDAO;
+	private static AlgoritmoDAO algoritmoDAO;
 	
-	public ConfiguracaoAppService() throws Exception{
+	public AlgoritmoAppService() throws Exception{
 		try{
-			configuracaoDAO = FabricaDeDao.getDao(ConfiguracaoDAOImpl.class);
+			algoritmoDAO = FabricaDeDao.getDao(AlgoritmoDAOImpl.class);
 		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -53,25 +53,31 @@ public class ConfiguracaoAppService {
 	}
 	
 	@Transacional
-	public void inclui(Configuracao configuracao) throws AplicacaoException{
-			
-			try{
-				configuracaoDAO.recuperaConfiguracaoPorNome(configuracao.getNome());
-				throw new AplicacaoException("configuracao.NOME_EXISTENTE");
-			}catch(ObjetoNaoEncontradoException ob){
-			}
-			configuracaoDAO.inclui(configuracao);
-			
-			
-			}
-	
-
-
-
-	public List<Configuracao> recuperaListaDeConfiguracaoPaginada(){
-		return configuracaoDAO.recuperaListaDeConfiguracaoPaginada();
+	public void altera (Algoritmo algoritmo) throws AplicacaoException{
+		Algoritmo algoritmoAtivo = algoritmoDAO.recuperaAlgoritmoAtivo();
+		if(algoritmo.equals(algoritmoAtivo)){
+			throw new AplicacaoException("algoritmo.JA_ESTA_ATIVO");
+		}else{
+			algoritmo.setStatus("Ativo");
+			algoritmoAtivo.setStatus("Inativo");
+			algoritmoDAO.altera(algoritmo);
+			algoritmoDAO.altera(algoritmoAtivo);
+		}
 	}
 	
-	
+	@Transacional
+	public void inclui(Algoritmo algoritmo) throws AplicacaoException{
+			
+			try{
+				algoritmoDAO.recuperaAlgoritmoPorNome(algoritmo.getNome());
+				throw new AplicacaoException("algoritmo.NOME_EXISTENTE");
+			}catch(ObjetoNaoEncontradoException ob){
+			}
+			algoritmoDAO.inclui(algoritmo);
+	}
+
+	public List<Algoritmo> recuperaListaDeAlgoritmo(){
+		return algoritmoDAO.recuperaListaDeAlgoritmo();
+	}
 	
 }

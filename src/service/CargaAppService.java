@@ -53,7 +53,7 @@ public class CargaAppService {
 		cargas.add(new CargaImplantacao());
 		cargas.add(new CargaParametros());
 		cargas.add(new CargaParametroIntermediario());
-		cargas.add(new CargaConfiguracao());
+		cargas.add(new CargaAlgoritmo());
 		return executarCargas();
 	}
 	
@@ -86,7 +86,7 @@ public class CargaAppService {
 		cargas.add(new CargaUsuario());
 		
 		//Inclui algoritmos
-		cargas.add(new CargaConfiguracao());
+		cargas.add(new CargaAlgoritmo());
 		
 		// Inclui parametros necessarios
 		cargas.add(new CargaParametros());
