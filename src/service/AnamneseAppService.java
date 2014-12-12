@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import modelo.Algoritmo;
 import modelo.Anamnese;
 import modelo.Atendimento;
 import modelo.AvalIndicacaoEspec;
@@ -37,7 +38,7 @@ public class AnamneseAppService {
 	private static ParametroDAO parametroDAO;
 	
 	public AvalIndicacaoEspecAppService avalIndicacaoEspecService;
-
+	public AlgoritmoAppService algoritmoService;
 	public AnamneseAppService() throws Exception {
 		try {
 			anamneseDAO = FabricaDeDao.getDao(AnamneseDAOImpl.class);
@@ -47,6 +48,7 @@ public class AnamneseAppService {
 			parametroDAO = FabricaDeDao.getDao(ParametroDAOImpl.class);
 			
 			avalIndicacaoEspecService = FabricaDeAppService.getAppService(AvalIndicacaoEspecAppService.class);
+			algoritmoService= FabricaDeAppService.getAppService(AlgoritmoAppService.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -58,7 +60,21 @@ public class AnamneseAppService {
 		anamneseDAO.altera(anamnese);
 	}
 
-
+	public List<ConjuntoAvaliacao> recuperaAvaliacaoCalculadaPorIndicacao(Atendimento atendimento){
+		Algoritmo algoritmoCorrente = algoritmoService.recuperaAlgoritmoAtivo();
+		
+		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
+		if(algoritmoCorrente.getNome().equals("Grau de Semelhança")){
+			conjuntosDeAvaliacoes = recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(atendimento);
+		}
+		else if(algoritmoCorrente.getNome().equals("Índice de Descartes por Superação-Distância")){
+			conjuntosDeAvaliacoes =	recuperaAvaliacaoCalculadaPorIndicacaoPelaDistanciaDescartes(atendimento);
+		}
+		else if(algoritmoCorrente.getNome().equals("Grau de Inclusão")){
+			conjuntosDeAvaliacoes =	recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauDeInclusao(atendimento);
+		}
+		return conjuntosDeAvaliacoes;
+	}
 	/**
 	 * Calculo da avaliação por atendimento, por indicação e por parametro, utilizando
 	 * um algoritmo de Grau de Semelhança.

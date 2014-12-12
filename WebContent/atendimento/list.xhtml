@@ -57,7 +57,7 @@
 				width="700px" reRender="#{atendimentoActions.buscaEfetuada}">
 				<f:facet name="header">
 					<rich:columnGroup>
-						<rich:column colspan="18">
+						<rich:column colspan="20">
 							<h:outputText value="#{prompt.atendimento}" />
 						</rich:column>
 						
@@ -96,16 +96,20 @@
 						<h:outputText title="#{tooltip.atendimento_Status}"
 							value="#{prompt.atendimento_Status}" />
 						</rich:column>
-
+						<rich:column >
+							<h:outputText title="#{tooltip.atendimento_Encerrar}" value="#{prompt.avaliacao_Encerrar}"  />
+						</rich:column>
 						<rich:column colspan="2">
 							<h:outputText title="#{tooltip.atendimento_Avaliacao}"		
-									value="#{prompt.avaliacao}" />
+									value="#{prompt.avaliar}" />
 						</rich:column>
 						
 						<rich:column >
 							<h:outputText title="#{tooltip.atendimento_Editar}" value="#{prompt.editar}" />
 						</rich:column>
-								
+						<rich:column >
+							<h:outputText title="#{tooltip.atendimento_Historico}" value="#{prompt.avaliacao_Historico}" />
+						</rich:column>	
 						<rich:column >
 							<h:outputText title="#{tooltip.atendimento_Excluir}" value="#{prompt.excluir}" />
 						</rich:column>
@@ -150,18 +154,30 @@
 				<rich:column>
 					<h:outputText value="#{atendimento.status}" />
 				</rich:column>
-
-
+				<rich:column >
+				<h:commandButton value="#{prompt.avaliacao_Encerrar}"		
+						action="#{atendimentoActions.encerrar}" disabled="#{atendimento.statusEncerrado}">		
+						<f:setPropertyActionListener value="#{atendimento}"		
+							target="#{atendimentoActions.atendimentoCorrente}" />		
+					</h:commandButton>
+				</rich:column>
 				<rich:column colspan="2">
-					<h:commandButton value="#{prompt.avaliacao}"		
-						action="#{atendimentoActions.calculaAvaliacao}">		
+					<h:commandButton value="#{prompt.avaliar}"		
+						action="#{atendimentoActions.calculaAvaliacao}" disabled="#{atendimento.statusEncerrado}" >		
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
 					</h:commandButton>
 				</rich:column>
 				<rich:column >
+				<h:commandButton value="#{prompt.avaliacao_Historico}"		
+						action="#{atendimentoActions.historico}">		
+						<f:setPropertyActionListener value="#{atendimento}"		
+							target="#{atendimentoActions.atendimentoCorrente}" />		
+					</h:commandButton>	
+				</rich:column>
+				<rich:column >
 					<h:commandButton value="#{prompt.editar}"		
-						action="#{atendimentoActions.preparaAlteracao}">		
+						action="#{atendimentoActions.preparaAlteracao}" disabled="#{atendimento.statusEncerrado}" >		
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
 					</h:commandButton>

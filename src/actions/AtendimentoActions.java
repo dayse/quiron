@@ -19,6 +19,7 @@ import modelo.Usuario;
 import service.AlgoritmoAppService;
 import service.AnamneseAppService;
 import service.AtendimentoAppService;
+import service.HistoricoAvaliacaoAppService;
 import service.PacienteAppService;
 import service.ParametroAppService;
 import service.TipoUsuarioAppService;
@@ -75,7 +76,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private static TipoUsuarioAppService tipoUsuarioService;
 	private static UsuarioAppService usuarioService;
 	private static AlgoritmoAppService algoritmoService;
-
+	private static HistoricoAvaliacaoAppService historicoService;
 	// Variáveis de tela
 	private Anamnese anamnesesCorrente;
 	private Atendimento atendimentoCorrente;
@@ -125,6 +126,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 					.getAppService(AtendimentoAppService.class);
 			anamneseService = FabricaDeAppService
 					.getAppService(AnamneseAppService.class);
+			historicoService = FabricaDeAppService
+					.getAppService(HistoricoAvaliacaoAppService.class);
 			pacienteService = FabricaDeAppService
 					.getAppService(PacienteAppService.class);
 			tipoUsuarioService = FabricaDeAppService
@@ -216,15 +219,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		algoritmoCorrente = algoritmoService.recuperaAlgoritmoAtivo();
 		
 		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
-		if(algoritmoCorrente.getNome().equals("Grau de Semelhança")){
-			conjuntosDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauSemelhanca(atendimentoCorrente);
-		}
-		else if(algoritmoCorrente.getNome().equals("Índice de Descartes por Superação-Distância")){
-			conjuntosDeAvaliacoes =	anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPelaDistanciaDescartes(atendimentoCorrente);
-		}
-		else if(algoritmoCorrente.getNome().equals("Grau de Inclusão")){
-			conjuntosDeAvaliacoes =	anamneseService.recuperaAvaliacaoCalculadaPorIndicacaoPeloGrauDeInclusao(atendimentoCorrente);
-		}		
+		
+			conjuntosDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente);
+		
+				
 		listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
 		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
 		
@@ -323,7 +321,26 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		pacienteCorrente = null;
 		return PAGINA_LIST;
 	}
-
+	public String encerrar() {
+		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
+		
+		conjuntosDeAvaliacoes = anamneseService.recuperaAvaliacaoCalculadaPorIndicacao(atendimentoCorrente);
+		atendimentoCorrente.setStatus("Encerrado"); 
+		try {
+			atendimentoService.altera(atendimentoCorrente);
+		} catch (AplicacaoException ex) {
+			error(ex.getMessage());
+		}
+		try {
+			historicoService.inclui(atendimentoCorrente,conjuntosDeAvaliacoes);
+		} catch (AplicacaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		info("historico.SALVO_COM_SUCESSO");
+		return PAGINA_LIST;
+		
+	}
 	/**
 	 * 
 	 * Método usado para exclusão de determinado registro do banco de dados.
@@ -928,5 +945,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public void setPlotGrauSemelhanca(SpiderMainPlot plotGrafico) {
 		this.plotGrafico = plotGrafico;
 	}
+	
 	
 }

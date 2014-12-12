@@ -21,6 +21,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @NamedQueries(
 		{
@@ -265,6 +266,8 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	
 
 	private List<Anamnese> anamneses = new ArrayList<Anamnese>();
+
+	private Boolean statusEncerrado;
 	
 	@Override
 	public int compareTo(Atendimento arg0) {
@@ -396,4 +399,18 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 		this.observacoes = observacoes;
 	}
 
+	public void setStatusEcerrado(Boolean status){
+		this.statusEncerrado = status;
+	}
+	
+	@Transient
+	public boolean isStatusEncerrado(){
+		if(this.status.equals("Encerrado")){
+			return true;
+		}else{
+			return false;
+		}
+			
+	}	
+	
 }
