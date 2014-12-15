@@ -68,4 +68,7 @@ public class HistoricoAvaliacaoAppService {
 		
 	}
 	
+	public List<HistoricoAvaliacao> recuperaListaHistoricoPorAtendimento(Atendimento atendimento){
+		return historicoDAO.recuperaListaHistoricoPorAtendimento(atendimento);
+	}
 }

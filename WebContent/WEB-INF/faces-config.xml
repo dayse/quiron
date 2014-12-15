@@ -134,6 +134,10 @@
 			<from-outcome>showAtendimento</from-outcome>
 			<to-view-id>/atendimento/show.xhtml</to-view-id>
 		</navigation-case>	
+		<navigation-case>
+			<from-outcome>showHistorico</from-outcome>
+			<to-view-id>/avaliacao/showHistorico.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	<!-- FIM-Regras de navegacao (Atendimento) -->	
 	
@@ -156,10 +160,6 @@
 			<from-outcome>listAvaliacaoDetailGrauInclusaoESemelhanca</from-outcome>
 			<to-view-id>/avaliacao/list_detail_grau_inclusao_semelhanca.xhtml</to-view-id>
 		</navigation-case>									
-		<navigation-case>
-			<from-outcome>algoritmosAvaliacao</from-outcome>
-			<to-view-id>/avaliacao/algoritmos.xhtml</to-view-id>
-		</navigation-case>		
 	</navigation-rule>
 	<!-- FIM-Regras de navegacao (Avaliacao) -->	
 	

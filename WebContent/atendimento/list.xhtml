@@ -170,7 +170,7 @@
 				</rich:column>
 				<rich:column >
 				<h:commandButton value="#{prompt.avaliacao_Historico}"		
-						action="#{atendimentoActions.historico}">		
+						action="#{atendimentoActions.visualizarHistorico}" disabled="#{!atendimento.statusEncerrado}">		
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
 					</h:commandButton>	

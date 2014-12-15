@@ -12,6 +12,7 @@ import DAO.exception.ObjetoNaoEncontradoException;
 import modelo.Algoritmo;
 import modelo.Atendimento;
 import modelo.ConjuntoAvaliacao;
+import modelo.HistoricoAvaliacao;
 import modelo.Paciente;
 import modelo.Anamnese;
 import modelo.Parametro;
@@ -53,6 +54,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private DataModel listaAvaliacao;
 	private DataModel listaDeAnamneses;
 	private DataModel listaConjuntoAvaliacao;
+	private DataModel listaHistorico;
 	private List<Parametro> listaDeParametros; 
 	private List<String> status = new ArrayList<String>();
 
@@ -62,11 +64,11 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_NEW = "newAtendimento";
 	public final String PAGINA_SHOW = "showAtendimento";
 	public final String PAGINA_STATUS = "listStatusAtendimento";
-	public final String PAGINA_ALGORITMOS_AVALIACAO = "algoritmosAvaliacao";
 	public final String PAGINA_AVALIACAO = "listAvaliacao";
 	public final String PAGINA_AVALIACAO_DETALHADA = "listAvaliacaoDetail";
 	public final String PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES = "listAvaliacaoDetailDistanciaDescartes";
 	public final String PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO = "listAvaliacaoDetailGrauInclusao";
+	public final String PAGINA_VISUALIZACAO_HISTORICO_AVALIACAO = "showHistorico";
 
 	// Services
 	private static AtendimentoAppService atendimentoService;
@@ -77,6 +79,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private static UsuarioAppService usuarioService;
 	private static AlgoritmoAppService algoritmoService;
 	private static HistoricoAvaliacaoAppService historicoService;
+	
 	// Variáveis de tela
 	private Anamnese anamnesesCorrente;
 	private Atendimento atendimentoCorrente;
@@ -321,6 +324,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		pacienteCorrente = null;
 		return PAGINA_LIST;
 	}
+	
 	public String encerrar() {
 		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
 		
@@ -365,6 +369,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		return PAGINA_LIST;
 	}
 	
+	public String visualizarHistorico() {
+		return PAGINA_VISUALIZACAO_HISTORICO_AVALIACAO;
+	}
+	
 	/**
 	 * Imprime um atendimento em específico.
 	 * Este método é chamado pela opção imprimir
@@ -374,6 +382,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * @author bruno.oliveira
 	 * 
 	 */
+
 	public void imprimir(){
 		try {
 			atendimentoService.gerarRelatorio(atendimentoCorrente);
@@ -667,14 +676,14 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	}
 
 	/**
-	 *  Action usada na hora de sair da tela de avaliação, voltando
-	 *  para a tela de seleção dos algoritmos de avaliação.
+	 *  
 	 * @return
 	 */
-	public String voltarSelcaoAlgoritimos(){
-		anamnesesCorrente = null;
+	public String voltarHistoricoAvaliacao(){
+		atendimentoCorrente = null;
 		listaDeAnamneses = null;
-		return PAGINA_ALGORITMOS_AVALIACAO;
+		listaHistorico = null;
+		return PAGINA_LIST;
 	}
 	
 	/*      ************* Get & Set ************ */
@@ -738,6 +747,20 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public void setListaDeAnamneses(DataModel listaDeAnamneses) {
 		this.listaDeAnamneses = listaDeAnamneses;
 	}
+	
+	public DataModel getListaHistorico() {
+
+		if (listaHistorico == null) {
+				listaHistorico = new 
+						ListDataModel(historicoService.recuperaListaHistoricoPorAtendimento(atendimentoCorrente));
+		}
+		
+		return listaHistorico;
+	}
+
+	public void setListaHistorico(DataModel listaHistorico) {
+		this.listaHistorico = listaHistorico;
+	}	
 
 	public void setListaDeAtendimentos(DataModel listaDeAtendimentos) {
 		this.listaDeAtendimentos = listaDeAtendimentos;

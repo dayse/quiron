@@ -126,7 +126,7 @@ public class CargaAtendimento extends CargaBase{
 		atendimentoPaciente1.setPaciente(paciente1);
 		atendimentoPaciente1.setDataAtendimento(dataAtual);
 		atendimentoPaciente1.setMedico(clinico);
-		atendimentoPaciente1.setStatus("Encerrado");
+		atendimentoPaciente1.setStatus("Aberto");
 		String prognostico = "Bactéria ou candidúria em pacientes compromentidos podem";
 			   prognostico += " causar pielonefrites/bacteriamias.";
 		atendimentoPaciente1.setPrognostico(prognostico);
@@ -138,7 +138,7 @@ public class CargaAtendimento extends CargaBase{
 		atendimentoPaciente2.setDataAtendimento(dataAtual_anterior);
 		atendimentoPaciente2.setMedico(clinico);
 		atendimentoPaciente2.setTecnico(tecnico);
-		atendimentoPaciente2.setStatus("Encerrado");
+		atendimentoPaciente2.setStatus("Aberto");
 		atendimentoPaciente2.setPrognostico("Excelente.");
 
 		atendimentoService.inclui(atendimentoPaciente1);

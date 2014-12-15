@@ -16,7 +16,15 @@ import javax.persistence.Table;
 
 
 
-
+@NamedQueries(
+		{
+			@NamedQuery(name = "HistoricoAvaliacao.recuperaListaHistoricoPorAtendimento",					
+						query = "select h from HistoricoAvaliacao h " +
+								"where h.atendimento = ? " +
+								"order by h.ranking"
+			)
+		}
+)
 /**
  * 
  * A entidade Anamnese na verdade está representando
@@ -89,7 +97,7 @@ public class HistoricoAvaliacao implements Serializable, Comparable<HistoricoAva
 		return avaliacao;
 	}
 
-	public void setAvaliacao(double valor) {
+	public void setAvaliacao(double avaliacao) {
 		this.avaliacao = avaliacao;
 	}
 
