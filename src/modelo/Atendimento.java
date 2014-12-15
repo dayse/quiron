@@ -266,6 +266,8 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	
 
 	private List<Anamnese> anamneses = new ArrayList<Anamnese>();
+	
+	private List<HistoricoAvaliacao> historicos = new ArrayList<HistoricoAvaliacao>();
 
 	private Boolean statusEncerrado;
 	
@@ -350,6 +352,15 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	public void setAnamneses(List<Anamnese> anamneses) {
 		this.anamneses = anamneses;
 	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "atendimento", cascade=CascadeType.REMOVE)
+	public List<HistoricoAvaliacao> getHistoricos() {
+		return historicos;
+	}
+
+	public void setHistoricos(List<HistoricoAvaliacao> historicos) {
+		this.historicos = historicos;
+	}	
 
 	public String getNomeResponsavel() {
 		return nomeResponsavel;
