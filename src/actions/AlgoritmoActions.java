@@ -80,10 +80,16 @@ public class AlgoritmoActions extends BaseActions implements Serializable {
 	
 	public String ativar(){
 		algoritmoCorrente = comboTiposDeAlgoritmos.getObjetoSelecionado();
+		if(algoritmoCorrente == null){
+			System.out.println("estou aqui");
+			error("algoritmo.NAO_SELECIONADO");
+			return PAGINA_LIST;
+		}		
 		try{
 			algoritmoService.altera(algoritmoCorrente);
 		}catch(AplicacaoException ex){
-			error(ex.getMessage());			
+			error(ex.getMessage());
+			return PAGINA_LIST;
 		}
 		info("algoritmo.ATIVADO_COM_SUCESSO");
 		comboTiposDeAlgoritmos = null;

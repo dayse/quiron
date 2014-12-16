@@ -683,6 +683,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		atendimentoCorrente = null;
 		listaDeAnamneses = null;
 		listaHistorico = null;
+		listaConjuntoAvaliacao = null;
 		return PAGINA_LIST;
 	}
 	
