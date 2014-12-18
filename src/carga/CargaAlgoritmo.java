@@ -80,7 +80,7 @@ public class CargaAlgoritmo extends CargaBase {
 	/**
 	 * 
 	 * Método responsável por preparar e inserir os valores padrões dos
-	 * parâmetros no banco.
+	 * algoritmos no banco.
 	 * 
 	 * @throws AplicacaoException
 	 *             Retorna uma AplicacaoException caso ocorra uma exceção deste
@@ -97,23 +97,39 @@ public class CargaAlgoritmo extends CargaBase {
 		Algoritmo grauInclusao = new Algoritmo();
 		Algoritmo grauDistancia = new Algoritmo();
 		
-		
+		grauSemelhanca.setCodigo("A01");
 		grauSemelhanca.setNome("Grau de Semelhança");
-		grauSemelhanca.setDescricao("Falta inserir.");
+		grauSemelhanca.setDescricao("O grau de Semelhança é um número entre [0] e [1] que corresponde ao nível de semelhança entre dois conjuntos fuzzy."
+				+ " Pode ser calculados por diversas formas. Um dos mais populares é conhecido como metódo Max-Min (Ross,2004)."
+				+ " Onde a semelhança é calculada a partir da razão entre a somatória dos graus de interseção"
+				+ " entre os elementos de dois conjuntos e a somatória dos graus de união entre os elementos desses mesmos conjuntos (GANTE,2012).");
 		grauSemelhanca.setStatus("Ativo");
+		grauSemelhanca.setCaracteristica("Quanto maior o Grau de Semelhança,"
+				+ " mais adequado é o medicamento (indicação). Penaliza"
+				+ " o grau final de um medicamento (indicação) se um ou mais de seus"
+				+ " parâmetros (sintomas) excede(m) as necessidades do paciente.");
 			configuracoes.add(grauSemelhanca);
 
-		grauInclusao.setNome("Grau de Inclusão");
-		grauInclusao.setDescricao("Falta inserir.");
-		grauInclusao.setStatus("Inativo");
-			configuracoes.add(grauInclusao);
-
+		grauDistancia.setCodigo("A02");
 		grauDistancia.setNome("Índice de Descartes por Superação-Distância");
 		grauDistancia.setDescricao("Falta inserir.");
 		grauDistancia.setStatus("Inativo");
-			configuracoes.add(grauDistancia);
+		grauDistancia.setCaracteristica("Consiste numa combinação das Distâncias de Hamming e de Descartes."
+				+ " Aqui, cabe ao decisor escolher parâmetros (sintomas) que podem ou não ultrapassar as"
+				+ " necessidades do paciente.");
+			configuracoes.add(grauDistancia);			
+			
+		grauInclusao.setCodigo("A03");	
+		grauInclusao.setNome("Grau de Inclusão");
+		grauInclusao.setDescricao("Através do Grau de Inclusão, de Kosko (1992),"
+				+ " é possível determinar o nível de pertinência de um elemento em um conjunto fuzzy"
+				+ " e consequentemente, calcular a distância perceptiva entre eles.");
+		grauInclusao.setStatus("Inativo");
+		grauInclusao.setCaracteristica("Quanto maior melhor, análogo ao Grau de Semelhança."
+				+ " Porém, não penaliza o grau final de um medicamento (indicação)"
+				+ " se um ou mais de seus parâmetros (sintomas) excede(m) as necessidades do paciente.");
+			configuracoes.add(grauInclusao);
 
-		
 		for(Algoritmo algoritmo : configuracoes){
 			algoritmoService.inclui(algoritmo);
 		}

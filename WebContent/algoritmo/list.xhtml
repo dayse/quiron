@@ -41,7 +41,12 @@
 				<f:facet name="header">
 
 					<rich:columnGroup>
-
+					
+						<rich:column>
+							<h:outputText title="#{tooltip.algoritmo_Codigo}"
+								value="#{prompt.algoritmo_Codigo}" />
+						</rich:column>
+						
 						<rich:column>
 							<h:outputText title="#{tooltip.algoritmo_Nome}"
 								value="#{prompt.algoritmo_Nome}" />
@@ -52,6 +57,11 @@
 								value="#{prompt.algoritmo_Descricao}" />
 						</rich:column>
 						
+					<rich:column>
+							<h:outputText title="#{tooltip.algoritmo_Caracteristica}"
+								value="#{prompt.algoritmo_Caracteristica}" />
+						</rich:column>						
+						
 						<rich:column>
 							<h:outputText title="#{tooltip.algoritmo_Status}"
 								value="#{prompt.algoritmo_Status}" />
@@ -60,8 +70,11 @@
 					</rich:columnGroup>
 
 				</f:facet>
-
-		
+				
+				<rich:column>
+					<h:outputText value="#{algoritmo.codigo}" />
+				</rich:column>
+						
 				<rich:column>
 					<h:outputText value="#{algoritmo.nome}" />
 				</rich:column>
@@ -69,6 +82,10 @@
 				<rich:column>
 					<h:outputText value="#{algoritmo.descricao}" />
 				</rich:column>
+				
+				<rich:column>
+					<h:outputText value="#{algoritmo.caracteristica}" />
+				</rich:column>				
 				
 				<rich:column>
 					<h:outputText value="#{algoritmo.status}" />

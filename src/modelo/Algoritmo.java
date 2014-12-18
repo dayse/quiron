@@ -21,7 +21,7 @@ import javax.persistence.Table;
 		{
 			@NamedQuery(name = "Algoritmo.recuperaListaDeAlgoritmo",
 						query = "select c from Algoritmo c " +
-								"order by c.nome"
+								"order by c.codigo"
 			),
 			@NamedQuery(name = "Algoritmo.recuperaAlgoritmoPorNome",
 						query = "select c from Algoritmo c " +
@@ -44,14 +44,34 @@ import javax.persistence.Table;
 @SequenceGenerator(name = "SEQUENCIA", sequenceName = "SEQ_ALGORITMO", allocationSize = 1)
 public class Algoritmo implements Serializable, Comparable<Algoritmo>{
 
+	/**
+	 * Identificador
+	 */
 	private Long id;
 	
+	/**
+	 * Código do Algoritmo
+	 */
+	private String codigo;
+	
+	/**
+	 * Nome do algoritmo
+	 */
 	private String nome;
 	
-	
+	/**
+	 * Descrição do algoritmo
+	 */
 	private String descricao;
 	
+	/**
+	 * Principais características do algoritmo
+	 */
+	private String caracteristica;	
 
+	/**
+	 * Status que registra se o algoritmo está ativo ou não.
+	 */
 	private String status;
 	
 	
@@ -59,8 +79,6 @@ public class Algoritmo implements Serializable, Comparable<Algoritmo>{
 	
 	public Algoritmo(){
 
-		
-		
 	}
 	
 	// ********* Métodos get/set *********
@@ -75,7 +93,6 @@ public class Algoritmo implements Serializable, Comparable<Algoritmo>{
 		this.id = id;
 	}
 	
-	
 	@Column(length = 50)
 	public String getNome() {
 		return nome;
@@ -85,6 +102,7 @@ public class Algoritmo implements Serializable, Comparable<Algoritmo>{
 		this.nome = nome;
 	}
 	
+	@Column(length = 500)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -92,6 +110,15 @@ public class Algoritmo implements Serializable, Comparable<Algoritmo>{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public String getCaracteristica() {
+		return caracteristica;
+	}
+
+	public void setCaracteristica(String caracteristica) {
+		this.caracteristica = caracteristica;
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -99,22 +126,22 @@ public class Algoritmo implements Serializable, Comparable<Algoritmo>{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	@Override
-	public int compareTo(Algoritmo o) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public String getCodigo() {
+		return codigo;
 	}
 
-	@Override
-	public String toString() {
-		return nome;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result
+				+ ((caracteristica == null) ? 0 : caracteristica.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result
 				+ ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -132,6 +159,16 @@ public class Algoritmo implements Serializable, Comparable<Algoritmo>{
 		if (getClass() != obj.getClass())
 			return false;
 		Algoritmo other = (Algoritmo) obj;
+		if (caracteristica == null) {
+			if (other.caracteristica != null)
+				return false;
+		} else if (!caracteristica.equals(other.caracteristica))
+			return false;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
 		if (descricao == null) {
 			if (other.descricao != null)
 				return false;
@@ -154,7 +191,11 @@ public class Algoritmo implements Serializable, Comparable<Algoritmo>{
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public int compareTo(Algoritmo arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
