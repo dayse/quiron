@@ -1,18 +1,54 @@
 package modelo;
 
+/**
+ * 
+ * Essa é uma classe POJO com definição dos campos calculados usados nos algoritmos
+ * de avaliação fuzzy.
+ * 
+ * Ela representa o relacionamento entre uma única indicação e um único parametro. E é utilizada na tela
+ * em que temos colunas dinâmicas para recuperar os valores dessa relação.
+ * 
+ * A maior parte dos cálculos é efetuada dentro de anamneseService.
+ * 
+ * @author bruno.oliveira dayse.arruda (comentários)
+ *
+ */
 public class Avaliacao {
 
 	private Indicacao indicacao;
 	private Parametro parametro;
 
+	/**
+	 * União entre a necessidade do paciente e a média dos especialista
+	 * para um parametro em particular de uma indicação.
+	 * 
+	 * @author bruno.oliveira dayse.arruda (comentários)
+	 */
 	private double uniao;
 
+	/**
+	 * Interseção entre a necessidade do paciente e a média dos especialista
+	 * para um parametro em particular de uma indicação.
+	 * 
+	 * @author bruno.oliveira dayse.arruda (comentários)
+	 */
 	private double intersecao;
 	
+	/**
+	 * Média dos especialistas para um parametro em particular de uma indicação.
+	 * 
+	 * @author bruno.oliveira dayse.arruda (comentários)
+	 */
 	private double mediaEspecialistas;
 	
 	private String nomeIndicacaoNaTabela;
 	
+	/**
+	 * Módulo da diferença entre a necessidade do paciente e a média dos especialista
+	 * para um parametro em particular de uma indicação.
+	 * 
+	 * @author bruno.oliveira dayse.arruda (comentários)
+	 */
 	private double distancia;
 	
 	public Avaliacao() {

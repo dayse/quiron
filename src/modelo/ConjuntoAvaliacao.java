@@ -3,13 +3,32 @@ package modelo;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 
+ * Essa é uma classe POJO com definição dos campos calculados usados nos algoritmos
+ * de avaliação fuzzy e é responsável por guardar a memória de cálculo que será exibida na
+ * tela de detalhamento.
+ * 
+ * Ela representa o relacionamento entre uma única indicação e o seu conjunto de parametros.
+ * Esse conjunto de parametros é agrupado dentro de uma lista do tipo Avaliacao.
+ * 
+ * 
+ * @author bruno.oliveira dayse.arruda (comentários)
+ *
+ */
 public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvaliacao>{
 
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * O registro da indicação correspondente a esta avaliação.
+	 */
 	private Indicacao indicacao;
 	
+	/**
+	 * Lista de avaliações para cada parametro relacionado a esta indicação.
+	 */
 	private List<Avaliacao> avaliacoes;
 
 	private double somatorioIntersecao;
@@ -35,7 +54,13 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 	public ConjuntoAvaliacao() {
 	}
 
-
+	/**
+	 * 
+	 * Nesse momento que cada interseção é multiplicada
+	 * pelo peso do respectivo parametro.
+	 * 
+	 * @author bruno.oliveira dayse.arruda (Comentários)
+	 */
 	public double somaParametrosIntersecao(){
 		double total = 0.0;
 		for (Avaliacao avaliacao : this.avaliacoes) {
@@ -43,6 +68,14 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		}
 		return total;		
 	}
+	
+	/**
+	 * 
+	 * Nesse momento que cada união é multiplicada
+	 * pelo peso do respectivo parametro.
+	 * 
+	 * @author bruno.oliveira dayse.arruda (Comentários)
+	 */	
 	public double somaParametrosUniao(){
 		double total = 0.0;
 		for (Avaliacao avaliacao : this.avaliacoes) {
@@ -51,6 +84,13 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		return total;		
 	}
 
+	/**
+	 * 
+	 * Nesse momento que cada módulo da distância é multiplicada
+	 * pelo peso do respectivo parametro.
+	 * 
+	 * @author bruno.oliveira dayse.arruda (Comentários)
+	 */
 	public double somaParametrosDistancia(){
 		double total = 0.0;
 		for (Avaliacao avaliacao : this.avaliacoes) {
@@ -145,7 +185,15 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		this.ranking = ranking;
 	}
 
-
+	/**
+	 * Esse método será chamado pelo método sort() da classe Collections.
+	 * Ele é o responsável por determinar a ordenação entre dois parametros
+	 * da lista de parametros.
+	 * 
+	 * A forma como será ordenado depende de qual é o algoritmo ativo.
+	 * 
+	 * @author bruno.oliveira @dayse.arruda (Comentários)
+	 */
 	@Override
 	public int compareTo(ConjuntoAvaliacao o) {
 		if(!(this.grauSemelhanca == 0.0)){

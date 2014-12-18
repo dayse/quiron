@@ -60,6 +60,16 @@ public class AnamneseAppService {
 		anamneseDAO.altera(anamnese);
 	}
 
+	/**
+	 * 
+	 * Dependendo do algoritmo ativo ele chama o método adequado que retornará 
+	 * um conjunto das avaliações calculadas com o algoritmo selecionado.
+	 * 
+	 * @param atendimento
+	 * @return
+	 * 
+	 * @author bruno.oliveira dayse.arruda
+	 */
 	public List<ConjuntoAvaliacao> recuperaAvaliacaoCalculadaPorIndicacao(Atendimento atendimento){
 		Algoritmo algoritmoCorrente = algoritmoService.recuperaAlgoritmoAtivo();
 		
@@ -75,6 +85,7 @@ public class AnamneseAppService {
 		}
 		return conjuntosDeAvaliacoes;
 	}
+	
 	/**
 	 * Calculo da avaliação por atendimento, por indicação e por parametro, utilizando
 	 * um algoritmo de Grau de Semelhança.
@@ -89,11 +100,24 @@ public class AnamneseAppService {
 		
 		Anamnese anamneseCorrente = null;
 		try {
+			/**
+			 * Retorna a necessidade do paciente que pode ser encontrada atraves do atendimento passado por
+			 * parametro mais o parametro que estamos calculando neste momento.
+			 * 
+			 * Ex.: Poderíamos dizer que num momento estamos passando como parametro o "Atendimento1" e o
+			 * parametro "Febre", o resultado seria a anamnese deste parametro (febre) para este atendimento
+			 * (atendimento1).
+			 * 
+			 * @author bruno.oliveira dayse.arruda (Comentários)
+			 */
 			anamneseCorrente = anamneseDAO.recuperaAnamnesePorAtendimentoPorParametro(atendimento, parametro);
 		} catch (ObjetoNaoEncontradoException e) {
 			e.printStackTrace();
 		}
 		
+		/**
+		 * Retorna a media do especialista para uma única indicação e um único parametro.
+		 */
 		Double mediaValorEspecialistas = 
 				avalIndicacaoEspecService.calculaMediaAvaliacaoEspecialistasPorIndicacaoPorParametro(indicacao, parametro);
 		
@@ -141,7 +165,7 @@ public class AnamneseAppService {
 			conjuntoAvaliacao.setGrauSemelhanca(conjuntoAvaliacao.getSomatorioIntersecao() / conjuntoAvaliacao.getSomatorioUniao());
 			conjuntosDeAvaliacoes.add(conjuntoAvaliacao);
 		}
-		//ordena e poem ranking
+		//Ordena e poe em ranking
 		Collections.sort(conjuntosDeAvaliacoes);
 		for (int i = 0; i < conjuntosDeAvaliacoes.size(); i++) {
 			ConjuntoAvaliacao conjuntoAvaliacao = conjuntosDeAvaliacoes.get(i);
@@ -184,7 +208,9 @@ public class AnamneseAppService {
 	
 	/**
 	 * Recupera a avaliação calculada por indicação dos especialistas para um determinado
-	 * atendimento, utilizando o algoritmo da Distancia de Descartes
+	 * atendimento, utilizando o algoritmo da Índice de Descartes por Superação de Distância
+	 * (Combina a Distância de Hamming mais a Distância de Descartes).
+	 * 
 	 * @param atendimento
 	 * @return
 	 */
