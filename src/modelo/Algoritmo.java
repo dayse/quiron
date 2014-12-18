@@ -198,4 +198,9 @@ public class Algoritmo implements Serializable, Comparable<Algoritmo>{
 		return 0;
 	}
 
+	@Override
+	public String toString() {
+		return nome;
+	}
+
 }
