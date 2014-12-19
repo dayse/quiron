@@ -413,12 +413,26 @@ public class AnamneseAppService {
 			/*
 			 * Seta a necessidade do paciente atual, para que mais na frente possa somar todas as necessidades.
 			 */
-			conjuntoAvaliacao.setSomatorioNecessidadeDoPaciente(anamneseDAO.recuperaSomaAnamneseParaUmAtendimento(atendimento));
+		//	conjuntoAvaliacao.setSomatorioNecessidadeDoPaciente(anamneseDAO.recuperaSomaAnamneseParaUmAtendimento(atendimento));
+			List<Anamnese> necessidadesDoPaciente = new ArrayList<Anamnese>(anamneseDAO.recuperaListaDeAnamnesePorAtendimento(atendimento));
+			for(Anamnese anamnese : necessidadesDoPaciente){
+				conjuntoAvaliacao.setSomatorioNecessidadeDoPaciente(
+						conjuntoAvaliacao.getSomatorioNecessidadeDoPaciente() + (anamnese.getValor() * anamnese.getParametro().getPeso())
+						);
+			}
 			
 			/*
 			 * Setamos o atributo GrauInclusao com o resultado da subtração do Somatório
 			 * das Necessidades deste Paciente e Distancia total calculada.
 			 * O resultado da subtração do elementos é divido pelo somatório da necessidade do paciente
+			 */
+			/*
+			 * G.I. = 1 - [SOMA(PESO i * MAX(0 ; NecPaciente i - MediaEspec )) / SOMA(NecPaciente i * Peso i) ]
+			 * 
+			 * essa fórmula equivale a:
+			 * 
+			 * G.I. = [SOMA(NecPaciente i * Peso i) - SOMA(PESO i * {MAX(0 ; NecPaciente i - MediaEspec))) / SOMA(NecPaciente i * Peso i)]
+			 * 
 			 */
 			conjuntoAvaliacao.setGrauInclusao((conjuntoAvaliacao.getSomatorioNecessidadeDoPaciente() - conjuntoAvaliacao.getSomatorioDistancia()) / conjuntoAvaliacao.getSomatorioNecessidadeDoPaciente());
 			
