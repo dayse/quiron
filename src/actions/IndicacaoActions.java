@@ -261,8 +261,14 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	}
 	
 	/**
-	 * Mostra media dos especialistas
-	 * @return
+	 * Calcula a média das notas dadas pelos especialistas
+	 * para cada indicação cadastrada.
+	 * 
+	 * @return String - redireciona para a página que exibe a média
+	 *  dos especialistas para cada indicação.
+	 *  
+	 *  @author bruno.oliveira
+	 *  
 	 */
 	public String mostraMediaEspecialistas(){
 
@@ -352,19 +358,6 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String preparaListagem(){
-		buscaEfetuada = false;
-		comboTiposDeBusca = null;
-		listaDeIndicacoes = null;
-		return PAGINA_LIST;
-	}
-	
-	/**
-	 * 
-	 * ??????????????????????
-	 * 
-	 * @return
-	 */
-	public String voltar(){
 		buscaEfetuada = false;
 		comboTiposDeBusca = null;
 		listaDeIndicacoes = null;

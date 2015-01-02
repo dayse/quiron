@@ -22,15 +22,14 @@ import util.DataUtil;
  * Nesse método "executar" é que é chamado pelos outros métodos que são 
  * as etapas dessa carga.
  * Portanto se é necessario rodar um método depois do outro, eles devem ser chamados
- * na ordem correta. Ex:
- * incluiHP() vem antes de inicializaHP(), portanto no método executar() eles devem ser chamados nessa ordem.
+ * na ordem correta. Ex: incluiPaciente() vem antes de incluiAtendimento(), portanto no método executar()
  * 
  * Terminado de executar todas as etapas é preciso retornar true.
  * Se houver algum problema(exceção) na execução de uma das etapas, essa exceção deve ser lancada.
  * 
  * Essa Carga:
  * Responsavel por fazer a carga dos pacientes contidas nos
- * arquivos de modelagens e dados iniciais do sistema
+ * arquivos de modelagens e dados iniciais do sistema. Compatível com os slides do Pedro Peloso
  * 
  * @author felipe.arruda
  *
@@ -55,6 +54,16 @@ public class CargaPaciente extends CargaBase{
 		}
 	}
 
+	/**
+	 * 
+	 * Método herdado de CargaBase e que retona uma lista de cargas que esta
+	 * carga depende para ser executada de maneira completa.
+	 * 
+	 * @return lista de dependencias.
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */	
 	@Override
 	public List<CargaBase> getCargasDependentes(){
 		List<CargaBase> dependencias = new ArrayList<CargaBase>();
@@ -122,6 +131,9 @@ public class CargaPaciente extends CargaBase{
 	 * 
 	 * @param idade
 	 * @return
+	 * 
+	 * @author felipe.arruda
+	 * 
 	 */
 	public Calendar retornaDataNascimentoPorIdade(int idade){
 

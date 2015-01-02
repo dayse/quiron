@@ -32,15 +32,14 @@ import com.google.gson.Gson;
  * Nesse método "executar" é que é chamado pelos outros métodos que são 
  * as etapas dessa carga.
  * Portanto se é necessario rodar um método depois do outro, eles devem ser chamados
- * na ordem correta. Ex:
- * IncluiParametro() vem antes de IncluiAvalIndicacaoEspec(), portanto no método executar() eles devem ser chamados nessa ordem.
+ * na ordem correta. Ex: incluiPaciente() vem antes de incluiAtendimento(), portanto no método executar()
  * 
  * Terminado de executar todas as etapas é preciso retornar true.
  * Se houver algum problema(exceção) na execução de uma das etapas, essa exceção deve ser lancada.
  * 
  * Essa Carga:
  * Responsavel por fazer a carga das avaliações dadas pelos especilistas
- * para cada indicação cadastrada. Estamos usandos os valores fornecidos pelo Pedro Peloso.
+ * para cada indicação cadastrada. Estamos usandos os valores fornecidos pelos slides do Pedro Peloso.
  * 
  * @author bruno.oliveira
  *
@@ -75,6 +74,16 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 		}
 	}
 
+	/**
+	 * 
+	 * Método herdado de CargaBase e que retona uma lista de cargas que esta
+	 * carga depende para ser executada de maneira completa.
+	 * 
+	 * @return lista de dependencias.
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	@Override
 	public List<CargaBase> getCargasDependentes(){
 		List<CargaBase> dependencias = new ArrayList<CargaBase>();
@@ -413,6 +422,21 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 		
 	}
 	
+	/**
+	 * 
+	 * Método responsável por recuperar uma Avaliação
+	 * de um especialista para um parametro e para uma
+	 * determinada indicação.
+	 * 
+	 * @param especialista
+	 * @param indicacao
+	 * @param parametro
+	 * @return
+	 * @throws ObjetoNaoEncontradoException
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	public AvalIndicacaoEspec criarAvalIndicacaoDeEspec(
 									Especialista especialista,
 									Indicacao indicacao,

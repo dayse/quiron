@@ -414,17 +414,6 @@ public class PacienteActions extends BaseActions implements Serializable {
 		comboTiposDeBusca = null;
 		return PAGINA_LIST;
 	}
-	
-	/**
-	 *  ???????????????????????
-	 * @return
-	 */
-	public String voltar(){
-		listaDePacientes = null;
-		buscaEfetuada = false;
-		comboTiposDeBusca = null;
-		return PAGINA_LIST;
-	}
 
 	/* ************* Get & Set ************ */
 	

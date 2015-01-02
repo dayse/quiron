@@ -23,16 +23,15 @@ import com.google.gson.Gson;
  * Nesse método "executar" é que é chamado pelos outros métodos que são 
  * as etapas dessa carga.
  * Portanto se é necessario rodar um método depois do outro, eles devem ser chamados
- * na ordem correta. Ex:
- * incluiHP() vem antes de inicializaHP(), portanto no método executar() eles devem ser chamados nessa ordem.
+ * na ordem correta. Ex: incluiPaciente() vem antes de incluiAtendimento(), portanto no método executar()
  * 
  * Terminado de executar todas as etapas é preciso retornar true.
  * Se houver algum problema(exceção) na execução de uma das etapas, essa exceção deve ser lancada.
  * 
  * Essa Carga:
- * Classe responsável pela inclusão de Tipos de Usuário e de Usuário.
- * É usada na carga do sistema e deve ser a primeira a ser executada.
- * Está criando um usuário para cada tipo.
+ * Classe responsável pela inclusão de Tipos de Usuário e de um Usuário do tipo Administrador.
+ * É usada na carga do sistema e deve ser a primeira a ser executada. Ela simular a implantação
+ * do sistema dentro de uma empresa
  * 
  * @author bruno.oliveira
  *
@@ -59,6 +58,16 @@ public class CargaImplantacao extends CargaBase{
 		}
 	}
 
+	/**
+	 * 
+	 * Método herdado de CargaBase e que retona uma lista de cargas que esta
+	 * carga depende para ser executada de maneira completa.
+	 * 
+	 * @return lista de dependencias.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */	
 	@Override
 	public List<CargaBase> getCargasDependentes(){
 		List<CargaBase> dependencias = new ArrayList<CargaBase>();
@@ -84,6 +93,15 @@ public class CargaImplantacao extends CargaBase{
 		return true;
 	}
 
+	/**
+	 * 
+	 * Método que acessa o nosso arquivo de configuração de usuários padrões e recupera-os
+	 * 
+	 * @return Lista de usuários recuperados do arquivo JSON
+	 * 
+	 * @author bruno.oliveira 
+	 * 
+	 */
 	public List<Usuario> recuperaUsuariosDeArquivoConfigJson(){
 
 		System.out.println(
@@ -99,14 +117,14 @@ public class CargaImplantacao extends CargaBase{
 	
 	/**
 	 * 
-	 * Método responsável por preparar e inserir os valores padrões dos
-	 * usuários no banco.
+	 * Método responsável por preparar e inserir os valores padrões do
+	 * usuário administrador no banco.
 	 * 
 	 * @throws AplicacaoException
 	 *             Retorna uma AplicacaoException caso ocorra uma exceção deste
 	 *             tipo.
 	 *             
-	 * @author felipe.arruda
+	 * @author bruno.oliveira
 	 * 
 	 */
 	public void incluirTiposDeUsuario() throws AplicacaoException {

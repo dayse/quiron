@@ -16,17 +16,15 @@ import service.exception.AplicacaoException;
  * implementar o método executar(). Nesse método "executar" é que é chamado
  * pelos outros métodos que são as etapas dessa carga. Portanto se é necessario
  * rodar um método depois do outro, eles devem ser chamados na ordem correta.
- * Ex: incluiHP() vem antes de inicializaHP(), portanto no método executar()
+ * Ex: incluiPaciente() vem antes de incluiAtendimento(), portanto no método executar()
  * eles devem ser chamados nessa ordem.
  * 
  * Terminado de executar todas as etapas é preciso retornar true. Se houver
  * algum problema(exceção) na execução de uma das etapas, essa exceção deve ser
  * lancada.
  * 
- * Essa Carga: Classe responsável pela inclusão dos tipos de parâmetros. Esses
- * dados são utilizados apenas para carater ilustrativo, dando ao usuário melhor
- * compreensão de quais parâmetros serão utilizados para se chegar a uma
- * determinada avaliação.
+ * Essa Carga: Classe responsável pela inclusão dos algoritmos utilizado
+ * para calcular as avaliações do sistema.
  * 
  * @author bruno.oliveira
  * 
@@ -52,6 +50,16 @@ public class CargaAlgoritmo extends CargaBase {
 		}
 	}
 
+	/**
+	 * 
+	 * Método herdado de CargaBase e que retona uma lista de cargas que esta
+	 * carga depende para ser executada de maneira completa.
+	 * 
+	 * @return lista de dependencias.
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	@Override
 	public List<CargaBase> getCargasDependentes(){
 		List<CargaBase> dependencias = new ArrayList<CargaBase>();

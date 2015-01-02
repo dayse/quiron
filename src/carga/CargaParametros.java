@@ -14,8 +14,7 @@ import service.exception.AplicacaoException;
  * implementar o método executar(). Nesse método "executar" é que é chamado
  * pelos outros métodos que são as etapas dessa carga. Portanto se é necessario
  * rodar um método depois do outro, eles devem ser chamados na ordem correta.
- * Ex: incluiHP() vem antes de inicializaHP(), portanto no método executar()
- * eles devem ser chamados nessa ordem.
+ * Ex: incluiPaciente() vem antes de incluiAtendimento(), portanto no método executar()
  * 
  * Terminado de executar todas as etapas é preciso retornar true. Se houver
  * algum problema(exceção) na execução de uma das etapas, essa exceção deve ser
@@ -50,6 +49,16 @@ public class CargaParametros extends CargaBase {
 		}
 	}
 
+	/**
+	 * 
+	 * Método herdado de CargaBase e que retona uma lista de cargas que esta
+	 * carga depende para ser executada de maneira completa.
+	 * 
+	 * @return lista de dependencias.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */	
 	@Override
 	public List<CargaBase> getCargasDependentes(){
 		List<CargaBase> dependencias = new ArrayList<CargaBase>();
@@ -152,6 +161,15 @@ public class CargaParametros extends CargaBase {
 		}
 	}
 	
+	/**
+	 * 
+	 * Inclui os novos parametros "básicos" fornecidos pelo Pedro Peloso.
+	 * 
+	 * @throws AplicacaoException caso ocorra algum erro durante a inclusão no banco.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
 	public void incluirNovosParametros() throws AplicacaoException{
 		List<Parametro> parametros = new ArrayList<Parametro>();
 		

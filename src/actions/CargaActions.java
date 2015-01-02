@@ -13,9 +13,9 @@ import util.SelectOneDataModel;
 
 /**
  * 
- * Action responsï¿½vel por realizar a carga do sistema.<br />
- * Atenï¿½ï¿½o, ao fato de que esse action nï¿½o requer autenticaï¿½ï¿½o para seus
- * mï¿½todos! Ou seja, pode ser acessada sem passar pelo filtro de login.
+ * Action responsável por realizar a carga do sistema.<br />
+ * Atenção, ao fato de que esse action não requer autenticão para seus
+ * métodos! Ou seja, pode ser acessada sem passar pelo filtro de login.
  * 
  * @author bruno.oliveira
  * 
@@ -25,28 +25,28 @@ public class CargaActions extends BaseActions {
 	// Services
 	private static CargaAppService cargaService;
 
-	// Pï¿½ginas
+	// Páginas
 	private static String PAGINA_CARGA = "cargabd";
 
 	// Componentes de Controle
 	private static String SENHA_CARGA = Constantes.SENHA_CARGABD;
-	private static String OPCAO_BASICA = "Carga Basica";
+	private static String OPCAO_BASICA = "Carga Básica";
 	private static String OPCAO_EXEMPLO1 = "Exemplo Inicial";
 	private static String OPCAO_EXEMPLO2 = "Exemplo 2";
-	private static String OPCAO_EXEMPLO3 = "100 IndicaÃ§Ãµes";
+	private static String OPCAO_EXEMPLO3 = "100 Indicações";
 	public List<String> tiposDeCarga = new ArrayList<String>();
 	private SelectOneDataModel<String> comboTiposDeCarga;
 
-	// Variï¿½veis de Tela
+	// Variáveis de Tela
 	private String senha;
 	private String descCarga;
 
 	/**
 	 * 
-	 * Construtor da classe, onde a fï¿½brica de service Carga ï¿½ instanciada.
+	 * Construtor da classe, onde a fábrica de service Carga é instanciada.
 	 * 
 	 * @throws Exception
-	 *             Retorna uma opï¿½ï¿½o caso ocorra um erro ao se instanciar o
+	 *             Retorna uma opção caso ocorra um erro ao se instanciar o
 	 *             service.
 	 * 
 	 * @author bruno.oliveira
@@ -69,11 +69,11 @@ public class CargaActions extends BaseActions {
 
 	/**
 	 * 
-	 * Mï¿½todo chamado atravï¿½s de ajax para alterar a descriï¿½ï¿½o sempre que o
-	 * usuï¿½rio mudar a combobox.
+	 * Método chamado através de ajax para alterar a descrição sempre que o
+	 * usuário mudar a combobox.
 	 * 
 	 * @param event
-	 *            - Evento que representa a mudanï¿½a de valor.
+	 *            - Evento que representa a mudança de valor.
 	 * 
 	 * @author felipe.arruda
 	 * 
@@ -85,11 +85,11 @@ public class CargaActions extends BaseActions {
 
 	/**
 	 * 
-	 * Mï¿½todo chamado para alterar a descriï¿½ï¿½o do tipo de carga sempre que o
-	 * usuï¿½rio mudar a combobox.
+	 * Método chamado para alterar a descrição do tipo de carga sempre que o
+	 * usuário mudar a combobox.
 	 * 
 	 * @param opcao
-	 *            - String com o nome da opï¿½ï¿½o de tipo de carga selecionada.
+	 *            - String com o nome da opção de tipo de carga selecionada.
 	 * 
 	 * @author bruno.oliveira
 	 * 
@@ -99,29 +99,29 @@ public class CargaActions extends BaseActions {
 			descCarga = "Insere tipos de usuarios, usuario administrador, parametros e algoritmos.";
 		}
 		else if (opcao.equals(OPCAO_EXEMPLO1)) {
-			descCarga = "Realiza a carga compatÃ­vel com as nossas planilhas.";
+			descCarga = "Realiza a carga compatível com as nossas planilhas.";
 		}
 		else if (opcao.equals(OPCAO_EXEMPLO2)){
 			descCarga = "Carga com novos estudos de casos do Pedro Peloso.";
 		}
 		else if (opcao.equals(OPCAO_EXEMPLO3)){
-			descCarga = "Realiza as cargas anteriores e insere novos dados, totalizando 122 antibiÃ³ticos.";
+			descCarga = "Realiza as cargas anteriores e insere novos dados, totalizando 122 antibióticos.";
 		}
 	}
 
 	/**
 	 * 
 	 * Carrega a carga do sistema se a senha for igual ao valor definido na
-	 * variï¿½vel SENHA_CARGA.
+	 * variável SENHA_CARGA.
 	 * 
-	 * @return Recarrega a pï¿½gina de carga exibindo a mensagem de resultado.
+	 * @return Recarrega a página de carga exibindo a mensagem de resultado.
 	 * 
 	 * @author bruno.oliveira
 	 * 
 	 */
 	public String executarCarga() {
-		// Caso a senha nï¿½o bata com a SENHA_CARGA, uma mensagem de erro ï¿½
-		// gerada e a carga nï¿½o ï¿½ realizada.
+		// Caso a senha não bata com a SENHA_CARGA, uma mensagem de erro é
+		// gerada e a carga não é realizada.
 		if (!senha.equals(SENHA_CARGA)) {
 			error("usuario.ERRO_LOGIN_SENHA_INEXISTENTES");
 			return PAGINA_CARGA;
@@ -149,7 +149,7 @@ public class CargaActions extends BaseActions {
 		return PAGINA_CARGA;
 	}
 
-	// ================================== Mï¿½todos get() e set()
+	// ================================== Métodos get() e set()
 	// ================================== //
 
 	public String getSenha() {
@@ -159,8 +159,8 @@ public class CargaActions extends BaseActions {
 	public String getDescCarga() {
 		if (descCarga == null) {
 			if (comboTiposDeCarga == null) {
-				// Sï¿½ passa aqui na primeira vez que roda o sistema.
-				descCarga = "Carga bÃ¡sica do sistema.";
+				// Só passa aqui na primeira vez que roda o sistema.
+				descCarga = "Carga básica do sistema.";
 			} else {
 				String opcao = comboTiposDeCarga.getObjetoSelecionado();
 				alteraDesc(opcao);
@@ -188,7 +188,7 @@ public class CargaActions extends BaseActions {
 
 	/**
 	 * 
-	 * Mï¿½todo que cria a Combobox que lista os tipos de carga do sistema.
+	 * Método que cria a Combobox que lista os tipos de carga do sistema.
 	 * 
 	 * @retun Lista dos tipos de carga que apareceram na combobox.
 	 * 

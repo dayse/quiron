@@ -46,7 +46,6 @@ public class UsuarioActions extends BaseActions {
 	private boolean permitirAlterarStatus;
 	private String campoDeBusca;
 	private boolean buscaEfetuada = false;
-//	private int pagina;
 	public final String BUSCA_POR_LOGIN = "Login";
 	public final String BUSCA_POR_NOME = "Nome";	
 
@@ -113,6 +112,15 @@ public class UsuarioActions extends BaseActions {
 		return PAGINA_LIST;
 	}
 	
+	/**
+	 * 
+	 * Método responsável por executar a busca no banco de dados.
+	 * 
+	 * @return lista de usuários que correspondem ao termo buscado.
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	public String buscaUsuario(){
 		List<Usuario> usuariosEncontrados = null;
 		if(campoDeBusca.trim().isEmpty()){

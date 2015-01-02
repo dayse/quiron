@@ -109,6 +109,16 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		return PAGINA_LIST;
 	}
 	
+	/**
+	 * 
+	 * Método que realiza a busca de um especialista dentre os
+	 * que estão cadastrados no banco.
+	 * 
+	 * @return lista de especialistas que combinam com o termo buscado, se existirem.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
 	public String buscaEspecialista(){
 		List<Especialista> especialistasEncontrados = null;
 		if(campoDeBusca.trim().isEmpty()){
@@ -190,7 +200,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	/**
 	 * 
 	 * Método utilizado para sair de um tela interna do menu Especialista e
-	 * voltar para a tela de listagem de especialistas. Além, zera variáveis
+	 * voltar para a tela de listagem de especialistas. Além disso, zera variáveis
 	 * importantes para que não as mesmas não fiquem com dados residuais das
 	 * últimas ações feitas pelo usuário.
 	 * 
@@ -209,6 +219,19 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		return PAGINA_LIST;
 	}
 	
+	/**
+	 * 
+	 * Método utilizado para sair de uma tela interna de avaliação de indicações
+	 * do especialista.
+	 * Este método é responsável por zerar as variáveis quando o usuário
+	 * optar cancelar a edição de uma avaliação de um especialista para uma indicação
+	 * (por exemplo).
+	 * 
+	 * @return para tela de listagem de avaliações de um especialista para uma indicação.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
 	public String cancelarAvaliacao(){
 		listaDeAvaliacao = null;
 		avaliacaoAlterada = null;

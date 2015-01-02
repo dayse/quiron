@@ -10,9 +10,7 @@ import service.exception.AplicacaoException;
  * 
  * Nesse método "executar" é que é chamado pelos outros métodos que são as
  * etapas dessa carga. Portanto se é necessario rodar um método depois do outro,
- * eles devem ser chamados na ordem correta. Ex: incluiHP() vem antes de
- * inicializaHP(), portanto no método executar() eles devem ser chamados nessa
- * ordem.
+ * eles devem ser chamados na ordem correta. Ex: incluiPaciente() vem antes de incluiAtendimento(), portanto no método executar()
  * 
  * Terminado de executar todas as etapas é preciso retornar true. Se houver
  * algum problema(exceção) na execução de uma das etapas, essa exceção deve ser
@@ -38,6 +36,9 @@ public abstract class CargaBase {
 	
 	/**
 	 * Lista de cargas que a carga atual depende para rodar com sucesso
+	 * 
+	 * @author felipe.arruda
+	 * 
 	 */
 	public abstract List<CargaBase> getCargasDependentes();
 	

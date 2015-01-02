@@ -18,9 +18,9 @@ import util.SelectOneDataModel;
 
 /**
  * 
- * ParametroActions é uma classe relacionada a manipulação de tela, ou seja, a
+ * AlgoritmoActions é uma classe relacionada a manipulação de tela, ou seja, a
  * interação do usuário de fato dar-se-á através de objetos do tipo
- * ParametroActions quando estiver na tela de Parametros.
+ * AlgoritmoActions quando estiver na tela de Configuração.
  * 
  * Objetos do "tipo actions" são managed beans.
  *
@@ -64,13 +64,12 @@ public class AlgoritmoActions extends BaseActions implements Serializable {
 
 	/**
 	 * 
-	 * Método utilizado para sair de um tela interna do menu Parametro e
-	 * voltar para a tela de listagem de parametro. Além, zera variáveis
-	 * importantes para que não as mesmas não fiquem com dados residuais das
+	 * Método utilizado para sair de um tela interna do menu Configuração e
+	 * voltar para a tela de listagem de algoritmos. Além disso esse método zera as variáveis
+	 * importantes para que não fiquem com dados residuais das
 	 * últimas ações feitas pelo usuário.
 	 * 
-	 * 
-	 * @author felipe.pontes
+	 * @author bruno.oliveira
 	 * 
 	 */
 	public String cancelar() {
@@ -78,21 +77,46 @@ public class AlgoritmoActions extends BaseActions implements Serializable {
 		return PAGINA_LIST;
 	}
 	
+	
+	/**
+	 * 
+	 * Método reponsável por mudar o status de um algoritmo para ativo.
+	 * Antes de realizar uma alteração, o método verifica se o usuário
+	 * realmente selecionou uma opção. A partir daí o método altera do
+	 * algoritmoService é chamado, e este verifica se o algoritmo selecionado
+	 * é o quê está atualmente ativo.
+	 * 
+	 * @return String - que irá atualizar a página.
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
 	public String ativar(){
+		// Recupera o algoritmo selecionado no combo box da página.
 		algoritmoCorrente = comboTiposDeAlgoritmos.getObjetoSelecionado();
+		// Verifica se o usuário esqueceu de selecionar um algoritmo
 		if(algoritmoCorrente == null){
-			System.out.println("estou aqui");
+			// Retona um erro para a tela caso o usuário tenha esquecido de selecionar um algoritmo
 			error("algoritmo.NAO_SELECIONADO");
 			return PAGINA_LIST;
-		}		
+		}	
+		// Tenta alterar o algortimo selecionado, e se por algum motivo
+		// ocorrer erro na operação imprime a mensagem de erro na tela.
 		try{
 			algoritmoService.altera(algoritmoCorrente);
 		}catch(AplicacaoException ex){
 			error(ex.getMessage());
 			return PAGINA_LIST;
 		}
+		// Se chegar até este ponto, significa que a alteração ocorreu com
+		// sucesso e que o algoritmo foi ativado.
 		info("algoritmo.ATIVADO_COM_SUCESSO");
+		// Setamos aqui o combo box de algoritmos como null,
+		// assim quando a tela for atualizada o combo será repreenchido com 
+		// as informações atualizadas.
 		comboTiposDeAlgoritmos = null;
+		// Zeramos a lista de algoritmos. Na tela essa lista representa
+		// a tabela de dados com os algoritmos inativos e ativo.
 		listaAlgoritmo = null;
 		return PAGINA_LIST;
 	}
@@ -100,8 +124,19 @@ public class AlgoritmoActions extends BaseActions implements Serializable {
 	
 	/* ************* Get & Set ************ */
 	
-
-	
+	/**
+	 * 
+	 * Verifica se a lista de algoritmos foi marcada
+	 * como null. Se tiver sido, será feito uma consulta
+	 * ao banco através do algoritmoService. O service então
+	 * retornar uma lista atualizada para a variável que estará
+	 * pronta para preencher os dados em tela.
+	 * 
+	 * @return lista atualizada de algoritmos
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
 	public DataModel getListaAlgoritmo(){
 		if(listaAlgoritmo == null){
 			listaAlgoritmo = new ListDataModel(algoritmoService.recuperaListaDeAlgoritmo());
@@ -113,6 +148,16 @@ public class AlgoritmoActions extends BaseActions implements Serializable {
 		this.listaAlgoritmo = listaAlgoritmo;
 	}
 	
+	/**
+	 * Verifica se o combo box foi marcado como null. Se tiver sido,
+	 * o mesmo será preenchido novamente com uma lista atualizada de
+	 * opções.
+	 * 
+	 * @return lista atualizada de opções para o combo box
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
 	public SelectOneDataModel<Algoritmo> getComboTiposDeAlgoritmos(){
 		if(comboTiposDeAlgoritmos == null){
 			comboTiposDeAlgoritmos = SelectOneDataModel.criaComTextoInicialPersonalizado

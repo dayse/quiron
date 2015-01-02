@@ -94,8 +94,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private SpiderMainPlot plotGrafico;
 
 	//infos de busca
-
-
 	public final String BUSCA_POR_NOME_PACIENTE = "Nome do Paciente";
 	public final String BUSCA_POR_NOME_MEDICO = "Nome do Médico";
 	private String campoDeBusca;
@@ -106,7 +104,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private SelectOneDataModel<String> comboFiltroStatus;
 	
 	//infos de opcao de algoritimo de avaliação
-
 	private SelectOneDataModel<String> comboAlgoritmoAvaliacao;
 	private List<String> listaDeNomesAlgoritmos = new ArrayList<String>();
 	
@@ -114,7 +111,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	/**
 	 * 
 	 * Construtor responsável por instanciar os services que serão usados no
-	 * decorrer da classe;
+	 * decorrer da classe; Também instancia as opções de combo box presente
+	 * nas telas de atendimento.
 	 * 
 	 * @throws Exception
 	 *             - Retorna uma exception caso ocorra alguma problema no
@@ -325,6 +323,17 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		return PAGINA_LIST;
 	}
 	
+	/**
+	 * 
+	 * Método responsável por encerrar um atendimento e criar o
+	 * histórico de avaliação para ser salvo no banco de dados.
+	 * 
+	 * @return Retorna uma String que corresponde ao no mapeamento da tela de
+	 *         listagem de atendimento por paciente.
+	 *         
+	 * @author bruno.oliveira
+	 *
+	 */
 	public String encerrar() {
 		List<ConjuntoAvaliacao> conjuntosDeAvaliacoes = new ArrayList<ConjuntoAvaliacao>();
 		
@@ -338,7 +347,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		try {
 			historicoService.inclui(atendimentoCorrente,conjuntosDeAvaliacoes);
 		} catch (AplicacaoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		info("historico.SALVO_COM_SUCESSO");
@@ -374,6 +382,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	}
 	
 	/**
+	 * 
 	 * Imprime um atendimento em específico.
 	 * Este método é chamado pela opção imprimir
 	 * dentro da tela de Mostrar Atendimento,
@@ -392,6 +401,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	}
 	
 	/**
+	 * 
 	 * Imprime o histórico contendo todos
 	 * os atendimentos de um determinado
 	 * paciente.
@@ -597,6 +607,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * quando for chamado, a lista
 	 * será atualizada.
 	 * 
+	 * @author bruno.oliveira
 	 * 
 	 */
 	public String preparaListagem(){
@@ -658,7 +669,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	/**
 	 *  Action usada na hora de sair da tela de inclusão/edição e show
 	 *  de atendimento, que faz voltar para a list.
-	 * @return
+	 *  
+	 * @return felipe.pontes
+	 * 
 	 */
 	public String voltar(){
 		comboMedicos = null;
@@ -676,8 +689,15 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	}
 
 	/**
+	 * 
+	 * Método reponsável por retornar de um Histórico
+	 * de avaliação para a tela principal de listagem
+	 * do sistema.
 	 *  
-	 * @return
+	 * @return Retorna uma string da lsita de atendimentos
+	 * 
+	 * @author bruno.oliveira
+	 * 
 	 */
 	public String voltarHistoricoAvaliacao(){
 		atendimentoCorrente = null;
