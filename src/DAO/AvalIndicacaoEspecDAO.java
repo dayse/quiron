@@ -116,7 +116,18 @@ public interface AvalIndicacaoEspecDAO extends
 	@RecuperaLista
 	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoEspecPorParametro(
 			Parametro parametro);
-	
+	/**
+	 * 
+	 * Consulta que recupera uma avaliacação de um especialista para uma indicação
+	 * através de uma indicação e de um parametro.
+	 * 
+	 * @param indicacao relacionada a avaliação que deseja-se encontrar
+	 * @param parametro relacionado a avaliação que deseja-se encontrar
+	 * @return uma avaliação para uma indicação e um parametro.
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	@RecuperaLista
 	public List<AvalIndicacaoEspec> recuperaAvaliacaoPorIndicacaoParametro(
 			Indicacao indicacao, Parametro parametro);
@@ -145,6 +156,18 @@ public interface AvalIndicacaoEspecDAO extends
 	public AvalIndicacaoEspec recuperaAvalIndicacaoEspecPorID(Long ID)
 			throws ObjetoNaoEncontradoException;
 
+	/**
+	 * 
+	 * Consulta que recupera lista de avaliação de um especialista para
+	 * uma indicação
+	 * 
+	 * @param especialista responsável pela avaliação
+	 * @param indicacao que o especialista avaliou e cujo valores de parametros deseja-se recuperar
+	 * @return lista de avaliações dadas pelo especialista para cada parametro em relação a uma determinada indicaçã
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	@RecuperaLista
 	public List<AvalIndicacaoEspec> recuperaListaDeAvaliacaoPorEspecialistaPorIndicacao(
 					Especialista especialista, Indicacao indicacao);
@@ -163,6 +186,19 @@ public interface AvalIndicacaoEspecDAO extends
 	@RecuperaObjeto
 	public Double recuperaMediaDoPesoAvaliadorDosEspecialistas();
 	
+	/**
+	 * 
+	 * Consulta que recupera uma avaliacao através de um especialista, uma indicação e um parametro.
+	 * 
+	 * @param especialista responsável pela avaliação
+	 * @param indicacao que foi avaliada em relação a determinado parametro
+	 * @param parametro que foi avaliado em relação a determinada indicação
+	 * @return avaliação do especialista passado para a indicação e o parametro buscado.
+	 * @throws ObjetoNaoEncontradoException - caso a avaliação não exista por algum motivo estranho.
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	@RecuperaObjeto
 	public AvalIndicacaoEspec recuperaAvaliacaoPorEspecialistaIndicacaoParametro(
 					Especialista especialista, Indicacao indicacao, Parametro parametro) throws ObjetoNaoEncontradoException;

@@ -30,10 +30,6 @@ import javax.persistence.Table;
 						query = "select a from Anamnese a " +
 								"where a.atendimento = ?" +
 								"and a.parametro = ?"
-			),
-			@NamedQuery(name = "Anamnese.recuperaSomaAnamneseParaUmAtendimento",
-						query = "select SUM(a.valor) from Anamnese a " +
-								"where a.atendimento = ?"
 			)
 		}
 )

@@ -49,10 +49,20 @@ public interface AnamneseDAO extends DaoGenerico<Anamnese, Long> {
 	@RecuperaLista
 	public List<Anamnese>  recuperaListaDeAnamnesePorParametro(Parametro parametro);
 	
+	/**
+	 * 
+	 * Consulta que recupera uma anamnese a partir de um atendimento e um parametro.
+	 * 
+	 * @param atendimento ao qual essa anamnese pertence
+	 * @param parametro ao qual essa anamnese pertence
+	 * @return anamnese desse atendimento X parametro
+	 * @throws ObjetoNaoEncontradoException - caso a anamnese não exista
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	@RecuperaObjeto
 	public Anamnese  recuperaAnamnesePorAtendimentoPorParametro(Atendimento atendimento, Parametro parametro)
 			throws ObjetoNaoEncontradoException;
-	
-	@RecuperaObjeto
-	public Double recuperaSomaAnamneseParaUmAtendimento(Atendimento atendimento);
+
 }
