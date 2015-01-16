@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jstl/core"  
+      >
+       <ui:composition>
+    
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/jquery-1.5.1.js"></script>
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/flot/jquery.flot.js"></script>
+    
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.JUMlib.js"></script>
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/JUMFlot/jquery.flot.mouse.js"></script>
+	<script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/flot/jquery.flot.axislabels.js"></script>
+    
+    <!-- Importando script de hack do JS para usar funcoes que utilizam simbolos que nao podem ser
+    		postos em um xhtml. 
+     -->
+    <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/js_hacks.js"></script>
+    
+		    <div id="conjunto_infos_grafico_linha">
+				<table id="choices_linha" style="font-weight: bold"><tr ><td>Mostrar Gráfico em Linhas:</td></tr></table>
+		
+		      <!-- div id='tooltip_linha' style="float:left; border: 1px solid #fdd;  padding: 2px;  background-color: #fee;  opacity: 0.80;">
+		        <p>Detalhes:</p>
+		        <span id="plot_hover_y_linha"></span>: <span id="plot_hover_x_linha"></span>
+		      </div -->
+		      <div id="#{placeholder}" style="width:#{width}px;height:#{height}px;border: 1px dashed gainsboro;"></div>
+		
+		    </div>
+    		
+	 		
+			 <script language="javascript" type="text/javascript">
+
+		 var $j = jQuery.noConflict();
+				
+		 $j(function () {
+			 	console.log('1');
+				 	
+			 	var plot;
+
+				var datasets = {};
+				<c:if test="${grafico != null}">
+					datasets = #{grafico.printData};
+				</c:if>  
+
+				var options = {};
+				<c:if test="${grafico != null}">
+					options = #{grafico.printOptions};
+				</c:if>  
+
+			 	console.log('2');
+
+				// hard-code color indices to prevent them from shifting as
+				var i = 0;
+				$j.each(datasets, function(key, val) {
+				    val.color = i;
+				    ++i;
+				});
+
+			 	console.log('2.1');
+				// insert checkboxes 
+				var choiceContainer = $j("#choices_linha");
+			 	console.log('3');
+
+			    $j.each(datasets, function(key, val) {
+					  if(key != 0){
+				        choiceContainer.append('<td style="padding-right: 10px"><input type="checkbox" name="' + key +
+	                               '" id="id' + key + '"/>' +
+	                               '<label for="id' + key + '">'
+	                                + val.label + '</label></td>');		
+					  }	
+			    });
+
+				choiceContainer.find("input").click(plotAccordingToChoices);
+
+
+			 	console.log('4');
+
+				function plotAccordingToChoices() {
+				    var data = [];
+				    //add necessidade do paciente sempre
+				    data.push(datasets[0]);
+
+				    choiceContainer.find("input:checked").each(function () {
+				        var key = $j(this).attr("name");
+				        if (ifAndAnd(key, datasets[key]))
+				            data.push(datasets[key]);
+				    });
+				    console.log(data);
+			        if (maiorQue(data.length, 0))
+				      plot = $j.plot($j("##{placeholder}"), data, options);
+				}
+
+			 	console.log('5');
+				plotAccordingToChoices();
+
+			 	console.log('6');
+
+			 	$j("##{placeholder}").bind("plothover", function (event, pos, item) {
+
+				    if (item) {
+				      var x = item.datapoint[0].toFixed(2),
+				        y = item.datapoint[1].toFixed(2);
+				      var label_x = plot.getOptions().series.bars.legs.data[parseInt(x)].label;
+
+				      $j("#plot_hover_x_linha").text(y);
+				      $j("#plot_hover_y_linha").text(label_x);
+				    }
+				});
+
+			 	console.log('7');
+
+
+		});
+			</script>
+       </ui:composition>
+</html>

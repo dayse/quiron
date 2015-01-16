@@ -24,4 +24,8 @@
 	<tag-name>grafico_radar_checkbox</tag-name>
 	<source>tags_gesplan/grafico_radar_checkbox.xhtml</source>
     </tag>
+    <tag>
+    	<tag-name>grafico_linha_checkbox</tag-name>
+    	<source>tags_gesplan/grafico_linha_checkbox.xhtml</source>
+    </tag>
 </facelet-taglib>

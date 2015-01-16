@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import br.blog.arruda.plot.Plot;
+import br.blog.arruda.plot.data.PlotData;
 import br.blog.arruda.plot.opt.PlotOptions;
 import exception.RelatorioException;
 import relatorio.Relatorio;
@@ -137,6 +139,7 @@ public class AtendimentoAppService {
 		ArrayList<String> legsLabels = new ArrayList<String>();
 		for (Anamnese anamnese : atendimento.getAnamneses()) {
 			legsLabels.add(anamnese.getParametro().getCodParametro());
+		//	legsLabels.add(anamnese.getParametro().getNome());
 		}
 		return legsLabels;
 	}
@@ -203,6 +206,29 @@ public class AtendimentoAppService {
 		spiderPlot.setSpiderDatas(plotDatas);
 		spiderPlot.setOptions(plotOptions);
 		return spiderPlot;
+	}
+	
+	public Plot geraGraficoDeLinhaParaAvaliacaoDeIndicacaoDeAtendimento(
+			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
+		
+		ArrayList<PlotData> plotDatas = new ArrayList<PlotData>();
+		PlotData necessidadeDoPaciente = new PlotData();
+			
+		necessidadeDoPaciente.setData(gerarValoresDeDataDeNecessidadeDoPacienteParaGrafico(atendimento));
+		necessidadeDoPaciente.setLabel("Necessidade do Paciente");
+			
+		plotDatas.add(necessidadeDoPaciente);
+			
+		for(ConjuntoAvaliacao conjunto : conjuntosDeAvaliacoes){
+			PlotData avaliacoes = new PlotData();
+			avaliacoes.setData(gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGrafico(conjunto));
+			avaliacoes.setLabel(conjunto.getIndicacao().getNome());
+			plotDatas.add(avaliacoes);
+		}
+			
+		Plot grafico = Plot.generatePlot(plotDatas, "Parâmetros", "Avaliação");
+	
+		return grafico;		
 	}
 	
 	public List<HistoricoAtendimentoRelatorio> converterParaHistoricoAtendimentoRelatorio(List<Atendimento> listaAtendimentos){

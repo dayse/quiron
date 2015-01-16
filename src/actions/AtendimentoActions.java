@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import br.blog.arruda.plot.Plot;
 import DAO.exception.ObjetoNaoEncontradoException;
 import modelo.Algoritmo;
 import modelo.Atendimento;
@@ -17,6 +18,7 @@ import modelo.Paciente;
 import modelo.Anamnese;
 import modelo.Parametro;
 import modelo.Usuario;
+import modelo.VariavelModelagemView;
 import service.AlgoritmoAppService;
 import service.AnamneseAppService;
 import service.AtendimentoAppService;
@@ -107,6 +109,15 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private SelectOneDataModel<String> comboAlgoritmoAvaliacao;
 	private List<String> listaDeNomesAlgoritmos = new ArrayList<String>();
 	
+	// Representa o gráfico do simulador 2D
+	private Plot plot2D;
+	/*
+	 private SelectOneDataModel<VariavelModelagemView> comboVariaveisInput;
+	private SelectOneDataModel<VariavelModelagemView> comboVariaveisOutput;
+	private VariavelModelagemView variavelInputCorrente;
+	private VariavelModelagemView variavelOutputCorrente;
+	private boolean simuladorExecutado=false;
+	 */
 	
 	/**
 	 * 
@@ -261,6 +272,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 							conjuntosDeAvaliacoes, 
 							atendimentoCorrente
 						);
+		
+		plot2D = atendimentoService.geraGraficoDeLinhaParaAvaliacaoDeIndicacaoDeAtendimento(conjuntosDeAvaliacoes, atendimentoCorrente);
 		return PAGINA_AVALIACAO;
 	}
 	
@@ -989,6 +1002,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public void setPlotGrauSemelhanca(SpiderMainPlot plotGrafico) {
 		this.plotGrafico = plotGrafico;
 	}
-	
-	
+
+	public Plot getPlot2D() {
+		return plot2D;
+	}
+
+	public void setPlot2D(Plot plot2d) {
+		plot2D = plot2d;
+	}	
 }
