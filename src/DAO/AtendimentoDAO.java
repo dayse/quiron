@@ -22,7 +22,7 @@ public interface AtendimentoDAO extends DaoGenerico<Atendimento, Long> {
 
 	/**
 	 * 
-	 * Consulta que recupera uma atendimento utilizando um código identificador
+	 * Consulta que recupera um atendimento utilizando um código identificador
 	 * de atendimento como parâmetro.
 	 * 
 	 * @param codAtendimento

@@ -650,7 +650,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLike(campoDeBusca));
 			}
 		} else {
-			System.out.println("Busca E filtros");
 			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_NOME_MEDICO)){
 				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus(campoDeBusca, comboFiltroStatus.getObjetoSelecionado()));
 			}else{
