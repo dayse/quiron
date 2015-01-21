@@ -111,13 +111,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	
 	// Representa o gráfico do simulador 2D
 	private Plot plot2D;
-	/*
-	 private SelectOneDataModel<VariavelModelagemView> comboVariaveisInput;
-	private SelectOneDataModel<VariavelModelagemView> comboVariaveisOutput;
-	private VariavelModelagemView variavelInputCorrente;
-	private VariavelModelagemView variavelOutputCorrente;
-	private boolean simuladorExecutado=false;
-	 */
 	
 	/**
 	 * 
@@ -661,9 +654,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			if(comboTiposDeBusca.getObjetoSelecionado().equals(BUSCA_POR_NOME_MEDICO)){
 				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus(campoDeBusca, comboFiltroStatus.getObjetoSelecionado()));
 			}else{
-				System.out.println("FALA COMIGO!");
 				atendimentosEncontrados = new ArrayList<Atendimento>(atendimentoService.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikePorStatus(campoDeBusca,comboFiltroStatus.getObjetoSelecionado()));
-				System.out.println(atendimentosEncontrados.size());
 			}			
 		}
 		if(atendimentosEncontrados.isEmpty()){

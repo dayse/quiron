@@ -221,9 +221,11 @@
 				
 			<br />
 
-
-			
 			<rich:simpleTogglePanel>
+				<f:facet name="header">
+					<h:outputText value="#{prompt.avaliacao_GraficoLinha}"/>
+				</f:facet>
+				
 				<gt:grafico_linha_checkbox 
 				grafico="#{atendimentoActions.plot2D}" 
 				placeholder="placeholder" 
@@ -232,6 +234,20 @@
 		
 			</rich:simpleTogglePanel>
 			<br />			
+
+			<rich:simpleTogglePanel>
+				<f:facet name="header">
+					<h:outputText value="#{prompt.avaliacao_GraficoRadar}"/>
+				</f:facet>			
+			
+				<gt:grafico_radar_checkbox
+					grafico="#{atendimentoActions.plotGrafico}"
+					placeholder="placeholder_radar"
+					width="1000" height="600"
+				/>
+				
+			</rich:simpleTogglePanel>
+			<br />
 
 		</h:form>
 

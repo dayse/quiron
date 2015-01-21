@@ -222,7 +222,7 @@ public class AtendimentoAppService {
 		for(ConjuntoAvaliacao conjunto : conjuntosDeAvaliacoes){
 			PlotData avaliacoes = new PlotData();
 			avaliacoes.setData(gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGrafico(conjunto));
-			avaliacoes.setLabel(conjunto.getIndicacao().getNome());
+			avaliacoes.setLabel(conjunto.getIndicacao().toString());
 			plotDatas.add(avaliacoes);
 		}
 			
