@@ -6,7 +6,10 @@ import DAO.generico.JPADaoGenerico;
 
 /**
  * 
- * @author bruno.oliveira
+ * As classes DAOImpl implementam aqueles métodos que são específicos,
+ * ou que ainda não foram generalizados
+ * 
+ * @author bruno.olveira
  *
  */
 public abstract class PacienteDAOImpl extends JPADaoGenerico<Paciente, Long> implements PacienteDAO{
