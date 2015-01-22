@@ -2,6 +2,14 @@ package DAO.controle;
 
 import net.sf.cglib.proxy.Enhancer;
 
+/**
+ * 
+ * Classe genérica responsável pela
+ * construção de DAOs do sistema.
+ * 
+ * @author bruno.oliveira (Atualização)
+ *
+ */
 public class FabricaDeDao
 {
     

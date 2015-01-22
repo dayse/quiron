@@ -12,6 +12,14 @@ import DAO.anotacao.RecuperaUltimoOuPrimeiro;
 import DAO.exception.InfraestruturaException;
 import DAO.generico.JPADaoGenerico;
 
+/**
+ * 
+ * Classe interceptadora responsável por monitora
+ * a execução de DAOs e executa suas devidas anotações.
+ * 
+ * @author bruno.oliveira (Atualização)
+ *
+ */
 public class InterceptadorDeDAO implements MethodInterceptor 
 {
 	/* Parametros:
