@@ -1,12 +1,15 @@
 package exception;
 
 /**
+ * 
  * Exception levantada que indica algum erro no motor de inferencia.
+ * 
  * Ex:
  * Arquivo de modelagem com variaveis erradas ou faltando,
  * Utilização de modelagens com finalidade incompativel com o que está sendo pedido
  * pelo sistema.
- * @author arruda
+ * 
+ * @author felipe.arruda
  *
  */
 public class MotorInferenciaException extends Exception {

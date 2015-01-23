@@ -31,26 +31,69 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 	 */
 	private List<Avaliacao> avaliacoes;
 
+	/**
+	 * Somatório dos valores de interseção de cada avaliacao para um
+	 * cenário Parâmetro X Indicação.
+	 */
 	private double somatorioIntersecao;
 
+	/**
+	 * Somatório dos valores de união de cada avaliacao para um
+	 * cenário Parâmetro X Indicação.
+	 */
 	private double somatorioUniao;
 
+	/**
+	 * Atributo que guarda o valor resultante do cálculo
+	 * de grau de semelhança.
+	 */
 	private double grauSemelhanca;
 	
+	/**
+	 * Somatório dos valores de distância de cada avaliação para
+	 * um cenário Parametro X Indicação
+	 */
 	private double somatorioDistancia;
 	
+	/**
+	 * Atributo que guarda o valor resultante do cálculo
+	 * da distância de Descartes e Hamming.
+	 */
 	private double distanciaDescartes;
 	
+	/**
+	 * Somatório dos valores de peso dos parâmetros.
+	 */
 	private double somatorioPesosParametros;
 	
+	/**
+	 * Somatório dos valores da Necessidade do Paciente
+	 */
 	private double somatorioNecessidadeDoPaciente;
 	
+	/**
+	 * Índice que representa a posição em ranking
+	 *  da indicação avaliada.
+	 */
 	private int ranking;
 	
+	/**
+	 * Atributo que contém o resultado final do algoritmo,
+	 * independente do algoritmo utilizado para calcular a
+	 * avaliação, o valor final é salvo aqui. Para que a tabela
+	 * de ranking possa ser renderizada independente do algoritmo.
+	 */
 	private double resultadoDoAlgoritmo;
 	
+	/**
+	 * Atributo que guarda o valor resultante do cálculo
+	 * de grau de semelhança.
+	 */
 	private double grauInclusao;
 	
+	/**
+	 * Construtor padrão
+	 */
 	public ConjuntoAvaliacao() {
 	}
 
@@ -99,6 +142,13 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		return total;		
 	}
 	
+	/**
+	 * 
+	 * Nesse momento que cada distância do grau de inclusão é multiplicada
+	 * pelo peso do respectivo parametro.
+	 * 
+	 * @author bruno.oliveira dayse.arruda (Comentários)
+	 */	
 	public double somaDistanciaDoGrauDeInclusao(){
 		double total = 0.0;
 		for(Avaliacao avaliacao : this.avaliacoes){
@@ -106,7 +156,15 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		}
 		return total;
 	}
-	
+	/**
+	 * Método que retorna a soma dos pesos
+	 * de todos os parâmetros.
+	 * 
+	 * @return total do somatório dos pesos
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	public double somaPesosParametros(){
 		double total = 0.0;
 		for (Avaliacao avaliacao : this.avaliacoes) {
@@ -115,6 +173,8 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		return total;
 	}
 	
+	// ================================== Métodos get() e set() ================================ //
+
 	public double getResultadoDoAlgoritmo(){
 		if(!(this.grauSemelhanca == 0.0)){
 			return this.grauSemelhanca;
@@ -127,9 +187,6 @@ public class ConjuntoAvaliacao implements Serializable, Comparable<ConjuntoAvali
 		}
 	}
 	
-	// ================================== Métodos get() e set()
-	// ================================== //
-
 
 	public Indicacao getIndicacao() {
 		return indicacao;

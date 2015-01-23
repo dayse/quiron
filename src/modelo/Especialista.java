@@ -52,6 +52,9 @@ import javax.persistence.Table;
 
 /**
  * 
+ * Classe que representa o modelo dos especialistas
+ * que avaliam as indicações cadastradas nos sistemas.
+ * 
  * @author bruno.oliveira
  *
  */
@@ -59,6 +62,8 @@ import javax.persistence.Table;
 @Table(name = "ESPECIALISTA")
 @SequenceGenerator(name = "SEQUENCIA", sequenceName = "SEQ_ESPECIALISTA", allocationSize = 1)
 public class Especialista implements Serializable, Comparable<Especialista>{
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Identificador do registro de indicações.

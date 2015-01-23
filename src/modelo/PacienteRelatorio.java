@@ -2,6 +2,15 @@ package modelo;
 
 import java.util.Date;
 
+/**
+ * 
+ * Essa é uma classe POJO que não é persistida no banco de dados.
+ * Ela existe para preparar entidades do tipo Paciente em
+ * um formato acessível para preenchimento de um relatorio PDF.
+ * 
+ * @author bruno.oliveira
+ *
+ */
 public class PacienteRelatorio implements Comparable<PacienteRelatorio> {
 
 	/**
@@ -41,6 +50,14 @@ public class PacienteRelatorio implements Comparable<PacienteRelatorio> {
 	
 	// ********* Construtor *********
 	
+	/**
+	 * 
+	 * Construdor que recebe um obejto do tipo
+	 * Paciente e preenche os atributos para o relatório
+	 * 
+	 * @param paciente que será convertido para formato do relatório.
+	 * 
+	 */
 	public PacienteRelatorio(Paciente paciente){
 		this.codPaciente = paciente.getCodPaciente();
 		this.nome = paciente.getNome();

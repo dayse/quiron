@@ -68,6 +68,10 @@ import javax.persistence.TemporalType;
 
 
 /**
+ * 
+ * Classe que representa o modelo do paciente
+ * dentro do sistema.
+ * 
  * @author bruno.oliveira
  *
  */

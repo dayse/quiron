@@ -15,7 +15,22 @@ package modelo;
  */
 public class Avaliacao {
 
+	/**
+	 * Indicação que está sendo avaliada em relação a determinado
+	 * parâmetro.
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	private Indicacao indicacao;
+	
+	/**
+	 * Parâmetro que está sendo avaliado em relação a determinada
+	 * indicação.
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	private Parametro parametro;
 
 	/**
@@ -41,8 +56,6 @@ public class Avaliacao {
 	 */
 	private double mediaEspecialistas;
 	
-	private String nomeIndicacaoNaTabela;
-	
 	/**
 	 * Módulo da diferença entre a necessidade do paciente e a média dos especialista
 	 * para um parametro em particular de uma indicação.
@@ -51,17 +64,40 @@ public class Avaliacao {
 	 */
 	private double distancia;
 	
+	/**
+	 * 
+	 * Construtor sem parametros que inicializa
+	 * os atributos númericos como zerados.
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	public Avaliacao() {
 		this.uniao = 0;
 		this.intersecao = 0;
 		this.mediaEspecialistas = 0;
 	}
 
+	/**
+	 * 
+	 * Construtor que inicializa cada
+	 * atributo com parâmetros passados
+	 * 
+	 * @param indicacao - envolvida nesta avaliacao
+	 * @param parametro - envolvido nesta avaliacao
+	 * @param uniao - resultado da união entre a Necessidade do Paciente e
+	 *  a Média dos Especialistas para esse cenário de Indicacao X Parametro
+	 * @param intersecao - resultado da interseção entre a Necessidade do Paciente e
+	 *  a Média dos Especialistas para esse cenário de Indicacao X Parametro
+	 * @param mediaEspecialistas - Média das notas datas pelos especialistas para esse cenário de Indicação
+	 * X Parâmetro
+	 * 
+	 * @author bruno.oliveira (Atualização)
+	 * 
+	 */
 	public Avaliacao(Indicacao indicacao, Parametro parametro,
 			double uniao,
 			double intersecao, 
-			double somatorio,
-			double grauSemelhanca,
 			double mediaEspecialistas) {
 
 		this.indicacao = indicacao;
@@ -71,10 +107,6 @@ public class Avaliacao {
 		this.mediaEspecialistas = mediaEspecialistas;
 	}
 
-	public double somaParametros(){
-		return 0;		
-	}
-	
 	// ================================== Métodos get() e set()
 	// ================================== //
 
@@ -100,15 +132,6 @@ public class Avaliacao {
 
 	public void setIntersecao(double intersecao) {
 		this.intersecao = intersecao;
-	}
-
-	
-	public String getNomeIndicacaoNaTabela() {
-		return nomeIndicacaoNaTabela;
-	}
-
-	public void setNomeIndicacaoNaTabela(String nomeIndicacaoNaTabela) {
-		this.nomeIndicacaoNaTabela = nomeIndicacaoNaTabela;
 	}
 
 	public Parametro getParametro() {

@@ -9,16 +9,13 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 import br.blog.arruda.plot.Plot;
-import DAO.exception.ObjetoNaoEncontradoException;
 import modelo.Algoritmo;
 import modelo.Atendimento;
 import modelo.ConjuntoAvaliacao;
-import modelo.HistoricoAvaliacao;
 import modelo.Paciente;
 import modelo.Anamnese;
 import modelo.Parametro;
 import modelo.Usuario;
-import modelo.VariavelModelagemView;
 import service.AlgoritmoAppService;
 import service.AnamneseAppService;
 import service.AtendimentoAppService;

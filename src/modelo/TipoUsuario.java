@@ -11,15 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-/**
- * Classe relativa ao bean correspondente a entidade TipoUusario.
- * 
- * Através deste bean é possível identificar o tipo de usuário que encontra-se logado.
- * 
- * @author marques.araujo
- *
- */
-
 @NamedQueries(
 		{	
 			@NamedQuery
@@ -36,6 +27,14 @@ import javax.persistence.Table;
 			)
 		})
 
+/**
+ * Classe relativa ao bean correspondente a entidade TipoUusario.
+ * 
+ * Através deste bean é possível identificar o tipo de usuário que encontra-se logado.
+ * 
+ * @author marques.araujo
+ *
+ */
 @Entity
 @Table(name="TIPO_USUARIO")
 @SequenceGenerator(name="SEQUENCIA", sequenceName="SEQ_TIPO_USUARIO", allocationSize=1)
@@ -67,6 +66,9 @@ public class TipoUsuario implements Serializable {
 	 * 
 	 */
 	private String descricao;
+	
+	
+	// ********* Métodos get/set *********
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQUENCIA")

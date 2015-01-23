@@ -15,6 +15,15 @@ import javax.servlet.http.HttpSession;
 import actions.UsuarioActions;
 import actions.controle.SessaoDoUsuario;
 
+/**
+ * 
+ * Filtro responsável por monitorar se o usuário
+ * possui uma sessão ativa e válida. Caso não tenha, o filtro
+ * redireciona o usuário para a tela de login.
+ * 
+ * @author bruno.oliveira (Atualização)
+ *
+ */
 public class Filtro implements Filter {
 	
 	public void init(FilterConfig filterConfig) {

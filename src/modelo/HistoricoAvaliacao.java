@@ -27,9 +27,14 @@ import javax.persistence.Table;
 )
 /**
  * 
- * A entidade Anamnese na verdade está representando
- * os diversos itens de uma anamnese. Onde cada item
- * representa o valor do parâmetro para um dado atendimento.
+ * Classe que representa o Histórico da Avaliação
+ * de um Atendimento. Esse modelo representa no banco 
+ * de dados um atendimento encerrado, cuja avaliação
+ * não será mais calculada por questões de integridade dos
+ * dados.
+ * 
+ * Cada objeto do tipo HistoricoAvaliacao representa uma
+ * indicação dentro do ranking de avaliação do sistema.
  * 
  * @author bruno.oliveira
  *
@@ -43,10 +48,6 @@ public class HistoricoAvaliacao implements Serializable, Comparable<HistoricoAva
 	public HistoricoAvaliacao() {
 	}
 	
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -55,23 +56,26 @@ public class HistoricoAvaliacao implements Serializable, Comparable<HistoricoAva
 	private Long id;
 
 	/**
-	 * Atendimento ao qual este item de anamnese pertence.
+	 * Atendimento ao qual este Histórico de Avaliação pertence.
 	 */
 	private Atendimento atendimento;
 	
 	/**
-	 * Parâmetro que foi avaliado neste registro.
+	 * Indicação presente na avaliação gerada.
 	 */
 	private Indicacao indicacao;
 
 	/**
-	 * Valor dado para este item da anamnese.
+	 * Valor dado para indicação durante a avaliação gerada.
 	 */
 	private double avaliacao;
 
+	/**
+	 * Ranking alcançado pela indicação por causa da avaliação obtida.
+	 */
 	private int ranking;
 	
-	/* Getters and Setters */
+	// ================================== Métodos get() e set()	// ============================== //
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA")
 	@Column(name = "ID")
@@ -123,10 +127,5 @@ public class HistoricoAvaliacao implements Serializable, Comparable<HistoricoAva
 	public int compareTo(HistoricoAvaliacao arg0) {
 		return 0;
 	}
-
-	/*@Override
-	public String toString() {
-		return "Anamnese [parametro=" + parametro + ", valor=" + valor + "]";
-	}	*/
 
 }

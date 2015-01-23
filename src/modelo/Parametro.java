@@ -54,6 +54,12 @@ import javax.persistence.Table;
 
 /**
  * 
+ * Classe que representa um modelo de um Parâmetro.
+ * Dentro do sistema um parâmetro representa um item
+ * da anamnese feita pelo médico durante o atendimento.
+ * 
+ * Temos parâmetros como febre, disúria(dor), alergia, etc...
+ * 
  * @author bruno.oliveira
  *
  */
@@ -61,6 +67,8 @@ import javax.persistence.Table;
 @Table(name = "PARAMETROS")
 @SequenceGenerator(name = "SEQUENCIA", sequenceName = "SEQ_PARAMETROS", allocationSize = 1)
 public class Parametro implements Serializable, Comparable<Parametro>{
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Identificador do registro de indicações.
@@ -87,7 +95,6 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	 */
 	private Double peso;
 	
-	
 	/**
 	 * Tipo do parametro, pode ser:
 	 * 
@@ -106,6 +113,12 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 	
 	// ********* Construtor *********
 	
+	/**
+	 * Construtor da classe,
+	 * inicializa sempre o parâmetro
+	 * com peso 1.0 e do tipo não
+	 * pode exceder.
+	 */
 	public Parametro(){
 		this.peso = 1.0;
 		this.tipo = TIPO_NAO_PODE_EXCEDER;

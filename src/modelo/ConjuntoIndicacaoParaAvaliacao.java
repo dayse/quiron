@@ -20,20 +20,28 @@ import java.util.List;
 public class ConjuntoIndicacaoParaAvaliacao {
 
 	/**
+	 * 
 	 * A solução para a tabela sair da maneira certa foi
 	 * fornecer ao componente DataTable uma lista de ConjuntoIndicacaoParaAvaliacao.
 	 * Cada "linha" dessa lista de conjuntos é identificada por uma Indicação que no final
 	 * é usada para crias linhas dinâmicas. Por causa deste atributo
 	 * cada elemento dentro da lista representa uma Indicacação 
+	 * 
+	 * @author bruno.oliveira
+	 * 
 	 */
 	private Indicacao indicacao;
 	
 	/**
+	 * 
 	 * Essa lista de AvalIndicacaoEspec recebe as avaliações de todos os
 	 * parametros de uma determinada Indicacação e Especialista.
 	 * 
 	 * Logo, esse atributo é necessário para se obter as notas previamente
 	 * guardadas no banco para cada parâmetro cadastrado.
+	 * 
+	 * @author bruno.oliveira
+	 * 
 	 */
 	private List<AvalIndicacaoEspec> avaliacao;
 

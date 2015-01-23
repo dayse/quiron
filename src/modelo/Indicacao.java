@@ -49,6 +49,9 @@ import javax.persistence.Table;
 
 /**
  * 
+ * Classe que representa o modelo de uma indicação, ou seja
+ * um medicamento, dentro do sistema.
+ * 
  * @author bruno.oliveira
  *
  */
@@ -57,18 +60,20 @@ import javax.persistence.Table;
 @SequenceGenerator(name = "SEQUENCIA", sequenceName = "SEQ_INDICACAO", allocationSize = 1)
 public class Indicacao implements Serializable, Comparable<Indicacao>{
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Identificador do registro de indicações.
 	 */
 	private Long id;
 	
 	/**
-	 * Código do indicacao.
+	 * Código da indicacao.
 	 */
 	private String codIndicacao;
 	
 	/**
-	 * Nome do indicacao.
+	 * Nome da indicacao.
 	 */
 	private String nome;
 	

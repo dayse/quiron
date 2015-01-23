@@ -79,6 +79,10 @@ import javax.persistence.Table;
 
 /**
  * 
+ * Classe que representa um modelo de uma
+ * Avaliação da por um Especialista para uma
+ * Indicação (remédio) específica.
+ * 
  * @author bruno.oliveira
  *
  */

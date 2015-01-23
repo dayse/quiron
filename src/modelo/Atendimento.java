@@ -186,6 +186,10 @@ import javax.persistence.Transient;
 )
 
 /**
+ * 
+ * Classe que representa o modelos dos atendimentos
+ * utilizados pelo sistema e suas relações.
+ * 
  * @author bruno.oliveira
  *
  */
@@ -207,7 +211,7 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	private String codAtendimento;
 	
 	/**
-	 * Date e Hora do atendimento
+	 * Data e Hora do atendimento
 	 */
 	private Calendar dataAtendimento;
 	
@@ -264,11 +268,30 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	 */
 	private Usuario tecnico;
 	
-
+	/**
+	 * Anamnese realizada pelo médico. O retorno é uma lista, onde cada
+	 * item da lista representa um campo do "questionário de anamneses"
+	 * preenchido pelo médico
+	 */
 	private List<Anamnese> anamneses = new ArrayList<Anamnese>();
 	
+	/**
+	 * Lista do historico de avaliações anteriores aplicadas a esse 
+	 * paciente em atendimentos antigos.
+	 */
 	private List<HistoricoAvaliacao> historicos = new ArrayList<HistoricoAvaliacao>();
 
+	/**
+	 * Atributo que não é persistido no banco.
+	 * Ele só existe para retornar a tela se um boolean true
+	 * caso o atendimento esteja fechado. Essa lógica está implementada
+	 * no get do atributo, onde também se encontra a anotação @Transient
+	 * que faz com que ele não seja persistido em banco.
+	 * 
+	 * Esse atributo é utilizado para verificar se o atendimento possui avaliação
+	 * guardada no banco, já quê as informações de atendimento encerrados precisam
+	 * ser persistidas.
+	 */
 	private Boolean statusEncerrado;
 	
 	@Override

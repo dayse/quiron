@@ -1,52 +1,138 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 
+ * Essa é uma classe POJO que não é persistida no banco de dados.
+ * Ela existe para preparar entidades do tipo HistoricoAvaliacao em
+ * um formato acessível para preenchimento de um relatorio PDF.
+ * 
+ * @author bruno.oliveira
+ *
+ */
 public class HistoricoAtendimentoRelatorio implements
 		Comparable<HistoricoAtendimentoRelatorio> {
 
+	/**
+	 * Código do Paciente relacionado
+	 * a esse histórico de atendimento.
+	 */
 	private String codPaciente;
 
+	/**
+	 * Nome do paciente
+	 */
 	private String nome;
 
+	/**
+	 * Data de nascimento do paciente
+	 */
 	private Date dataNascimento;
 
+	/**
+	 * Sexo do paciente
+	 */
 	private String sexo;
 
+	/** 
+	 * Endereço do paciente
+	 */
 	private String endereco;
 
+	/**
+	 * Nome do responsável do paciente,
+	 * caso este seja menor de idade.
+	 */
 	private String nomeResponsavel;
 
+	/**
+	 * Documento de identificação do paciente
+	 * ou do seu responsável.
+	 */
 	private String documento;
 
+	/**
+	 * Informações gerais a respeito do paciente
+	 * que podem ser de interesse do médico.
+	 */
 	private String informacoesGerais;
 	
+	/**
+	 * Id do atendimento
+	 */
 	private Long idAtendimento;
 
+	/**
+	 * Código do atendimento
+	 */
 	private String codAtendimento;
 
+	/**
+	 * Data e hora do atendimento
+	 */
 	private Date dataAtendimento;
 
+	/**
+	 * Nome do médico
+	 */
 	private String medico;
 
+	/**
+	 * Nome do técnico/enfermeiro
+	 */
 	private String tecnico;
 
+	/**
+	 * Status do atendimento
+	 */
 	private String status;
 
+	/**
+	 * Precrição determinada pelo médico,
+	 * caso exista.
+	 */
 	private String prescricao;
 
+	/**
+	 * Diagnóstico dado pelo médico.
+	 */
 	private String diagnostico;
 
+	/**
+	 * Observações gerais que podem ser
+	 * interesse do médico guardar.
+	 */
 	private String observacoes;
 	
+	/**
+	 * Nome de um Parâmetro
+	 */
 	private String nomeParametro;
 	
+	/**
+	 * Valor do Parâmetro
+	 */
 	private Double valorParametro;
 
+	/** 
+	 * Lista com o resultado da anamnese
+	 * realizada pelo médico.
+	 */
 	private List<Anamnese> anamneses;
 	
+	/** 
+	 * 
+	 * Construtor que recebe os objetos que contém as informações
+	 * necessárias para o modelo de relatório de Histórico de
+	 * Atendimento.
+	 * @param atendimento - objeto com os dados do atendimento e paciente
+	 * @param anamnese - realizada pelo médico durante o atendimento
+	 * 
+	 * @author bruno.oliveira
+	 * 
+	 */
 	public HistoricoAtendimentoRelatorio(Atendimento atendimento, Anamnese anamnese) {
 		this.codPaciente = atendimento.getPaciente().getCodPaciente();
 		this.nome = atendimento.getPaciente().getNome();
