@@ -7,10 +7,18 @@ import exception.RelatorioException;
 
 import util.Constantes;
 
-
+/**
+ * 
+ * Interface do relatorio implemantada
+ * pelas classes que cuidam dos relatorios
+ * do sistema.
+ * 
+ * @author bruno.oliveira
+ *
+ */
 public interface Relatorio {
 	
-	    //Tipos de Relatorios do sistema GESPLAN:
+	    //Tipos de Relatorios do sistema Quiron:
 		//Cada relatorio deve receber um número diferente, 
 		//isto é colocado no hashmap da fabrica de relatorios (RelatorioFactory).
 		public final static int RELATORIO_AVALIACAO_DO_ESPECIALISTA = 0;

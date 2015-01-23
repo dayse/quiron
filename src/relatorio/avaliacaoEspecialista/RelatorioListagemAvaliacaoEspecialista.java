@@ -10,6 +10,15 @@ import relatorio.RelatorioPdf;
 import util.Constantes;
 import exception.RelatorioException;
 
+/**
+ * 
+ * Classe que implementa os métodos
+ * necessários para gerar o(s) relatório(s)
+ * de avaliação dos especialistas.
+ * 
+ * @author bruno.oliveira
+ *
+ */
 public class RelatorioListagemAvaliacaoEspecialista extends DeclaracaoAbstrata {
 
 	@Override

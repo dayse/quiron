@@ -10,6 +10,15 @@ import relatorio.RelatorioPdf;
 import util.Constantes;
 import exception.RelatorioException;
 
+/**
+ * 
+ * Classe que implementa os métodos
+ * necessários para gerar o(s) relatório(s)
+ * de usuários
+ * 
+ * @author bruno.oliveira
+ *
+ */
 public class RelatorioListagemUsuarios extends DeclaracaoAbstrata {
 
 	@Override

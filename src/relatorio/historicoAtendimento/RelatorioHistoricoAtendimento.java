@@ -10,6 +10,15 @@ import relatorio.Relatorio;
 import relatorio.RelatorioPdf;
 import util.Constantes;
 
+/**
+ * 
+ * Classe que implementa os métodos
+ * necessários para gerar o(s) relatório(s)
+ * de histórico de atendimento
+ * 
+ * @author bruno.oliveira
+ *
+ */
 public class RelatorioHistoricoAtendimento extends DeclaracaoAbstrata {
 
 	@Override
