@@ -187,8 +187,8 @@ import javax.persistence.Transient;
 
 /**
  * 
- * Classe que representa o modelos dos atendimentos
- * utilizados pelo sistema e suas relações.
+ * Classe que representa cada um dos atendimentos
+ * registrados pelo sistema e suas relações.
  * 
  * @author bruno.oliveira
  *
@@ -259,7 +259,7 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	private Paciente paciente;
 	
 	/**
-	 * Médico que foi escalado realizar o atendimento
+	 * Médico que foi escalado para realizar o atendimento
 	 */
 	private Usuario medico;
 	

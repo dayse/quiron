@@ -31,7 +31,7 @@ import javax.persistence.Table;
 
 /**
  * 
- * Classe que representa o modelo dos algoritmos fuzzy
+ * Classe que representa cada um dos algoritmos fuzzy
  * implementados no sistema.
  * 
  * @author bruno.oliveira, patricia.lima
