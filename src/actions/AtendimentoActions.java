@@ -256,7 +256,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}
 		
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-		
+		/*Aqui deve estar a parte do action para exibição do gráfico o primeiro método é do gráfico 
+		de radar e segundo método é para gráfico de linha*/
 		plotGrafico = 
 				atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
 							conjuntosDeAvaliacoes, 
