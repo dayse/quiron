@@ -90,8 +90,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private int numParametros;
 	private boolean tecnicoEditavel;
 	private boolean clinicoEditavel;
+	//private BarraMainPlot plotGraficoBarras;
 	private SpiderMainPlot plotGrafico;
-
 	//infos de busca
 	public final String BUSCA_POR_NOME_PACIENTE = "Nome do Paciente";
 	public final String BUSCA_POR_NOME_MEDICO = "Nome do Médico";
@@ -106,7 +106,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private SelectOneDataModel<String> comboAlgoritmoAvaliacao;
 	private List<String> listaDeNomesAlgoritmos = new ArrayList<String>();
 	
-	// Representa o gráfico do simulador 2D
+	// Representa o gráfico de Linha.
 	private Plot plot2D;
 	
 	/**
@@ -256,7 +256,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}
 		
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-		/*Aqui deve estar a parte do action para exibição do gráfico o primeiro método é do gráfico 
+		/*Aqui deve estar a parte do action para geração do gráfico o primeiro método é do gráfico 
 		de radar e segundo método é para gráfico de linha*/
 		plotGrafico = 
 				atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
@@ -265,6 +265,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 						);
 		
 		plot2D = atendimentoService.geraGraficoDeLinhaParaAvaliacaoDeIndicacaoDeAtendimento(conjuntosDeAvaliacoes, atendimentoCorrente);
+	//	plotGraficoBarras = atendimentoService.geraGraficoDeBarraParaAvaliacaoDeIndicacaoDeAtendimento(conjuntosDeAvaliacoes, atendimentoCorrente);
 		return PAGINA_AVALIACAO;
 	}
 	

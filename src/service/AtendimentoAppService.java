@@ -10,6 +10,7 @@ import java.util.List;
 import br.blog.arruda.plot.Plot;
 import br.blog.arruda.plot.data.PlotData;
 import br.blog.arruda.plot.opt.PlotOptions;
+import br.blog.arruda.plot.opt.tipo.PlotBars;
 import exception.RelatorioException;
 import relatorio.Relatorio;
 import relatorio.RelatorioFactory;
@@ -44,7 +45,11 @@ public class AtendimentoAppService {
 	private static final long serialVersionUID = 1L;
 
 	private static AtendimentoDAO atendimentoDAO;
-
+	
+	// Services
+	
+	private static DadosGraficoViewAppService dadosGraficoViewService;
+	
 	public AtendimentoAppService() throws Exception {
 		try {
 			atendimentoDAO = FabricaDeDao.getDao(AtendimentoDAOImpl.class);
@@ -241,28 +246,76 @@ public class AtendimentoAppService {
 	
 		return grafico;		
 	}
-	/*public Plot geraGraficoDeBarraParaAvaliacaoDeIndicacaoDeAtendimento(
-			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
-		
-		ArrayList<PlotData> listaDadosGrafico = new ArrayList<PlotData>();
-		Plot grafico = new Plot();
-		ArrayList<PlotData> plotDatas = new ArrayList<PlotData>();
-		PlotData necessidadeDoPaciente = new PlotData();
-		
-		necessidadeDoPaciente.setData(gerarValoresDeDataDeNecessidadeDoPacienteParaGrafico(atendimento));
-		necessidadeDoPaciente.setLabel("Necessidade do Paciente");
-		plotDatas.add(necessidadeDoPaciente);
-			
-		for(ConjuntoAvaliacao conjunto : conjuntosDeAvaliacoes){
-			PlotData avaliacoes = new PlotData();
-			avaliacoes.setData(gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGrafico(conjunto));
-			avaliacoes.setLabel(conjunto.getIndicacao().toString());
-			plotDatas.add(avaliacoes);
-		}
-		//	grafico= Plot.generatePlotDataBars(necessidadeDoPaciente,conjuntosDeAvaliacoes,"Parâmetro","Avaliações",2);
-		return grafico;		
-	}*/
 	
+	/**
+	 * Método que vai gerar o grafico (Plot) para comparar necessidade do paciente num determinado Atendimento 
+	 * com a média de avaliação dos especialistas.
+	 * 
+	 */
+/*	public Plot geraGraficoDeBarraParaAvaliacaoDeIndicacaoDeAtendimento
+					(List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
+		
+		int num_parametros = atendimento.getAnamneses().size();
+		
+		
+		// PLOT DATA //
+		//inicializa o conjunto de datas
+		ArrayList<PlotData> plotDatas = new ArrayList<PlotData>();
+		
+		//Necessidade do Paciente
+		PlotData necessidadeDoPacienteData = new PlotData();
+		
+		necessidadeDoPacienteData.setData(
+						gerarValoresDeDataDeNecessidadeDoPacienteParaGrafico(atendimento));
+		necessidadeDoPacienteData.setLabel("Necessidade do Paciente");
+		plotDatas.add(necessidadeDoPacienteData);
+		
+		
+		
+		for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntosDeAvaliacoes) {
+			PlotData mediaIndicacaoData = new PlotData();
+			mediaIndicacaoData.setData(
+							gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGrafico(conjuntoAvaliacao)
+							);
+			mediaIndicacaoData.setLabel(conjuntoAvaliacao.getIndicacao().toString());
+			//mediaIndicacaoData.setBars(bars);	
+			plotDatas.add(mediaIndicacaoData);
+			
+		}
+		//dadosGraficoViewService.gerarPlotDataEmBarras(necessidadeDoPacienteData.getData(),mediaIndicacaoData.getData() );
+	
+	
+		/* SERIES
+		
+		SpiderPlotSeries plotSeries = new SpiderPlotSeries();
+		ArrayList<String> legsLabels = gerarLegsLabelsGrafico(atendimento);
+		plotSeries.setSpider(gerarSpiderSeriesGrafico(legsLabels));
+		
+		GRID
+		
+		SpiderPlotGrid plotGrid = new SpiderPlotGrid();
+		plotGrid.setHoverable(true);
+		plotGrid.setClickable(true);
+		plotGrid.setMode("radar");
+		
+		OPTIONS
+		PlotOptions plotOptions = new PlotOptions();
+		plotOptions.setSeries(plotSeries);
+		plotOptions.setGrid(plotGrid);
+		plotOptions.setX2axis(null);
+		plotOptions.setXaxis(null);
+		plotOptions.setY2axis(null);
+		plotOptions.setYaxis(null);
+		
+		 PLOT
+		BarraMainPlot barraPlot = new SpiderMainPlot();
+		spiderPlot.setSpiderDatas(plotDatas);
+		spiderPlot.setOptions(plotOptions);
+		return spiderPlot;
+		}*/
+		
+	
+
 	public List<HistoricoAtendimentoRelatorio> converterParaHistoricoAtendimentoRelatorio(List<Atendimento> listaAtendimentos){
 		List<HistoricoAtendimentoRelatorio> historicoAtendimentos = new LinkedList<HistoricoAtendimentoRelatorio>();
 		Collections.sort(listaAtendimentos);

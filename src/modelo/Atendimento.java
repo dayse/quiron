@@ -271,7 +271,7 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 	/**
 	 * Anamnese realizada pelo médico. O retorno é uma lista, onde cada
 	 * item da lista representa um campo do "questionário de anamneses"
-	 * preenchido pelo médico
+	 * preenchido pelo médico. Essa lista define o conjunto das necessidades do paciente identificadas para cada um dos parâmetros
 	 */
 	private List<Anamnese> anamneses = new ArrayList<Anamnese>();
 	
