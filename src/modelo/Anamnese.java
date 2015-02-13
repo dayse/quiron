@@ -39,6 +39,7 @@ import javax.persistence.Table;
  * A entidade Anamnese na verdade está representando
  * os diversos itens de uma anamnese. Onde cada item
  * representa o valor do parâmetro para um dado atendimento.
+ * O nome mais adequado para essa entidade seria "Item de Anamnese"
  * 
  * @author bruno.oliveira
  *

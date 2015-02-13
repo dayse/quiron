@@ -247,73 +247,37 @@ public class AtendimentoAppService {
 		return grafico;		
 	}
 	
-	/**
-	 * Método que vai gerar o grafico (Plot) para comparar necessidade do paciente num determinado Atendimento 
-	 * com a média de avaliação dos especialistas.
-	 * 
-	 */
-/*	public Plot geraGraficoDeBarraParaAvaliacaoDeIndicacaoDeAtendimento
-					(List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
-		
+//Gráfico em Barra
+	
+public Plot geraGraficoemBarraParaAvaliacaoDeIndicacaoDeAtendimento
+	(List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
+
 		int num_parametros = atendimento.getAnamneses().size();
+		ArrayList<PlotData> listaDadosGrafico = new ArrayList<PlotData>();
+			Plot grafico = new Plot();
+
+			ArrayList<Double> listParametros = new ArrayList<Double>();
+			ArrayList<Double> listNecessPac = new ArrayList<Double>();
+			//Preencher as listas
+			for (int i = 0; i < num_parametros; i++) {
+				Anamnese anamnese = atendimento.getAnamneses().get(i);
+						listParametros.add((double)(i));
+						listNecessPac.add(anamnese.getValor());		
+			}
+
+				//Necessidade do Paciente
+				PlotData necessidadeDoPacienteData = dadosGraficoViewService.gerarPlotDataEmBarras(listParametros, listNecessPac);
+				//necessidadeDoPacienteData.setData(gerarValoresDeDataDeNecessidadeDoPacienteParaGrafico(atendimento));
+				necessidadeDoPacienteData.setLabel("Necessidade do Paciente"); 
+				listaDadosGrafico.add(necessidadeDoPacienteData);
 		
-		
-		// PLOT DATA //
-		//inicializa o conjunto de datas
-		ArrayList<PlotData> plotDatas = new ArrayList<PlotData>();
-		
-		//Necessidade do Paciente
-		PlotData necessidadeDoPacienteData = new PlotData();
-		
-		necessidadeDoPacienteData.setData(
-						gerarValoresDeDataDeNecessidadeDoPacienteParaGrafico(atendimento));
-		necessidadeDoPacienteData.setLabel("Necessidade do Paciente");
-		plotDatas.add(necessidadeDoPacienteData);
-		
-		
-		
-		for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntosDeAvaliacoes) {
-			PlotData mediaIndicacaoData = new PlotData();
-			mediaIndicacaoData.setData(
-							gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGrafico(conjuntoAvaliacao)
-							);
-			mediaIndicacaoData.setLabel(conjuntoAvaliacao.getIndicacao().toString());
-			//mediaIndicacaoData.setBars(bars);	
-			plotDatas.add(mediaIndicacaoData);
 			
-		}
-		//dadosGraficoViewService.gerarPlotDataEmBarras(necessidadeDoPacienteData.getData(),mediaIndicacaoData.getData() );
-	
-	
-		/* SERIES
-		
-		SpiderPlotSeries plotSeries = new SpiderPlotSeries();
-		ArrayList<String> legsLabels = gerarLegsLabelsGrafico(atendimento);
-		plotSeries.setSpider(gerarSpiderSeriesGrafico(legsLabels));
-		
-		GRID
-		
-		SpiderPlotGrid plotGrid = new SpiderPlotGrid();
-		plotGrid.setHoverable(true);
-		plotGrid.setClickable(true);
-		plotGrid.setMode("radar");
-		
-		OPTIONS
-		PlotOptions plotOptions = new PlotOptions();
-		plotOptions.setSeries(plotSeries);
-		plotOptions.setGrid(plotGrid);
-		plotOptions.setX2axis(null);
-		plotOptions.setXaxis(null);
-		plotOptions.setY2axis(null);
-		plotOptions.setYaxis(null);
-		
-		 PLOT
-		BarraMainPlot barraPlot = new SpiderMainPlot();
-		spiderPlot.setSpiderDatas(plotDatas);
-		spiderPlot.setOptions(plotOptions);
-		return spiderPlot;
-		}*/
-		
+				grafico = dadosGraficoViewService.gerarPlotComLabels(listaDadosGrafico, "Parâmetro", "Necessidade do Paciente");
+
+				// PLOT
+			
+		return grafico;
+	}
 	
 
 	public List<HistoricoAtendimentoRelatorio> converterParaHistoricoAtendimentoRelatorio(List<Atendimento> listaAtendimentos){

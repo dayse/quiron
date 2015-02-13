@@ -1,4 +1,4 @@
-	package actions;
+package actions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private DataModel listaDeAnamneses;
 	private DataModel listaConjuntoAvaliacao;
 	private DataModel listaHistorico;
-	private List<Parametro> listaDeParametros; 
+	private List<Parametro> listaDeParametros;
 	private List<String> status = new ArrayList<String>();
 
 	// Páginas
@@ -90,7 +90,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private int numParametros;
 	private boolean tecnicoEditavel;
 	private boolean clinicoEditavel;
-	//private BarraMainPlot plotGraficoBarras;
 	private SpiderMainPlot plotGrafico;
 	//infos de busca
 	public final String BUSCA_POR_NOME_PACIENTE = "Nome do Paciente";
@@ -108,7 +107,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	
 	// Representa o gráfico de Linha.
 	private Plot plot2D;
-	
+	// Gráfico de Barras
+	private Plot plotGraficoBarras;
 	/**
 	 * 
 	 * Construtor responsável por instanciar os services que serão usados no
@@ -143,10 +143,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		} catch (Exception e) {
 			throw e;
 		}
-
+	
 		pagina = ((PacienteActions) getManagedBean("pacienteActions"))
 				.getPagina();
-
 		status.add("Aberto");
 		status.add("Em atendimento");
 		status.add("Encerrado");
@@ -258,14 +257,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
 		/*Aqui deve estar a parte do action para geração do gráfico o primeiro método é do gráfico 
 		de radar e segundo método é para gráfico de linha*/
-		plotGrafico = 
-				atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
+		plotGrafico = atendimentoService.geraGraficoParaAvaliacaoDeIndicacaoDeAtendimento(
 							conjuntosDeAvaliacoes, 
-							atendimentoCorrente
-						);
+							atendimentoCorrente);
 		
 		plot2D = atendimentoService.geraGraficoDeLinhaParaAvaliacaoDeIndicacaoDeAtendimento(conjuntosDeAvaliacoes, atendimentoCorrente);
-	//	plotGraficoBarras = atendimentoService.geraGraficoDeBarraParaAvaliacaoDeIndicacaoDeAtendimento(conjuntosDeAvaliacoes, atendimentoCorrente);
+		
+		plotGraficoBarras = atendimentoService.geraGraficoemBarraParaAvaliacaoDeIndicacaoDeAtendimento(conjuntosDeAvaliacoes, atendimentoCorrente);
 		return PAGINA_AVALIACAO;
 	}
 	
@@ -998,5 +996,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 
 	public void setPlot2D(Plot plot2d) {
 		plot2D = plot2d;
+	}	
+	public Plot getPlotGraficoBarras() {
+		return plotGraficoBarras;
+	}
+
+	public void setPlotGraficoBarras(Plot plotGraficoBarras) {
+		this.plotGraficoBarras = plotGraficoBarras;
 	}	
 }
