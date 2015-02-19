@@ -235,19 +235,7 @@
 			</rich:simpleTogglePanel>		
 			
 			<br />	
-			<rich:simpleTogglePanel>
-				<f:facet name="header">
-					<h:outputText value="#{prompt.avaliacao_GraficoBarras}"/>
-				</f:facet>
-				
-				<gt:grafico_linha_checkbox 
-				grafico="#{atendimentoActions.plotGraficoBarras}" 
-				placeholder="placeholder" 
-				width="1000" height="600"
-				/>
 		
-			</rich:simpleTogglePanel>	
-			<br />
 			<rich:simpleTogglePanel>
 				<f:facet name="header">
 					<h:outputText value="#{prompt.avaliacao_GraficoRadar}"/>
@@ -262,7 +250,18 @@
 			</rich:simpleTogglePanel>
 	
 			<br />
-			
+				<rich:simpleTogglePanel>
+				<f:facet name="header">
+					<h:outputText value="#{prompt.avaliacao_GraficoBarras}"/>
+				</f:facet>
+				
+				<gt:grafico_barras_checkbox 
+				grafico="#{atendimentoActions.plotGraficoBarras}" 
+				placeholder="placeholder_barra" 
+				width="1000" height="600"/>
+		
+			</rich:simpleTogglePanel>	
+			<br />
 		
 		</h:form>
 
