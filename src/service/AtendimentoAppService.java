@@ -15,6 +15,7 @@ import exception.RelatorioException;
 import relatorio.Relatorio;
 import relatorio.RelatorioFactory;
 import service.anotacao.Transacional;
+import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
 import util.jayflot.spider.SpiderMainPlot;
 import util.jayflot.spider.data.SpiderPlotData;
@@ -45,14 +46,13 @@ public class AtendimentoAppService {
 	private static final long serialVersionUID = 1L;
 
 	private static AtendimentoDAO atendimentoDAO;
-	
-	// Services
-	
 	private static DadosGraficoViewAppService dadosGraficoViewService;
-	
+	// Services
+
 	public AtendimentoAppService() throws Exception {
 		try {
 			atendimentoDAO = FabricaDeDao.getDao(AtendimentoDAOImpl.class);
+			dadosGraficoViewService = FabricaDeAppService.getAppService(DadosGraficoViewAppService.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
