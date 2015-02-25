@@ -225,7 +225,7 @@ public class AtendimentoAppService {
 	
 	 */
 	
-	public Plot geraGraficoDeLinhaParaAvaliacaoDeIndicacaoDeAtendimento(
+	/*public Plot geraGraficoDeLinhaParaAvaliacaoDeIndicacaoDeAtendimento(
 			List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
 		
 		ArrayList<PlotData> plotDatas = new ArrayList<PlotData>();
@@ -246,7 +246,7 @@ public class AtendimentoAppService {
 		Plot grafico = Plot.generatePlot(plotDatas, "Parâmetros", "Avaliação");
 	
 		return grafico;		
-	}
+	}*/
 	
 //Gráfico em Barra
 	

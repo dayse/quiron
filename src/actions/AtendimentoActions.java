@@ -106,7 +106,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	private List<String> listaDeNomesAlgoritmos = new ArrayList<String>();
 	
 	// Representa o gráfico de Linha.
-	private Plot plot2D;
+	//private Plot plot2D;
 	// Gráfico de Barras
 	private Plot plotGraficoBarras;
 	/**
@@ -261,7 +261,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 							conjuntosDeAvaliacoes, 
 							atendimentoCorrente);
 		
-		plot2D = atendimentoService.geraGraficoDeLinhaParaAvaliacaoDeIndicacaoDeAtendimento(conjuntosDeAvaliacoes, atendimentoCorrente);
+		//plot2D = atendimentoService.geraGraficoDeLinhaParaAvaliacaoDeIndicacaoDeAtendimento(conjuntosDeAvaliacoes, atendimentoCorrente);
 		
 		plotGraficoBarras = atendimentoService.geraGraficoemBarraParaAvaliacaoDeIndicacaoDeAtendimento(conjuntosDeAvaliacoes, atendimentoCorrente);
 		return PAGINA_AVALIACAO;
@@ -990,13 +990,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		this.plotGrafico = plotGrafico;
 	}
 
-	public Plot getPlot2D() {
+	/*public Plot getPlot2D() {
 		return plot2D;
 	}
 
 	public void setPlot2D(Plot plot2d) {
 		plot2D = plot2d;
-	}	
+	}	*/
 	public Plot getPlotGraficoBarras() {
 		return plotGraficoBarras;
 	}
