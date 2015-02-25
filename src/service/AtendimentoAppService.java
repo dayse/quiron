@@ -30,6 +30,7 @@ import modelo.Atendimento;
 import modelo.Avaliacao;
 import modelo.ConjuntoAvaliacao;
 import modelo.HistoricoAtendimentoRelatorio;
+import modelo.Indicacao;
 import modelo.Paciente;
 import modelo.Usuario;
 import DAO.AtendimentoDAO;
@@ -253,30 +254,64 @@ public Plot geraGraficoemBarraParaAvaliacaoDeIndicacaoDeAtendimento
 	(List<ConjuntoAvaliacao> conjuntosDeAvaliacoes, Atendimento atendimento){
 
 		int num_parametros = atendimento.getAnamneses().size();
-		ArrayList<PlotData> listaDadosGrafico = new ArrayList<PlotData>();
-			Plot grafico = new Plot();
 
+		ArrayList<PlotData> listaDadosGrafico = new ArrayList<PlotData>();
+			Plot graficobarra = new Plot();
+			PlotData necessidadeDoPacienteData = new PlotData();
+			PlotData avaliacaoEspecialista = new PlotData();
 			ArrayList<Double> listParametros = new ArrayList<Double>();
 			ArrayList<Double> listNecessPac = new ArrayList<Double>();
-			//Preencher as listas
+			//ArrayList<Double> listMedia = new ArrayList<Double>();
+			
+		
+			
+			
+			
+			//Preencher as listas de parâmetros e necessidade
 			for (int i = 0; i < num_parametros; i++) {
-				Anamnese anamnese = atendimento.getAnamneses().get(i);
+					Anamnese anamnese = atendimento.getAnamneses().get(i);
 						listParametros.add((double)(i));
 						listNecessPac.add(anamnese.getValor());		
 			}
-
 				//Necessidade do Paciente
-				PlotData necessidadeDoPacienteData = dadosGraficoViewService.gerarPlotDataEmBarras(listParametros, listNecessPac);
-				//necessidadeDoPacienteData.setData(gerarValoresDeDataDeNecessidadeDoPacienteParaGrafico(atendimento));
+				necessidadeDoPacienteData = dadosGraficoViewService.gerarPlotDataEmBarras(listParametros, listNecessPac);
 				necessidadeDoPacienteData.setLabel("Necessidade do Paciente"); 
 				listaDadosGrafico.add(necessidadeDoPacienteData);
+				
+				//Avaliacao de especialista 	
 		
-			
-				grafico = dadosGraficoViewService.gerarPlotComLabels(listaDadosGrafico, "Parâmetro", "Necessidade do Paciente");
+	
+				for (ConjuntoAvaliacao conjuntoAvaliacao : conjuntosDeAvaliacoes) {
+				// ERRO : IndexOutOfBoundsException (Lançado para indicar que um índice de algum tipo (como a uma matriz, para uma cadeia, ou a um vector) está fora do intervalo)
+					ArrayList<Double> listMedia = new ArrayList<Double>();
+					for (int j = 0; j < num_parametros; j++) {
+						//conjunto.getAvaliacoes().size()	
+					Avaliacao avaliacao = conjuntoAvaliacao.getAvaliacoes().get(j);
+					//listMedia.add((double)(j));
+					listMedia.add(avaliacao.getMediaEspecialistas());
+				
+					 }
+					
+				avaliacaoEspecialista = dadosGraficoViewService.gerarPlotDataEmBarras(listParametros, listMedia);
+				avaliacaoEspecialista.setLabel(conjuntoAvaliacao.getIndicacao().toString());
+				listaDadosGrafico.add(avaliacaoEspecialista);	
+	
+				}
+				
+				graficobarra = dadosGraficoViewService.gerarPlotComLabels(listaDadosGrafico, "Parâmetro", "Necessidade do Paciente");
 
 				// PLOT
 			
-		return grafico;
+		return graficobarra;
+		
+		// Exibe necessidade em barras e avaliação em linhas
+		/*for(ConjuntoAvaliacao conjuntoAvaliacao : conjuntosDeAvaliacoes){
+			PlotData avaliacoes = new PlotData();
+			avaliacoes.setData(gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGrafico(conjuntoAvaliacao));
+			avaliacoes.setLabel(conjuntoAvaliacao.getIndicacao().toString());
+		
+			listaDadosGrafico.add(avaliacoes);
+		}*/
 	}
 	
 

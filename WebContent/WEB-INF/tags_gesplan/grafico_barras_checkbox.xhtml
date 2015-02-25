@@ -20,12 +20,12 @@
      -->
     <script language="javascript" type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/js/js_hacks.js"></script>
     
-		    <div id="conjunto_infos_grafico_barras">
-				<table id="choices_barras" style="font-weight: bold"><tr ><td>Mostrar Gráfico Barras:</td></tr></table>
+		    <div id="conjunto_infos_grafico">
+				<table id="choices_barra" style="font-weight: bold"><tr ><td>Mostrar Gráfico Barras:</td></tr></table>
 		
-		   <div id='tooltip' style="float:left; border: 1px solid #fdd;  padding: 2px;  background-color: #fee;  opacity: 0.80;">
-		 
-		        <span id="plot_hover_y"></span> <span id="plot_hover_x"></span>
+		      <div id='tooltip' style="float:left; border: 1px solid #fdd;  padding: 2px;  background-color: #fee;  opacity: 0.80;">
+
+		        <span id="plot_hover_y_barras"></span> <span id="plot_hover_x_barras"></span>
 		      </div>
 		      <div id="#{placeholder}" style="width:#{width}px;height:#{height}px;border: 1px dashed gainsboro;"></div>
 		
@@ -62,7 +62,7 @@
 
 			 	console.log('2.1');
 				// insert checkboxes 
-				var choiceContainer = $j("#choices_barras");
+				var choiceContainer = $j("#choices_barra");
 			 	console.log('3');
 
 			    $j.each(datasets, function(key, val) {
@@ -104,10 +104,10 @@
 				    if (item) {
 				      var x = item.datapoint[0].toFixed(2),
 				        y = item.datapoint[1].toFixed(2);
-				      var label_x = plot.getOptions().series.spider.legs.data[parseInt(x)].label;
+				      var label_x = plot.getOptions().series.bars.legs.data[parseInt(x)].label;
 
-				      $j("#plot_hover_x").text(y);
-				      $j("#plot_hover_y").text(label_x);
+				      $j("#plot_hover_x_barras").text(y);
+				      $j("#plot_hover_y_barras").text(label_x);
 				    }
 				});
 
