@@ -213,16 +213,15 @@ public class AtendimentoAppService {
 		spiderPlot.setOptions(plotOptions);
 		return spiderPlot;
 	}
+	 // Padrão para gráficos de linha o que seria algo genérico para linhas.
 	/*Plot é o gráfico todo já PlotData é a função do gráfico.
 	 * gerarValoresDeDataDeNecessidadeDoPacienteParaGrafico - Pega toda necessidade do paciente definida no atendimento.
-	 * necessidadeDoPaciente.setLabel("Necessidade do Paciente"); - Cria o checkbox com todos medicamentos.
-	 * plotDatas.add(necessidadeDoPaciente); - Adiciona necessidades do paciente no array.
+	 * necessidadeDoPaciente.setLabel("Necessidade do Paciente"); - Cria label da legenda.
+	 * plotDatas.add(necessidadeDoPaciente); - Pega necessidades do paciente(que é um plot data) e adiciona ao array de plotdata que chama-se PlotDatas
 	 * avaliacoes.setData(gerarValoresDeDataDeAvaliacaoDeIndicacaoParaGrafico(conjunto)); - Pega conjunto de avaliações.
-	 * avaliacoes.setLabel(conjunto.getIndicacao().toString());- Ainda vou entender o que essa parte traz para o sistema.
-	 * plotDatas.add(avaliacoes); - Manda para o mesmo array, assim ele definiu x e y (abcissas). ??? não entendi em plot espera-se 2 array.
-	 * Plot grafico = Plot.generatePlot(plotDatas, "Parâmetros", "Avaliação"); ??? 
-	 * Padrão para gráficos de linha seria algo genérico para linhas, não entendi como ele aceitou apenas um array.
-	
+	 * avaliacoes.setLabel(conjunto.getIndicacao().toString());- Traz os labels dos medicamentos e miligramas para legenda e para os rotúlos dos checkboxes.
+	 * plotDatas.add(avaliacoes); - Manda o plotData avaliacoes e manda para o mesmo array de plotdata que chama-se PlotDatas. Assim ele definiu os valores x e y (abcissas).
+	 * Plot grafico = Plot.generatePlot(plotDatas, "Parâmetros", "Avaliação"); - Enviando o array de plotdata que chama-se PlotDatas para o PLOT. Para construção final do gráfico.
 	 */
 	
 	/*public Plot geraGraficoDeLinhaParaAvaliacaoDeIndicacaoDeAtendimento(
@@ -298,7 +297,7 @@ public Plot geraGraficoemBarraParaAvaliacaoDeIndicacaoDeAtendimento
 	
 				}
 				
-				graficobarra = dadosGraficoViewService.gerarPlotComLabels(listaDadosGrafico, "Parâmetro", "Necessidade do Paciente");
+				graficobarra = dadosGraficoViewService.gerarPlotComLabels(listaDadosGrafico, "Parametro", "Necessidade do Paciente");
 
 				// PLOT
 			
