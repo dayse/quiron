@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioListagemAnaliseMaquina" language="groovy" pageWidth="842" pageHeight="1190" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isSummaryWithPageHeaderAndFooter="true">
 	<property name="ireport.zoom" value="0.75"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="64"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<style name="Zebra">
 		<conditionalStyle>
@@ -384,16 +384,9 @@
 				<imageExpression class="java.lang.String"><![CDATA[$P{LOGO_INT}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="289" y="18" width="296" height="19"/>
+				<reportElement x="265" y="39" width="341" height="26"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Quiron]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="265" y="53" width="341" height="26"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true" isItalic="true" isUnderline="false"/>
+					<font fontName="Arial" size="14" isBold="true" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Histórico de Atendimentos do Paciente]]></text>
 			</staticText>

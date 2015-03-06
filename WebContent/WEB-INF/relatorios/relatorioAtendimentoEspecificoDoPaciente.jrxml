@@ -45,16 +45,9 @@
 				<imageExpression class="java.lang.String"><![CDATA[$P{LOGO_INT}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="261" y="2" width="296" height="19"/>
+				<reportElement x="255" y="21" width="341" height="26"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Quiron]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="244" y="31" width="341" height="26"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true" isItalic="true" isUnderline="false"/>
+					<font fontName="Arial" size="14" isBold="true" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Atendimento do Paciente]]></text>
 			</staticText>
