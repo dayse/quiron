@@ -168,7 +168,7 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 			av7.setValor(0.8);
 			avsParaIncluir.add(av7);			
 		AvalIndicacaoEspec av8 = criarAvalIndicacaoDeEspec(espec1, amox500, alergia); 
-			av8.setValor(0.0);
+			av8.setValor(0.3);
 			avsParaIncluir.add(av8);	
 				
 		// Bactrim
@@ -220,7 +220,7 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 			av23.setValor(0.5);
 			avsParaIncluir.add(av23);	
 		AvalIndicacaoEspec av24 = criarAvalIndicacaoDeEspec(espec1, amox1, alergia); 
-			av24.setValor(0.0);
+			av24.setValor(0.3);
 			avsParaIncluir.add(av24);			
 		
 		// Levofloxacina
@@ -300,7 +300,7 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 			av7b.setValor(0.95);
 			avsParaIncluir.add(av7b);
 		AvalIndicacaoEspec av8b = criarAvalIndicacaoDeEspec(espec2, amox500, alergia); 
-			av8b.setValor(0.0);
+			av8b.setValor(0.2);
 			avsParaIncluir.add(av8b);			
 		
 		// Bactrim
@@ -352,7 +352,7 @@ public class CargaAvalIndicacaoEspec extends CargaBase{
 			av23b.setValor(0.8);
 			avsParaIncluir.add(av23b);
 		AvalIndicacaoEspec av24b = criarAvalIndicacaoDeEspec(espec2, amox1, alergia); 
-			av24b.setValor(0.0);
+			av24b.setValor(0.8);
 			avsParaIncluir.add(av24b);			
 		
 		// Levofloxacina
