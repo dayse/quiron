@@ -116,7 +116,7 @@ public class CargaParametroIntermediario extends CargaBase {
 		Parametro morganella = new Parametro();
 		Parametro staphylococcusAur = new Parametro();
 		Parametro serratia = new Parametro();		
-		
+		Parametro imunossupressão = new Parametro();
 		klebsiella.setCodParametro("P009");
 		klebsiella.setNome("Klebsiella pneumoniae");
 		klebsiella.setDescricao("Ocorrência de etiologia do tipo Klebsiella Pneumoniae");
@@ -223,8 +223,14 @@ public class CargaParametroIntermediario extends CargaBase {
 		serratia.setNome("Serratia Marcescens");
 		serratia.setDescricao("Ocorrência de etiologia do tipo Serratia Marcescens.");
 		serratia.setPeso(1.0);
-			parametros.add(serratia);	
+			parametros.add(serratia);
 			
+			imunossupressão.setCodParametro("P027");
+			imunossupressão.setNome("Imunossupressão");
+			imunossupressão.setDescricao("Ocorrência de uma imunossupressão.");
+			imunossupressão.setPeso(1.0);	
+				parametros.add(imunossupressão);	
+				
 		for(Parametro parametro : parametros){
 			parametroService.inclui(parametro);
 		}			

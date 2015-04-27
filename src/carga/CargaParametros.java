@@ -105,7 +105,6 @@ public class CargaParametros extends CargaBase {
 		Parametro diabetes = new Parametro();
 		Parametro efeitosColaterais = new Parametro();
 		Parametro alergia = new Parametro();
-		
 		Parametro enterococos = new Parametro();
 		Parametro escherichia = new Parametro();
 		Parametro candida = new Parametro();
@@ -155,7 +154,10 @@ public class CargaParametros extends CargaBase {
 		alergia.setDescricao("Ocorrência de uma alergia genérica.");
 		alergia.setPeso(10.0);
 			parametros.add(alergia);
+			
 	
+			
+			
 		for(Parametro parametro : parametros){
 			parametroService.inclui(parametro);
 		}
@@ -193,6 +195,8 @@ public class CargaParametros extends CargaBase {
 		Parametro morganella = new Parametro();
 		Parametro staphylococcusAur = new Parametro();
 		Parametro serratia = new Parametro();		
+		Parametro imunossupressão = new Parametro();
+		
 		
 		klebsiella.setCodParametro("P009");
 		klebsiella.setNome("Klebsiella pneumoniae");
@@ -300,7 +304,13 @@ public class CargaParametros extends CargaBase {
 		serratia.setNome("Serratia Marcescens");
 		serratia.setDescricao("Ocorrência de etiologia do tipo Serratia Marcescens.");
 		serratia.setPeso(1.0);
-			parametros.add(serratia);	
+			parametros.add(serratia);
+			
+		imunossupressão.setCodParametro("P027");
+		imunossupressão.setNome("Imunossupressão");
+		imunossupressão.setDescricao("Ocorrência de uma imunossupressão.");
+		imunossupressão.setPeso(1.0);	
+			parametros.add(imunossupressão);
 			
 		for(Parametro parametro : parametros){
 			parametroService.inclui(parametro);
