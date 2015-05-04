@@ -1,6 +1,6 @@
 /* - - - Custom Theme - - - */ /* ----- Logo ----- */
 h1 a {
-	background-image: url('../imagens/logo_quiron.PNG');
+	background-image: url('../imagens/logo_quiron.png');
 	min-height: 0;
 	height: 79px;
 }
