@@ -78,6 +78,7 @@ h1 a{
 	height:40px;
 	display:block;
 	background:url('../imagens/logo_quiron.png') no-repeat left top;
+	background-size: 100%;
 	overflow:hidden;
 }
 
