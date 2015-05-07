@@ -90,10 +90,10 @@
 				</h:dataTable>
 			</rich:simpleTogglePanel>
 			<br />
-
+	<div style="height: 100%; width: 100%; overflow: auto">
 			<rich:dataTable id="lista" align="center"
 				value="#{atendimentoActions.listaConjuntoAvaliacao}" var="conjuntoAvaliacao"
-				width="470px" rowClasses="even-row, odd-row">
+				width="100%" rowClasses="even-row, odd-row">
 				<f:facet name="header">
 					<rich:columnGroup>
 						<rich:column colspan="#{atendimentoActions.numParametros + 4}">
@@ -218,7 +218,7 @@
 				</rich:columnGroup>
 				
 			</rich:dataTable>
-				
+	</div>			
 			<br />
 			<rich:simpleTogglePanel opened="false">
 				<f:facet name="header">
