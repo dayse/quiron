@@ -90,7 +90,13 @@
 				</h:dataTable>
 			</rich:simpleTogglePanel>
 			<br />
-	<div style="height: 100%; width: 100%; overflow: auto">
+			
+			
+		<rich:simpleTogglePanel>
+		<f:facet name="header">
+					<h:outputText value="#{prompt.avaliacao_Detalhada}" />
+				</f:facet>
+				
 			<rich:dataTable id="lista" align="center"
 				value="#{atendimentoActions.listaConjuntoAvaliacao}" var="conjuntoAvaliacao"
 				width="100%" rowClasses="even-row, odd-row">
@@ -218,7 +224,7 @@
 				</rich:columnGroup>
 				
 			</rich:dataTable>
-	</div>			
+		</rich:simpleTogglePanel>		
 			<br />
 			<rich:simpleTogglePanel opened="false">
 				<f:facet name="header">
