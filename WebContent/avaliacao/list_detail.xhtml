@@ -92,12 +92,8 @@
 			<br />
 			
 			
-		<rich:simpleTogglePanel>
-		<f:facet name="header">
-					<h:outputText value="#{prompt.avaliacao_Detalhada}" />
-				</f:facet>
-				
-			<rich:dataTable id="lista" align="center"
+		<rich:simpleTogglePanel label="Avaliação das Indicações de Antibioticos                                                             ▼ Alerta: Tabela com barra de rolagem abaixo ">
+					<rich:dataTable id="lista" align="center"
 				value="#{atendimentoActions.listaConjuntoAvaliacao}" var="conjuntoAvaliacao"
 				width="100%" rowClasses="even-row, odd-row">
 				<f:facet name="header">
