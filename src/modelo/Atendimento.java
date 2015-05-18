@@ -446,5 +446,14 @@ public class Atendimento implements Serializable, Comparable<Atendimento> {
 		}
 			
 	}	
+	@Transient
+	public boolean isStatusEncerradoEx(){
+		if(this.status.equals("Encerrado")){
+			return false;
+		}else{
+			return true;
+		}
+			
+	}	
 	
 }

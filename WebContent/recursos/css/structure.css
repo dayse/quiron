@@ -207,6 +207,78 @@ h2{
 	float: center;
 	
 }
+.encerrar{
+	background-image: url('../imagens/encerrar_desab.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	align:center;
+}
+.encerrar_cinza{
+	background-image: url('../imagens/encerrar.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	
+}
+.avaliar{
+	background-image: url('../imagens/avaliar.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	align:center;
+}
+.avaliar_cinza{
+	background-image: url('../imagens/avaliar_cinza.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	
+}
+.avaliar_indicacao{
+	background-image: url('../imagens/avaliar_indicacao.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	align:center;
+}
+.avaliar_indicacao_cinza{
+	background-image: url('../imagens/avaliar_indicacao_cinza.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	
+}
+.excluir{
+	background-image: url('../imagens/excluir.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	align:center;
+}
+.excluir_cinza{
+	background-image: url('../imagens/excluir_cinza.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	
+}
 /*
 	@author bruno.oliveira
 	Esta regra aplica o negrito nos subtópicos contidos nos helps.
