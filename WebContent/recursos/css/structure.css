@@ -166,7 +166,47 @@ h2{
 	float: right;
 	margin-right: 5px;
 }
-
+/*
+	@author patricia.lima
+	A regra a seguir trouxe a configuração de imagem (icone) dentro dos commandButton para respectivas rich DataTable para cada cadastro. 
+	A chamada é feita por CSS, como é recomendado pelas boas práticas em CSS.
+*/
+.visualizar_historico{
+	background-image: url('../imagens/historico.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	
+}
+.visualizar_historico_cinza{
+	background-image: url('../imagens/historico_cinza.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	
+}
+.editar{
+	background-image: url('../imagens/editSmall.gif');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	align:center;
+}
+.editar_cinza{
+	background-image: url('../imagens/editSmall_cinza.gif');
+	background-repeat: no-repeat;
+	display: block;
+	width:30px; 
+	height:30px;
+	float: center;
+	
+}
 /*
 	@author bruno.oliveira
 	Esta regra aplica o negrito nos subtópicos contidos nos helps.

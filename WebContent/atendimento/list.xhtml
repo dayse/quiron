@@ -162,25 +162,29 @@
 					</h:commandButton>
 				</rich:column>
 				<rich:column colspan="2">
-					<h:commandButton value="#{prompt.avaliar}"		
+					<h:commandButton value="#{prompt.avaliar}"	align="center"	
 						action="#{atendimentoActions.calculaAvaliacao}" disabled="#{atendimento.statusEncerrado}" >		
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
 					</h:commandButton>
 				</rich:column>
 				<rich:column >
-				<h:commandButton value="#{prompt.avaliacao_Historico}"		
-						action="#{atendimentoActions.visualizarHistorico}" disabled="#{!atendimento.statusEncerrado}">		
-						<f:setPropertyActionListener value="#{atendimento}"		
-							target="#{atendimentoActions.atendimentoCorrente}" />		
-					</h:commandButton>	
-				</rich:column>
-				<rich:column >
-					<h:commandButton value="#{prompt.editar}"		
-						action="#{atendimentoActions.preparaAlteracao}" disabled="#{atendimento.statusEncerrado}" >		
+				<center>
+				<h:commandButton styleClass="#{atendimento.statusEncerrado ? 'editar_cinza' : 'editar'}"
+						action="#{atendimentoActions.preparaAlteracao}" disabled="#{atendimento.statusEncerrado}" title="Editar" >		
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
 					</h:commandButton>
+					</center>
+				</rich:column>
+				<rich:column >
+				<center>
+				<h:commandButton  styleClass="#{atendimento.statusEncerrado ? 'visualizar_historico_cinza' : 'visualizar_historico'}"		
+						action="#{atendimentoActions.visualizarHistorico}"  disabled="#{atendimento.statusEncerrado}" title="Visualização do Histórico">
+						<f:setPropertyActionListener value="#{atendimento}"		
+							target="#{atendimentoActions.atendimentoCorrente}" />		
+					</h:commandButton>
+					</center>
 				</rich:column>
 				<rich:column >
 					<a4j:commandButton value="#{prompt.excluir}"		
