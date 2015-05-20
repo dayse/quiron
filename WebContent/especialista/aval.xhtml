@@ -65,25 +65,32 @@
 							<h:outputText value="#{prompt.parametro}" />
 						</rich:column>
 						
-						<rich:column breakBefore="true" styleClass="space-table" />
 						
+						<rich:column breakBefore="true" styleClass="space-table" />
+						<rich:column>
+							<h:outputText value="Editar" />
+						</rich:column>
 						<c:forEach items="#{especialistaActions.listaDeParametros}" var="parametro">
 							<rich:column>
 								<h:outputText value="#{parametro.nome}" />
 							</rich:column>
 						</c:forEach>
 						
-						<rich:column>
-							<h:outputText value="Editar" />
-						</rich:column>
+						
 					</rich:columnGroup>
 				</f:facet>
-
+					
 				<rich:columnGroup>
 					<rich:column styleClass="colunaCampoNumericoCentralizado space-table">
 						<h:outputText value="#{conjuntos.indicacao.nome}" />
 					</rich:column>
 					
+					<rich:column styleClass="colunaCampoNumericoCentralizado">
+						<h:commandButton action="#{especialistaActions.preparaAlteracaoAval}" styleClass="editar" title="Editar">
+							<f:setPropertyActionListener value="#{conjuntos.indicacao}"
+								target="#{especialistaActions.indicacaoCorrente}" />
+						</h:commandButton>
+					</rich:column>
 					<c:forEach var="i" begin="0" end="#{especialistaActions.numParametros - 1}">
 						<rich:column styleClass="colunaCampoNumericoCentralizado">
 					         <h:outputText value="#{conjuntos.avaliacao[i].valor}">
@@ -92,12 +99,7 @@
 						</rich:column>
 					</c:forEach>
 					
-					<rich:column styleClass="colunaCampoNumericoCentralizado">
-						<h:commandButton action="#{especialistaActions.preparaAlteracaoAval}" value="#{prompt.editar}">
-							<f:setPropertyActionListener value="#{conjuntos.indicacao}"
-								target="#{especialistaActions.indicacaoCorrente}" />
-						</h:commandButton>
-					</rich:column>
+					
 				</rich:columnGroup>
 			</rich:dataTable>
 		</rich:simpleTogglePanel>
