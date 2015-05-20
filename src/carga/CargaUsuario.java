@@ -109,7 +109,7 @@ public class CargaUsuario extends CargaBase{
 	/**
 	 * 
 	 * Método responsável por preparar e inserir os valores padrões dos
-	 * usuários no banco.
+	 * usuários no banco.Inclui tipo usuário e usuário
 	 * 
 	 * @throws AplicacaoException
 	 *             Retorna uma AplicacaoException caso ocorra uma exceção deste
