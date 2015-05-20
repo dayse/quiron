@@ -129,21 +129,17 @@ public class CargaUsuario extends CargaBase{
 			tipoUsuarioAdmin.setDescricao("O usuário ADMINISTRADOR pode realizar qualquer operação no Sistema.");
 			
 			tipoUsuarioAluno.setTipoUsuario(TipoUsuario.ALUNO);
-			tipoUsuarioAluno.setDescricao("O usuário ALUNO pode realizar apenas consultas e impressão de relatórios nas telas " +
-					                        "relativas ao Horizonte de Planejamento (HP,Periodo PMP, Periodo PAP) e não acessa " +
-					                        "Administração e Eng. Conhecimento");
+			tipoUsuarioAluno.setDescricao("O usuário ALUNO pode realizar as mesmas funções que os clínicos");
 			
 			tipoUsuarioClinico.setTipoUsuario(TipoUsuario.CLINICO);
-			tipoUsuarioClinico.setDescricao("O usuário Clínico pode realizar qualquer operação no Sistema, porém não possui acesso" +
-					"as áreas de Administração e Engenharia de Conhecimento.");
+			tipoUsuarioClinico.setDescricao("O usuário CLINICO não possui acesso aos módulos" +
+					"de Administração, Configuração e Especialistas.");
 			
 			tipoUsuarioTecnico.setTipoUsuario(TipoUsuario.TECNICO);
-			tipoUsuarioTecnico.setDescricao("O usário Técnico pode realizar qualquer operação no Sistema, porém não possui acesso" + 
-					"as áreas de Administração e Engenharia de Conhecimento.");
+			tipoUsuarioTecnico.setDescricao("O usuário TECNICO apenas pode fazer um pré atendimento ou cadastro de pacientes");
 			
 			tipoUsuarioEngenheiro.setTipoUsuario(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO);
-			tipoUsuarioEngenheiro.setDescricao("O usuário ENGENHEIRO pode realizar a parte de Logica Fuzzy (Engenharia de Conhecimento)" +
-					"no Sistema. Porém, não possui acesso a área Administrativa.");
+			tipoUsuarioEngenheiro.setDescricao("O usuário ENGENHEIRO DE CONHECIMENTO não possui acesso a área Administrativa.");
 			
 			tipoUsuarioService.inclui(tipoUsuarioAdmin);
 			tipoUsuarioService.inclui(tipoUsuarioAluno);
