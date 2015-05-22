@@ -93,12 +93,12 @@ public class CargaEspecialista extends CargaBase{
 	public void incluirEspecialistas() throws AplicacaoException {
 
 		Especialista espec1 = new Especialista();
-		espec1.setNome("Especialista 1");
+		espec1.setNome("Carlos Vasconcelos");
 		espec1.setCodEspecialista("espec1");
 		espec1.setPesoAvaliador(1);
 		
 		Especialista espec2 = new Especialista();
-		espec2.setNome("Especialista 2");
+		espec2.setNome("Pedro Peloso");
 		espec2.setCodEspecialista("espec2");
 		espec2.setPesoAvaliador(2);
 
