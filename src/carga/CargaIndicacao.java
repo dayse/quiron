@@ -95,7 +95,7 @@ public class CargaIndicacao extends CargaBase{
 
 	/**
 	 * Metodo responsável por preparar e inserir os valores padrões de
-	 * indicações no banco de dados
+	 * indicações no banco de dados para o exemplo 1 relativo as planilhas de dados
 	 * 
 	 * @author felipe.pontes
 	 * @throws AplicacaoException
