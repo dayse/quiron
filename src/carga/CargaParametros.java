@@ -87,7 +87,7 @@ public class CargaParametros extends CargaBase {
 	/**
 	 * 
 	 * Método responsável por preparar e inserir os valores padrões dos
-	 * parâmetros no banco.
+	 * parâmetros no banco relativos ao exemplo 1 que possui as planilhas.
 	 * 
 	 * @throws AplicacaoException
 	 *             Retorna uma AplicacaoException caso ocorra uma exceção deste
