@@ -304,6 +304,7 @@ public class CargaAtendimentoIntermediario extends CargaBase {
 		Parametro morganella = parametroService.recuperaParametroPorCodigo("P024");
 		Parametro staphycoccusAur = parametroService.recuperaParametroPorCodigo("P025");
 		Parametro serratia = parametroService.recuperaParametroPorCodigo("P026");
+		Parametro imunossupressao = parametroService.recuperaParametroPorCodigo("P027");
 		
 		/* Inserido a anamnese dos parametros antigos nos atendimentos novos. */
 		Anamnese atendimentoPc1_febre = new Anamnese(atendimentoPaciente1pp, febre, 0.7);
@@ -477,6 +478,7 @@ public class CargaAtendimentoIntermediario extends CargaBase {
 			anamneses.add(atendimentoPc10_alergia);
 		
 		/* Complemento dos atendimentos de exemplo dos slides iniciais do Pedro Peloso */
+		/* colocando parametros novos nos atendimentos antigos*/	
 		Anamnese atendimentoPc1_klebsiella = new Anamnese(atendimentoPaciente1, klebsiella, 0.0);
 			anamneses.add(atendimentoPc1_klebsiella);
 		Anamnese atendimentoPc1_proteus = new Anamnese(atendimentoPaciente1, proteus, 0.0);
@@ -514,7 +516,10 @@ public class CargaAtendimentoIntermediario extends CargaBase {
 			anamneses.add(atendimentoPc1_staphycoccusAur);	
 		Anamnese atendimentoPc1_serratia = new Anamnese(atendimentoPaciente1, serratia, 0.0);
 			anamneses.add(atendimentoPc1_serratia);
-		
+		Anamnese atendimentoPc1_imunossupressao = new Anamnese(atendimentoPaciente1, imunossupressao, 0.0);
+			anamneses.add(atendimentoPc1_imunossupressao);
+			
+		  
 		Anamnese atendimentoPc2_klebsiella = new Anamnese(atendimentoPaciente2, klebsiella, 0.0);
 			anamneses.add(atendimentoPc2_klebsiella);
 		Anamnese atendimentoPc2_proteus = new Anamnese(atendimentoPaciente2, proteus, 0.0);
@@ -552,7 +557,9 @@ public class CargaAtendimentoIntermediario extends CargaBase {
 			anamneses.add(atendimentoPc2_staphycoccusAur);	
 		Anamnese atendimentoPc2_serratia = new Anamnese(atendimentoPaciente2, serratia, 0.0);
 			anamneses.add(atendimentoPc2_serratia);			
-		
+		Anamnese atendimentoPc2_imunossupressao = new Anamnese(atendimentoPaciente2, imunossupressao, 0.0);
+			anamneses.add(atendimentoPc2_imunossupressao);
+
 		/* Novos atendimentos fornecidos pelo Pedro Peloso */	
 		/* Novo paciente 1 */
 		Anamnese atendimentoPc1a_klebsiella = new Anamnese(atendimentoPaciente1pp, klebsiella, 0.0);
