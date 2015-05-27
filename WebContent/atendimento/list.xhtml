@@ -155,12 +155,12 @@
 					<h:outputText value="#{atendimento.status}" />
 				</rich:column>
 				<rich:column >
-					
+					<center>
 				<h:commandButton styleClass="#{atendimento.statusEncerrado ? 'encerrar' : 'encerrar_cinza'}"
 						action="#{atendimentoActions.encerrar}" disabled="#{atendimento.statusEncerrado}" title="Encerrar Atendimento" >		
 						<f:setPropertyActionListener value="#{atendimento}"	target="#{atendimentoActions.atendimentoCorrente}" />		
 					</h:commandButton>
-					
+					</center>
 				</rich:column>
 				<rich:column colspan="2">
 							<center>
@@ -189,11 +189,13 @@
 					</center>
 				</rich:column>
 				<rich:column >
-					<a4j:commandButton styleClass="excluir" title="Exclusão"		
+				<center>
+					<a4j:commandButton styleClass="excluir" title="Exclusão" 	
 						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})">		
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
 					</a4j:commandButton>
+					</center>
 				</rich:column>
 									
 
