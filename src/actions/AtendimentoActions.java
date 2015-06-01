@@ -68,7 +68,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	public final String PAGINA_AVALIACAO_DETALHADA_DISTANCIA_DESCARTES = "listAvaliacaoDetailDistanciaDescartes";
 	public final String PAGINA_AVALIACAO_DETALHADA_GRAU_DE_INCLUSAO = "listAvaliacaoDetailGrauInclusao";
 	public final String PAGINA_VISUALIZACAO_HISTORICO_AVALIACAO = "showHistorico";
-
+	public final String PAGINA_LIST_PACIENTE = "listPaciente";
 	// Services
 	private static AtendimentoAppService atendimentoService;
 	private static AnamneseAppService anamneseService;
@@ -598,6 +598,12 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 								recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
 											pacienteCorrente.getCodPaciente())
 											);
+		
+		if (atendimentoCorrente.getMedico() == null){
+			error("usuario.NAO_ENCONTRADO_CLINICO");
+			return PAGINA_LIST_PACIENTE;
+		}
+		
 		return PAGINA_NEW;
 	}
 
