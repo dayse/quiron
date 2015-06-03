@@ -574,10 +574,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * @return Retorna uma String que corresponde ao nome do mapeamento da tela
 	 *         de inclusão redirecionado o usuário para a mesma.
 	 * 
-	 * @author bruno.oliveira
+	 * @author bruno.oliveira 
+	 * @throws AplicacaoException 
+	 *  
+	 * 
 	 * 
 	 */
-	public String preparaInclusao() {
+	public String preparaInclusao() throws AplicacaoException{
 		comboMedicos = null;
 		comboTecnicos = null;
 		comboStatus = null;
@@ -585,7 +588,18 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		atendimentoCorrente = new Atendimento();
 		anamnesesCorrente = new Anamnese();
 		listaDeAnamneses = null;
+		
+		List<Usuario> listaDeMedicos = usuarioService.recuperaListaDeUsuarioPorTipo(tipoUsuarioService.recuperaTipoUsuarioClinico());
+	
+			
+			if (listaDeMedicos.isEmpty()){
+					error("usuario.MEDICOS_INEXISTENTES");
+					return PAGINA_LIST_PACIENTE;
+	
+			}
 
+		
+		
 		pacienteCorrente = 	(Paciente)
 							((PacienteActions) getManagedBean("pacienteActions"))
 							.getListaDePacientes().getRowData();
@@ -598,11 +612,6 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 								recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
 											pacienteCorrente.getCodPaciente())
 											);
-		
-		if (atendimentoCorrente.getMedico() == null){
-			error("usuario.NAO_ENCONTRADO_CLINICO");
-			return PAGINA_LIST_PACIENTE;
-		}
 		
 		return PAGINA_NEW;
 	}
