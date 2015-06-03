@@ -30,7 +30,7 @@ import com.google.gson.Gson;
  * 
  * Essa Carga:
  * Classe responsável pela inclusão de Tipos de Usuário e de um Usuário do tipo Administrador.
- * É usada na carga do sistema e deve ser a primeira a ser executada. Ela simular a implantação
+ * É usada na carga do sistema e deve ser a primeira a ser executada. Será usada na implantação
  * do sistema dentro de uma empresa
  * 
  * @author bruno.oliveira
@@ -128,12 +128,33 @@ public class CargaImplantacao extends CargaBase{
 	 * 
 	 */
 	public void incluirTiposDeUsuario() throws AplicacaoException {
-			TipoUsuario tipoUsuarioAdmin = new TipoUsuario();
+		TipoUsuario tipoUsuarioAdmin = new TipoUsuario();
+		TipoUsuario tipoUsuarioAluno = new TipoUsuario();
+		TipoUsuario tipoUsuarioClinico = new TipoUsuario();
+		TipoUsuario tipoUsuarioTecnico = new TipoUsuario();
+		TipoUsuario tipoUsuarioEngenheiro = new TipoUsuario();
 		
-			tipoUsuarioAdmin.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
-			tipoUsuarioAdmin.setDescricao("O usuário ADMINISTRADOR pode realizar qualquer operação no Sistema.");
-			
-			tipoUsuarioService.inclui(tipoUsuarioAdmin);
+		tipoUsuarioAdmin.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+		tipoUsuarioAdmin.setDescricao("O usuário ADMINISTRADOR pode realizar qualquer operação no Sistema.");
+		
+		tipoUsuarioAluno.setTipoUsuario(TipoUsuario.ALUNO);
+		tipoUsuarioAluno.setDescricao("O usuário ALUNO pode realizar as mesmas funções que os clínicos");
+		
+		tipoUsuarioClinico.setTipoUsuario(TipoUsuario.CLINICO);
+		tipoUsuarioClinico.setDescricao("O usuário CLINICO não possui acesso aos módulos" +
+				"de Administração, Configuração e Especialistas.");
+		
+		tipoUsuarioTecnico.setTipoUsuario(TipoUsuario.TECNICO);
+		tipoUsuarioTecnico.setDescricao("O usuário TECNICO apenas pode fazer um pré atendimento ou cadastro de pacientes");
+		
+		tipoUsuarioEngenheiro.setTipoUsuario(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO);
+		tipoUsuarioEngenheiro.setDescricao("O usuário ENGENHEIRO DE CONHECIMENTO não possui acesso a área Administrativa.");
+		
+		tipoUsuarioService.inclui(tipoUsuarioAdmin);
+		tipoUsuarioService.inclui(tipoUsuarioAluno);
+		tipoUsuarioService.inclui(tipoUsuarioClinico);
+		tipoUsuarioService.inclui(tipoUsuarioTecnico);
+		tipoUsuarioService.inclui(tipoUsuarioEngenheiro);
 	
 			List<Usuario> usuarios = recuperaUsuariosDeArquivoConfigJson();
 			
