@@ -7,9 +7,12 @@ import java.util.List;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import modelo.Especialista;
 import modelo.Indicacao;
 import modelo.Parametro;
+import modelo.Usuario;
 import service.AvalIndicacaoEspecAppService;
+import service.EspecialistaAppService;
 import service.IndicacaoAppService;
 import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
@@ -33,7 +36,7 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	private static IndicacaoAppService indicacaoService;
 	private static AvalIndicacaoEspecAppService avalIndicacaoEspecService;
 	private static ParametroAppService parametroService;
-
+	private static EspecialistaAppService especialistaService;
 	// Páginas
 	private final String PAGINA_EDIT = "editIndicacao";
 	private final String PAGINA_LIST = "listIndicacao";
@@ -72,8 +75,8 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 		try{
 			indicacaoService = FabricaDeAppService.getAppService(IndicacaoAppService.class);
 			avalIndicacaoEspecService = FabricaDeAppService.getAppService(AvalIndicacaoEspecAppService.class);
-			parametroService = FabricaDeAppService
-					.getAppService(ParametroAppService.class);
+			parametroService = FabricaDeAppService.getAppService(ParametroAppService.class);
+			especialistaService = FabricaDeAppService.getAppService(EspecialistaAppService.class);
 			
 		}catch(Exception e){
 			throw e;
@@ -272,6 +275,15 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	 */
 	public String mostraMediaEspecialistas(){
 
+				List<Especialista> listaEspecialista = especialistaService.recuperaListaEspecialista();
+				List<Indicacao> listaIndicacao = indicacaoService.recuperaListaIndicacao();
+		
+		if (listaEspecialista.isEmpty() || listaIndicacao.isEmpty() ){
+				error("indicacao.INDICACAO_INEXISTENTES");
+				return PAGINA_LIST;
+
+		}
+		
 		listaDeMediasDeEspecialistasdeIndicacoes= new ListDataModel(
 								avalIndicacaoEspecService.recuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas());
 		
