@@ -167,10 +167,8 @@
 									
 			</rich:simpleTogglePanel>			
 			
-			<rich:simpleTogglePanel opened="false">
-				<f:facet name="header">
-					<h:outputText value="#{prompt.atendimento_Historico}" />
-				</f:facet>
+			<rich:simpleTogglePanel label="#{prompt.atendimento_VisualizarHistorico}" opened="false">
+		
 				
 				<ui:repeat value="#{atendimentoActions.listaDeAtendimentos}" var="atendimento_anterior">
 					<rich:panel>
