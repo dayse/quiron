@@ -9,14 +9,20 @@
 	
 	<ui:define name="titulo">#{prompt.usuario}</ui:define>
 	<ui:define name="descricao">#{prompt.usuario_Cadastro}</ui:define>
-	<ui:define name="descricao_ajuda">
+		<ui:define name="descricao_ajuda">
 		#{help.usuario_Cadastro}
-		<br /><br />
-		<span class="negrito">#{prompt.excluir} -</span> #{help.usuario_Excluir}
-		<br /><br />
+		<br />
+		<br />
 		<span class="negrito">#{prompt.imprimir} -</span> #{help.usuario_Imprimir}
-		<br /><br />
-		<span class="negrito">#{help.observacao_AlertaPadrao} </span> #{help.observacao_AcessoOutrosHelp}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.areaDeBusca} -</span> #{help.usuario_Buscar}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.excluir} -</span> #{help.usuario_Excluir}
+		<br />
+		<br />
+		<span class="negrito">#{help.observacao_AlertaPadrao} </span> #{help.observacao_AcessoOutrosHelp}		
 	</ui:define>
 	<ui:define name="mensagemSistema" />
 

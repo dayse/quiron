@@ -10,6 +10,9 @@
 	<ui:define name="titulo">#{prompt.algoritmo}</ui:define>
 	<ui:define name="descricao">#{prompt.algoritmo_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
+	<br />
+	<br />
+		<span class="negrito">#{prompt.algoritmo_BotaoAtivar} -</span> #{help.configuracao_Ativar}
 	</ui:define>
 	<ui:define name="mensagemSistema" />
 
@@ -30,7 +33,7 @@
 						value="#{algoritmoActions.comboTiposDeAlgoritmos.listaSelecao}" />
 				</h:selectOneMenu>
 				
-				<h:commandButton value="#{prompt.algoritmo_ButaoAtivar}"
+				<h:commandButton value="#{prompt.algoritmo_BotaoAtivar}"
 					action="#{algoritmoActions.ativar}" />
 			</h:panelGrid>
 			<br />

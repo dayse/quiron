@@ -9,7 +9,20 @@
 
 	<ui:define name="titulo">#{prompt.parametro}</ui:define>
 	<ui:define name="descricao">#{prompt.parametro_Cadastro}</ui:define>
-	<ui:define name="descricao_ajuda">
+		<ui:define name="descricao_ajuda">
+		#{help.parametro_Cadastro}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.imprimir} -</span> #{help.parametro_Imprimir}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.areaDeBusca} -</span> #{help.parametro_Buscar}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.excluir} -</span> #{help.parametro_Excluir}
+		<br />
+		<br />
+		<span class="negrito">#{help.observacao_AlertaPadrao} </span> #{help.observacao_AcessoOutrosHelp}		
 	</ui:define>
 	<ui:define name="mensagemSistema" />
 

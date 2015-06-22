@@ -12,12 +12,18 @@
 	<ui:define name="descricao">#{prompt.indicacao_Cadastro}</ui:define>
 	<ui:define name="descricao_ajuda">
 		#{help.indicacao_Cadastro}
+	<br />
+		<br />
+		<span class="negrito">#{prompt.imprimir} -</span> #{help.indicacao_Imprimir}
+		<br />
+		<br />
+		<span class="negrito">#{prompt.areaDeBusca} -</span> #{help.indicacao_Buscar}
 		<br />
 		<br />
 		<span class="negrito">#{prompt.excluir} -</span> #{help.indicacao_Excluir}
 		<br />
 		<br />
-		<span class="negrito">#{help.observacao_AlertaPadrao} </span> #{help.observacao_AcessoOutrosHelp}
+		<span class="negrito">#{help.observacao_AlertaPadrao} </span> #{help.observacao_AcessoOutrosHelp}		
 	</ui:define>
 	<ui:define name="mensagemSistema" />
 
