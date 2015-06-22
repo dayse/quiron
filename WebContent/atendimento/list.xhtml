@@ -187,8 +187,8 @@
 				</rich:column>
 				<rich:column >
 				<center>
-				<h:commandButton  styleClass="#{atendimento.statusEncerradoEx ? 'visualizar_historico_cinza' : 'visualizar_historico'}"		
-						action="#{atendimentoActions.visualizarHistorico}"  disabled="#{atendimento.statusEncerradoEx}" title="Visualização do Histórico">
+				<h:commandButton  styleClass="visualizar_historico"		
+						action="#{atendimentoActions.visualizarHistorico}" title="Visualização do Histórico">
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
 					</h:commandButton>
@@ -196,7 +196,7 @@
 				</rich:column>
 				<rich:column >
 				<center>
-					<a4j:commandButton styleClass="excluir" title="Exclusão" 	
+					<a4j:commandButton styleClass="excluir" title="Exclusão" 
 						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})">		
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
