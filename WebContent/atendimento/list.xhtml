@@ -63,7 +63,7 @@
 				width="700px" reRender="#{atendimentoActions.buscaEfetuada}">
 				<f:facet name="header">
 					<rich:columnGroup>
-						<rich:column colspan="20">
+						<rich:column colspan="21">
 							<h:outputText value="#{prompt.atendimento}" />
 						</rich:column>
 						
@@ -112,6 +112,9 @@
 						
 						<rich:column >
 							<h:outputText title="#{tooltip.atendimento_Editar}" value="#{prompt.editar}" />
+						</rich:column>
+							<rich:column >
+							<h:outputText title="#{tooltip.atendimento_Imprimir}" value="#{prompt.atendimento_Imprimir}" />
 						</rich:column>
 						<rich:column >
 							<h:outputText title="#{tooltip.atendimento_Historico}" value="#{prompt.avaliacao_Historico}" />
@@ -180,6 +183,15 @@
 				<center>
 				<h:commandButton styleClass="#{atendimento.statusEncerrado ? 'editar_cinza' : 'editar'}"
 						action="#{atendimentoActions.preparaAlteracao}" disabled="#{atendimento.statusEncerrado}" title="Editar" >		
+						<f:setPropertyActionListener value="#{atendimento}"		
+							target="#{atendimentoActions.atendimentoCorrente}" />		
+					</h:commandButton>
+					</center>
+				</rich:column>
+				<rich:column >
+				<center>
+				<h:commandButton  styleClass="imprimir"		
+						action="#{atendimentoActions.imprimir}" title="Imprimir">
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
 					</h:commandButton>

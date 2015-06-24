@@ -270,8 +270,8 @@ h2{
 	align:center;
 	float: center;
 }
-.excluir_cinza{
-	background-image: url('../imagens/excluir_cinza.png');
+.imprimir{
+	background-image: url('../imagens/imprimir.png');
 	background-repeat: no-repeat;
 	display: block;
 	width:30px; 

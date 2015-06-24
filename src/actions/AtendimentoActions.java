@@ -379,10 +379,22 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaDePacientes = null;
 		return PAGINA_LIST;
 	}
-	
+	/**
+	 * 
+	 * Método usado para carregar as informações especifícas de um determinado
+	 * atendimento e anamnese na tela de detalhamento.
+	 * 
+	 * @return Retorna uma String que redireciona o usuário para a tela de
+	 *         detalhamento das informações do atendimento e de sua respectiva
+	 *         anamnese.
+	 * IGUAL AO MOSTRAR RETORNAR AQUI PARA FAZER CORREÇÕES
+	 * @author patricia.lima
+	 * 
+	 */
 	public String visualizarHistorico() {
 		try {
-			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+
+		comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
 					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
 							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
 		} catch (AplicacaoException e) {

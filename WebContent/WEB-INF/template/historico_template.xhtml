@@ -9,7 +9,12 @@
 		<ui:define name="submenu">
 			<rich:toolBar>
 	            
-	
+			<rich:dropDownMenu>
+					<f:facet name="label">
+						<h:commandLink value="#{prompt.atendimento_ImprimirHistorico}" action="#{atendimentoActions.imprimirHistorico}" styleClass="linkMenu" />
+					</f:facet>
+				</rich:dropDownMenu>	
+				
 	            <rich:dropDownMenu>
 					<f:facet name="label">
 						<h:commandLink value="#{prompt.voltar}" action="#{atendimentoActions.voltarHistoricoAvaliacao}" styleClass="linkMenu"/>
