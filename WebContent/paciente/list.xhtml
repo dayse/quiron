@@ -103,7 +103,11 @@
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Editar}" value="#{prompt.editar}" />
 						</rich:column>
-
+						
+						<!-- <rich:column>
+							<h:outputText title="#{tooltip.atendimento_Historico}" value="#{prompt.atendimento_ImprimirHistorico}" />
+						</rich:column>-->
+						
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Excluir}" value="#{prompt.excluir}" />
 						</rich:column>
@@ -154,7 +158,11 @@
 					<h:commandButton value="#{prompt.editar}"
 						action="#{pacienteActions.preparaAlteracao}" />
 				</rich:column>
-
+				<!-- <rich:column >
+				 <h:commandButton  styleClass="imprimir"		
+						action="#{pacienteActions.imprimirHistoricoAtendimento}" />
+								
+				</rich:column>-->
 				<rich:column>
 					<a4j:commandButton value="#{prompt.excluir}"
 						action="#{pacienteActions.preparaExclusao}"
