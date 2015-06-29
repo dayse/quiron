@@ -94,7 +94,11 @@
 							<h:outputText title="#{tooltip.paciente_Documento}"
 								value="#{prompt.paciente_Documento}" />
 						</rich:column>
-
+						
+						 <rich:column>
+							<h:outputText title="#{tooltip.atendimento_Historico}" value="#{prompt.atendimento_ImprimirHistorico}" />
+						</rich:column>
+						
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Atendimento}"
 								value="#{prompt.atendimento_Incluir}" />
@@ -104,9 +108,6 @@
 							<h:outputText title="#{tooltip.paciente_Editar}" value="#{prompt.editar}" />
 						</rich:column>
 						
-						<!-- <rich:column>
-							<h:outputText title="#{tooltip.atendimento_Historico}" value="#{prompt.atendimento_ImprimirHistorico}" />
-						</rich:column>-->
 						
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Excluir}" value="#{prompt.excluir}" />
@@ -149,6 +150,10 @@
 					<h:outputText value="#{paciente.documento}" />
 				</rich:column>
 
+				<rich:column >
+				 <h:commandButton  value="#{prompt.atendimento_ImprimirHistorico}" action="#{pacienteActions.visualizarHistorico}" />			
+				</rich:column>
+				
 				<rich:column>
 					<h:commandButton value="#{prompt.atendimento_Incluir}"
 						action="#{atendimentoActions.preparaInclusao}" />
@@ -158,11 +163,9 @@
 					<h:commandButton value="#{prompt.editar}"
 						action="#{pacienteActions.preparaAlteracao}" />
 				</rich:column>
-				<!-- <rich:column >
-				 <h:commandButton  styleClass="imprimir"		
-						action="#{pacienteActions.imprimirHistoricoAtendimento}" />
-								
-				</rich:column>-->
+				
+				 
+				
 				<rich:column>
 					<a4j:commandButton value="#{prompt.excluir}"
 						action="#{pacienteActions.preparaExclusao}"

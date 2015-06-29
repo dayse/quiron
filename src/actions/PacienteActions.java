@@ -14,8 +14,11 @@ import javax.faces.model.ListDataModel;
 import modelo.Atendimento;
 import modelo.Indicacao;
 import modelo.Paciente;
+import modelo.Usuario;
 import service.AtendimentoAppService;
 import service.PacienteAppService;
+import service.TipoUsuarioAppService;
+import service.UsuarioAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
 import util.DataUtil;
@@ -38,27 +41,34 @@ public class PacienteActions extends BaseActions implements Serializable {
 	// Services
 	private static PacienteAppService pacienteService;
 	private static AtendimentoAppService atendimentoService;
-	
+	private static UsuarioAppService usuarioService;
+	private static TipoUsuarioAppService tipoUsuarioService;
 	// Paginas
 	public final String PAGINA_EDIT = "editPaciente";
 	public final String PAGINA_LIST = "listPaciente";
 	public final String PAGINA_NEW = "newPaciente";
 	public final String PAGINA_SHOW = "showPaciente";
 	public final String PAGINA_LIST_ATENDIMENTO = "listAtendimento";
-	
+	public final String PAGINA_VISUALIZACAO_HISTORICO_AVALIACAO = "showHistorico";
 	// Componentes de Controle
 	private static final long serialVersionUID = 1L;
 	private DataModel listaDePacientes;
 	private DataModel listaDePacientesComAtendimentos;
+	private DataModel listaDeAnamneses;
+	private DataModel listaDeAtendimentos;
 	private SelectOneDataModel<String> comboTiposDeBusca;
 	private SelectOneDataModel<String> radioFlags;
-	
+	private SelectOneDataModel<Usuario> comboMedicos;
+	private SelectOneDataModel<Usuario> comboTecnicos;
+	private SelectOneDataModel<String> comboStatus;
 	// Variáveis de Tela
 	private Date dataNascimento;
 	private String campoDeBusca;
 	private boolean buscaEfetuada = false;
 	private Paciente pacienteCorrente;
+	private Atendimento atendimentoCorrente;
 	public List<String> tiposDeFlag = new ArrayList<String>(2);
+	private List<String> status = new ArrayList<String>();
 	private int pagina;
 	public final String BUSCA_POR_CODIGO = "Código";
 	public final String BUSCA_POR_NOME = "Nome";
@@ -235,7 +245,9 @@ public class PacienteActions extends BaseActions implements Serializable {
 	 * @author bruno.oliveira
 	 * 
 	 */
-	public void imprimirHistoricoAtendimento(){
+	/*public void imprimirHistoricoAtendimento(){
+		
+		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
 		List<Atendimento> atendimentos = atendimentoService
 				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(pacienteCorrente.getCodPaciente());
 		try {
@@ -243,8 +255,42 @@ public class PacienteActions extends BaseActions implements Serializable {
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
 		} 		
-	}
+	}*/
+
+	/*public String visualizarHistorico() {
+		try {
+
+		comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}
+		
+		if(atendimentoCorrente.getTecnico() == null){
+			comboTecnicos = null;
+		}else{
+			try {
+				comboTecnicos = SelectOneDataModel
+						.criaComObjetoSelecionadoSemTextoInicial(
+								usuarioService
+										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+												.recuperaTipoUsuarioTecnico()),
+								atendimentoCorrente.getTecnico());
+			} catch (AplicacaoException e) {
+				e.printStackTrace();
+			}
+		}
+		listaDeAnamneses = null;
+		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+		listaDeAtendimentos = new ListDataModel(
+				atendimentoService.
+				recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
+							atendimentoCorrente.getPaciente().getCodPaciente())
+							);
 	
+		return PAGINA_VISUALIZACAO_HISTORICO_AVALIACAO;
+	}*/
 	/**
 	 * 
 	 * Método usado para fazer a
