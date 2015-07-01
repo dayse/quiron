@@ -95,20 +95,20 @@
 								value="#{prompt.paciente_Documento}" />
 						</rich:column>
 						
-						 <rich:column>
-							<h:outputText title="#{tooltip.atendimento_Historico}" value="#{prompt.atendimento_VisualizarHistoricoPaciente}" />
-						</rich:column>
 						
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Atendimento}"
 								value="#{prompt.atendimento_Incluir}" />
 						</rich:column>
-
+						
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Editar}" value="#{prompt.editar}" />
 						</rich:column>
 						
-						
+						 <rich:column>
+							<h:outputText title="#{tooltip.atendimento_Historico}" value="#{prompt.avaliacao_Historico}" />
+						</rich:column>
+					
 						<rich:column>
 							<h:outputText title="#{tooltip.paciente_Excluir}" value="#{prompt.excluir}" />
 						</rich:column>
@@ -150,26 +150,40 @@
 					<h:outputText value="#{paciente.documento}" />
 				</rich:column>
 
-				<rich:column >
-				 <h:commandButton  value="#{prompt.atendimento_VisualizarHistoricoPaciente}" action="#{pacienteActions.visualizarHistorico}" />			
-				</rich:column>
 				
 				<rich:column>
-					<h:commandButton value="#{prompt.atendimento_Incluir}"
-						action="#{atendimentoActions.preparaInclusao}" />
+					<center>
+					<h:commandButton  styleClass="incluir_atendimento"		
+						action="#{atendimentoActions.preparaInclusao}"  title="Inclusão de Atendimento">
+						<f:setPropertyActionListener value="#{atendimento}"		
+							target="#{atendimentoActions.atendimentoCorrente}" />		
+					</h:commandButton>	
+				</center>
 				</rich:column>
 
 				<rich:column>
-					<h:commandButton value="#{prompt.editar}"
+				<center>
+					<h:commandButton styleClass="editar" title="Editar Atendimento"	
 						action="#{pacienteActions.preparaAlteracao}" />
+				</center>
 				</rich:column>
 				
-				 
-				
+				<rich:column >
+				<center>
+					<h:commandButton  styleClass="visualizar_historico"		
+						action="#{pacienteActions.visualizarHistorico}" title="Visualização do Histórico">
+						<f:setPropertyActionListener value="#{atendimento}"		
+							target="#{atendimentoActions.atendimentoCorrente}" />		
+					</h:commandButton>	
+				</center>	
+				</rich:column>
+			
 				<rich:column>
-					<a4j:commandButton value="#{prompt.excluir}"
+				<center>
+					<a4j:commandButton styleClass="excluir" title="Excluir Atendimento"	
 						action="#{pacienteActions.preparaExclusao}"
 						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" />
+				</center>
 				</rich:column>
 
 				<f:facet name="footer">

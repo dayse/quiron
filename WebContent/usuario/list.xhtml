@@ -35,15 +35,17 @@
 			<br/>
 
 			<h:panelGrid columns="5">
-			<h:outputText value="#{prompt.areaDeBusca}" />
+			<h:outputText  value="#{prompt.areaDeBusca}"/>
 				<h:inputText value="#{usuarioActions.campoDeBusca}" />
 				<h:selectOneMenu id="comboBusca"
 					value="#{usuarioActions.comboTiposDeBusca.selecao}">
 					<f:selectItems
 						value="#{usuarioActions.comboTiposDeBusca.listaSelecao}" />
 				</h:selectOneMenu>
-				<h:commandButton value="#{prompt.buscar}"
+				<center>
+				<h:commandButton styleClass="buscar"
 					action="#{usuarioActions.buscaUsuario}" />
+				</center>
 				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
 					action="#{usuarioActions.cancelar}"
 					rendered="#{usuarioActions.buscaEfetuada}" />				
@@ -72,11 +74,11 @@
 						</rich:column>
 						
 						<rich:column>
-							<h:outputText value="" />
+							<h:outputText value="#{prompt.editar}" />
 						</rich:column>
 						
 						<rich:column>
-							<h:outputText value="" />
+							<h:outputText value="#{prompt.excluir}" />
 						</rich:column>
 						
 					</rich:columnGroup>
@@ -97,13 +99,17 @@
 				</rich:column>
 
 				<rich:column styleClass="colunaCampoNumericoCentralizado">
-					<h:commandButton value="#{prompt.editar}" action="#{usuarioActions.preparaAlteracao}" />
+				<center>
+					<h:commandButton styleClass="editar" action="#{usuarioActions.preparaAlteracao}" />
+				</center>
 				</rich:column>
 				
 				<rich:column styleClass="colunaCampoNumericoCentralizado">
-					<a4j:commandButton value="#{prompt.excluir}" action="#{usuarioActions.preparaExclusao}"
+				<center>
+					<a4j:commandButton styleClass="excluir" action="#{usuarioActions.preparaExclusao}"
 						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" 
 						disabled="#{usuarioActions.exclusaoUsuarioLogado}"/>
+				</center>
 				</rich:column>
 
 				<f:facet name="footer">
