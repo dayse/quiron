@@ -49,7 +49,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 	public final String PAGINA_NEW = "newPaciente";
 	public final String PAGINA_SHOW = "showPaciente";
 	public final String PAGINA_LIST_ATENDIMENTO = "listAtendimento";
-	public final String PAGINA_VISUALIZACAO_HISTORICO_AVALIACAO = "showHistorico";
+	public final String PAGINA_VISUALIZACAO_HISTORICO_PACIENTE = "showHistoricoPaciente";
 	// Componentes de Controle
 	private static final long serialVersionUID = 1L;
 	private DataModel listaDePacientes;
@@ -90,6 +90,8 @@ public class PacienteActions extends BaseActions implements Serializable {
 		try{
 			pacienteService = FabricaDeAppService.getAppService(PacienteAppService.class);
 			atendimentoService = FabricaDeAppService.getAppService(AtendimentoAppService.class);
+			usuarioService = FabricaDeAppService.getAppService(UsuarioAppService.class);
+			tipoUsuarioService = FabricaDeAppService.getAppService(TipoUsuarioAppService.class);
 		} catch (Exception e){
 			throw e;
 		}
@@ -257,40 +259,15 @@ public class PacienteActions extends BaseActions implements Serializable {
 		} 		
 	}*/
 
-	/*public String visualizarHistorico() {
-		try {
+	public String visualizarHistorico() {
 
-		comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-		} catch (AplicacaoException e) {
-			e.printStackTrace();
-		}
+				pacienteCorrente = (Paciente) listaDePacientes.getRowData();
 		
-		if(atendimentoCorrente.getTecnico() == null){
-			comboTecnicos = null;
-		}else{
-			try {
-				comboTecnicos = SelectOneDataModel
-						.criaComObjetoSelecionadoSemTextoInicial(
-								usuarioService
-										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-												.recuperaTipoUsuarioTecnico()),
-								atendimentoCorrente.getTecnico());
-			} catch (AplicacaoException e) {
-				e.printStackTrace();
-			}
-		}
-		listaDeAnamneses = null;
-		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-		listaDeAtendimentos = new ListDataModel(
-				atendimentoService.
-				recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
-							atendimentoCorrente.getPaciente().getCodPaciente())
-							);
-	
-		return PAGINA_VISUALIZACAO_HISTORICO_AVALIACAO;
-	}*/
+						
+			
+			
+		return PAGINA_VISUALIZACAO_HISTORICO_PACIENTE;
+	}
 	/**
 	 * 
 	 * Método usado para fazer a

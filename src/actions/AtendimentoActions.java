@@ -387,7 +387,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * @return Retorna uma String que redireciona o usuário para a tela de
 	 *         detalhamento das informações do atendimento e de sua respectiva
 	 *         anamnese.
-	 * IGUAL AO MOSTRAR RETORNAR AQUI PARA FAZER CORREÇÕES
+	 * Igual ao método mostrar apenas muda o retorno que vai para página diferente
 	 * @author patricia.lima
 	 * 
 	 */

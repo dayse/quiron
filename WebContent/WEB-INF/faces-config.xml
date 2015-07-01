@@ -239,6 +239,10 @@
 		<navigation-case>
 			<from-outcome>newAtendimento</from-outcome>
 			<to-view-id>/atendimento/new.xhtml</to-view-id>
+		</navigation-case>
+			<navigation-case>
+			<from-outcome>showHistoricoPaciente</from-outcome>
+			<to-view-id>/paciente/showHistorico.xhtml</to-view-id>
 		</navigation-case>		
 	</navigation-rule>
 	<!-- FIM-Regras de navegacao (Paciente) -->	

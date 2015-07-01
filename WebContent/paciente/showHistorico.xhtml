@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/WEB-INF/template/historico_template.xhtml">
+	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
+	<ui:define name="descricao">#{prompt.atendimento_Mostrar}</ui:define>
+	<ui:define name="descricao_ajuda">#{help.atendimento_Mostrar}</ui:define>
+	<ui:define name="corpo">
+	
+		<a4j:keepAlive beanName="pacienteActions" />
+		<a4j:keepAlive beanName="atendimentoActions" />
+		
+		<h:form id="formatendimentoShow">
+		
+			<rich:simpleTogglePanel>
+				<f:facet name="header">
+					<h:outputText value="#{prompt.paciente}" />
+				</f:facet>
+				
+				<h:panelGrid columns="2">
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Codigo}" />:
+					</h:panelGroup>
+						<h:outputText id="codPaciente" value="#{pacienteActions.pacienteCorrente.codPaciente}" />				
+				
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Nome}" />:
+					</h:panelGroup>
+						<h:outputText id="nome" value="#{pacienteActions.pacienteCorrente.nome}" />						
+				
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_DataNascimento}" />:
+					</h:panelGroup>
+						<h:outputText id="dataNascimento" value="#{pacienteActions.pacienteCorrente.dataNascimento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+				
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Sexo}" />:
+					</h:panelGroup>
+						<h:outputText id="sexo" value="#{pacienteActions.pacienteCorrente.sexo ? prompt.masculino : prompt.feminino}" />				
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Endereco}" />:
+					</h:panelGroup>
+						<h:outputText id="endereco" value="#{pacienteActions.pacienteCorrente.endereco}" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_NomeResponsavel}" />:
+					</h:panelGroup>
+						<h:outputText id="nomeResponsavel" value="#{pacienteActions.pacienteCorrente.nomeResponsavel}" />
+
+					<h:panelGroup>
+						<h:outputText value="#{prompt.paciente_Documento}" />:
+					</h:panelGroup>
+						<h:outputText id="documento" value="#{pacienteActions.pacienteCorrente.documento}" />
+			
+				</h:panelGrid>
+				<br /><br />
+			</rich:simpleTogglePanel>
+		<rich:simpleTogglePanel >
+				<f:facet name="header">
+					#{prompt.paciente_InformacoesGeraisDoPaciente}
+				</f:facet>
+				
+				<h:panelGrid id="AreaTexto">
+					<h:inputTextarea id="informacoesGerais"
+						rows="12" cols="100" disabled="true"
+						value="#{pacienteActions.pacienteCorrente.informacoesGerais}" />
+				</h:panelGrid>
+			</rich:simpleTogglePanel>	
+				
+		</h:form>
+		
+	</ui:define>
+		
+</ui:composition>
+
+</html>
