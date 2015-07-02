@@ -194,7 +194,7 @@ h2{
 	background-repeat: no-repeat;
 	display: block;
 	width:68px; 
-	height:30px;
+	height:27px;
 
 }
 .editar{
@@ -275,7 +275,6 @@ h2{
 	display: block;
 	width:30px; 
 	height:30px;
-	align:center;
 	float: center;
 }
 .imprimir{
