@@ -291,13 +291,23 @@ public class PacienteActions extends BaseActions implements Serializable {
 
 	public String visualizarHistorico() {
 
-				pacienteCorrente = (Paciente) listaDePacientes.getRowData();
 				try {
-
+					pacienteCorrente = 	(Paciente)
+							((PacienteActions) getManagedBean("pacienteActions"))
+							.getListaDePacientes().getRowData();
+		
+		
+					listaDeAtendimentos = new ListDataModel(
+								atendimentoService.
+								recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
+											pacienteCorrente.getCodPaciente())
+											);
+					
 					comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
 								.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
 										.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-					} catch (AplicacaoException e) {
+					
+				} catch (AplicacaoException e) {
 						e.printStackTrace();
 					}
 					
@@ -311,6 +321,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 													.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
 															.recuperaTipoUsuarioTecnico()),
 											atendimentoCorrente.getTecnico());
+						
 						} catch (AplicacaoException e) {
 							e.printStackTrace();
 						}
