@@ -73,7 +73,61 @@
 						value="#{pacienteActions.pacienteCorrente.informacoesGerais}" />
 				</h:panelGrid>
 			</rich:simpleTogglePanel>	
+			<rich:simpleTogglePanel>
+
+				<f:facet name="header">
+					<h:outputText value="#{prompt.atendimento}" />
+				</f:facet>
+
+				<h:panelGrid columns="2">
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_Codigo}" />:
+					</h:panelGroup>
+						<h:outputText id="codigo" value="#{atendimentoActions.atendimentoCorrente.codAtendimento}" />
+						
+					<h:panelGroup>	
+						<h:outputText value="#{prompt.atendimento_Data}" />:
+					</h:panelGroup>	
+						<h:outputText value="#{atendimentoActions.atendimentoCorrente.dataAtendimento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					
+					<h:panelGroup>	
+ 						<h:outputText value="#{prompt.medico}" />:
+ 					</h:panelGroup>	
+ 						<h:outputText value="#{atendimentoActions.comboMedicos.selecao}" />
+					
+					<h:panelGroup>	
+ 						<h:outputText value="#{prompt.tecnico}" />:
+ 					</h:panelGroup>
+ 						<h:outputText value="#{atendimentoActions.comboTecnicos.selecao == 'Selecione aqui' ? prompt.atendimento_SemTecnico : atendimentoActions.comboTecnicos.selecao}" /> 				
+					
+					<h:panelGroup>	
+ 						<h:outputText value="#{prompt.atendimento_Status}" />:
+ 					</h:panelGroup>
+ 						<h:outputText value="#{atendimentoActions.comboStatus.selecao}" />
+					
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_Prescricao}" />:			
+					</h:panelGroup>
+					<h:inputTextarea rows="10" cols="40" id="prescricao"
+						value="#{atendimentoActions.atendimentoCorrente.prescricao}" disabled="true" />	
+						
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_Diagnostico}" />:			
+					</h:panelGroup>
+					<h:inputTextarea rows="10" cols="40" id="diagnostico"
+						value="#{atendimentoActions.atendimentoCorrente.diagnostico}" disabled="true" />
+						
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_Observacoes}" />:			
+					</h:panelGroup>
+					<h:inputTextarea rows="10" cols="40" id="observacoes"
+						value="#{atendimentoActions.atendimentoCorrente.observacoes}" disabled="true" />																
+				</h:panelGrid>								
 				
+			</rich:simpleTogglePanel>	
+
 		</h:form>
 		
 	</ui:define>
