@@ -60,11 +60,12 @@
 						<h:outputText id="documento" value="#{pacienteActions.pacienteCorrente.documento}" />
 			
 				</h:panelGrid>
-				<br /><br />
+		
 			</rich:simpleTogglePanel>
+			
 		<rich:simpleTogglePanel >
 				<f:facet name="header">
-					#{prompt.paciente_InformacoesGeraisDoPaciente}
+					<h:outputText value="#{prompt.paciente_InformacoesGeraisDoPaciente}" />
 				</f:facet>
 				
 				<h:panelGrid id="AreaTexto">
@@ -73,7 +74,8 @@
 						value="#{pacienteActions.pacienteCorrente.informacoesGerais}" />
 				</h:panelGrid>
 			</rich:simpleTogglePanel>	
-			<rich:simpleTogglePanel>
+			
+				<rich:simpleTogglePanel>
 
 				<f:facet name="header">
 					<h:outputText value="#{prompt.atendimento}" />
@@ -83,13 +85,54 @@
 					<h:panelGroup>
 						<h:outputText value="#{prompt.atendimento_Codigo}" />:
 					</h:panelGroup>
-						<h:outputText id="codigo" value="#{pacienteActions.pacienteCorrente.atendimentos.codAtendimento}" />
+						<h:outputText id="codigo" value="#{pacienteActions.pacienteCorrente.codAtendimento}" />
+						
+					<h:panelGroup>	
+						<h:outputText value="#{prompt.atendimento_Data}" />:
+					</h:panelGroup>	
+						<h:outputText value="#{pacienteActions.pacienteCorrente.atendimentos.dataAtendimento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 					
-																				
+					<h:panelGroup>	
+ 						<h:outputText value="#{prompt.medico}" />:
+ 					</h:panelGroup>	
+ 						<h:outputText value="#{pacienteActions.pacienteCorrente.atendimentos.comboMedicos.selecao}" />
+					
+					<h:panelGroup>	
+ 						<h:outputText value="#{prompt.tecnico}" />:
+ 					</h:panelGroup>
+ 						<h:outputText value="#{pacienteActions.pacienteCorrente.atendimentos.comboTecnicos.selecao == 'Selecione aqui' ? prompt.atendimento_SemTecnico : pacienteActions.pacienteCorrente.comboTecnicos.selecao}" /> 				
+					
+					<h:panelGroup>	
+ 						<h:outputText value="#{prompt.atendimento_Status}" />:
+ 					</h:panelGroup>
+ 						<h:outputText value="#{pacienteActions.pacienteCorrente.atendimentos.comboStatus.selecao}" />
+					
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_Prescricao}" />:			
+					</h:panelGroup>
+					<h:inputTextarea rows="10" cols="40" id="prescricao"
+						value="#{pacienteActions.pacienteCorrente.atendimentos.prescricao}" disabled="true" />	
+						
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_Diagnostico}" />:			
+					</h:panelGroup>
+					<h:inputTextarea rows="10" cols="40" id="diagnostico"
+						value="#{pacienteActions.pacienteCorrente.atendimentos.diagnostico}" disabled="true" />
+						
+					<h:panelGroup>
+						<h:outputText value="#{prompt.atendimento_Observacoes}" />:			
+					</h:panelGroup>
+					<h:inputTextarea rows="10" cols="40" id="observacoes"
+						value="#{pacienteActions.pacienteCorrente.atendimentos.observacoes}" disabled="true" />																
 				</h:panelGrid>								
 				
 			</rich:simpleTogglePanel>	
-
+				
+		
+			<h:commandButton id="botaoVoltar" value="#{prompt.voltar}"
+					action="#{atendimentoActions.cancelar}" immediate="true" />
 		</h:form>
 		
 	</ui:define>

@@ -83,10 +83,12 @@ public class PacienteActions extends BaseActions implements Serializable {
 	private Paciente pacienteCorrente;
 	private Algoritmo algoritmoCorrente;
 	private Date dataNascimento;
+	private Date dataAtendimento;
 	private String campoDeBusca;
 	private boolean buscaEfetuada = false;
 	public List<String> tiposDeFlag = new ArrayList<String>(2);
 	private int pagina;
+	private int numParametros;
 	public final String BUSCA_POR_CODIGO = "Código";
 	public final String BUSCA_POR_NOME = "Nome";
 	
@@ -291,50 +293,41 @@ public class PacienteActions extends BaseActions implements Serializable {
 
 	public String visualizarHistorico() {
 
+		
+		pacienteCorrente = 	(Paciente) listaDePacientes.getRowData();
+		
+		try {
+
+			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+			} catch (AplicacaoException e) {
+				e.printStackTrace();
+			}
+			
+			if(atendimentoCorrente.getTecnico() == null){
+				comboTecnicos = null;
+			}else{
 				try {
-					pacienteCorrente = 	(Paciente)
-							((PacienteActions) getManagedBean("pacienteActions"))
-							.getListaDePacientes().getRowData();
-		
-		
-					listaDeAtendimentos = new ListDataModel(
-								atendimentoService.
-								recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
-											pacienteCorrente.getCodPaciente())
-											);
-					
-					comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-								.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-										.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-					
+					comboTecnicos = SelectOneDataModel
+							.criaComObjetoSelecionadoSemTextoInicial(
+									usuarioService
+											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+													.recuperaTipoUsuarioTecnico()),
+									atendimentoCorrente.getTecnico());
 				} catch (AplicacaoException e) {
-						e.printStackTrace();
-					}
-					
-					if(atendimentoCorrente.getTecnico() == null){
-						comboTecnicos = null;
-					}else{
-						try {
-							comboTecnicos = SelectOneDataModel
-									.criaComObjetoSelecionadoSemTextoInicial(
-											usuarioService
-													.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-															.recuperaTipoUsuarioTecnico()),
-											atendimentoCorrente.getTecnico());
-						
-						} catch (AplicacaoException e) {
-							e.printStackTrace();
-						}
-					}
-					listaDeAnamneses = null;
-					comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-					listaDeAtendimentos = new ListDataModel(
-							atendimentoService.
-							recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
-										atendimentoCorrente.getPaciente().getCodPaciente())
-										);
-			
-			
+					e.printStackTrace();
+				}
+			}
+			listaDeAnamneses = null;
+			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+			listaDeAtendimentos = new ListDataModel(
+					atendimentoService.
+					recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
+								atendimentoCorrente.getPaciente().getCodPaciente())
+								);
+		
+							
 		return PAGINA_VISUALIZACAO_HISTORICO_PACIENTE;
 	}
 	/**
@@ -508,6 +501,163 @@ public class PacienteActions extends BaseActions implements Serializable {
 	}
 
 	/* ************* Get & Set ************ */
+	public Atendimento getAtendimentoCorrente() {
+		return atendimentoCorrente;
+	}
+
+	public void setAtendimentoCorrente(Atendimento atendimentoCorrente) {
+		this.atendimentoCorrente = atendimentoCorrente;
+	}
+
+	public Date getDataAtendimento() {
+		return dataAtendimento;
+	}
+
+	public void setDataAtendimento(Date dataAtendimento) {
+		this.dataAtendimento = dataAtendimento;
+	}
+
+	@SuppressWarnings("unchecked")
+	public DataModel getListaDeAtendimentos() {
+		if (listaDeAtendimentos == null) {
+
+			List<Atendimento> atendimentos = new ArrayList<Atendimento>(atendimentoService
+					.recuperaListaDeAtendimentosComPacientePaginada());
+
+			listaDeAtendimentos = new ListDataModel(atendimentos);
+		}
+		return listaDeAtendimentos;
+	}
+
+	public DataModel getListaDeAnamneses() {
+
+		if (listaDeAnamneses == null) {
+			if(atendimentoCorrente.getId() == null){
+				listaDeAnamneses = new ListDataModel(anamneseService
+						.geraListaDeAnamnesesPadroesParaAtendimento(atendimentoCorrente));
+			}
+			else{
+				listaDeAnamneses = new ListDataModel(anamneseService
+						.recuperaListaDeAnamnesePorAtendimento(atendimentoCorrente));
+			}
+		}
+		
+		return listaDeAnamneses;
+	}
+
+	public void setListaDeAnamneses(DataModel listaDeAnamneses) {
+		this.listaDeAnamneses = listaDeAnamneses;
+	}
+	
+	public DataModel getListaHistorico() {
+
+		if (listaHistorico == null) {
+				listaHistorico = new 
+						ListDataModel(historicoService.recuperaListaHistoricoPorAtendimento(atendimentoCorrente));
+		}
+		
+		return listaHistorico;
+	}
+
+	public void setListaHistorico(DataModel listaHistorico) {
+		this.listaHistorico = listaHistorico;
+	}	
+
+	public void setListaDeAtendimentos(DataModel listaDeAtendimentos) {
+		this.listaDeAtendimentos = listaDeAtendimentos;
+	}
+
+	public SelectOneDataModel<Usuario> getComboMedicos()
+			throws AplicacaoException {
+		if (comboMedicos == null) {
+			if (sessaoUsuarioCorrente.isClinico()) {
+				comboMedicos = SelectOneDataModel
+						.criaComObjetoSelecionadoSemTextoInicial(
+								usuarioService
+										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+												.recuperaTipoUsuarioClinico()),
+								sessaoUsuarioCorrente.getUsuarioLogado());
+			} else {
+				comboMedicos = SelectOneDataModel
+						.criaSemTextoInicial(usuarioService
+								.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+										.recuperaTipoUsuarioClinico()));
+			}
+		}
+		return comboMedicos;
+	}
+
+	public void setComboMedicos(SelectOneDataModel<Usuario> comboMedicos) {
+		this.comboMedicos = comboMedicos;
+	}
+
+	public SelectOneDataModel<Usuario> getComboTecnicos()
+			throws AplicacaoException {
+		if (comboTecnicos == null) {
+			if (sessaoUsuarioCorrente.isTecnico()) {
+				comboTecnicos = SelectOneDataModel
+						.criaComObjetoSelecionadoSemTextoInicial(
+								usuarioService
+										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+												.recuperaTipoUsuarioTecnico()),
+								sessaoUsuarioCorrente.getUsuarioLogado());
+			} else {
+				comboTecnicos = SelectOneDataModel
+						.criaComTextoInicialDefault(usuarioService
+								.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+										.recuperaTipoUsuarioTecnico()));
+			}
+		}
+		return comboTecnicos;
+	}
+
+	public void setComboTecnicos(SelectOneDataModel<Usuario> comboTecnicos) {
+		this.comboTecnicos = comboTecnicos;
+	}
+	public SelectOneDataModel<String> getComboStatus() {
+		if (comboStatus == null) {
+			comboStatus = SelectOneDataModel.criaSemTextoInicial(status);
+		}
+		return comboStatus;
+	}
+
+	public void setComboStatus(SelectOneDataModel<String> comboStatus) {
+		this.comboStatus = comboStatus;
+	}
+
+	public Anamnese getAnamneseCorrente() {
+		return anamnesesCorrente;
+	}
+
+	public void setAnamneseCorrente(Anamnese anamneseCorrente) {
+		this.anamnesesCorrente = anamneseCorrente;
+	}
+	public List<Parametro> getListaDeParametros() {
+		return this.listaDeParametros;
+	}
+
+	public void setListaDeParametros(List<Parametro> listaDeParametros) {
+		this.listaDeParametros = listaDeParametros;
+	}
+
+	public int getNumParametros() {
+		return this.listaDeParametros.size();
+	}
+
+	public void setNumParametros(int numParametros) {
+		this.numParametros = numParametros;
+	}
+	public SelectOneDataModel<String> getComboFiltroStatus() {
+		if (comboFiltroStatus == null) {
+			comboFiltroStatus = SelectOneDataModel.criaComTextoInicialDefault(status);
+		}
+		return comboFiltroStatus;
+	}
+
+	public void setComboFiltroStatus(SelectOneDataModel<String> comboFiltroStatus) {
+		this.comboFiltroStatus = comboFiltroStatus;
+	}
+//-------------------------------------------------------------------------------
 	
 	public String getCampoDeBusca() {
 		return campoDeBusca;
