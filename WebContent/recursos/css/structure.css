@@ -295,6 +295,25 @@ h2{
 	float: center;
 	
 }
+.ativar_algoritmo{
+	background-image: url('../imagens/ativar_algoritmo.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:120px; 
+	height:30px;
+	float: center;
+	
+}
+
+.avaliar_indicacao{
+	background-image: url('../imagens/ativar_algoritmo.png');
+	background-repeat: no-repeat;
+	display: block;
+	width:120px; 
+	height:30px;
+	float: center;
+	
+}
 
 /*
 	@author bruno.oliveira
