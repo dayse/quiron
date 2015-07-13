@@ -279,9 +279,10 @@ public class PacienteActions extends BaseActions implements Serializable {
 	 * @author bruno.oliveira
 	 * 
 	 */
-	/*public void imprimirHistoricoAtendimento(){
+	public void imprimirHistorico(){
+		//linha de Código que acrescentada funciona na página dos list paciente.
+		//pacienteCorrente = (Paciente) listaDePacientes.getRowData();
 		
-		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
 		List<Atendimento> atendimentos = atendimentoService
 				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(pacienteCorrente.getCodPaciente());
 		try {
@@ -289,45 +290,45 @@ public class PacienteActions extends BaseActions implements Serializable {
 		} catch (AplicacaoException e) {
 			e.printStackTrace();
 		} 		
-	}*/
+	}
 
 	public String visualizarHistorico() {
-
+		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
+		List<Atendimento> atendimentos = atendimentoService
+				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(pacienteCorrente.getCodPaciente());
 		
-		pacienteCorrente = 	(Paciente) listaDePacientes.getRowData();
 		
-		try {
+		/*try {
 
-			comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-						.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-								.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+		comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
+					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
+		} catch (AplicacaoException e) {
+			e.printStackTrace();
+		}
+				
+		if(atendimentoCorrente.getTecnico() == null){
+			comboTecnicos = null;
+		}else{
+			try {
+				comboTecnicos = SelectOneDataModel
+						.criaComObjetoSelecionadoSemTextoInicial(
+								usuarioService
+										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
+												.recuperaTipoUsuarioTecnico()),
+								atendimentoCorrente.getTecnico());
 			} catch (AplicacaoException e) {
 				e.printStackTrace();
 			}
-			
-			if(atendimentoCorrente.getTecnico() == null){
-				comboTecnicos = null;
-			}else{
-				try {
-					comboTecnicos = SelectOneDataModel
-							.criaComObjetoSelecionadoSemTextoInicial(
-									usuarioService
-											.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-													.recuperaTipoUsuarioTecnico()),
-									atendimentoCorrente.getTecnico());
-				} catch (AplicacaoException e) {
-					e.printStackTrace();
-				}
-			}
-			listaDeAnamneses = null;
-			comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-			listaDeAtendimentos = new ListDataModel(
-					atendimentoService.
-					recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
-								atendimentoCorrente.getPaciente().getCodPaciente())
-								);
-		
-							
+		}
+		listaDeAnamneses = null;
+		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+		listaDeAtendimentos = new ListDataModel(
+				atendimentoService.
+				recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
+							atendimentoCorrente.getPaciente().getCodPaciente())
+							);*/
+						
 		return PAGINA_VISUALIZACAO_HISTORICO_PACIENTE;
 	}
 	/**
