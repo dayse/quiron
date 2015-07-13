@@ -103,19 +103,25 @@
 				</rich:column>
 				
 				<rich:column>
-					<h:commandButton value="#{prompt.especialista_AvaliarIndicacao}"
+				<center>
+					<h:commandButton styleClass="avaliar" title="Avaliação de Indicação" 
 						action="#{especialistaActions.preparaAvaliacao}" />
+				</center>
 				</rich:column>
-
+				
 				<rich:column>
-					<h:commandButton value="#{prompt.editar}"
+				<center>
+					<h:commandButton styleClass="editar" title="Editar" 
 						action="#{especialistaActions.preparaAlteracao}" />
+				</center>
 				</rich:column>
 
 				<rich:column>
-					<a4j:commandButton value="#{prompt.excluir}"
+				<center>
+					<a4j:commandButton styleClass="excluir" title="Exclusão" 
 						action="#{especialistaActions.preparaExclusao}"
 						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" />
+				</center>
 				</rich:column>
 
 				<f:facet name="footer">

@@ -116,14 +116,14 @@
 
 				<rich:column>
 				<center>
-					<h:commandButton styleClass="editar"
+					<h:commandButton styleClass="editar" title="Editar"
 						action="#{indicacaoActions.preparaAlteracao}" />
 				</center>
 				</rich:column>
 
 				<rich:column>
 				<center>
-					<a4j:commandButton styleClass="excluir"
+					<a4j:commandButton styleClass="excluir" title="Exclusão" 
 						action="#{indicacaoActions.preparaExclusao}"
 						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" />
 				</center>
