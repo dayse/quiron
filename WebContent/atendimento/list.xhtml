@@ -216,7 +216,16 @@
 					</center>
 				</rich:column>
 									
+				<f:facet name="footer">
 
+					<h:panelGrid columns="2">
+
+						<h:outputText
+							value="#{prompt.atendimento_Total} = #{atendimentoActions.listaDeAtendimentos.rowCount}" />
+
+					</h:panelGrid>
+
+				</f:facet>
 			</rich:dataTable>
 
 		</h:form>
@@ -259,6 +268,7 @@
 				</h:panelGrid></center>
 
 			</rich:modalPanel>
+		
 		</h:form>
 
 	</ui:define>
