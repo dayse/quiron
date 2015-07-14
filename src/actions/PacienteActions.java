@@ -14,6 +14,7 @@ import javax.faces.model.ListDataModel;
 import modelo.Algoritmo;
 import modelo.Anamnese;
 import modelo.Atendimento;
+import modelo.HistoricoAtendimentoRelatorio;
 import modelo.Paciente;
 import modelo.Parametro;
 import modelo.Usuario;
@@ -280,8 +281,6 @@ public class PacienteActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public void imprimirHistorico(){
-		//linha de Código que acrescentada funciona na página dos list paciente.
-		//pacienteCorrente = (Paciente) listaDePacientes.getRowData();
 		
 		List<Atendimento> atendimentos = atendimentoService
 				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(pacienteCorrente.getCodPaciente());
@@ -294,40 +293,16 @@ public class PacienteActions extends BaseActions implements Serializable {
 
 	public String visualizarHistorico() {
 		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
-		List<Atendimento> atendimentos = atendimentoService
-				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(pacienteCorrente.getCodPaciente());
-		
-		
-		/*try {
 
-		comboMedicos = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(usuarioService
-					.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-							.recuperaTipoUsuarioClinico()), atendimentoCorrente.getMedico());
-		} catch (AplicacaoException e) {
-			e.printStackTrace();
+		List<Atendimento> atendimentos = atendimentoService.recuperaListaPaginadaDeAtendimentosComPacientePorCodigoPaciente(pacienteCorrente.getCodPaciente());
+		listaDeAtendimentos = new ListDataModel(atendimentos);
+		
+		if(atendimentos.isEmpty()){
+			info("paciente.SEM_ATENDIMENTO");
+			listaDeAtendimentos = null;
+			 return PAGINA_LIST;
 		}
-				
-		if(atendimentoCorrente.getTecnico() == null){
-			comboTecnicos = null;
-		}else{
-			try {
-				comboTecnicos = SelectOneDataModel
-						.criaComObjetoSelecionadoSemTextoInicial(
-								usuarioService
-										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
-												.recuperaTipoUsuarioTecnico()),
-								atendimentoCorrente.getTecnico());
-			} catch (AplicacaoException e) {
-				e.printStackTrace();
-			}
-		}
-		listaDeAnamneses = null;
-		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
-		listaDeAtendimentos = new ListDataModel(
-				atendimentoService.
-				recuperaListaPaginadaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(
-							atendimentoCorrente.getPaciente().getCodPaciente())
-							);*/
+		
 						
 		return PAGINA_VISUALIZACAO_HISTORICO_PACIENTE;
 	}
