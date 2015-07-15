@@ -6,7 +6,7 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition
-	template="/WEB-INF/template/atendimento_template.xhtml">
+	template="/WEB-INF/template/atendimento_incluir_template.xhtml">
 	<ui:define name="titulo">#{prompt.atendimento}</ui:define>
 	<ui:define name="descricao">#{prompt.atendimento_Incluir}</ui:define>
 	<ui:define name="descricao_ajuda">#{help.atendimento_Incluir}</ui:define>
@@ -218,7 +218,7 @@
 				value="#{prompt.confirmarInclusao}"
 				action="#{atendimentoActions.inclui}" />
 			<h:commandButton id="botaoVoltar" value="#{prompt.cancelar}"
-				action="#{atendimentoActions.cancelar}" immediate="true" />
+				action="#{pacienteActions.cancelar}" immediate="true" />
 				
 			<rich:simpleTogglePanel label="#{prompt.atendimento_VisualizarHistoricoInclusao}" opened="false">
 				

@@ -290,7 +290,14 @@ public class PacienteActions extends BaseActions implements Serializable {
 			e.printStackTrace();
 		} 		
 	}
-
+	/**
+	 * Visualiza o histórico contendo todos
+	 * os atendimentos de um determinado
+	 * paciente.
+	 * 
+	 * @author patricia.lima
+	 * 
+	 */
 	public String visualizarHistorico() {
 		pacienteCorrente = (Paciente) listaDePacientes.getRowData();
 
