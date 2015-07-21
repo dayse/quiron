@@ -585,7 +585,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}else{
 			try {
 				comboTecnicos = SelectOneDataModel
-						.criaComObjetoSelecionado(
+						.criaComObjetoSelecionadoSemTextoInicial(
 								usuarioService
 										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
 												.recuperaTipoUsuarioTecnico()),
@@ -594,7 +594,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 				e.printStackTrace();
 			}
 		}
-		comboStatus = SelectOneDataModel.criaComObjetoSelecionado(status, atendimentoCorrente.getStatus());
+		comboStatus = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(status, atendimentoCorrente.getStatus());
 
 		listaDeAnamneses = null;
 		listaDeAtendimentos = new ListDataModel(
@@ -632,8 +632,9 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaDeAnamneses = null;
 		
 		List<Usuario> listaDeMedicos = usuarioService.recuperaListaDeUsuarioPorTipo(tipoUsuarioService.recuperaTipoUsuarioClinico());
+		comboMedicos = SelectOneDataModel.criaComTextoInicialDefault(listaDeMedicos);
+		comboStatus = SelectOneDataModel.criaComTextoInicialDefault(status);
 	
-			
 			if (listaDeMedicos.isEmpty()){
 					error("usuario.MEDICOS_INEXISTENTES");
 					return PAGINA_LIST_PACIENTE;
