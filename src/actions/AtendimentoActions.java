@@ -585,7 +585,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		}else{
 			try {
 				comboTecnicos = SelectOneDataModel
-						.criaComObjetoSelecionadoSemTextoInicial(
+						.criaComObjetoSelecionado(
 								usuarioService
 										.recuperaListaDeUsuarioPorTipo(tipoUsuarioService
 												.recuperaTipoUsuarioTecnico()),
