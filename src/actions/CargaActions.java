@@ -40,7 +40,6 @@ public class CargaActions extends BaseActions {
 	// Variáveis de Tela
 	private String senha;
 	private String descCarga;
-
 	/**
 	 * 
 	 * Construtor da classe, onde a fábrica de service Carga é instanciada.
@@ -96,17 +95,20 @@ public class CargaActions extends BaseActions {
 	 */
 	public void alteraDesc(String opcao) {
 		if (opcao == null || opcao.equals(OPCAO_BASICA)) {
-			descCarga = "Insere tipos de usuarios, usuario administrador, parametros e algoritmos.";
-		}
-		else if (opcao.equals(OPCAO_EXEMPLO1)) {
-			descCarga = "Realiza a carga compatível com as nossas planilhas.";
-		}
-		else if (opcao.equals(OPCAO_EXEMPLO2)){
-			descCarga = "Carga com novos estudos de casos do Pedro Peloso.";
-		}
-		else if (opcao.equals(OPCAO_EXEMPLO3)){
-			descCarga = "Realiza as cargas anteriores e insere novos dados, totalizando 122 antibióticos.";
-		}
+            descCarga = ("É a carga de dados mínima que deve ser usada na instalação do sistema para o usuário," +
+                    "possuí apenas os dados imprescindíveis ao funcionamento do sistema.Insere tipos de usuarios,"+
+                    "usuario administrador, parametros e algoritmos.");
+        }
+        else if (opcao.equals(OPCAO_EXEMPLO1)) {
+            descCarga = String.format("Carga relativa ao 1º exemplo compatível com as planilhas.");
+           
+        }
+        else if (opcao.equals(OPCAO_EXEMPLO2)){
+            descCarga = "Carga com novos estudos de casos complementar dos parâmetros (27) , pacientes (12) e mais atendimentos.";
+        }
+        else if (opcao.equals(OPCAO_EXEMPLO3)){
+            descCarga = "Exemplo construído para testar mais volumes de dados para indicações, totalizando (122) antibióticos.";
+        }
 	}
 
 	/**

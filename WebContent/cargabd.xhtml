@@ -16,44 +16,63 @@
 	<h:form>
 	
 		<center>
-		<rich:panel >
+		<rich:panel>
 			<f:facet name="header" >
 			#{prompt.carga}
 			</f:facet>
 
-			<h:panelGrid columns="3">
-	
-				<h:panelGroup>
+			
+			<table>
+				<tr>
+				<td>
 					<h:outputText value="#{prompt.carga_Selecionada}:" />
-				</h:panelGroup>
-				
+				</td>
+				<td>
 				<h:selectOneMenu id="comboTiposDeCarga" value="#{cargaActions.comboTiposDeCarga.selecao}"
 				 valueChangeListener="#{cargaActions.alteraDescAjax}" immediate="true" rendered="true" >
 						<f:selectItems value="#{cargaActions.comboTiposDeCarga.listaSelecao}" />             
              			<a4j:support event="onchange" reRender="desc"  immediate="true" ajaxSingle="true"/>  
 				</h:selectOneMenu>
+				</td>
+				</tr>
+				<tr>
+				<td>
 				<rich:messages for="comboTiposDeCarga" styleClass="error" />
+				</td>
+				</tr>
 				
-				<h:panelGroup>
+				<tr>
+				 <td width="130" align="left">
 					<h:outputText value="#{prompt.carga_Descricao}:" />
-				</h:panelGroup>
-				
+				</td> 
+				<td width="480" align="justify">
 				<h:panelGroup id="desc">
-					<h:outputText value="#{cargaActions.descCarga}" escape="false"/>
-				</h:panelGroup>
-				<h:outputText value="" />
+					<p><h:outputText value="#{cargaActions.descCarga}" escape="false"/></p>
 				
-				<h:panelGroup>
+				</h:panelGroup>
+				</td>
+				</tr>
+				
+				
+				<tr>
+				<td>
 					<h:outputText value="#{prompt.senha}" />
-				</h:panelGroup>
+				</td>
 				
+				<td>
 				<h:inputSecret id="senhabd" value="#{cargaActions.senha}"
 					size="20">
-				</h:inputSecret>				
+				</h:inputSecret>
+				</td>
+				</tr>
+				<tr>
+				<td>				
 				<h:message for="senhabd" styleClass="error" warnClass="warn" />
-				
-			</h:panelGrid>
+				</td>
+				</tr>
+			</table>
 
+			<br/>
 			<br/>
 			<a4j:commandButton styleClass="button" value="#{prompt.ok}" action="#{cargaActions.executarCarga}" onclick="this.disabled=true" oncomplete="this.disabled=false" /> 
 			
