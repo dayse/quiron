@@ -95,8 +95,8 @@ public class CargaActions extends BaseActions {
 	 */
 	public void alteraDesc(String opcao) {
 		if (opcao == null || opcao.equals(OPCAO_BASICA)) {
-            descCarga = ("É a carga de dados mínima que deve ser usada na instalação do sistema para o usuário," +
-                    "possuí apenas os dados imprescindíveis ao funcionamento do sistema.Insere tipos de usuarios,"+
+            descCarga = ("É a carga de dados mínima que deve ser usada na instalação do sistema para o usuário." +
+                    "Possuí apenas os dados imprescindíveis ao funcionamento do sistema.Insere tipos de usuarios,"+
                     "usuario administrador, parametros e algoritmos.");
         }
         else if (opcao.equals(OPCAO_EXEMPLO1)) {
@@ -104,10 +104,10 @@ public class CargaActions extends BaseActions {
            
         }
         else if (opcao.equals(OPCAO_EXEMPLO2)){
-            descCarga = "Carga com novos estudos de casos complementar dos parâmetros (27) , pacientes (12) e mais atendimentos.";
+            descCarga = "Carga com novo estudo de casos complementando parâmetros (27) , pacientes (12) e mais atendimentos.";
         }
         else if (opcao.equals(OPCAO_EXEMPLO3)){
-            descCarga = "Exemplo construído para testar mais volumes de dados para indicações, totalizando (122) antibióticos.";
+            descCarga = "Exemplo construído para testar um volume de dado maior para indicações, totalizando (122) antibióticos.";
         }
 	}
 
