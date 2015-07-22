@@ -106,7 +106,8 @@
 				
 				<rich:column styleClass="colunaCampoNumericoCentralizado">
 				<center>
-					<a4j:commandButton styleClass="excluir" action="#{usuarioActions.preparaExclusao}"
+					<a4j:commandButton styleClass="#{usuario.tipoUsuario.tipoUsuario == Administrador ? excluir_cinza : excluir}" 
+						action="#{usuarioActions.preparaExclusao}"
 						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" 
 						disabled="#{usuarioActions.exclusaoUsuarioLogado}"/>
 				</center>
