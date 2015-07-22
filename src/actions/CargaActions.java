@@ -95,8 +95,8 @@ public class CargaActions extends BaseActions {
 	 */
 	public void alteraDesc(String opcao) {
 		if (opcao == null || opcao.equals(OPCAO_BASICA)) {
-            descCarga = ("É a carga de dados mínima que deve ser usada na instalação do sistema para o usuário." +
-                    "Possuí apenas os dados imprescindíveis ao funcionamento do sistema.Insere tipos de usuarios,"+
+            descCarga = ("É a carga de dados mínima que deve ser usada na instalação do sistema para o usuário. " +
+                    "Possuí apenas os dados imprescindíveis ao funcionamento do sistema. Insere tipos de usuarios,"+
                     "usuario administrador, parametros e algoritmos.");
         }
         else if (opcao.equals(OPCAO_EXEMPLO1)) {
