@@ -477,10 +477,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 */
 	@SuppressWarnings("unchecked")
 	public String inclui() {
+		
+
 		atendimentoCorrente.setDataAtendimento(DataUtil.dateToCalendar(dataAtendimento));
 		atendimentoCorrente.setMedico(comboMedicos.getObjetoSelecionado());
 		atendimentoCorrente.setTecnico(comboTecnicos.getObjetoSelecionado());
 		atendimentoCorrente.setStatus(comboStatus.getObjetoSelecionado());
+		
 		try{
 			pacienteService.altera(pacienteCorrente);
 		} catch (AplicacaoException ex){
@@ -509,6 +512,13 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaDeAtendimentos = null;
 		listaDePacientes = null;
 		listaDeAnamneses = null;
+		/*List<Usuario> listaDeMedicos = (List<Usuario>) atendimentoCorrente.getMedico();
+		if (listaDeMedicos.isEmpty()){
+			comboMedicos = null;
+		}
+		if (atendimentoCorrente.getStatus().isEmpty()){
+			comboStatus = null;
+		}*/
 		return PAGINA_LIST;
 	}
 
