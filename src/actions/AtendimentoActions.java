@@ -512,13 +512,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaDeAtendimentos = null;
 		listaDePacientes = null;
 		listaDeAnamneses = null;
-		/*List<Usuario> listaDeMedicos = (List<Usuario>) atendimentoCorrente.getMedico();
-		if (listaDeMedicos.isEmpty()){
-			comboMedicos = null;
-		}
-		if (atendimentoCorrente.getStatus().isEmpty()){
-			comboStatus = null;
-		}*/
+	
 		return PAGINA_LIST;
 	}
 
@@ -642,9 +636,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		listaDeAnamneses = null;
 		
 		List<Usuario> listaDeMedicos = usuarioService.recuperaListaDeUsuarioPorTipo(tipoUsuarioService.recuperaTipoUsuarioClinico());
-		comboMedicos = SelectOneDataModel.criaComTextoInicialDefault(listaDeMedicos);
-		comboStatus = SelectOneDataModel.criaComTextoInicialDefault(status);
 	
+			
 			if (listaDeMedicos.isEmpty()){
 					error("usuario.MEDICOS_INEXISTENTES");
 					return PAGINA_LIST_PACIENTE;
@@ -667,8 +660,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 											);
 		
 		return PAGINA_NEW;
+	
 	}
-
 	
 	/**
 	 * 
