@@ -9,6 +9,8 @@ import javax.faces.model.ListDataModel;
 
 import modelo.Paciente;
 import modelo.Parametro;
+import modelo.TipoUsuario;
+import modelo.Usuario;
 import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -37,6 +39,8 @@ public class ParametroActions extends BaseActions implements Serializable {
 	private Parametro parametroCorrente;
 	private String campoDeBusca;
 	private SelectOneDataModel<String> comboTiposDeBusca;
+	private SelectOneDataModel<String> comboTiposParametro;
+	private List<String> list = new ArrayList<String> (3); 
 	private boolean buscaEfetuada = false;
 	private final String BUSCA_POR_CODIGO = "Código";
 	private final String BUSCA_POR_NOME = "Nome";
@@ -149,8 +153,12 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 * 
 	 * @author felipe.pontes
 	 * 
+	 * Foi colocado o campo tipo de parametros
+	 * 
+	 * @author patricia.lima
 	 */
 	public String inclui() {
+		parametroCorrente.setTipo(comboTiposParametro.getObjetoSelecionado());
 		try {
 			parametroService.incluiComVerificacaoUsuario(parametroCorrente, sessaoUsuarioCorrente.getUsuarioLogado());
 		} catch (AplicacaoException ex) {
@@ -173,6 +181,8 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 */
 	public String preparaAlteracao() {
 		parametroCorrente = (Parametro) listaParametros.getRowData();
+		comboTiposParametro = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(list, parametroCorrente.getTipo());
+
 		return PAGINA_EDIT;
 	}
 
@@ -181,6 +191,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 * @author felipe.pontes
 	 */
 	public String altera() {
+		parametroCorrente.setTipo(comboTiposParametro.getObjetoSelecionado());
 		try {
 			parametroService.alteraComVerificacaoUsuario(parametroCorrente,sessaoUsuarioCorrente.getUsuarioLogado());
 		} catch (AplicacaoException e) {
@@ -232,6 +243,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 		info("parametro.SUCESSO_EXCLUSAO");
 		listaParametros = null;
 		comboTiposDeBusca = null;
+		comboTiposParametro = null;
 		buscaEfetuada = false;
 		return PAGINA_LIST;
 	}
@@ -269,7 +281,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 	public void setCampoDeBusca(String campoDeBusca){
 		this.campoDeBusca = campoDeBusca;
 	}
-	
+
 	public SelectOneDataModel<String> getComboTiposDeBusca(){
 		if(comboTiposDeBusca == null){
 			List<String> tiposDeBusca = new ArrayList<String>(2);
@@ -279,7 +291,25 @@ public class ParametroActions extends BaseActions implements Serializable {
 		}
 		return comboTiposDeBusca;
 	}
-	
+	/**
+	 * Inserindo no cadastro de Parametros a lista dos tipos de parametros
+	 * cadastrados no sistema.
+	 * 
+	 * @author patricia.lima
+	 * 
+	 */	
+	public SelectOneDataModel<String> getComboTiposParametro() {
+		if (comboTiposParametro == null) {
+		 
+        list.add ("Não pode exceder");  
+        list.add ("Pode exceder");  
+        list.add ("É melhor exceder"); 
+		
+			comboTiposParametro = SelectOneDataModel.criaSemTextoInicial(list);
+		}
+
+		return comboTiposParametro;
+	}
 	public void setComboTiposDeBusca(SelectOneDataModel<String> comboTiposDeBusca){
 		this.comboTiposDeBusca = comboTiposDeBusca;
 	}
@@ -309,5 +339,10 @@ public class ParametroActions extends BaseActions implements Serializable {
 	
 	public void setPaginaParametro(int paginaParametro){
 		this.paginaParametro = paginaParametro;
+	}
+
+	public void setComboTiposParametro(
+			SelectOneDataModel<String> comboTiposParametro) {
+		this.comboTiposParametro = comboTiposParametro;
 	}
 }

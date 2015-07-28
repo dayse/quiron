@@ -60,8 +60,13 @@
 						value="#{parametroActions.parametroCorrente.peso}"
 						maxlength="#{constantes.lParametroPeso}" size="20" required="true" />
 					<h:message for="peso" styleClass="error" />
-					<h:outputText value="" />
-
+						<h:outputText value="" />
+					<h:panelGroup>
+						<h:outputText value="#{prompt.parametro_Tipo}" />
+					</h:panelGroup>
+					<h:selectOneMenu value="#{parametroActions.comboTiposParametro.selecao}">
+						<f:selectItems value="#{parametroActions.comboTiposParametro.listaSelecao}"/>
+					</h:selectOneMenu>
 				</h:panelGrid>
 			</rich:panel>
 
