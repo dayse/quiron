@@ -1,6 +1,7 @@
 package actions;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -11,6 +12,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Indicacao;
 import modelo.TipoUsuario;
 import modelo.Usuario;
 import service.TipoUsuarioAppService;
@@ -39,6 +41,8 @@ public class UsuarioActions extends BaseActions {
 	private SelectOneDataModel<String> comboTiposDeBusca;
 
 	// Variaveis de Tela
+	private String login;
+	private String senha;
 	private Usuario usuarioCorrente;
 	private String confirmacaoSenha;
 	@SuppressWarnings("unused")
@@ -311,8 +315,16 @@ public class UsuarioActions extends BaseActions {
 	 * @author bruno.oliveira (Atualização)
 	 * 
 	 */
+	
 	public String preparaInclusao() {
+		senha = null;
+		login = null;
+		buscaEfetuada = false;
+		comboTiposDeBusca = null;
+		listaUsuarios = null;
+		confirmacaoSenha = null;
 		usuarioCorrente = new Usuario();
+		
 		return PAGINA_NEW;
 	}
 
@@ -326,6 +338,21 @@ public class UsuarioActions extends BaseActions {
 	 *         seus respectivos tipos de permissão.
 	 * 
 	 */
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	public DataModel getListaUsuarios() {
 
 		if (listaUsuarios == null) {
@@ -399,6 +426,16 @@ public class UsuarioActions extends BaseActions {
 	 * 
 	 */
 	public boolean isExclusaoUsuarioLogado() {
+		try {
+			List<Usuario> listaAdministrador = usuarioService.recuperaListaDeUsuarioPorTipo(tipoUsuarioService.recuperaTipoUsuarioAdministrador());
+		} catch (AplicacaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*if (listaAdministrador == "Administrador")	{
+			
+		}*/
+		
 		return sessaoUsuarioCorrente.getUsuarioLogado().equals(
 				(Usuario) listaUsuarios.getRowData());
 	}
