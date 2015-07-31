@@ -40,7 +40,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 	private String campoDeBusca;
 	private SelectOneDataModel<String> comboTiposDeBusca;
 	private SelectOneDataModel<String> comboTiposParametro;
-	private List<String> list = new ArrayList<String> (3); 
+	private List<String> list = new ArrayList<String> (2); 
 	private boolean buscaEfetuada = false;
 	private final String BUSCA_POR_CODIGO = "Código";
 	private final String BUSCA_POR_NOME = "Nome";
@@ -220,7 +220,9 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public void preparaExclusao(){
+		
 		parametroCorrente = (Parametro) listaParametros.getRowData();
+	System.out.println("Passei aqui");
 	}
 
 	/**
@@ -235,6 +237,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 	public String exclui(){
 		try{
 			parametroService.excluiComSegurancaComVerificacaoUsuario(parametroCorrente,sessaoUsuarioCorrente.getUsuarioLogado());
+			
 		}catch(AplicacaoException ex){
 			error(ex.getMessage());
 			return PAGINA_LIST;
@@ -303,7 +306,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 		 
         list.add ("Não pode exceder");  
         list.add ("Pode exceder");  
-        list.add ("É melhor exceder"); 
+        
 		
 			comboTiposParametro = SelectOneDataModel.criaSemTextoInicial(list);
 		}
