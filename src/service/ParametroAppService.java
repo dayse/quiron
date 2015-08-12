@@ -114,16 +114,20 @@ public class ParametroAppService {
 	 * @param parametro
 	 * @throws AplicacaoException
 	 */
+
+	
 	@Transacional
-	private void exclui(Parametro parametro) throws AplicacaoException{
+	public void exclui(Parametro parametro) throws AplicacaoException {
 			Parametro parametroBD = null;
-			try{
-				parametroBD = parametroDAO.getPorIdComLock(parametro.getId());
-			}catch(ObjetoNaoEncontradoException e){
-				throw new AplicacaoException("parametro.NAO_ENCONTRADO");
+			try {
+				parametroBD = parametroDAO.getPorIdComLock(parametro
+						.getId());
+			} catch (ObjetoNaoEncontradoException e) {
+				throw new AplicacaoException("especialista.NAO_ENCONTRADO");
 			}
 			parametroDAO.exclui(parametroBD);
 	}
+	
 
 	@Transacional
 	public void excluiComSegurancaComVerificacaoUsuario(Parametro parametro, Usuario usuarioAutenticado) throws AplicacaoException {

@@ -141,6 +141,14 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String preparaInclusao() {
+		//comboTiposParametro = SelectOneDataModel.criaSemTextoInicial(list);
+		try {
+			parametroService.verificaUsuarioAutenticadoTemPermissao( sessaoUsuarioCorrente.getUsuarioLogado());
+		} catch (AplicacaoException ex) {
+			error(ex.getMessage());
+			return PAGINA_LIST;
+		}
+		
 		parametroCorrente = new Parametro();
 		comboTiposDeBusca = null;
 		buscaEfetuada = false;
@@ -181,8 +189,14 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 */
 	public String preparaAlteracao() {
 		parametroCorrente = (Parametro) listaParametros.getRowData();
-		comboTiposParametro = SelectOneDataModel.criaComObjetoSelecionadoSemTextoInicial(list, parametroCorrente.getTipo());
-
+		//comboTiposParametro = SelectOneDataModel.criaSemTextoInicial(list);
+		try {
+			parametroService.verificaUsuarioAutenticadoTemPermissao( sessaoUsuarioCorrente.getUsuarioLogado());
+		} catch (AplicacaoException ex) {
+			error(ex.getMessage());
+			return PAGINA_LIST;
+		}
+	
 		return PAGINA_EDIT;
 	}
 
@@ -220,7 +234,7 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public void preparaExclusao(){
-		
+
 		parametroCorrente = (Parametro) listaParametros.getRowData();
 	System.out.println("Passei aqui");
 	}
