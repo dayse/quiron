@@ -123,7 +123,7 @@ public class ParametroAppService {
 				parametroBD = parametroDAO.getPorIdComLock(parametro
 						.getId());
 			} catch (ObjetoNaoEncontradoException e) {
-				throw new AplicacaoException("especialista.NAO_ENCONTRADO");
+				throw new AplicacaoException("parametro.NAO_ENCONTRADO");
 			}
 			parametroDAO.exclui(parametroBD);
 	}
