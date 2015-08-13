@@ -43,7 +43,7 @@
 		<ui:insert name="menu">
 			<rich:toolBar>
 	
-				<rich:dropDownMenu>
+				<rich:dropDownMenu rendered="#{(!sessaoDoUsuario.especialista)}">
 					<f:facet name="label">
 						<h:panelGroup>
 							<h:outputText value="#{prompt.pacientes}" />
@@ -55,7 +55,7 @@
 					</rich:menuItem>
 				</rich:dropDownMenu>
 				
-				<rich:dropDownMenu>
+				<rich:dropDownMenu rendered="#{(!sessaoDoUsuario.especialista)}">
 					<f:facet name="label">
 						<h:panelGroup>
 							<h:outputText value="#{prompt.atendimento}" />
@@ -67,7 +67,7 @@
 					</rich:menuItem>
 				</rich:dropDownMenu>
 				
-				<rich:dropDownMenu>
+				<rich:dropDownMenu rendered="#{(!sessaoDoUsuario.especialista)}">
 					<f:facet name="label">
 						<h:panelGroup>
 							<h:outputText value="#{prompt.indicacao}" />
@@ -79,7 +79,7 @@
 					</rich:menuItem>
 				</rich:dropDownMenu>				
 
-	            <rich:dropDownMenu rendered="#{(sessaoDoUsuario.administrador or sessaoDoUsuario.engenheiroConhecimento)}">
+	            <rich:dropDownMenu rendered="#{(sessaoDoUsuario.administrador or sessaoDoUsuario.engenheiroConhecimento or sessaoDoUsuario.especialista)}">
 	            	<f:facet name="label">
 	            		<h:panelGroup>
 	            			<h:outputText value="#{prompt.especialista}" />
@@ -91,7 +91,7 @@
 	            	</rich:menuItem>
 	            </rich:dropDownMenu>
 
-	            <rich:dropDownMenu>
+	            <rich:dropDownMenu rendered="#{(!sessaoDoUsuario.especialista)}">
 	            	<f:facet name="label">
 	            		<h:panelGroup>
 	            			<h:outputText value="#{prompt.parametro}" />

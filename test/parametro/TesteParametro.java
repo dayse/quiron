@@ -91,7 +91,7 @@ public class TesteParametro {
 		Usuario aluno = usuarioService.recuperaPorLoginESenha("aluno", "123");
 		Usuario clinico = usuarioService.recuperaPorLoginESenha("clinico", "123");
 		Usuario tecnico = usuarioService.recuperaPorLoginESenha("tecnico", "123");
-		
+		Usuario especialista = usuarioService.recuperaPorLoginESenha("especialista", "123");
 
 		AssertJUnit.assertEquals(Boolean.valueOf(true), parametroService.verificaUsuarioAutenticadoTemPermissao(admin));
 		AssertJUnit.assertEquals(Boolean.valueOf(true), parametroService.verificaUsuarioAutenticadoTemPermissao(engenheiro));
@@ -100,6 +100,7 @@ public class TesteParametro {
 			AssertJUnit.assertEquals(Boolean.valueOf(false), parametroService.verificaUsuarioAutenticadoTemPermissao(aluno));
 			AssertJUnit.assertEquals(Boolean.valueOf(false), parametroService.verificaUsuarioAutenticadoTemPermissao(clinico));
 			AssertJUnit.assertEquals(Boolean.valueOf(false), parametroService.verificaUsuarioAutenticadoTemPermissao(tecnico));
+			AssertJUnit.assertEquals(Boolean.valueOf(false), parametroService.verificaUsuarioAutenticadoTemPermissao(especialista));
 			AssertJUnit.fail("Não jogou AplicacaoException por conta da verificacao de autenticacao.");
 		}
 		catch(AplicacaoException ex){

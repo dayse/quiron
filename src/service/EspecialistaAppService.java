@@ -179,7 +179,8 @@ public class EspecialistaAppService {
 	public Boolean verificaUsuarioAutenticadoTemPermissao(Usuario usuarioAutenticado) throws AplicacaoException{
 		
 		if (!usuarioAutenticado.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR) &&
-			!usuarioAutenticado.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO)) {
+			!usuarioAutenticado.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO) && 
+			!usuarioAutenticado.getTipoUsuario().getTipoUsuario().equals(TipoUsuario.ESPECIALISTA) ) {
 			throw new AplicacaoException(2,"usuario.NAO_POSSUI_PERMISSAO");
 		}
 		

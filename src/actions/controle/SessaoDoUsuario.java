@@ -25,6 +25,8 @@ public class SessaoDoUsuario implements Serializable {
 	@SuppressWarnings("unused")
 	private boolean tecnico;
 	@SuppressWarnings("unused")
+	private boolean especialista;
+	@SuppressWarnings("unused")
 	private boolean engenheiroConhecimento;
 	@SuppressWarnings("unused")
 	private boolean administrador;
@@ -44,7 +46,10 @@ public class SessaoDoUsuario implements Serializable {
 		return usuarioLogado.getTipoUsuario().getTipoUsuario().equals(
 				TipoUsuario.TECNICO);
 	}
-
+	public boolean isEspecialista() {
+		return usuarioLogado.getTipoUsuario().getTipoUsuario().equals(
+				TipoUsuario.ESPECIALISTA);
+	}
 	public boolean isEngenheiroConhecimento() {
 		return usuarioLogado.getTipoUsuario().getTipoUsuario().equals(
 				TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO);

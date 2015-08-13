@@ -46,6 +46,7 @@ public class TipoUsuario implements Serializable {
 	public static final String ADMINISTRADOR = "Administrador";
 	public static final String CLINICO = "Clinico";
 	public static final String TECNICO = "Tecnico";
+	public static final String ESPECIALISTA = "Especialista";
 	public static final String ENGENHEIRO_DE_CONHECIMENTO = "Engenheiro de Conhecimento";
 	
 	

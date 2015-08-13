@@ -123,6 +123,7 @@ public class CargaUsuario extends CargaBase{
 			TipoUsuario tipoUsuarioAluno = new TipoUsuario();
 			TipoUsuario tipoUsuarioClinico = new TipoUsuario();
 			TipoUsuario tipoUsuarioTecnico = new TipoUsuario();
+			TipoUsuario tipoUsuarioEspecialista = new TipoUsuario();
 			TipoUsuario tipoUsuarioEngenheiro = new TipoUsuario();
 			
 			tipoUsuarioAdmin.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
@@ -138,13 +139,17 @@ public class CargaUsuario extends CargaBase{
 			tipoUsuarioTecnico.setTipoUsuario(TipoUsuario.TECNICO);
 			tipoUsuarioTecnico.setDescricao("O usuário TECNICO apenas pode fazer um pré atendimento ou cadastro de pacientes");
 			
+			tipoUsuarioEspecialista.setTipoUsuario(TipoUsuario.ESPECIALISTA);
+			tipoUsuarioEspecialista.setDescricao("O usuário ESPECIALISTA possui acesso somente ao cadastro de especialistas");	
+			
 			tipoUsuarioEngenheiro.setTipoUsuario(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO);
 			tipoUsuarioEngenheiro.setDescricao("O usuário ENGENHEIRO DE CONHECIMENTO não possui acesso a área Administrativa.");
 			
 			tipoUsuarioService.inclui(tipoUsuarioAdmin);
 			tipoUsuarioService.inclui(tipoUsuarioAluno);
 			tipoUsuarioService.inclui(tipoUsuarioClinico);
-			tipoUsuarioService.inclui(tipoUsuarioTecnico);
+			tipoUsuarioService.inclui(tipoUsuarioTecnico);			
+			tipoUsuarioService.inclui(tipoUsuarioEspecialista);
 			tipoUsuarioService.inclui(tipoUsuarioEngenheiro);
 			
 	
@@ -166,10 +171,14 @@ public class CargaUsuario extends CargaBase{
 			Usuario usuarioTecnico = usuarios.get(4);
 			usuarioTecnico.setTipoUsuario(tipoUsuarioTecnico);
 			
+			Usuario usuarioEspecialista = usuarios.get(5);
+			usuarioEspecialista.setTipoUsuario(tipoUsuarioEspecialista);
+			
 				usuarioService.inclui(usuarioAdmin, usuarioAdmin.getSenha());
 				usuarioService.inclui(usuarioEngenheiro, usuarioEngenheiro.getSenha());
 				usuarioService.inclui(usuarioClinico, usuarioClinico.getSenha());
 				usuarioService.inclui(usuarioTecnico, usuarioTecnico.getSenha());
+				usuarioService.inclui(usuarioEspecialista, usuarioEspecialista.getSenha());
 				usuarioService.inclui(usuarioAluno, usuarioAluno.getSenha());
 
 	}

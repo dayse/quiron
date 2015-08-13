@@ -86,7 +86,7 @@ public class TesteCargaUsuario {
 		usuarioService.recuperaPorLoginESenha("clinico", "123");
 		usuarioService.recuperaPorLoginESenha("engenheiro", "123");
 		usuarioService.recuperaPorLoginESenha("tecnico", "123");
-		
+		usuarioService.recuperaPorLoginESenha("especialista", "123");
 	}
 	
 	

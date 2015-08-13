@@ -23,5 +23,10 @@
 		"nome": "Tecnico",
 		"login": "tecnico",
 		"senha": "123"
+	},
+	{
+		"nome": "Especialista",
+		"login": "especialista",
+		"senha": "123"
 	}
 ]

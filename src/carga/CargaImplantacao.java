@@ -132,6 +132,7 @@ public class CargaImplantacao extends CargaBase{
 		TipoUsuario tipoUsuarioAluno = new TipoUsuario();
 		TipoUsuario tipoUsuarioClinico = new TipoUsuario();
 		TipoUsuario tipoUsuarioTecnico = new TipoUsuario();
+		TipoUsuario tipoUsuarioEspecialista = new TipoUsuario();
 		TipoUsuario tipoUsuarioEngenheiro = new TipoUsuario();
 		
 		tipoUsuarioAdmin.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
@@ -147,6 +148,9 @@ public class CargaImplantacao extends CargaBase{
 		tipoUsuarioTecnico.setTipoUsuario(TipoUsuario.TECNICO);
 		tipoUsuarioTecnico.setDescricao("O usuário TECNICO apenas pode fazer um pré atendimento ou cadastro de pacientes");
 		
+		tipoUsuarioEspecialista.setTipoUsuario(TipoUsuario.ESPECIALISTA);
+		tipoUsuarioEspecialista.setDescricao("O usuário ESPECIALISTA possui acesso somente ao cadastro de especialistas");	
+		
 		tipoUsuarioEngenheiro.setTipoUsuario(TipoUsuario.ENGENHEIRO_DE_CONHECIMENTO);
 		tipoUsuarioEngenheiro.setDescricao("O usuário ENGENHEIRO DE CONHECIMENTO não possui acesso a área Administrativa.");
 		
@@ -154,6 +158,7 @@ public class CargaImplantacao extends CargaBase{
 		tipoUsuarioService.inclui(tipoUsuarioAluno);
 		tipoUsuarioService.inclui(tipoUsuarioClinico);
 		tipoUsuarioService.inclui(tipoUsuarioTecnico);
+		tipoUsuarioService.inclui(tipoUsuarioEspecialista);
 		tipoUsuarioService.inclui(tipoUsuarioEngenheiro);
 	
 			List<Usuario> usuarios = recuperaUsuariosDeArquivoConfigJson();
