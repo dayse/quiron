@@ -19,6 +19,19 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.default_schema" value="quiron" />  
 			
+			<!-- Trecho de propriedade para ser usado quando fizer DEPLOY e apontando o BANCO DE DADOS no SERVIDOR - QUIRON_PRODUCAO -->
+			<!-- 
+			<property name="hibernate.archive.autodetection" value="class" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://200.20.196.24:5432/QUIRON_PRODUCAO" />
+			<property name="hibernate.connection.username" value="PRODUCAO" />
+			<property name="hibernate.connection.password" value="Produc@O.2008"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.default_schema" value="quiron" /> 
+			 -->
+
 			<!-- 
 				propriedade para criar as tabelas no banco de dados automaticamente
 				ESSA PROPRIEDADE DEVE SER EXECUTADA SOMENTE NA PRIMEIRA VEZ
