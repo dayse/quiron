@@ -37,7 +37,7 @@
 					</h:panelGroup>
 					<h:inputText id="codigo"
 						value="#{especialistaActions.especialistaCorrente.codEspecialista}"
-						maxlength="#{constantes.lEspecialistaCodigo}" size="20" required="true" />
+						maxlength="#{constantes.lEspecialistaCodigo}" size="20" required="true" autocomplete="off" />
 					<h:message for="codigo" styleClass="error" />
 
 					<h:panelGroup>
@@ -45,7 +45,7 @@
 					</h:panelGroup>
 					<h:inputText id="nome"
 						value="#{especialistaActions.especialistaCorrente.nome}" size="20"
-						maxlength="#{constantes.lEspecialistaNome}" required="true" />
+						maxlength="#{constantes.lEspecialistaNome}" required="true" autocomplete="off"/>
 					<h:message for="nome" styleClass="error" />
 
 					<h:panelGroup>
@@ -53,7 +53,7 @@
 					</h:panelGroup>
 					<h:inputText id="pesoAvaliador"
 						value="#{especialistaActions.especialistaCorrente.pesoAvaliador}"
-						maxlength="#{constantes.lEspecialistaPesoAvaliador}" size="20" required="true" />
+						maxlength="#{constantes.lEspecialistaPesoAvaliador}" size="20" required="true" autocomplete="off"/>
 					<h:message for="pesoAvaliador" styleClass="error" />
 
 				</h:panelGrid>

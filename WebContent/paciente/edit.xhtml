@@ -29,8 +29,7 @@
 					</h:panelGroup>
 					<h:inputText id="codigo"
 						value="#{pacienteActions.pacienteCorrente.codPaciente}"
-						maxlength="#{constantes.lPacienteCodigo}" size="20"
-						disabled="true" />
+						maxlength="#{constantes.lPacienteCodigo}" size="20" disabled="true"/>
 					<h:message for="codigo" styleClass="error" />
 					<h:outputText value="" />
 
@@ -39,7 +38,7 @@
 					</h:panelGroup>
 					<h:inputText id="nome"
 						value="#{pacienteActions.pacienteCorrente.nome}"
-						maxlength="#{constantes.lPacienteNome}" size="20" required="true" />
+						maxlength="#{constantes.lPacienteNome}" size="20" required="true" autocomplete="off"/>
 					<h:message for="nome" styleClass="error" />
 					<h:outputText value="" />
 
@@ -67,7 +66,7 @@
 					<h:inputText id="endereco"
 						value="#{pacienteActions.pacienteCorrente.endereco}"
 						maxlength="#{constantes.lPacienteEndereco}" size="20"
-						required="true" />
+						required="true" autocomplete="off"/>
 					<h:message for="endereco" styleClass="error" />
 					<h:outputText value="" />
 
@@ -77,7 +76,7 @@
 					<h:inputText id="nomeResponsavel"
 						value="#{pacienteActions.pacienteCorrente.nomeResponsavel}"
 						maxlength="#{constantes.lPacienteNomeResponsavel}"
-						size="20" required="true" />
+						size="20" required="true" autocomplete="off"/>
 					<h:message for="nomeResponsavel" styleClass="error" />
 					<h:outputText value="" />
 
@@ -87,7 +86,7 @@
 					<h:inputText id="documento"
 						value="#{pacienteActions.pacienteCorrente.documento}"
 						maxlength="#{constantes.lPacienteDocumento}" size="20"
-						required="true" />
+						required="true" autocomplete="off"/>
 					<h:message for="documento" styleClass="error" />
 					<h:outputText value="" />
 				</h:panelGrid>

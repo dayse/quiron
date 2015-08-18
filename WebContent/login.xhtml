@@ -21,14 +21,16 @@
 			<br/>
 		
 			<h:panelGrid columns="3">
+
 	
 				<h:panelGroup>
 					<h:outputText value="#{prompt.login}" />
 				</h:panelGroup>
 	
 				<h:inputText id="login" value="#{autenticadorActions.login}" size="20"
-					required="true">
+					  required="true" autocomplete="off">
 				</h:inputText>
+				
 				<h:message for="login" styleClass="error" warnClass="warn" />
 	
 				<h:panelGroup>
@@ -36,7 +38,7 @@
 				</h:panelGroup>
 				
 				<h:inputSecret id="senha" value="#{autenticadorActions.senha}"
-					size="20" required="true">
+					size="20"   required="true" autocomplete="off">
 				</h:inputSecret>
 				
 				<h:message for="senha" styleClass="error" warnClass="warn" />

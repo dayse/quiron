@@ -37,7 +37,7 @@
 					</h:panelGroup>
 					<h:inputText id="nome"
 						value="#{especialistaActions.especialistaCorrente.nome}" size="20"
-						maxlength="#{constantes.lEspecialistaNome}" required="true" />
+						maxlength="#{constantes.lEspecialistaNome}" required="true" autocomplete="off"/>
 					<h:message for="nome" styleClass="error" />
 					<h:outputText value="" />
 
@@ -47,7 +47,7 @@
 					<h:inputText id="pesoAvaliador"
 						value="#{especialistaActions.especialistaCorrente.pesoAvaliador}"
 						maxlength="#{constantes.lEspecialistaPesoAvaliador}" size="20" required="true" />
-					<h:message for="pesoAvaliador" styleClass="error" />
+					<h:message for="pesoAvaliador" styleClass="error" autocomplete="off"/>
 					<h:outputText value="" />
 
 				</h:panelGrid>
