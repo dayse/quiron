@@ -36,10 +36,10 @@
 	<field name="idAtendimento" class="java.lang.Long"/>
 	<field name="valorParametro" class="java.lang.Double"/>
 	<field name="nomeParametro" class="java.lang.String"/>
-	<group name="atendimento">
+	<group name="atendimento" isStartNewPage="true">
 		<groupExpression><![CDATA[$F{codAtendimento}]]></groupExpression>
 		<groupHeader>
-			<band height="279">
+			<band height="279" splitType="Stretch">
 				<textField isBlankWhenNull="true">
 					<reportElement x="142" y="43" width="298" height="15"/>
 					<textElement verticalAlignment="Middle">
@@ -349,20 +349,20 @@
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<pageHeader>
-		<band height="113" splitType="Stretch">
+	<title>
+		<band height="123">
 			<textField evaluationTime="Report">
-				<reportElement x="754" y="89" width="43" height="15"/>
+				<reportElement x="746" y="80" width="43" height="15"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="27" y="89" width="27" height="20"/>
+				<reportElement x="19" y="80" width="27" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Data:]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="56" y="89" width="135" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement key="textField" x="48" y="80" width="135" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -375,23 +375,23 @@
 				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="678" y="89" width="76" height="15"/>
+				<reportElement x="670" y="80" width="76" height="15"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA["Página: "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="122" y="18" width="103" height="47"/>
+				<reportElement x="114" y="9" width="103" height="47"/>
 				<imageExpression class="java.lang.String"><![CDATA[$P{LOGO_INT}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="265" y="39" width="341" height="26"/>
+				<reportElement x="257" y="30" width="341" height="26"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="14" isBold="true" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Histórico de Atendimentos do Paciente]]></text>
 			</staticText>
 		</band>
-	</pageHeader>
+	</title>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField isBlankWhenNull="true">
