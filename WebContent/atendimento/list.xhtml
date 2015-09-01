@@ -208,8 +208,8 @@
 				</rich:column>
 				<rich:column >
 				<center>
-					<a4j:commandButton styleClass="excluir" title="Exclusão" 
-						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})">		
+					<a4j:commandButton styleClass="#{atendimento.statusEncerrado ? 'excluir_cinza' : 'excluir'}" title="Exclusão" 
+						onclick="Richfaces.showModalPanel('panelConfirmacaoExclusao',{width:300, top:300})" disabled="#{atendimento.statusEncerrado}">		
 						<f:setPropertyActionListener value="#{atendimento}"		
 							target="#{atendimentoActions.atendimentoCorrente}" />		
 					</a4j:commandButton>
