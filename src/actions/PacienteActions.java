@@ -278,17 +278,22 @@ public class PacienteActions extends BaseActions implements Serializable {
 	 * paciente.
 	 * 
 	 * @author bruno.oliveira
+	 * @throws AplicacaoException 
 	 * 
 	 */
-	public void imprimirHistorico(){
+	public void imprimirHistorico() throws AplicacaoException{
 		
 		List<Atendimento> atendimentos = atendimentoService
 				.recuperaListaDeAtendimentosComPacienteComAnamnesePorCodigoPaciente(pacienteCorrente.getCodPaciente());
-		try {
-			atendimentoService.gerarRelatorioHistorico(atendimentos);
-		} catch (AplicacaoException e) {
-			e.printStackTrace();
-		} 		
+		
+			if(atendimentos.isEmpty()){
+				error ("paciente.SEM_ATENDIMENTO");
+		
+			}
+			else{
+				atendimentoService.gerarRelatorioHistorico(atendimentos);
+			}
+		
 	}
 	/**
 	 * Visualiza o histórico contendo todos
