@@ -46,9 +46,11 @@
 				</h:selectOneMenu>
 				<h:commandButton styleClass="buscar"
 					action="#{indicacaoActions.buscaIndicacao}" />
-				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
+				
+				<a4j:commandButton styleClass="voltar_lista" 
 					action="#{indicacaoActions.cancelar}"
 					rendered="#{indicacaoActions.buscaEfetuada}" />
+					
 			</h:panelGrid>
 
 			<rich:datascroller id="scrTabelaIndicacoes"

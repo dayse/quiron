@@ -48,7 +48,8 @@
 				
 				<h:commandButton styleClass="buscar"
 					action="#{atendimentoActions.buscaAtendimento}" />
-				<a4j:commandButton value="#{prompt.voltarListagemCompleta}"
+				
+					<a4j:commandButton styleClass="voltar_lista" 
 					action="#{atendimentoActions.cancelar}"
 					rendered="#{atendimentoActions.buscaEfetuada}" />
 			</h:panelGrid>
