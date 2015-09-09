@@ -261,15 +261,21 @@ public class PacienteActions extends BaseActions implements Serializable {
 	 * cadastrados no sistema.
 	 * 
 	 * @author bruno.oliveira
+	 * @throws AplicacaoException 
 	 * 
 	 */	
-	public void imprimir(){
-		try{
+	public void imprimir() throws AplicacaoException{
+		
 			List<Paciente> listaDePacientes = pacienteService.recuperaListaDePacientes();
-			pacienteService.gerarRelatorio(listaDePacientes);
-		} catch (AplicacaoException e){
-			e.printStackTrace();
-		}
+			
+	
+			if(listaDePacientes.isEmpty()){
+				error ("paciente.PACIENTES_INEXISTENTES");
+		
+			}
+			else{
+				pacienteService.gerarRelatorio(listaDePacientes);
+			}
 	}	
 	
 	/**
@@ -310,7 +316,7 @@ public class PacienteActions extends BaseActions implements Serializable {
 		listaDeAtendimentos = new ListDataModel(atendimentos);
 		
 		if(atendimentos.isEmpty()){
-			info("paciente.SEM_ATENDIMENTO");
+			error("paciente.SEM_ATENDIMENTO");
 			listaDeAtendimentos = null;
 			 return PAGINA_LIST;
 		}

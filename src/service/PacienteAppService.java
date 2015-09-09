@@ -59,13 +59,11 @@ public class PacienteAppService {
 		pacienteDAO.inclui(paciente);
 	}
 	
-	public List<Paciente> recuperaListaDePacientes() throws AplicacaoException{
+	public List<Paciente> recuperaListaDePacientes(){
 		List<Paciente> pacientes = pacienteDAO.recuperaListaDePacientes();
-		if(pacientes.isEmpty()){
-			throw new AplicacaoException("paciente.PACIENTES_INEXISTENTES");
-		}else{
+
 			return pacientes;
-		}
+		
 	}
 	
 	public List<Paciente> recuperaListaDePacientesPaginada(){
