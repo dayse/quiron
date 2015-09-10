@@ -42,10 +42,8 @@
 					<f:selectItems
 						value="#{usuarioActions.comboTiposDeBusca.listaSelecao}" />
 				</h:selectOneMenu>
-				<center>
 				<h:commandButton styleClass="buscar"
 					action="#{usuarioActions.buscaUsuario}" />
-				</center>
 				<a4j:commandButton styleClass="voltar_lista" 
 					action="#{usuarioActions.cancelar}"
 					rendered="#{usuarioActions.buscaEfetuada}" />				
