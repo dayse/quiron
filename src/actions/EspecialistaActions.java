@@ -211,6 +211,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String cancelar() {
+		buscaEfetuada = false;
 		listaDeEspecialistas = null;
 		avaliacaoAlterada = null;
 		listaDeAvaliacao = null;
