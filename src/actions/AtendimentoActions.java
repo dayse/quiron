@@ -211,6 +211,8 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String calculaAvaliacao() {
+		
+	
 		try {
 			atendimentoCorrente = atendimentoService.recuperaAtendimentoPorCodigoComPaciente(atendimentoCorrente.getCodAtendimento());
 		} catch (AplicacaoException e1) {
@@ -225,6 +227,10 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 		
 				
 		listaConjuntoAvaliacao = new ListDataModel(conjuntosDeAvaliacoes);
+		if (conjuntosDeAvaliacoes.isEmpty()){
+			error("indicacao.NAO_ENCONTRADA_AVALIACAO");
+			return PAGINA_LIST;
+		}
 		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
 		
 		try {
