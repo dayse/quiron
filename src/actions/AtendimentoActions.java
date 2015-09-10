@@ -320,6 +320,7 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 	 * 
 	 */
 	public String cancelar() {
+		buscaEfetuada = false;
 		listaDePacientes = null;
 		listaDeAtendimentos = null;
 		pacienteCorrente = null;
