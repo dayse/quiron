@@ -37,7 +37,8 @@
 						<h:outputText value="#{prompt.login}" />:
 					</h:panelGroup>
 						<h:inputText id="login" value="#{usuarioActions.usuarioCorrente.login}" 
-							maxlength="#{constantes.lUsuarioLogin}" size="20" required="true"autocomplete="off"/>
+							maxlength="#{constantes.lUsuarioLogin}" size="20" required="true" autocomplete="off">
+							</h:inputText>
 						<h:message for="login" styleClass="error" />	
 						
 					<h:panelGroup>
