@@ -17,6 +17,7 @@ import util.SelectOneDataModel;
 import modelo.AvalIndicacaoEspec;
 import modelo.Especialista;
 import modelo.Indicacao;
+import modelo.Paciente;
 import modelo.Parametro;
 import modelo.Usuario;
 
@@ -275,13 +276,20 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 * @author bruno.oliveira
 	 * 
 	 */
-	public void imprimir(){
-		try{
+	public void imprimir() throws AplicacaoException{
+		
 			List<Especialista> listaDeEspecialistas = especialistaService.recuperaListaEspecialista();
+			
+	 
+			
+		if(listaDeEspecialistas.isEmpty()){
+			error ("especialista.ESPECIALISTAS_INEXISTENTES");
+	
+		}
+		else{
 			especialistaService.gerarRelatorio(listaDeEspecialistas);
-		} catch (AplicacaoException e){
-			e.printStackTrace();
-		} 
+		}
+
 	}
 
 	/**
