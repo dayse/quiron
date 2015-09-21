@@ -9,6 +9,7 @@ import javax.faces.model.ListDataModel;
 
 import service.AvalIndicacaoEspecAppService;
 import service.EspecialistaAppService;
+import service.IndicacaoAppService;
 import service.ParametroAppService;
 import service.controleTransacao.FabricaDeAppService;
 import service.exception.AplicacaoException;
@@ -36,7 +37,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	public static EspecialistaAppService especialistaService;
 	public static AvalIndicacaoEspecAppService avalIndicacaoEspecService;
 	public static ParametroAppService parametroService;
-
+	public static IndicacaoAppService indicacaoService;
 	// Páginas
 	public final String PAGINA_LIST = "listEspecialista";
 	public final String PAGINA_NEW = "newEspecialista";
@@ -51,6 +52,7 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	private DataModel listaDeEspecialistas;
 	private DataModel listaDeAvaliacao;
 	private List<Parametro> listaDeParametros;
+	private List<Indicacao> listaDeIndicacoes;
 	private List<AvalIndicacaoEspec> avaliacaoAlterada;
 	private Especialista especialistaCorrente;
 	private Indicacao indicacaoCorrente;
@@ -74,6 +76,8 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 	 */
 	public EspecialistaActions() throws Exception {
 		try {
+			indicacaoService = FabricaDeAppService
+					.getAppService(IndicacaoAppService.class);
 			especialistaService = FabricaDeAppService
 					.getAppService(EspecialistaAppService.class);
 			avalIndicacaoEspecService = FabricaDeAppService
@@ -361,6 +365,11 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 		listaDeAvaliacao = null;
 		avaliacaoAlterada = null;
 		listaDeParametros = parametroService.recuperaListaDeParametros();
+		listaDeIndicacoes = indicacaoService.recuperaListaIndicacao();
+		if (listaDeIndicacoes.isEmpty()){
+			error("indicacao.NAO_CADASTRADA");
+			return PAGINA_LIST;
+		}
 		return PAGINA_AVALIACAO;
 	}
 
