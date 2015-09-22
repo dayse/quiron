@@ -652,13 +652,18 @@ public class AtendimentoActions extends BaseActions implements Serializable {
 			}
 
 		
-		
 		pacienteCorrente = 	(Paciente)
 							((PacienteActions) getManagedBean("pacienteActions"))
 							.getListaDePacientes().getRowData();
 		
 		atendimentoCorrente.setPaciente(pacienteCorrente);
-		
+		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
+	
+		if (listaDeParametros.isEmpty()){
+			error("parametro.PARAMETRO_INEXISTENTES");
+			return PAGINA_LIST_PACIENTE;
+
+		}
 		
 		listaDeAtendimentos = new ListDataModel(
 								atendimentoService.
