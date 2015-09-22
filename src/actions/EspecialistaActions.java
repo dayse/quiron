@@ -378,6 +378,11 @@ public class EspecialistaActions extends BaseActions implements Serializable {
 			error("indicacao.NAO_CADASTRADA");
 			return PAGINA_LIST;
 		}
+		if (listaDeParametros.isEmpty()){
+			error("parametro.PARAMETRO_INEXISTENTES");
+			return PAGINA_LIST;
+
+		}
 		return PAGINA_AVALIACAO;
 	}
 
