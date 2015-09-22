@@ -204,15 +204,20 @@ public class UsuarioActions extends BaseActions {
 	 * @author bruno.oliveira (Atualização)
 	 * 
 	 */
-	public void imprimir() {
-		try {
-			List<Usuario> listaDeUsuarios = usuarioService
-					.recuperaListaDeUsuarios();
-			usuarioService.gerarRelatorio(listaDeUsuarios);
-		} catch (AplicacaoException re) {
-			error("usuario.USUARIOS_INEXISTENTES");
+	public void imprimir() throws AplicacaoException{
+	
+			List<Usuario> listaDeUsuarios = usuarioService.recuperaListaDeUsuarios();
+			
+			if(listaDeUsuarios.isEmpty()){
+				error ("usuario.USUARIO_INEXISTENTES");
+
+			}
+			else{
+				usuarioService.gerarRelatorio(listaDeUsuarios);
+			}
+
+
 		}
-	}
 
 	/**
 	 * 
