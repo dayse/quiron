@@ -206,13 +206,20 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 	 * @author bruno.oliveira
 	 * 
 	 */	
-	public void imprimir(){
-		try{
+	public void imprimir() throws AplicacaoException{
+		
 			List<Indicacao> listaDeIndicacao = indicacaoService.recuperaListaIndicacao();
-			indicacaoService.gerarRelatorio(listaDeIndicacao);
-		} catch (AplicacaoException e){
-			e.printStackTrace();
+			
+		
+		if(listaDeIndicacao.isEmpty()){
+			error ("indicacao.INDICACAO_INEXISTENTES");
+	
 		}
+		else{
+			indicacaoService.gerarRelatorio(listaDeIndicacao);
+		}
+
+	
 	}
 	
 	/**
@@ -277,9 +284,9 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 
 				List<Especialista> listaEspecialista = especialistaService.recuperaListaEspecialista();
 				List<Indicacao> listaIndicacao = indicacaoService.recuperaListaIndicacao();
-		
+				
 		if (listaEspecialista.isEmpty() || listaIndicacao.isEmpty() ){
-				error("indicacao.INDICACAO_INEXISTENTES");
+				error("indicacao.INDICACAO_ESPECIALISTA_INEXISTENTES");
 				return PAGINA_LIST;
 
 		}
@@ -288,6 +295,11 @@ public class IndicacaoActions extends BaseActions implements Serializable {
 								avalIndicacaoEspecService.recuperaMediaDeAvaliacaoDeIndicacaoDeEspecialistas());
 		
 		listaDeParametros = parametroService.recuperaListaDeParametrosPaginada();
+		if (listaDeParametros.isEmpty()){
+			error("parametro.PARAMETRO_INEXISTENTES");
+			return PAGINA_LIST;
+
+		}
 		
 		return PAGINA_MEDIA_ESPEC;
 	}
