@@ -272,14 +272,21 @@ public class ParametroActions extends BaseActions implements Serializable {
 	 * @author bruno.oliveira
 	 * 
 	 */		
-	public void imprimir(){
-		try{
+	public void imprimir() throws AplicacaoException{
+	
 			List<Parametro> listaDeParametros = parametroService.recuperaListaDeParametros();
-			parametroService.gerarRelatorio(listaDeParametros);
-		} catch (AplicacaoException e){
-			e.printStackTrace();
+
+			if(listaDeParametros.isEmpty()){
+				error ("parametro.PARAMETRO_INEXISTENTES");
+
+			}
+			else{
+				parametroService.gerarRelatorio(listaDeParametros);
+			}
+
+
 		}
-	}
+
 	
 	/* ************* Get & Set ************ */
 	
