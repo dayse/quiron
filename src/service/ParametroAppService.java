@@ -152,9 +152,11 @@ public class ParametroAppService {
 	 */
 	@Transacional
 	public boolean verificaSeParametrosEstaoEmUso() throws AplicacaoException{
-		List<Especialista> especialistas = new ArrayList<Especialista>(especialistaDAO.recuperaListaEspecialista());
+		//Deixei em comentário as linhas do código anterior devo perguntar a dayse!! O que deverá ser feito!
+		//List<Especialista> especialistas = new ArrayList<Especialista>(especialistaDAO.recuperaListaEspecialista());
 		List<Atendimento> atendimentos = new ArrayList<Atendimento>(atendimentoDAO.recuperaListaAtendimento());
-		if(especialistas.size() > 0 || atendimentos.size() > 0){
+		//if(especialistas.size() > 0 || atendimentos.size() > 0){
+		if(atendimentos.size() > 0){
 			throw new AplicacaoException("parametro.EM_USO");
 		}else{
 			return true;
