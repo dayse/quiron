@@ -493,6 +493,6 @@ public Plot geraGraficoemBarraParaAvaliacaoDeIndicacaoDeAtendimento
 	}
 	
 	public List<Atendimento> recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikePorStatus(String nomePaciente, String status){
-		return atendimentoDAO.recuperaListaPaginadaDeAtendimentoComPacientePorNomeMedicoLikePorStatus(nomePaciente, status);
+		return atendimentoDAO.recuperaListaPaginadaDeAtendimentoComPacientePorNomePacienteLikePorStatus(nomePaciente, status);
 	}
 }
