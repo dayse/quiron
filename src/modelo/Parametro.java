@@ -103,7 +103,7 @@ public class Parametro implements Serializable, Comparable<Parametro>{
 
 	public static String TIPO_NAO_PODE_EXCEDER = "Não pode exceder";
 	public static String TIPO_PODE_EXCEDER = "Pode exceder";
-	public static String TIPO_MELHOR_EXCEDER = "É melhor exceder";
+
 	
 	
 	/**
